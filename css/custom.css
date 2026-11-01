@@ -3802,3 +3802,13 @@ body[data-lang="HY"] * {
     font-size: 20px !important;
   }
 }
+
+/* PERMANENT RULE: NO CAPSULE / PILL EYEBROW BADGES ABOVE SECTION HEADINGS */
+.amaras-rev-eyebrow,
+.amaras-bento-eyebrow,
+.amaras-faq-eyebrow,
+.amaras-care-eyebrow,
+.amaras-motto-badge,
+[class*="-eyebrow"] {
+  display: none !important;
+}
