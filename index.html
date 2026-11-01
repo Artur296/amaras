@@ -33,7 +33,7 @@ html{-webkit-font-smoothing:antialiased;-moz-font-smoothing:antialiased;-o-font-
 </style>
 <link href="https://cdn.plyr.io/3.8.4/plyr.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.css" rel="stylesheet"/>
-<link href="css/custom.css?v=8" rel="stylesheet"/></head><body class="rebrand-body"><div class="rebrand-nav-bar w-nav" role="banner">
+<link href="css/custom.css?v=9" rel="stylesheet"/></head><body class="rebrand-body"><div class="rebrand-nav-bar w-nav" role="banner">
   <div class="amaras-nav-container">
     <!-- Brand Logo -->
     <a class="amaras-nav-logo" href="#">
@@ -201,6 +201,15 @@ const AMARAS_I18N = {
     feat_7_title_accent: "Служба поддержки",
     feat_7_title_main: "на связи 24/7",
     feat_7_desc: "Персональный менеджер отвечает за 5 минут",
+    worldmap_title: "Более 100 000 довольных гостей со всего мира",
+    tag_attractions: "Достопримечательности",
+    tag_tours: "Экскурсии и сити-туры",
+    tag_custom: "Индивидуальные маршруты",
+    tag_history: "Исторические туры",
+    tag_jeep: "Джип-туры и экстрим",
+    tag_transfers: "Трансферы",
+    tag_gastro: "Гастрономические туры",
+    tag_workshops: "Мастер-классы",
   },
   ENG: {
     nav_home: "Home",
@@ -241,6 +250,15 @@ const AMARAS_I18N = {
     feat_7_title_accent: "Customer Support",
     feat_7_title_main: "available 24/7",
     feat_7_desc: "Personal manager responds in 5 minutes",
+    worldmap_title: "More than 100,000 happy guests from around the world",
+    tag_attractions: "Attractions",
+    tag_tours: "Guided & City Tours",
+    tag_custom: "Custom Itineraries",
+    tag_history: "Historical Tours",
+    tag_jeep: "Jeep Tours & Adventure",
+    tag_transfers: "Transfers",
+    tag_gastro: "Gastronomic Tours",
+    tag_workshops: "Masterclasses",
   },
   HY: {
     nav_home: "Գլխավոր",
@@ -281,6 +299,15 @@ const AMARAS_I18N = {
     feat_7_title_accent: "Աջակցության ծառայություն",
     feat_7_title_main: "24/7 ռեժիմով",
     feat_7_desc: "Անհատական մենեջերը պատասխանում է 5 րոպեում",
+    worldmap_title: "Ավելի քան 100,000 գոհ հյուրեր ամբողջ աշխարհից",
+    tag_attractions: "Տեսարժան վայրեր",
+    tag_tours: "Էքսկուրսիոն տուրեր",
+    tag_custom: "Անհատական երթուղիներ",
+    tag_history: "Պատմական տուրեր",
+    tag_jeep: "Ջիպ-տուրեր և էքստրիմ",
+    tag_transfers: "Տրանսֆերներ",
+    tag_gastro: "Գաստրոտուրեր",
+    tag_workshops: "Վարպետության դասեր",
   }
 };
 
@@ -1563,7 +1590,37 @@ document.addEventListener('DOMContentLoaded', () => {
   .rebrand-section-bento-row .rebrand-section-cta-rich-text {
   overflow-wrap: break-word;
 }
-  </style></div></div></div></div></div></div></div><div class="rebrand-section-worldmap" data-wf-component-id="e9864126-a1f6-7838-8cc9-57461f02d287" data-wf-variant-state="base"><div class="rebrand-section-worldmap-container"><div class="rebrand-section-worldmap-container-left"><div class="rebrand-section-worldmap-imagecontainer" data-wf-target='[[["e9864126-a1f6-7838-8cc9-57461f02d287","e9864126-a1f6-7838-8cc9-57461f02d28a"],["e9864126-a1f6-7838-8cc9-57461f02d286"]]]'><img alt="" loading="lazy" src="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1635/69d531659c4ead0401758b5c_Globe-GetYourGuide.png"/></div></div><div class="rebrand-section-worldmap-container-right"><h2 class="headingh2" data-wf-target='[[["e9864126-a1f6-7838-8cc9-57461f02d287","e9864126-a1f6-7838-8cc9-57461f02d28d"],["e9864126-a1f6-7838-8cc9-57461f02d286"]]]'>More than 200,000 experiences around the world</h2><div class="rebrand--section-worldmap-experiences color-content-secondary"><div class="body-2 none opacity70">Attractions</div><div class="rebrand-devider-dot"></div><div class="body-2 none opacity70">Theme Parks</div><div class="rebrand-devider-dot"></div><div class="body-2 none opacity70">Guided &amp; City Tours</div><div class="rebrand-devider-dot"></div><div class="body-2 none opacity70">City Cards</div><div class="rebrand-devider-dot"></div><div class="body-2 none opacity70">Hop-on-hop-off</div><div class="rebrand-devider-dot"></div><div class="body-2 none opacity70">Transfers</div><div class="rebrand-devider-dot"></div><div class="body-2 none opacity70">Activities</div><div class="rebrand-devider-dot"></div><div class="body-2 none opacity70">Workshops</div></div></div></div></div><div class="w-dyn-list"><div class="w-dyn-items" role="list"><div class="w-dyn-item" role="listitem"><section class="rebrand-section-benefit-cards-root" data-wf-component-id="a7ff7d30-0e7e-0cd0-4de7-a0e9606d8481" data-wf-variant-state="base"><div class="rebrand-section-benefit-cards-container"><div class="rebrand-headingwrapper-sectioncards"><h2 class="headingh2" data-wf-target='[[["a7ff7d30-0e7e-0cd0-4de7-a0e9606d8481","a7ff7d30-0e7e-0cd0-4de7-a0e9606d8482"],["67849fdd-6699-e582-604c-336229b17cb0","67849fdd-6699-e582-604c-336229b17cb4_instance-0"]]]'>A platform built for your success</h2></div><div class="rebrand-section-benefit-cards-row extra-wrapper"><div class="rebrand-section-benefit-cards-card"><img alt="" class="rebrand-section-benefit-cards-image" height="Auto" loading="lazy" sizes="100vw" src="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d64393ea316a7ecf2ce706_img-peaksales.webp" srcset="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d64393ea316a7ecf2ce706_img-peaksales-p-500.webp 500w, https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d64393ea316a7ecf2ce706_img-peaksales.webp 528w" width="Auto"/><div class="rebrand-section-benefit-cards-card-content"><h3 class="headingh5">Up to 20% more off-peak sales</h3><p class="loose body-2">Access data-driven insights to fill quieter slots and maximize your availability.</p></div></div><div class="rebrand-section-benefit-cards-card"><img alt="" class="rebrand-section-benefit-cards-image" loading="lazy" sizes="100vw" src="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69de12172088c152ed1d055e_BenefitCardsImage3.webp" srcset="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69de12172088c152ed1d055e_BenefitCardsImage3-p-500.webp 500w, https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69de12172088c152ed1d055e_BenefitCardsImage3.webp 637w"/><div class="rebrand-section-benefit-cards-card-content"><h3 class="headingh5">Maximize every booking</h3><p class="loose body-2">Increase revenue per guest with add-ons and cross-selling features.</p></div></div><div class="rebrand-section-benefit-cards-card"><img alt="" class="rebrand-section-benefit-cards-image" loading="lazy" sizes="100vw" src="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d643a7dd73d8e288878aff_img-createlistings.webp" srcset="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d643a7dd73d8e288878aff_img-createlistings-p-500.webp 500w, https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d643a7dd73d8e288878aff_img-createlistings.webp 528w"/><div class="rebrand-section-benefit-cards-card-content"><h3 class="headingh5">Create listings in minutes</h3><p class="loose body-2">Use our AI-powered tools to write listings and add photos, pricing, and availability in just a few steps. </p></div></div><div class="rebrand-section-benefit-cards-card"><img alt="" class="rebrand-section-benefit-cards-image" loading="lazy" sizes="100vw" src="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d643d5df6705a9eb9c64ff_img-appearon%20(1).webp" srcset="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d643d5df6705a9eb9c64ff_img-appearon%20(1)-p-500.webp 500w, https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d643d5df6705a9eb9c64ff_img-appearon%20(1).webp 528w"/><div class="rebrand-section-benefit-cards-card-content"><h3 class="headingh5">Build credibility through reviews</h3><p class="loose body-2">Use verified reviews to drive trust and increase bookings.</p></div></div></div><div class="rebrand-section-benefit-navigationbutton"><svg class="svg-44" fill="none" viewbox="0 0 14 14" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M5.03542 12.6667L4 11.6313L8.79792 6.83333L4 2.03542L5.03542 1L10.8688 6.83333L5.03542 12.6667Z" fill="currentColor"></path></svg></div><div class="rebrand-section-benefit-navigationbutton-left"><svg class="svg-44" fill="none" viewbox="0 0 14 14" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M5.03542 12.6667L4 11.6313L8.79792 6.83333L4 2.03542L5.03542 1L10.8688 6.83333L5.03542 12.6667Z" fill="currentColor"></path></svg></div><div class="code-embed-36 w-embed w-script"><style>
+  </style></div></div></div></div></div></div></div><div class="rebrand-section-worldmap" data-wf-component-id="e9864126-a1f6-7838-8cc9-57461f02d287" data-wf-variant-state="base">
+  <div class="rebrand-section-worldmap-container">
+    <div class="rebrand-section-worldmap-container-left">
+      <div class="rebrand-section-worldmap-imagecontainer" data-wf-target='[[["e9864126-a1f6-7838-8cc9-57461f02d287","e9864126-a1f6-7838-8cc9-57461f02d28a"],["e9864126-a1f6-7838-8cc9-57461f02d286"]]]'>
+        <img alt="Amaras Globe" class="amaras-globe-img" loading="lazy" src="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1635/69d531659c4ead0401758b5c_Globe-GetYourGuide.png"/>
+      </div>
+    </div>
+    <div class="rebrand-section-worldmap-container-right">
+      <h2 class="headingh2" data-i18n="worldmap_title">
+        Более 100 000 довольных гостей со всего мира
+      </h2>
+      <div class="rebrand--section-worldmap-experiences color-content-secondary">
+        <div class="body-2 none opacity70" data-i18n="tag_attractions">Достопримечательности</div>
+        <div class="rebrand-devider-dot"></div>
+        <div class="body-2 none opacity70" data-i18n="tag_tours">Экскурсии и сити-туры</div>
+        <div class="rebrand-devider-dot"></div>
+        <div class="body-2 none opacity70" data-i18n="tag_custom">Индивидуальные маршруты</div>
+        <div class="rebrand-devider-dot"></div>
+        <div class="body-2 none opacity70" data-i18n="tag_history">Исторические туры</div>
+        <div class="rebrand-devider-dot"></div>
+        <div class="body-2 none opacity70" data-i18n="tag_jeep">Джип-туры и экстрим</div>
+        <div class="rebrand-devider-dot"></div>
+        <div class="body-2 none opacity70" data-i18n="tag_transfers">Трансферы</div>
+        <div class="rebrand-devider-dot"></div>
+        <div class="body-2 none opacity70" data-i18n="tag_gastro">Гастрономические туры</div>
+        <div class="rebrand-devider-dot"></div>
+        <div class="body-2 none opacity70" data-i18n="tag_workshops">Мастер-классы</div>
+      </div>
+    </div>
+  </div>
+</div><div class="w-dyn-list"><div class="w-dyn-items" role="list"><div class="w-dyn-item" role="listitem"><section class="rebrand-section-benefit-cards-root" data-wf-component-id="a7ff7d30-0e7e-0cd0-4de7-a0e9606d8481" data-wf-variant-state="base"><div class="rebrand-section-benefit-cards-container"><div class="rebrand-headingwrapper-sectioncards"><h2 class="headingh2" data-wf-target='[[["a7ff7d30-0e7e-0cd0-4de7-a0e9606d8481","a7ff7d30-0e7e-0cd0-4de7-a0e9606d8482"],["67849fdd-6699-e582-604c-336229b17cb0","67849fdd-6699-e582-604c-336229b17cb4_instance-0"]]]'>A platform built for your success</h2></div><div class="rebrand-section-benefit-cards-row extra-wrapper"><div class="rebrand-section-benefit-cards-card"><img alt="" class="rebrand-section-benefit-cards-image" height="Auto" loading="lazy" sizes="100vw" src="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d64393ea316a7ecf2ce706_img-peaksales.webp" srcset="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d64393ea316a7ecf2ce706_img-peaksales-p-500.webp 500w, https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d64393ea316a7ecf2ce706_img-peaksales.webp 528w" width="Auto"/><div class="rebrand-section-benefit-cards-card-content"><h3 class="headingh5">Up to 20% more off-peak sales</h3><p class="loose body-2">Access data-driven insights to fill quieter slots and maximize your availability.</p></div></div><div class="rebrand-section-benefit-cards-card"><img alt="" class="rebrand-section-benefit-cards-image" loading="lazy" sizes="100vw" src="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69de12172088c152ed1d055e_BenefitCardsImage3.webp" srcset="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69de12172088c152ed1d055e_BenefitCardsImage3-p-500.webp 500w, https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69de12172088c152ed1d055e_BenefitCardsImage3.webp 637w"/><div class="rebrand-section-benefit-cards-card-content"><h3 class="headingh5">Maximize every booking</h3><p class="loose body-2">Increase revenue per guest with add-ons and cross-selling features.</p></div></div><div class="rebrand-section-benefit-cards-card"><img alt="" class="rebrand-section-benefit-cards-image" loading="lazy" sizes="100vw" src="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d643a7dd73d8e288878aff_img-createlistings.webp" srcset="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d643a7dd73d8e288878aff_img-createlistings-p-500.webp 500w, https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d643a7dd73d8e288878aff_img-createlistings.webp 528w"/><div class="rebrand-section-benefit-cards-card-content"><h3 class="headingh5">Create listings in minutes</h3><p class="loose body-2">Use our AI-powered tools to write listings and add photos, pricing, and availability in just a few steps. </p></div></div><div class="rebrand-section-benefit-cards-card"><img alt="" class="rebrand-section-benefit-cards-image" loading="lazy" sizes="100vw" src="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d643d5df6705a9eb9c64ff_img-appearon%20(1).webp" srcset="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d643d5df6705a9eb9c64ff_img-appearon%20(1)-p-500.webp 500w, https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69d643d5df6705a9eb9c64ff_img-appearon%20(1).webp 528w"/><div class="rebrand-section-benefit-cards-card-content"><h3 class="headingh5">Build credibility through reviews</h3><p class="loose body-2">Use verified reviews to drive trust and increase bookings.</p></div></div></div><div class="rebrand-section-benefit-navigationbutton"><svg class="svg-44" fill="none" viewbox="0 0 14 14" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M5.03542 12.6667L4 11.6313L8.79792 6.83333L4 2.03542L5.03542 1L10.8688 6.83333L5.03542 12.6667Z" fill="currentColor"></path></svg></div><div class="rebrand-section-benefit-navigationbutton-left"><svg class="svg-44" fill="none" viewbox="0 0 14 14" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M5.03542 12.6667L4 11.6313L8.79792 6.83333L4 2.03542L5.03542 1L10.8688 6.83333L5.03542 12.6667Z" fill="currentColor"></path></svg></div><div class="code-embed-36 w-embed w-script"><style>
   .rrebrand-section-benefit-cards-row::-webkit-scrollbar {
     display: none;
   }
