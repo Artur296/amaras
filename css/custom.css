@@ -215,3 +215,23 @@ a[href*="contact"].rebrand-button:hover {
   background-color: var(--amaras-lime);
   color: #111625;
 }
+
+
+/* Prevent Exit Intent Popup Overlay */
+.rebrand-exit-popup,
+[data-exit-popup="root"],
+[data-exit-popup="overlay"],
+[data-exit-popup="dialog"],
+.rebrand-exit-popup-dialog,
+.rebrand-exit-popup-overlay {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+body[data-exit-popup-open="true"] {
+  overflow: auto !important;
+}
