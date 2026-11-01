@@ -831,13 +831,13 @@ body[data-exit-popup-open="true"] {
 
 /* ==========================================================================
    AMARAS BRAND ADVANTAGES / FEATURES SECTION (Replaces old GYG trust stats)
-   Colors: #FFFFFF (bg), #312F2F (charcoal/badges), #586EFF (blue accent), #C7FF32 (lime icons)
-   STRICT: ZERO EMOJIS - PURE SVG VECTORS
+   Colors: #FFFFFF (bg), #312F2F (charcoal), #586EFF (blue accent), #C7FF32 (lime)
+   STRICT: ZERO EMOJIS - Clean Typographic Layout
    ========================================================================== */
 
 .amaras-features-section {
   background: #FFFFFF !important;
-  padding: 64px 32px 72px;
+  padding: 56px 32px 64px;
   width: 100%;
   position: relative;
   border-top: 1px solid rgba(49, 47, 47, 0.08);
@@ -854,7 +854,7 @@ body[data-exit-popup-open="true"] {
 .amaras-features-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 44px 32px;
+  gap: 40px 36px;
   align-items: start;
 }
 
@@ -870,44 +870,12 @@ body[data-exit-popup-open="true"] {
   transform: translateY(-2px);
 }
 
-.amaras-feature-icon-badge {
-  width: auto;
-  height: auto;
-  background: transparent !important;
-  border-radius: 0 !important;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 16px;
-  box-shadow: none !important;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  flex-shrink: 0;
-}
-
-.amaras-feature-icon-badge svg {
-  display: block;
-  width: 32px;
-  height: 32px;
-  stroke: #586EFF !important;
-  stroke-width: 2 !important;
-  transition: transform 0.25s ease, filter 0.25s ease;
-}
-
-.amaras-feature-icon-badge svg circle[fill] {
-  fill: #586EFF !important;
-}
-
-.amaras-feature-card:hover .amaras-feature-icon-badge svg {
-  transform: translateY(-2px) scale(1.08);
-  filter: drop-shadow(0 4px 12px rgba(88, 110, 255, 0.3));
-}
-
 .amaras-feature-title {
   font-family: var(--amaras-font-family, system-ui, -apple-system, sans-serif);
-  font-size: 16.5px;
+  font-size: 17.5px;
   font-weight: 700;
   line-height: 1.35;
-  margin: 0 0 8px 0;
+  margin: 0 0 10px 0;
   color: #312F2F;
   letter-spacing: -0.01em;
 }
@@ -925,7 +893,7 @@ body[data-exit-popup-open="true"] {
 
 .amaras-feature-desc {
   font-family: var(--amaras-font-family, system-ui, -apple-system, sans-serif);
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.55;
   color: #5A6275;
   margin: 0;
@@ -936,25 +904,25 @@ body[data-exit-popup-open="true"] {
 @media (max-width: 1100px) {
   .amaras-features-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 36px 28px;
+    gap: 32px 28px;
   }
   .amaras-features-section {
-    padding: 48px 24px 56px;
+    padding: 44px 24px 50px;
   }
 }
 
 @media (max-width: 640px) {
   .amaras-features-grid {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 26px;
   }
   .amaras-features-section {
-    padding: 40px 16px 48px;
+    padding: 36px 16px 42px;
   }
   .amaras-feature-title {
-    font-size: 15.5px;
+    font-size: 16px;
   }
   .amaras-feature-desc {
-    font-size: 13px;
+    font-size: 13.5px;
   }
 }
