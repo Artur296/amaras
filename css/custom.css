@@ -956,3 +956,30 @@ body[data-exit-popup-open="true"] {
 .rebrand-section-worldmap-imagecontainer:hover img {
   transform: scale(1.04) rotate(2deg);
 }
+
+.amaras-feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 14px;
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  width: auto;
+  height: auto;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.amaras-feature-icon svg {
+  display: block;
+  width: 32px;
+  height: 32px;
+  stroke: #586EFF !important;
+  stroke-width: 2 !important;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.amaras-feature-card:hover .amaras-feature-icon svg {
+  transform: translateY(-2px) scale(1.08);
+  filter: drop-shadow(0 4px 10px rgba(88, 110, 255, 0.35));
+}
