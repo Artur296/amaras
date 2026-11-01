@@ -3812,3 +3812,59 @@ body[data-lang="HY"] * {
 [class*="-eyebrow"] {
   display: none !important;
 }
+
+/* Instagram Channel & Footer Socials */
+.amaras-channel-ig {
+  background: rgba(225, 48, 108, 0.15);
+  color: #E1306C;
+  border: 1px solid rgba(225, 48, 108, 0.3);
+}
+
+.amaras-chat-channel-link:hover .amaras-channel-ig {
+  background: rgba(225, 48, 108, 0.25);
+  border-color: #E1306C;
+  box-shadow: 0 0 12px rgba(225, 48, 108, 0.4);
+}
+
+.amaras-footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.amaras-footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.amaras-footer-social-link:hover {
+  transform: translateY(-2px);
+}
+
+.amaras-footer-social-link.is-ig:hover {
+  background: #E1306C;
+  border-color: #E1306C;
+  box-shadow: 0 6px 16px rgba(225, 48, 108, 0.4);
+}
+
+.amaras-footer-social-link.is-tg:hover {
+  background: #24A1DE;
+  border-color: #24A1DE;
+  box-shadow: 0 6px 16px rgba(36, 161, 222, 0.4);
+}
+
+.amaras-footer-social-link.is-wa:hover {
+  background: #25D366;
+  border-color: #25D366;
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+}
