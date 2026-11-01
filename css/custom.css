@@ -3204,3 +3204,601 @@ body[data-lang="HY"] * {
   background: #475DE5;
   transform: translateY(-1px);
 }
+
+/* ==========================================================================
+   AMARAS TOUR - BENTO GRID SECTION STYLES
+   ========================================================================== */
+.rebrand-section-bento-wrapper {
+  max-width: 1260px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 50px !important;
+  margin-bottom: 70px !important;
+  padding: 0 24px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  overflow: visible !important;
+}
+
+.rebrand-section-bento-container {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.amaras-bento-header {
+  margin-bottom: 40px !important;
+  text-align: left;
+}
+
+.amaras-bento-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(199, 255, 50, 0.1);
+  border: 1px solid rgba(199, 255, 50, 0.25);
+  color: #C7FF32;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.amaras-bento-main-h2 {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 38px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  color: #FFFFFF !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 0 14px 0 !important;
+}
+
+.amaras-bento-sub {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 16.5px !important;
+  line-height: 1.6 !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+  max-width: 760px;
+  margin: 0 !important;
+}
+
+.rebrand-section-bento-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24px !important;
+  width: 100% !important;
+  margin-top: 0 !important;
+}
+
+.rebrand-section-bento-row {
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  gap: 24px !important;
+  width: 100% !important;
+}
+
+/* Base Bento Card */
+.amaras-bento-card {
+  border-radius: 32px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease !important;
+}
+
+.amaras-bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
+}
+
+.amaras-bento-card .rebrand-section-bento-card-content {
+  padding: 30px !important;
+  z-index: 2 !important;
+  position: relative !important;
+}
+
+.amaras-bento-card h3 {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  margin: 0 0 12px 0 !important;
+  color: #FFFFFF !important;
+  letter-spacing: -0.015em !important;
+}
+
+.amaras-bento-card p {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 14.5px !important;
+  line-height: 1.65 !important;
+  margin: 0 !important;
+}
+
+/* CARD 1: 50+ ROUTES */
+.amaras-bento-card-1 {
+  flex: 1.25 !important;
+  min-height: 520px !important;
+  background: linear-gradient(140deg, #3750EB 0%, #586EFF 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  justify-content: space-between !important;
+}
+
+.amaras-bento-card-1 p {
+  color: rgba(255, 255, 255, 0.94) !important;
+}
+
+.amaras-bento-c1-visual {
+  position: relative;
+  width: 100%;
+  min-height: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 24px 10px;
+  box-sizing: border-box;
+}
+
+.amaras-bento-topo-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.amaras-bento-c1-minicard {
+  position: relative;
+  z-index: 2;
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 18px 20px;
+  box-shadow: 0 20px 40px rgba(10, 16, 60, 0.28);
+  width: 100%;
+  max-width: 440px;
+}
+
+.amaras-bento-c1-minitop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.amaras-bento-c1-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: rgba(88, 110, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.amaras-bento-c1-minititle {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #1A1A1A;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.amaras-bento-c1-count {
+  background: #C7FF32;
+  color: #1A1A1A;
+  font-weight: 800;
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  margin-left: auto;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.amaras-bento-c1-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.amaras-bento-chip {
+  background: #F3F5FA;
+  color: #2D2B2B;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  transition: background 0.2s;
+}
+
+.amaras-bento-chip.is-accent {
+  background: #EEF2FF;
+  color: #3750EB;
+  font-weight: 700;
+}
+
+/* CARD 2: PREMIUM FLEET */
+.amaras-bento-card-2 {
+  flex: 1 !important;
+  min-height: 520px !important;
+  background: #1C1A1A !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  justify-content: space-between !important;
+}
+
+.amaras-bento-card-2 p {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.amaras-bento-c2-visual {
+  width: 100%;
+  padding: 0 24px 28px;
+  box-sizing: border-box;
+}
+
+.amaras-bento-c2-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 18px 20px;
+}
+
+.amaras-bento-c2-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.amaras-bento-c2-model {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.amaras-bento-c2-live-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #C7FF32;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.amaras-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #C7FF32;
+  box-shadow: 0 0 8px #C7FF32;
+  animation: amarasBentoPulse 2s infinite ease-in-out;
+}
+
+@keyframes amarasBentoPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.amaras-bento-c2-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.amaras-bento-c2-feat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  color: #E4E7F0;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.amaras-bento-c2-footer {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* CARD 3: 24/7 CARE & CONCIERGE */
+.amaras-bento-card-3 {
+  flex: 1 !important;
+  min-height: 560px !important;
+  background: #1C1A1A !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  justify-content: space-between !important;
+}
+
+.amaras-bento-card-3 p {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.amaras-bento-c3-visual {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 24px 20px 10px;
+  box-sizing: border-box;
+}
+
+.amaras-bento-phone-mockup {
+  width: 290px;
+  max-width: 100%;
+  background: #131212;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 26px;
+  padding: 12px 14px 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.amaras-bento-phone-top {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.amaras-bento-phone-speaker {
+  width: 44px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.amaras-bento-chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.amaras-bento-chat-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #586EFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.amaras-bento-chat-name {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.amaras-bento-chat-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #C7FF32;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.amaras-chat-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #C7FF32;
+}
+
+.amaras-bento-chat-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.amaras-chat-bubble {
+  padding: 9px 12px;
+  border-radius: 12px;
+  font-size: 11.5px;
+  line-height: 1.45;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.amaras-chat-incoming {
+  background: rgba(255, 255, 255, 0.08);
+  color: #E4E7F0;
+  border-bottom-left-radius: 3px;
+  align-self: flex-start;
+  max-width: 90%;
+}
+
+.amaras-chat-outgoing {
+  background: #586EFF;
+  color: #FFFFFF;
+  border-bottom-right-radius: 3px;
+  align-self: flex-end;
+  max-width: 85%;
+  font-weight: 500;
+}
+
+.amaras-bento-chat-channels {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.amaras-bento-ch-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.06);
+  color: #FFFFFF;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* CARD 4: FAIR PRICING & 12 YEARS TRUST */
+.amaras-bento-card-4 {
+  flex: 1.25 !important;
+  min-height: 560px !important;
+  background: linear-gradient(160deg, #242222 0%, #161515 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  justify-content: space-between !important;
+}
+
+.amaras-bento-card-4 p {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.amaras-bento-c4-visual {
+  width: 100%;
+  padding: 24px 24px 10px;
+  box-sizing: border-box;
+}
+
+.amaras-bento-c4-dashboard {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 18px 20px;
+  box-sizing: border-box;
+}
+
+.amaras-bento-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.amaras-bento-stat-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.amaras-bento-stat-num {
+  font-size: 24px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  margin-bottom: 3px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.amaras-bento-stat-num.is-lime {
+  color: #C7FF32;
+}
+
+.amaras-bento-stat-num.is-gold {
+  color: #FFD233;
+}
+
+.amaras-bento-stat-num.is-blue {
+  color: #586EFF;
+}
+
+.amaras-bento-stat-label {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.amaras-bento-c4-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: rgba(199, 255, 50, 0.06);
+  border: 1px solid rgba(199, 255, 50, 0.18);
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Responsive Breakpoints */
+@media screen and (max-width: 991px) {
+  .rebrand-section-bento-row {
+    flex-direction: column !important;
+  }
+  .rebrand-section-bento-row-bottom {
+    flex-direction: column !important;
+  }
+  .amaras-bento-card-1,
+  .amaras-bento-card-2,
+  .amaras-bento-card-3,
+  .amaras-bento-card-4 {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+  }
+  .amaras-bento-main-h2 {
+    font-size: 30px !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .rebrand-section-bento-wrapper {
+    padding: 0 16px !important;
+    margin-top: 36px !important;
+    margin-bottom: 50px !important;
+  }
+  .amaras-bento-card {
+    border-radius: 24px !important;
+  }
+  .amaras-bento-card .rebrand-section-bento-card-content {
+    padding: 22px 20px !important;
+  }
+  .amaras-bento-card h3 {
+    font-size: 22px !important;
+  }
+  .amaras-bento-main-h2 {
+    font-size: 25px !important;
+  }
+  .amaras-bento-sub {
+    font-size: 14.5px !important;
+  }
+  .amaras-bento-c1-visual,
+  .amaras-bento-c2-visual,
+  .amaras-bento-c3-visual,
+  .amaras-bento-c4-visual {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .amaras-bento-c2-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .amaras-bento-stats-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .amaras-bento-stat-num {
+    font-size: 20px !important;
+  }
+}
