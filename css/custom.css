@@ -1,38 +1,54 @@
 /* ==========================================================================
-   AMARAS TRAVEL AGENCY - BRAND COLORS & STYLING
-   Official Logo Colors:
-   - Vibrant Lime Green: #C7FF32
-   - Electric Cobalt Blue: #586EFF
-   - Midnight Obsidian Dark: #0C101D
-   - Deep Charcoal: #312F2F
+   AMARAS TRAVEL AGENCY - OFFICIAL 4-COLOR PALETTE SYSTEM
+   Strict specification:
+   - #FFFFFF (White)
+   - #312F2F (Deep Charcoal / Primary Dark / Headings & Body text)
+   - #586EFF (Electric Cobalt Blue / Accent & Interactive Elements)
+   - #C7FF32 (Neon Lime Green / Primary Action CTAs & Highlights)
    ========================================================================== */
 
 :root {
+  --amaras-white: #FFFFFF;
+  --amaras-charcoal: #312F2F;
+  --amaras-blue: #586EFF;
   --amaras-lime: #C7FF32;
+
   --amaras-lime-hover: #b8f024;
   --amaras-lime-glow: rgba(199, 255, 50, 0.4);
 
-  --amaras-blue: #586EFF;
   --amaras-blue-hover: #485de0;
   --amaras-blue-glow: rgba(88, 110, 255, 0.4);
 
-  --amaras-dark: #0C101D;
-  --amaras-charcoal: #312F2F;
-
-  /* Overwrite GYG Brand Color Variables */
+  /* GYG Framework Variable Overrides */
   --guiding-red: #586EFF;
   --plyr-color-main: #C7FF32;
   --_0-base-tokens---colors--foundation--guiding-orange--500-guiding-orange: #586EFF;
   --_0-base-tokens---colors--foundation--guiding-orange--600: #485de0;
   --_0-base-tokens---colors--foundation--guiding-orange--700: #3747bf;
-  --_0-base-tokens---colors--foundation--guiding-orange--900-maroon: #0C101D;
+  --_0-base-tokens---colors--foundation--guiding-orange--900-maroon: #312F2F;
   --_0-base-tokens---colors--foundation--guiding-orange--050: #EEF2FF;
-  --_1-alias-tokens---color--surface--brand-emphasis: #0C101D;
+  --_1-alias-tokens---color--surface--brand-emphasis: #312F2F;
   --_1-alias-tokens---color--fill--brand: #586EFF;
   --_1-alias-tokens---color--fill--brand-hover: #485de0;
   --_1-alias-tokens---color--content--brand: #586EFF;
   --_1-alias-tokens---color--surface--brand: #586EFF;
   --_1-alias-tokens---color--stroke--brand: #586EFF;
+}
+
+/* Base Typography & Defaults in Spec Colors */
+body {
+  color: #312F2F;
+  background-color: #FFFFFF;
+}
+
+.headingh1,
+.headingh2,
+.headingh3,
+.headingh4,
+.headingh5,
+.headingh6,
+.color-content-primary {
+  color: #312F2F;
 }
 
 /* Fix Plyr Absolute Containment */
@@ -41,11 +57,16 @@
   position: relative !important;
 }
 
-/* Hero Section Typography & Visibility */
+/* Hero Section: Charcoal Background (#312F2F) with White (#FFFFFF) & Lime (#C7FF32) */
+.rebrand-section-hero,
+.rebrand-nav-bar {
+  background-color: #312F2F !important;
+}
+
 .headingh1.rebrand-section-hero-title,
 .headingh1.rebrand-section-hero-title h1,
 .rebrand-section-hero h1 {
-  color: #ffffff !important;
+  color: #FFFFFF !important;
 }
 
 .rebrand-section-hero-eyebrow,
@@ -55,14 +76,14 @@
   letter-spacing: 0.05em !important;
 }
 
-/* Primary Action Button (Neon Lime #C7FF32 with High-Contrast Dark Text) */
+/* Primary Action Buttons: Neon Lime #C7FF32 with Deep Charcoal #312F2F Text */
 .rebrand-button.primary---md,
 [data-wf--button--variant="primary---md"],
 a.rebrand-button.primary---md,
 input.rebrand-button.primary---md,
 .rebrand-nav-bar a.rebrand-button:last-child {
   background-color: var(--amaras-lime) !important;
-  color: #111625 !important;
+  color: #312F2F !important;
   font-weight: 700 !important;
   box-shadow: 0 8px 24px var(--amaras-lime-glow) !important;
   border: none !important;
@@ -75,17 +96,17 @@ a.rebrand-button.primary---md:hover,
 input.rebrand-button.primary---md:hover,
 .rebrand-nav-bar a.rebrand-button:last-child:hover {
   background-color: var(--amaras-lime-hover) !important;
-  color: #111625 !important;
+  color: #312F2F !important;
   transform: translateY(-2px) scale(1.02) !important;
   box-shadow: 0 12px 30px rgba(199, 255, 50, 0.5) !important;
 }
 
-/* Secondary Action Button (Cobalt Blue #586EFF with White Text) */
+/* Secondary Action Buttons: Cobalt Blue #586EFF with White #FFFFFF Text */
 .rebrand-button.secondary---md,
 [data-wf--button--variant="secondary---md"],
 a.rebrand-button.secondary---md {
   background-color: var(--amaras-blue) !important;
-  color: #ffffff !important;
+  color: #FFFFFF !important;
   box-shadow: 0 6px 20px var(--amaras-blue-glow) !important;
   border: none !important;
   transition: transform 0.25s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.25s cubic-bezier(0.32, 0.72, 0, 1), background-color 0.2s ease !important;
@@ -95,14 +116,15 @@ a.rebrand-button.secondary---md {
 [data-wf--button--variant="secondary---md"]:hover,
 a.rebrand-button.secondary---md:hover {
   background-color: var(--amaras-blue-hover) !important;
+  color: #FFFFFF !important;
   transform: translateY(-2px) scale(1.02) !important;
 }
 
 /* Header Login Pill Button */
 .rebrand-nav-bar a.rebrand-button:not(:last-child) {
   background-color: rgba(255, 255, 255, 0.1) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
   border-radius: 9999px !important;
 }
 
@@ -112,7 +134,7 @@ a.rebrand-button.secondary---md:hover {
   color: var(--amaras-lime) !important;
 }
 
-/* Navbar Logo sizing */
+/* Navbar Logo Sizing */
 .rebrand-logo-wrapper img {
   height: 38px !important;
   width: auto !important;
@@ -120,7 +142,7 @@ a.rebrand-button.secondary---md:hover {
   object-fit: contain !important;
 }
 
-/* Hero Ticket Text & Stars in Amaras Lime */
+/* Hero Ticket Text & Stars in Amaras Lime #C7FF32 */
 .rebrand-section-hero-title-fixed,
 .rebrand-section-hero-frame-title {
   color: var(--amaras-lime) !important;
@@ -130,31 +152,39 @@ a.rebrand-button.secondary---md:hover {
   fill: var(--amaras-lime) !important;
 }
 
-/* Video Play Button in Lime */
+/* Video Play Button in Lime #C7FF32 with Charcoal #312F2F Icon */
 .plyr--video .plyr__control.plyr__tab-focus,
 .plyr--video .plyr__control:hover,
 .plyr--video .plyr__control[aria-expanded=true],
 .plyr__control--overlaid,
 .rebrand-video-play-button {
   background: var(--amaras-lime) !important;
-  color: #111625 !important;
-  box-shadow: 0 10px 30px rgba(199, 255, 50, 0.45) !important;
+  color: #312F2F !important;
+  box-shadow: 0 8px 24px var(--amaras-lime-glow) !important;
 }
 
-/* Trust Stats Icons in Cobalt Blue */
+.plyr__control--overlaid:hover,
+.rebrand-video-play-button:hover {
+  background: var(--amaras-lime-hover) !important;
+  color: #312F2F !important;
+  box-shadow: 0 10px 30px rgba(199, 255, 50, 0.5) !important;
+}
+
+/* Trust Stats Icons in Cobalt Blue #586EFF */
 .rebrand-section-data-point-icon svg path,
 .rebrand-section-data-data-point svg path {
   fill: var(--amaras-blue) !important;
 }
 
-/* Bento Accent Card (Global Exposure) in Cobalt Blue */
+/* Bento Accent Cards in Cobalt Blue #586EFF with White #FFFFFF Text */
 .rebrand-section-reach-card.is-orange,
 [style*="background-color: rgb(250, 79, 45)"],
 [style*="background-color: #fa4f2d"] {
   background-color: var(--amaras-blue) !important;
+  color: #FFFFFF !important;
 }
 
-/* FAQ Accordion */
+/* FAQ Accordion in Blue #586EFF */
 .accordion-css__item-top:hover .headingh5 {
   color: var(--amaras-blue) !important;
 }
@@ -171,7 +201,7 @@ a.rebrand-button.secondary---md:hover {
 .rebrand-section-faq-button-container a.rebrand-button,
 a[href*="contact"].rebrand-button {
   background-color: var(--amaras-blue) !important;
-  color: #ffffff !important;
+  color: #FFFFFF !important;
   border-radius: 9999px !important;
   box-shadow: 0 8px 25px var(--amaras-blue-glow) !important;
 }
@@ -179,13 +209,19 @@ a[href*="contact"].rebrand-button {
 .rebrand-section-faq-button-container a.rebrand-button:hover,
 a[href*="contact"].rebrand-button:hover {
   background-color: var(--amaras-blue-hover) !important;
+  color: #FFFFFF !important;
   transform: translateY(-2px) scale(1.02) !important;
 }
 
-/* Footer Background and Logo */
+/* Footer Section: Deep Charcoal #312F2F Background */
 .rebrand-section-footer {
-  background-color: var(--amaras-dark) !important;
-  border-top: 1px solid rgba(88, 110, 255, 0.15) !important;
+  background-color: #312F2F !important;
+  border-top: 1px solid rgba(88, 110, 255, 0.2) !important;
+}
+
+.rebrand-section-footer .headingh6,
+.rebrand-section-footer .color-content-primary-inversed {
+  color: #FFFFFF !important;
 }
 
 .rebrand-section-footer a:hover {
@@ -199,7 +235,7 @@ a[href*="contact"].rebrand-button:hover {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0C101D;
+  background: #312F2F;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -213,9 +249,8 @@ a[href*="contact"].rebrand-button:hover {
 
 ::selection {
   background-color: var(--amaras-lime);
-  color: #111625;
+  color: #312F2F;
 }
-
 
 /* Prevent Exit Intent Popup Overlay */
 .rebrand-exit-popup,

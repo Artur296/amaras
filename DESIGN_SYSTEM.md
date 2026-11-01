@@ -4,50 +4,52 @@
 
 ---
 
-## 1. Core Visual Identity & Brand Philosophy
+## 1. Official 4-Color Brand Palette
 
-- **Brand:** Amaras Travel Agency
-- **Aesthetic:** Editorial Commerce, Global Modern Tourism, High-Contrast Precision.
-- **Personality:** Visionary, vibrant, premium, fluid, and trustworthy.
-- **The Golden Rule:** High-contrast typographic headlines, generous macro-whitespace, authentic photography, interactive micro-widgets, and signature **Amaras Lime & Electric Cobalt Blue** accents against dark obsidian backgrounds and crisp white light surfaces.
+The entire website is built strictly from these **4 core colors**:
+
+| Color Code | Name / Role | Visual Reference | Primary Usage |
+| :--- | :--- | :--- | :--- |
+| **`#FFFFFF`** | Pure White | Canvas & High Contrast | Light page backgrounds, cards, white typography in dark Hero/Footer, icon accents. |
+| **`#312F2F`** | Deep Charcoal | Primary Dark & Core Text | Hero section background, footer background, navbar background, primary headings & body text on white surfaces, text on Lime buttons. |
+| **`#586EFF`** | Electric Cobalt Blue | Brand Accent & Interactivity | Secondary action buttons, interactive icons, stats indicators, ticket borders, links, accordion states, focus rings. |
+| **`#C7FF32`** | Neon Lime Green | High-Impact Action & Highlights | Primary CTA buttons ("Sell on Amaras", "Become a supplier"), eyebrow tags, video play buttons, notification badges, text selection. |
 
 ---
 
-## 2. Official Amaras Brand Color System
+## 2. Component Token Mapping
 
-Extracted directly from the master vector SVG files (`Слой 1.svg` and `Слой 1-1.svg`):
+### Typography & Surfaces
+- **Hero & Navbar Background:** `#312F2F` (Deep Charcoal)
+- **Footer Background:** `#312F2F` (Deep Charcoal)
+- **Light Page Background:** `#FFFFFF` (Pure White)
+- **Primary Text on White:** `#312F2F` (Deep Charcoal)
+- **Primary Text on Dark/Hero:** `#FFFFFF` (Pure White)
+- **Eyebrows & Highlights:** `#C7FF32` (Neon Lime)
+- **Accent Text & Links:** `#586EFF` (Electric Cobalt Blue)
 
-### Primary Brand Palette
-| Token Name | Hex Code | Visual Reference | Usage |
-| :--- | :--- | :--- | :--- |
-| `--amaras-lime` | `#C7FF32` | Neon Chartreuse / Lime Green | Primary Action CTAs ("Sell on Amaras", "Get started"), active badges, key stats, interactive highlights |
-| `--amaras-lime-hover` | `#b8f024` | Slightly deeper neon lime | Hover & active state for primary lime buttons |
-| `--amaras-lime-glow` | `rgba(199, 255, 50, 0.4)` | Lime aura | High-end button glows and focus rings |
-| `--amaras-blue` | `#586EFF` | Electric Cobalt / Royal Blue | Secondary buttons, hero badge backgrounds, icon accents, ticket card borders |
-| `--amaras-blue-hover` | `#485de0` | Deep cobalt | Hover state for cobalt buttons |
-| `--amaras-blue-glow` | `rgba(88, 110, 255, 0.4)` | Cobalt aura | High-end button glows and elevation shadows |
-| `--amaras-dark` | `#0C101D` | Midnight Obsidian / Dark Navy | Hero section background, dark mode cards, footer surface |
-| `--amaras-charcoal` | `#312F2F` | Deep Charcoal | Primary logo typography, high-contrast dark text |
-
-### Neutral & Surface Palettes
-| Token Name | Hex Code | Usage |
-| :--- | :--- | :--- |
-| `--surface-canvas` | `#FFFFFF` | Primary light section backgrounds |
-| `--surface-muted` | `#F8F9FB` | Alternating section backgrounds, bento card trays |
-| `--surface-subtle` | `#EEF2FF` | Soft cobalt tint inputs, interactive tab tracks |
-| `--border-grey` | `#E3E6EC` | Hairline dividers, subtle card borders |
-| `--text-primary` | `#0C101D` | Headings, high-emphasis copy |
-| `--text-secondary` | `#5A6275` | Body descriptions, subtitles, metadata |
-| `--text-muted` | `#8C92A4` | Footnotes, placeholders, disabled states |
+### Buttons & Interactive Components
+- **Primary Button (`.rebrand-button.primary---md`):**
+  - Background: `#C7FF32`
+  - Text Color: `#312F2F` (High contrast, bold)
+  - Hover: Scale `1.02`, translateY `-2px`, background `#b8f024`, glow `rgba(199, 255, 50, 0.5)`
+- **Secondary Button (`.rebrand-button.secondary---md`):**
+  - Background: `#586EFF`
+  - Text Color: `#FFFFFF`
+  - Hover: Scale `1.02`, translateY `-2px`, background `#485de0`, glow `rgba(88, 110, 255, 0.4)`
+- **Video Player Overlay:**
+  - Play button background: `#C7FF32`
+  - Play icon fill: `#312F2F`
+  - Progress bar: `#C7FF32`
 
 ---
 
 ## 3. Brand Assets & Logo Usage
 
 All brand logos are centrally managed in `assets/`:
-1. `assets/amaras-logo.svg`: Full official logo featuring the wordmark **AMARAS**, subtitle **TRAVEL AGENCY**, and circular badge **TOUR**. Used on light backgrounds.
-2. `assets/amaras-logo-white.svg`: Full official logo with pure white typography. Used on the obsidian hero navbar (`.rebrand-nav-bar`) and dark footer (`.rebrand-section-footer`).
-3. `assets/amaras-logo-mark.svg`: Compact horizontal wordmark **AMARAS**. Used for mobile headers, compact badges, or app icons.
+1. `assets/amaras-logo.svg`: Full official logo featuring the wordmark **AMARAS**, subtitle **TRAVEL AGENCY**, and circular badge **TOUR** in `#586EFF`, `#C7FF32`, and `#312F2F`. Used on white backgrounds.
+2. `assets/amaras-logo-white.svg`: Full official logo with pure white typography (`#FFFFFF`, `#586EFF`, `#C7FF32`). Used on the charcoal hero navbar (`.rebrand-nav-bar`) and charcoal footer (`.rebrand-section-footer`).
+3. `assets/amaras-logo-mark.svg`: Compact horizontal wordmark **AMARAS** in `#586EFF` and `#C7FF32`. Used for mobile headers, compact badges, or app icons.
 
 ---
 
@@ -69,34 +71,10 @@ All brand logos are centrally managed in `assets/`:
 
 ---
 
-## 5. Component Patterns & Interactive Physics
+## 5. Strict Development Guardrails
 
-### Primary Button ("Sell on Amaras")
-- Background: `#C7FF32` (Neon Lime)
-- Color: `#111625` (High-contrast dark charcoal)
-- Padding: `14px 28px`
-- Border-radius: `9999px` (Full pill shape)
-- Shadow: `0 8px 24px rgba(199, 255, 50, 0.4)`
-- Hover: Scale `1.02`, translateY `-2px`, box-shadow `0 12px 30px rgba(199, 255, 50, 0.5)`
-
-### Secondary Button
-- Background: `#586EFF` (Cobalt Blue)
-- Color: `#FFFFFF`
-- Padding: `14px 28px`
-- Border-radius: `9999px`
-- Shadow: `0 6px 20px rgba(88, 110, 255, 0.4)`
-
-### Concentric Double-Bezel Containers
-Every major feature card or bento cell uses concentric radii:
-- Outer wrapper: `border-radius: 28px; padding: 12px; background: #f8f9fb; border: 1px solid #e3e6ec;`
-- Inner container: `border-radius: 20px; background: #ffffff;`
-
----
-
-## 6. Strict Development Guardrails
-
-1. ❌ Never use generic unbranded orange `#fa4f2d` — always use Amaras Lime `#C7FF32` or Cobalt Blue `#586EFF`.
+1. ❌ Never introduce colors outside the 4 approved brand colors (`#FFFFFF`, `#312F2F`, `#586EFF`, `#C7FF32`).
 2. ❌ Never distort logo aspect ratios. Always let width or height scale proportionally with `height: auto` or `width: auto`.
-3. ❌ Never use raw `#000000` text; always use deep brand midnight `#0C101D` or charcoal `#312F2F`.
-4. ❌ Never remove Subresource Integrity without local file verification.
+3. ❌ Never use pure black (`#000000`); always use deep brand charcoal (`#312F2F`).
+4. ❌ Never use unbranded orange (`#fa4f2d`) or navy (`#0C101D`).
 5. ❌ Never break responsive touch targets on mobile (< 44px tap area).
