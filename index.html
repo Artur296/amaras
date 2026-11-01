@@ -42,29 +42,29 @@ html{-webkit-font-smoothing:antialiased;-moz-font-smoothing:antialiased;-o-font-
 
     <!-- Center Navigation Capsule (Image 1) -->
     <nav class="amaras-nav-capsule" role="navigation">
-      <a class="amaras-nav-link is-active" href="#">Главная</a>
+      <a class="amaras-nav-link is-active" href="#" data-i18n="nav_home">Главная</a>
       
       <div class="amaras-nav-dropdown">
         <a class="amaras-nav-link" href="#tours">
-          <span>Туры</span>
+          <span data-i18n="nav_tours">Туры</span>
           <svg class="amaras-chevron" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
         <div class="amaras-nav-dropdown-menu">
-          <a class="amaras-dropdown-item" href="#tours-city">Экскурсионные туры</a>
-          <a class="amaras-dropdown-item" href="#tours-history">Исторические туры</a>
-          <a class="amaras-dropdown-item" href="#tours-gastro">Гастрономические туры</a>
-          <a class="amaras-dropdown-item" href="#tours-jeep">Джип-туры и экстрим</a>
-          <a class="amaras-dropdown-item" href="#tours-custom">Индивидуальные маршруты</a>
+          <a class="amaras-dropdown-item" href="#tours-city" data-i18n="tour_city">Экскурсионные туры</a>
+          <a class="amaras-dropdown-item" href="#tours-history" data-i18n="tour_history">Исторические туры</a>
+          <a class="amaras-dropdown-item" href="#tours-gastro" data-i18n="tour_gastro">Гастрономические туры</a>
+          <a class="amaras-dropdown-item" href="#tours-jeep" data-i18n="tour_jeep">Джип-туры и экстрим</a>
+          <a class="amaras-dropdown-item" href="#tours-custom" data-i18n="tour_custom">Индивидуальные маршруты</a>
         </div>
       </div>
 
-      <a class="amaras-nav-link" href="#attractions">Что посмотреть</a>
-      <a class="amaras-nav-link" href="#fleet">Автопарк</a>
-      <a class="amaras-nav-link" href="#guests">Гости</a>
-      <a class="amaras-nav-link" href="#about">О нас</a>
-      <a class="amaras-nav-link" href="#contact">Контакты</a>
+      <a class="amaras-nav-link" href="#attractions" data-i18n="nav_attractions">Что посмотреть</a>
+      <a class="amaras-nav-link" href="#fleet" data-i18n="nav_fleet">Автопарк</a>
+      <a class="amaras-nav-link" href="#guests" data-i18n="nav_guests">Гости</a>
+      <a class="amaras-nav-link" href="#about" data-i18n="nav_about">О нас</a>
+      <a class="amaras-nav-link" href="#contact" data-i18n="nav_contact">Контакты</a>
     </nav>
 
     <!-- Right Actions Cluster (Image 1 & Image 2 + Login/Register) -->
@@ -87,18 +87,18 @@ html{-webkit-font-smoothing:antialiased;-moz-font-smoothing:antialiased;-o-font-
         <span class="amaras-cart-badge">2</span>
       </a>
 
-      <!-- Language Switcher -->
+      <!-- Language Switcher (RU / ENG / HY) -->
       <div class="amaras-lang-switcher">
         <button class="amaras-lang-btn is-active" type="button" onclick="setLang('RU')">RU</button>
+        <button class="amaras-lang-btn" type="button" onclick="setLang('ENG')">ENG</button>
         <button class="amaras-lang-btn" type="button" onclick="setLang('HY')">HY</button>
-        <button class="amaras-lang-btn" type="button" onclick="setLang('EN')">EN</button>
       </div>
 
       <!-- Login Button -->
-      <a class="amaras-login-btn" href="#login">Вход</a>
+      <a class="amaras-login-btn" href="#login" data-i18n="btn_login">Вход</a>
 
       <!-- Register Button -->
-      <a class="amaras-register-btn" href="#register">Регистрация</a>
+      <a class="amaras-register-btn" href="#register" data-i18n="btn_register">Регистрация</a>
 
       <!-- Mobile Hamburger Toggle -->
       <button class="amaras-mobile-toggle" aria-label="Открыть меню" onclick="toggleMobileNav()">
@@ -118,7 +118,7 @@ html{-webkit-font-smoothing:antialiased;-moz-font-smoothing:antialiased;-o-font-
         <circle cx="11" cy="11" r="8"></circle>
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
       </svg>
-      <input type="text" class="amaras-search-input" placeholder="Поиск туров, достопримечательностей, направлений..." />
+      <input type="text" class="amaras-search-input" placeholder="Поиск туров, достопримечательностей, направлений..." data-i18n-placeholder="search_placeholder" />
       <button class="amaras-search-close" onclick="document.querySelector('.amaras-search-bar-overlay').classList.remove('is-open')">✕</button>
     </div>
   </div>
@@ -132,44 +132,151 @@ html{-webkit-font-smoothing:antialiased;-moz-font-smoothing:antialiased;-o-font-
       <button class="amaras-mobile-close" onclick="toggleMobileNav()">✕</button>
     </div>
     <div class="amaras-mobile-drawer-links">
-      <a class="amaras-mobile-link is-active" href="#">Главная</a>
+      <a class="amaras-mobile-link is-active" href="#" data-i18n="nav_home">Главная</a>
       <div class="amaras-mobile-submenu">
-        <div class="amaras-mobile-submenu-title">Туры</div>
-        <a class="amaras-mobile-sublink" href="#tours-city">Экскурсионные туры</a>
-        <a class="amaras-mobile-sublink" href="#tours-history">Исторические туры</a>
-        <a class="amaras-mobile-sublink" href="#tours-gastro">Гастрономические туры</a>
-        <a class="amaras-mobile-sublink" href="#tours-jeep">Джип-туры и экстрим</a>
-        <a class="amaras-mobile-sublink" href="#tours-custom">Индивидуальные маршруты</a>
+        <div class="amaras-mobile-submenu-title" data-i18n="nav_tours">Туры</div>
+        <a class="amaras-mobile-sublink" href="#tours-city" data-i18n="tour_city">Экскурсионные туры</a>
+        <a class="amaras-mobile-sublink" href="#tours-history" data-i18n="tour_history">Исторические туры</a>
+        <a class="amaras-mobile-sublink" href="#tours-gastro" data-i18n="tour_gastro">Гастрономические туры</a>
+        <a class="amaras-mobile-sublink" href="#tours-jeep" data-i18n="tour_jeep">Джип-туры и экстрим</a>
+        <a class="amaras-mobile-sublink" href="#tours-custom" data-i18n="tour_custom">Индивидуальные маршруты</a>
       </div>
-      <a class="amaras-mobile-link" href="#attractions">Что посмотреть</a>
-      <a class="amaras-mobile-link" href="#fleet">Автопарк</a>
-      <a class="amaras-mobile-link" href="#guests">Гости</a>
-      <a class="amaras-mobile-link" href="#about">О нас</a>
-      <a class="amaras-mobile-link" href="#contact">Контакты</a>
+      <a class="amaras-mobile-link" href="#attractions" data-i18n="nav_attractions">Что посмотреть</a>
+      <a class="amaras-mobile-link" href="#fleet" data-i18n="nav_fleet">Автопарк</a>
+      <a class="amaras-mobile-link" href="#guests" data-i18n="nav_guests">Гости</a>
+      <a class="amaras-mobile-link" href="#about" data-i18n="nav_about">О нас</a>
+      <a class="amaras-mobile-link" href="#contact" data-i18n="nav_contact">Контакты</a>
     </div>
     <div class="amaras-mobile-drawer-footer">
       <div class="amaras-lang-switcher" style="justify-content:center;margin-bottom:16px;">
         <button class="amaras-lang-btn is-active" type="button" onclick="setLang('RU')">RU</button>
+        <button class="amaras-lang-btn" type="button" onclick="setLang('ENG')">ENG</button>
         <button class="amaras-lang-btn" type="button" onclick="setLang('HY')">HY</button>
-        <button class="amaras-lang-btn" type="button" onclick="setLang('EN')">EN</button>
       </div>
       <div style="display:flex;flex-direction:column;gap:10px;">
-        <a class="amaras-login-btn" href="#login" style="text-align:center;">Вход</a>
-        <a class="amaras-register-btn" href="#register" style="text-align:center;">Регистрация</a>
+        <a class="amaras-login-btn" href="#login" style="text-align:center;" data-i18n="btn_login">Вход</a>
+        <a class="amaras-register-btn" href="#register" style="text-align:center;" data-i18n="btn_register">Регистрация</a>
       </div>
     </div>
   </div>
 </div>
 <script>
+const AMARAS_I18N = {
+  RU: {
+    nav_home: "Главная",
+    nav_tours: "Туры",
+    tour_city: "Экскурсионные туры",
+    tour_history: "Исторические туры",
+    tour_gastro: "Гастрономические туры",
+    tour_jeep: "Джип-туры и экстрим",
+    tour_custom: "Индивидуальные маршруты",
+    nav_attractions: "Что посмотреть",
+    nav_fleet: "Автопарк",
+    nav_guests: "Гости",
+    nav_about: "О нас",
+    nav_contact: "Контакты",
+    btn_login: "Вход",
+    btn_register: "Регистрация",
+    search_placeholder: "Поиск туров, достопримечательностей, направлений...",
+    search_label: "Поиск",
+    cart_label: "Корзина"
+  },
+  ENG: {
+    nav_home: "Home",
+    nav_tours: "Tours",
+    tour_city: "Sightseeing Tours",
+    tour_history: "Historical Tours",
+    tour_gastro: "Gastro & Wine Tours",
+    tour_jeep: "Jeep Tours & Extreme",
+    tour_custom: "Custom Itineraries",
+    nav_attractions: "Attractions",
+    nav_fleet: "Fleet",
+    nav_guests: "Guests",
+    nav_about: "About Us",
+    nav_contact: "Contact",
+    btn_login: "Login",
+    btn_register: "Register",
+    search_placeholder: "Search tours, attractions, destinations...",
+    search_label: "Search",
+    cart_label: "Cart"
+  },
+  HY: {
+    nav_home: "Գլխավոր",
+    nav_tours: "Տուրեր",
+    tour_city: "Էքսկուրսիոն տուրեր",
+    tour_history: "Պատմական տուրեր",
+    tour_gastro: "Գաստրո տուրեր",
+    tour_jeep: "Ջիպ տուրեր և էքստրիմ",
+    tour_custom: "Անհատական երթուղիներ",
+    nav_attractions: "Ինչ տեսնել",
+    nav_fleet: "Ավտոպարկ",
+    nav_guests: "Հյուրեր",
+    nav_about: "Մեր մասին",
+    nav_contact: "Կոնտակտներ",
+    btn_login: "Մուտք",
+    btn_register: "Գրանցում",
+    search_placeholder: "Որոնել տուրեր, տեսարժան վայրեր, ուղղություններ...",
+    search_label: "Որոնում",
+    cart_label: "Զամբյուղ"
+  }
+};
+
 function toggleMobileNav() {
   const drawer = document.querySelector('.amaras-mobile-drawer');
-  drawer.classList.toggle('is-open');
+  if (drawer) drawer.classList.toggle('is-open');
 }
+
 function setLang(lang) {
+  if (!AMARAS_I18N[lang]) return;
+
+  // Update switcher active buttons
   document.querySelectorAll('.amaras-lang-btn').forEach(btn => {
     btn.classList.toggle('is-active', btn.innerText.trim() === lang);
   });
+
+  const dict = AMARAS_I18N[lang];
+
+  // Update text elements with data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key]) {
+      el.textContent = dict[key];
+    }
+  });
+
+  // Update placeholder inputs with data-i18n-placeholder
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (dict[key]) {
+      el.setAttribute('placeholder', dict[key]);
+    }
+  });
+
+  // Update aria-labels
+  const searchBtn = document.querySelector('.amaras-search-btn');
+  if (searchBtn && dict.search_label) {
+    searchBtn.setAttribute('aria-label', dict.search_label);
+    searchBtn.setAttribute('title', dict.search_label);
+  }
+  const cartBtn = document.querySelector('.amaras-cart-btn');
+  if (cartBtn && dict.cart_label) {
+    cartBtn.setAttribute('aria-label', dict.cart_label);
+    cartBtn.setAttribute('title', dict.cart_label);
+  }
+
+  try {
+    localStorage.setItem('amaras_preferred_lang', lang);
+  } catch (e) {}
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    const saved = localStorage.getItem('amaras_preferred_lang');
+    if (saved && AMARAS_I18N[saved]) {
+      setLang(saved);
+    }
+  } catch (e) {}
+});
 </script><div class="w-dyn-list"><div class="w-dyn-items" role="list"><div class="w-dyn-item" role="listitem"><section class="w-layout-hflex rebrand-section-hero" data-gsap="section-hero" data-wf--sectionheroheader--variant="base" data-wf-component-id="7966251f-0a9e-1da7-3c5a-a6e3dfc96c41" data-wf-variant-state="base"><div class="code-embed-37 w-embed w-script"><script>
 
   document.addEventListener('DOMContentLoaded', function () {
