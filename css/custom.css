@@ -270,3 +270,486 @@ a[href*="contact"].rebrand-button:hover {
 body[data-exit-popup-open="true"] {
   overflow: auto !important;
 }
+
+
+/* ==========================================================================
+   AMARAS BESPOKE NAVIGATION BAR (#FFFFFF, #312F2F, #586EFF, #C7FF32)
+   ========================================================================== */
+
+.rebrand-nav-bar {
+  background-color: #312F2F !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  width: 100% !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 0 !important;
+  height: auto !important;
+}
+
+.amaras-nav-container {
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative;
+}
+
+/* Left Brand Logo */
+.amaras-nav-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.amaras-nav-logo img {
+  height: 38px;
+  width: auto;
+  max-width: 200px;
+  display: block;
+}
+
+/* Center Capsule Navigation (Image 1) */
+.amaras-nav-capsule {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  padding: 4px 6px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.amaras-nav-link {
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.amaras-nav-link:hover {
+  color: #C7FF32;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.amaras-nav-link.is-active {
+  background: #C7FF32;
+  color: #312F2F;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(199, 255, 50, 0.35);
+}
+
+.amaras-nav-link.is-active:hover {
+  background: #b8f024;
+  color: #312F2F;
+}
+
+/* Dropdown Menu for Туры */
+.amaras-nav-dropdown {
+  position: relative;
+}
+
+.amaras-nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 240px;
+  background: #312F2F;
+  border: 1px solid rgba(88, 110, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  padding: 8px;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 1010;
+  backdrop-filter: blur(16px);
+  animation: amarasDropdownFade 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes amarasDropdownFade {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.amaras-nav-dropdown:hover .amaras-nav-dropdown-menu,
+.amaras-nav-dropdown.is-open .amaras-nav-dropdown-menu {
+  display: flex;
+}
+
+.amaras-nav-dropdown:hover .amaras-chevron {
+  transform: rotate(180deg);
+}
+
+.amaras-chevron {
+  transition: transform 0.2s ease;
+  width: 10px;
+  height: 10px;
+}
+
+.amaras-dropdown-item {
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.15s ease;
+}
+
+.amaras-dropdown-item:hover {
+  background: rgba(88, 110, 255, 0.18);
+  color: #C7FF32;
+  transform: translateX(3px);
+}
+
+/* Right Actions Cluster */
+.amaras-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Search Icon Button */
+.amaras-search-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.amaras-search-btn:hover {
+  border-color: #C7FF32;
+  color: #C7FF32;
+  background: rgba(199, 255, 50, 0.1);
+  transform: scale(1.05);
+}
+
+/* Shopping Cart Button (Image 2) */
+.amaras-cart-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.amaras-cart-btn:hover {
+  border-color: #586EFF;
+  color: #586EFF;
+  background: rgba(88, 110, 255, 0.1);
+  transform: scale(1.05);
+}
+
+.amaras-cart-badge {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  background: #586EFF;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  border: 2px solid #312F2F;
+}
+
+/* Language Switcher */
+.amaras-lang-switcher {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 9999px;
+  padding: 2px;
+}
+
+.amaras-lang-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  background: transparent;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.amaras-lang-btn:hover {
+  color: #FFFFFF;
+}
+
+.amaras-lang-btn.is-active {
+  background: #586EFF;
+  color: #FFFFFF;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(88, 110, 255, 0.4);
+}
+
+/* Login & Register Buttons */
+.amaras-login-btn {
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 7px 16px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+  white-space: nowrap;
+}
+
+.amaras-login-btn:hover {
+  border-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.18);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.amaras-register-btn {
+  background: #586EFF;
+  color: #FFFFFF;
+  padding: 7px 18px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(88, 110, 255, 0.35);
+  transition: all 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+  white-space: nowrap;
+}
+
+.amaras-register-btn:hover {
+  background: #485de0;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(88, 110, 255, 0.5);
+}
+
+/* Interactive Search Bar Overlay */
+.amaras-search-bar-overlay {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #312F2F;
+  border-bottom: 1px solid rgba(88, 110, 255, 0.25);
+  padding: 16px 24px;
+  box-shadow: 0 16px 32px rgba(0,0,0,0.4);
+  z-index: 999;
+}
+
+.amaras-search-bar-overlay.is-open {
+  display: block;
+}
+
+.amaras-search-box {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+  padding: 8px 18px;
+  color: #FFFFFF;
+}
+
+.amaras-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #FFFFFF;
+  font-size: 15px;
+}
+
+.amaras-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.amaras-search-close {
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* Mobile Hamburger Toggle */
+.amaras-mobile-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Mobile Drawer */
+.amaras-mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 340px;
+  background: #312F2F;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 2000;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  overflow-y: auto;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+}
+
+.amaras-mobile-drawer.is-open {
+  transform: translateX(0);
+}
+
+.amaras-mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.amaras-mobile-close {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #FFFFFF;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.amaras-mobile-drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.amaras-mobile-link {
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.amaras-mobile-link.is-active {
+  background: #C7FF32;
+  color: #312F2F;
+  font-weight: 700;
+}
+
+.amaras-mobile-submenu {
+  padding-left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.amaras-mobile-submenu-title {
+  color: var(--amaras-lime);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 6px;
+}
+
+.amaras-mobile-sublink {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.amaras-mobile-drawer-footer {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1280px) {
+  .amaras-nav-capsule {
+    gap: 1px;
+    padding: 3px 4px;
+  }
+  .amaras-nav-link {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .amaras-nav-capsule {
+    display: none;
+  }
+  .amaras-mobile-toggle {
+    display: flex;
+  }
+}
