@@ -2802,6 +2802,7 @@ body[data-exit-popup-open="true"] {
 /* Chat Header */
 .amaras-chat-header {
   background: #586EFF !important;
+  background-image: none !important;
   padding: 18px 20px 16px;
   color: #FFFFFF;
   display: flex;
@@ -4288,6 +4289,7 @@ body[data-lang="HY"] * {
 /* Chat Widget - Flat solid colors, strictly no gradients */
 .amaras-chat-header {
   background: #586EFF !important;
+  background-image: none !important;
 }
 
 .amaras-chat-launcher {
@@ -4331,4 +4333,11 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   max-width: 580px !important;
   margin-top: 18px !important;
   margin-bottom: 32px !important;
+}
+
+.amaras-chat-avatar {
+  display: none !important;
+}
+.amaras-chat-tab-badge {
+  display: none !important;
 }
