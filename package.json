@@ -1,0 +1,19 @@
+{
+  "name": "amaras-supply",
+  "version": "1.0.0",
+  "description": "Amaras Web Platform - Built in the high-converting GetYourGuide Supply design system",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx -y serve . -l 3000",
+    "dev": "npx -y serve . -l 3000"
+  },
+  "keywords": [
+    "getyourguide",
+    "amaras",
+    "marketplace",
+    "design-system",
+    "tours-and-experiences"
+  ],
+  "author": "Artur296 <amuradyan296@gmail.com>",
+  "license": "MIT"
+}
