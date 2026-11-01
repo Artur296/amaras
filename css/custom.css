@@ -1286,40 +1286,44 @@ body[data-exit-popup-open="true"] {
   font-weight: 400;
 }
 
-/* Slogan Banner */
-.amaras-motto-banner {
-  background: linear-gradient(135deg, rgba(88, 110, 255, 0.14) 0%, rgba(199, 255, 50, 0.09) 100%);
-  border: 1px solid rgba(199, 255, 50, 0.35);
-  border-radius: 24px;
-  padding: 38px 44px;
+/* Editorial Hospitality Motto (No boxy banner, no badge) */
+.amaras-motto-statement {
+  margin: 64px auto 0;
+  max-width: 880px;
   text-align: center;
   position: relative;
-  overflow: hidden;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+  padding: 48px 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-sizing: border-box;
 }
 
-.amaras-motto-badge {
-  display: inline-block;
-  background: rgba(199, 255, 50, 0.14);
+.amaras-motto-quote-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(88, 110, 255, 0.12);
+  border: 1px solid rgba(88, 110, 255, 0.25);
   color: var(--amaras-lime, #C7FF32);
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  padding: 4px 14px;
-  border-radius: 20px;
-  margin-bottom: 14px;
-  border: 1px solid rgba(199, 255, 50, 0.25);
+  margin-bottom: 22px;
+}
+
+.amaras-motto-quote-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
 }
 
 .amaras-motto-title {
-  font-size: 27px;
+  font-size: 34px;
   font-weight: 800;
   color: #FFFFFF;
-  line-height: 1.3;
-  margin: 0 0 12px;
-  letter-spacing: -0.01em;
+  line-height: 1.28;
+  margin: 0 0 16px;
+  letter-spacing: -0.015em;
 }
 
 .amaras-lime-text {
@@ -1327,11 +1331,26 @@ body[data-exit-popup-open="true"] {
 }
 
 .amaras-motto-desc {
-  font-size: 15.5px;
-  line-height: 1.6;
-  color: #D2D7E5;
-  max-width: 760px;
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: #C5CAD6;
+  max-width: 680px;
   margin: 0 auto;
+  font-weight: 400;
+}
+
+@media (max-width: 640px) {
+  .amaras-motto-statement {
+    margin-top: 44px;
+    padding: 32px 16px;
+  }
+  .amaras-motto-title {
+    font-size: 23px;
+    line-height: 1.32;
+  }
+  .amaras-motto-desc {
+    font-size: 14.5px;
+  }
 }
 
 /* Responsive */
@@ -1374,10 +1393,7 @@ body[data-exit-popup-open="true"] {
     height: 46px;
     margin-bottom: 18px;
   }
-  .amaras-motto-banner {
-    padding: 28px 18px;
-    border-radius: 18px;
-  }
+  
   .amaras-motto-title {
     font-size: 21px;
   }
