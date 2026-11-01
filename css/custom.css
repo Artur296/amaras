@@ -4617,11 +4617,35 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
 
 
 /* ==========================================================================
-   Armenia Guide & 4 Feature Cards Section
+   Armenia Guide & 4 Feature Cards Section (Touch Scroll & Layout)
    ========================================================================== */
-#armenia-guide,
+#armenia-guide {
+  scroll-margin-top: 100px;
+  overflow: visible !important;
+  touch-action: auto !important;
+}
+
+.rebrand-section-benefit-cards-container {
+  overflow: visible !important;
+  touch-action: auto !important;
+}
+
+/* Crucial mobile fix: Webflow set touch-action: pan-x which traps vertical page scrolling on mobile */
+.rebrand-section-benefit-cards-row,
+.rebrand-section-benefit-cards-row.extra-wrapper,
+.rebrand-section-benefit-cards-row-copy {
+  touch-action: auto !important;
+  overscroll-behavior: auto !important;
+  overscroll-behavior-x: auto !important;
+  overscroll-behavior-y: auto !important;
+  overscroll-behavior-inline: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  scroll-snap-type: none !important;
+}
+
 .amaras-guide-card {
   scroll-margin-top: 100px;
+  touch-action: auto !important;
 }
 
 .rebrand-section-benefit-cards-card.amaras-guide-card {
@@ -4637,6 +4661,14 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease !important;
   position: relative !important;
   padding: 0 !important;
+  touch-action: auto !important;
+}
+
+.amaras-guide-card,
+.amaras-guide-card-thumb,
+.amaras-guide-card-img,
+.amaras-guide-card .rebrand-section-benefit-cards-card-content {
+  touch-action: auto !important;
 }
 
 .rebrand-section-benefit-cards-card.amaras-guide-card:hover {
