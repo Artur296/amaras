@@ -157,7 +157,7 @@
       <!-- Right Actions Cluster (Image 1 & Image 2 + Login/Register) -->
       <div class="amaras-nav-actions">
         <!-- Atmosphere Background Music Toggle Button -->
-        <button class="amaras-music-btn is-playing" id="amarasMusicBtn" aria-label="Фоновая музыка" title="Отключить атмосферную музыку (Комитас — Jazz)" onclick="toggleAmarasMusic()">
+        <button class="amaras-music-btn is-muted" id="amarasMusicBtn" aria-label="Фоновая музыка" title="Включить атмосферную музыку (Комитас — Jazz)" onclick="toggleAmarasMusic()">
           <span class="amaras-music-wave" aria-hidden="true">
             <span class="amaras-bar b1"></span>
             <span class="amaras-bar b2"></span>
@@ -4690,7 +4690,7 @@
 
   <script>
     // ==========================================================================
-    // Ambient Atmosphere Music Player (Komitas Jazz - Always Enabled on Entry)
+    // Ambient Atmosphere Music Player (Komitas Jazz)
     // ==========================================================================
     (function () {
       const audio = document.getElementById('amarasAtmosphereAudio');
@@ -4736,6 +4736,11 @@
         }
       }
 
+      // Sync button UI strictly with actual audio state — never fake playing status
+      audio.addEventListener('play', () => updateBtnUI(true));
+      audio.addEventListener('pause', () => updateBtnUI(false));
+      audio.addEventListener('ended', () => updateBtnUI(false));
+
       function fadeInAudio(target = TARGET_VOLUME, durationMs = 2800) {
         if (!audio) return;
         clearInterval(fadeInterval);
@@ -4743,7 +4748,6 @@
         const playPromise = audio.play();
         if (playPromise !== undefined) {
           playPromise.then(() => {
-            updateBtnUI(true);
             const steps = 30;
             const stepTime = durationMs / steps;
             const volStep = target / steps;
@@ -4756,8 +4760,8 @@
               }
             }, stepTime);
           }).catch(err => {
-            // If browser blocks autoplay with sound, keep wave UI active and retry on interaction
-            updateBtnUI(true);
+            // Autoplay policy blocked sound until first user gesture: keep UI muted honestly
+            updateBtnUI(false);
           });
         }
       }
@@ -4775,7 +4779,6 @@
             audio.volume = 0;
             audio.pause();
             clearInterval(fadeInterval);
-            updateBtnUI(false);
           }
         }, stepTime);
       }
@@ -4790,19 +4793,25 @@
         }
       };
 
-      // Always initiate playback on entrance
-      updateBtnUI(true);
+      // 1. Try to start playing immediately on page entry
       fadeInAudio(TARGET_VOLUME, 2800);
 
-      // In case browser requires a user gesture first, trigger immediately on first gesture
-      const events = ['pointerdown', 'touchstart', 'scroll', 'keydown', 'click', 'wheel'];
-      function triggerOnGesture() {
+      // 2. Since modern browsers block unmuted sound before user gesture,
+      // unlock and fade in audio on the very first touch/click/key anywhere on screen:
+      const unlockEvents = ['pointerdown', 'touchstart', 'click', 'keydown'];
+      function unlockAudio() {
         if (!manuallyPaused && audio.paused) {
-          fadeInAudio(TARGET_VOLUME, 2500);
+          fadeInAudio(TARGET_VOLUME, 2200);
         }
-        events.forEach(evt => window.removeEventListener(evt, triggerOnGesture, { capture: true }));
+        unlockEvents.forEach(evt => window.removeEventListener(evt, unlockAudio, { capture: true }));
       }
-      events.forEach(evt => window.addEventListener(evt, triggerOnGesture, { capture: true, once: true }));
+      unlockEvents.forEach(evt => window.addEventListener(evt, unlockAudio, { capture: true, once: true }));
+
+      // 3. Preloader click immediately unlocks audio
+      const preloader = document.getElementById('amarasPreloader');
+      if (preloader) {
+        preloader.addEventListener('click', unlockAudio, { once: true });
+      }
     })();
   </script>
   <script>
