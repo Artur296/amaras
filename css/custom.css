@@ -138,7 +138,7 @@ a.rebrand-button.secondary---md:hover {
 .rebrand-logo-wrapper img {
   height: 38px !important;
   width: auto !important;
-  max-width: 250px !important;
+  max-width: none !important;
   object-fit: contain !important;
 }
 
@@ -309,7 +309,7 @@ body[data-exit-popup-open="true"] {
 .amaras-nav-logo img {
   height: 38px;
   width: auto;
-  max-width: 200px;
+  max-width: none;
   display: block;
 }
 
