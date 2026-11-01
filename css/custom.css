@@ -4790,45 +4790,87 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   touch-action: auto !important;
 }
 
-/* Crucial mobile fix: Webflow set touch-action: pan-x which traps vertical page scrolling on mobile */
+/* Crucial mobile fix: completely kill ANY vertical scroll inside cards or row */
 .rebrand-section-benefit-cards-row,
 .rebrand-section-benefit-cards-row.extra-wrapper,
 .rebrand-section-benefit-cards-row-copy {
-  touch-action: auto !important;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important; /* CRITICAL: ABSOLUTELY ZERO VERTICAL SCROLL */
+  overflow: auto hidden !important;
+  height: 450px !important;
+  min-height: 450px !important;
+  max-height: 450px !important;
+  padding-top: 8px !important;
+  padding-bottom: 22px !important;
+  align-items: flex-start !important;
+  touch-action: pan-x pan-y !important;
   overscroll-behavior: auto !important;
-  overscroll-behavior-x: auto !important;
+  overscroll-behavior-x: contain !important;
   overscroll-behavior-y: auto !important;
-  overscroll-behavior-inline: auto !important;
+  overscroll-behavior-inline: contain !important;
   -webkit-overflow-scrolling: touch !important;
   scroll-snap-type: none !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.rebrand-section-benefit-cards-row::-webkit-scrollbar,
+.rebrand-section-benefit-cards-row.extra-wrapper::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 .amaras-guide-card {
   scroll-margin-top: 100px;
-  touch-action: auto !important;
+  touch-action: pan-x pan-y !important;
 }
 
 .rebrand-section-benefit-cards-card.amaras-guide-card {
   display: flex !important;
   flex-direction: column !important;
-  height: auto !important;
-  min-height: 410px !important;
+  height: 415px !important;
+  min-height: 415px !important;
+  max-height: 415px !important;
   border-radius: 20px !important;
   overflow: hidden !important;
+  overflow-y: hidden !important; /* NO VERTICAL SCROLL ON CARD */
   border: 1px solid rgba(49, 47, 47, 0.1) !important;
   background: #FFFFFF !important;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06) !important;
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease !important;
   position: relative !important;
   padding: 0 !important;
-  touch-action: auto !important;
+  touch-action: pan-x pan-y !important;
+  scroll-snap-align: none !important;
+  scroll-snap-stop: normal !important;
+  flex-shrink: 0 !important;
 }
 
 .amaras-guide-card,
 .amaras-guide-card-thumb,
 .amaras-guide-card-img,
 .amaras-guide-card .rebrand-section-benefit-cards-card-content {
-  touch-action: auto !important;
+  touch-action: pan-x pan-y !important;
+  overflow-y: hidden !important;
+}
+
+@media (max-width: 767px) {
+  .rebrand-section-benefit-cards-row,
+  .rebrand-section-benefit-cards-row.extra-wrapper {
+    height: 440px !important;
+    min-height: 440px !important;
+    max-height: 440px !important;
+    overflow-y: hidden !important;
+  }
+  .rebrand-section-benefit-cards-card.amaras-guide-card {
+    height: 410px !important;
+    min-height: 410px !important;
+    max-height: 410px !important;
+    overflow-y: hidden !important;
+  }
 }
 
 .rebrand-section-benefit-cards-card.amaras-guide-card:hover {
