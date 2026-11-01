@@ -33,7 +33,7 @@ html{-webkit-font-smoothing:antialiased;-moz-font-smoothing:antialiased;-o-font-
 </style>
 <link href="https://cdn.plyr.io/3.8.4/plyr.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.css" rel="stylesheet"/>
-<link href="css/custom.css?v=13" rel="stylesheet"/></head><body class="rebrand-body"><div class="rebrand-nav-bar w-nav" role="banner">
+<link href="css/custom.css?v=14" rel="stylesheet"/></head><body class="rebrand-body"><div class="rebrand-nav-bar w-nav" role="banner">
   <div class="amaras-nav-container">
     <!-- Brand Logo -->
     <a class="amaras-nav-logo" href="#">
@@ -70,7 +70,7 @@ html{-webkit-font-smoothing:antialiased;-moz-font-smoothing:antialiased;-o-font-
     <!-- Right Actions Cluster (Image 1 & Image 2 + Login/Register) -->
     <div class="amaras-nav-actions">
       <!-- Search Button -->
-      <button class="amaras-search-btn" aria-label="Поиск" title="Поиск" onclick="document.querySelector('.amaras-search-bar-overlay').classList.toggle('is-open')">
+      <button class="amaras-search-btn" aria-label="Поиск" title="Поиск" onclick="toggleSearchBar()">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -130,6 +130,15 @@ html{-webkit-font-smoothing:antialiased;-moz-font-smoothing:antialiased;-o-font-
         <img src="assets/amaras-logo-navbar.svg" alt="Amaras" style="height:32px;width:auto;" />
       </a>
       <button class="amaras-mobile-close" onclick="toggleMobileNav()">✕</button>
+    </div>
+    <div class="amaras-mobile-drawer-search" style="padding:10px 18px 4px;">
+      <div class="amaras-search-box" style="width:100%;box-sizing:border-box;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);border-radius:12px;padding:8px 14px;display:flex;align-items:center;gap:10px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="opacity:0.75;flex-shrink:0;">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" class="amaras-search-input" placeholder="Поиск туров, направлений..." data-i18n-placeholder="search_placeholder" style="font-size:14px;width:100%;border:none;outline:none;background:transparent;color:#FFF;" />
+      </div>
     </div>
     <div class="amaras-mobile-drawer-links">
       <a class="amaras-mobile-link is-active" href="#" data-i18n="nav_home">Главная</a>
@@ -321,6 +330,17 @@ const AMARAS_I18N = {
 function toggleMobileDropdown(btn) {
   const dropdown = btn.closest('.amaras-mobile-dropdown');
   if (dropdown) dropdown.classList.toggle('is-open');
+}
+
+function toggleSearchBar() {
+  const overlay = document.querySelector('.amaras-search-bar-overlay');
+  if (overlay) {
+    const isOpen = overlay.classList.toggle('is-open');
+    if (isOpen) {
+      const input = overlay.querySelector('.amaras-search-input');
+      if (input) setTimeout(() => input.focus(), 120);
+    }
+  }
 }
 
 function toggleMobileNav() {

@@ -848,6 +848,16 @@ body[data-exit-popup-open="true"] {
     height: 26px;
     max-width: 115px;
   }
+  .amaras-search-btn {
+    display: flex !important;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+  }
+  .amaras-search-btn svg {
+    width: 17px;
+    height: 17px;
+  }
   .amaras-nav-actions {
     gap: 8px;
   }
@@ -860,10 +870,17 @@ body[data-exit-popup-open="true"] {
   }
   .amaras-nav-logo img {
     height: 23px;
-    max-width: 100px;
+    max-width: 95px;
   }
   .amaras-search-btn {
-    display: none !important;
+    display: flex !important;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+  }
+  .amaras-search-btn svg {
+    width: 16px;
+    height: 16px;
   }
   .amaras-nav-actions {
     gap: 6px;
@@ -871,27 +888,69 @@ body[data-exit-popup-open="true"] {
   .amaras-cart-btn {
     width: 34px;
     height: 34px;
+    min-width: 34px;
   }
   .amaras-cart-btn svg {
-    width: 17px;
-    height: 17px;
+    width: 16px;
+    height: 16px;
   }
   .amaras-lang-switcher {
     padding: 2px;
     border-radius: 16px;
+    gap: 1px;
   }
   .amaras-lang-btn {
-    font-size: 10.5px;
+    font-size: 10px;
     padding: 3px 5px;
   }
   .amaras-mobile-toggle {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
     padding: 6px;
   }
   .amaras-mobile-toggle svg {
     width: 18px;
     height: 18px;
+  }
+  .amaras-search-bar-overlay {
+    padding: 10px 12px;
+  }
+  .amaras-search-box {
+    padding: 6px 12px;
+    gap: 8px;
+  }
+  .amaras-search-input {
+    font-size: 13.5px;
+  }
+}
+
+@media (max-width: 375px) {
+  .amaras-nav-container {
+    padding: 0 6px;
+  }
+  .amaras-nav-logo img {
+    max-width: 78px;
+    height: 20px;
+  }
+  .amaras-nav-actions {
+    gap: 4px;
+  }
+  .amaras-search-btn,
+  .amaras-cart-btn,
+  .amaras-mobile-toggle {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+  }
+  .amaras-search-btn svg,
+  .amaras-cart-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+  .amaras-lang-btn {
+    font-size: 9px;
+    padding: 2px 3px;
   }
 }
 
