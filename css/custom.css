@@ -1090,3 +1090,221 @@ body[data-exit-popup-open="true"] {
   transform: translateY(-2px) scale(1.08);
   filter: drop-shadow(0 4px 10px rgba(88, 110, 255, 0.35));
 }
+
+
+/* ==========================================================================
+   AMARAS "OUR CARE" (SECTIONCONNECT REPLACEMENT)
+   Palette: #312F2F, #FFFFFF, #586EFF (sapphire), #C7FF32 (lime), #B5BAC7
+   STRICT: Pure SVG Vectors - Zero Emojis
+   ========================================================================== */
+
+.amaras-care-section {
+  padding: 88px 32px 96px;
+  background: #312F2F !important;
+  color: #FFFFFF;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.amaras-care-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.amaras-care-header {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 56px;
+}
+
+.amaras-care-eyebrow {
+  display: inline-block;
+  color: var(--amaras-lime, #C7FF32);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
+}
+
+.amaras-care-title {
+  font-size: 38px;
+  line-height: 1.24;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.amaras-care-subtitle {
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: #B5BAC7;
+  margin: 0;
+  font-weight: 400;
+}
+
+.amaras-care-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.amaras-care-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 32px 24px 28px;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.amaras-care-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(88, 110, 255, 0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+}
+
+.amaras-care-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(88, 110, 255, 0.12);
+  border: 1px solid rgba(88, 110, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  color: #586EFF;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.amaras-care-card:hover .amaras-care-icon-wrap {
+  background: var(--amaras-blue, #586EFF);
+  color: #FFFFFF;
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(88, 110, 255, 0.4);
+}
+
+.amaras-care-card-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.35;
+  margin: 0 0 12px;
+}
+
+.amaras-care-card-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #9EA6B8;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Slogan Banner */
+.amaras-motto-banner {
+  background: linear-gradient(135deg, rgba(88, 110, 255, 0.14) 0%, rgba(199, 255, 50, 0.09) 100%);
+  border: 1px solid rgba(199, 255, 50, 0.35);
+  border-radius: 24px;
+  padding: 38px 44px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+}
+
+.amaras-motto-badge {
+  display: inline-block;
+  background: rgba(199, 255, 50, 0.14);
+  color: var(--amaras-lime, #C7FF32);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(199, 255, 50, 0.25);
+}
+
+.amaras-motto-title {
+  font-size: 27px;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.3;
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+
+.amaras-lime-text {
+  color: var(--amaras-lime, #C7FF32);
+}
+
+.amaras-motto-desc {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: #D2D7E5;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 1080px) {
+  .amaras-care-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .amaras-care-title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .amaras-care-section {
+    padding: 54px 18px 60px;
+  }
+  .amaras-care-header {
+    margin-bottom: 36px;
+  }
+  .amaras-care-title {
+    font-size: 25px;
+  }
+  .amaras-care-subtitle {
+    font-size: 14.5px;
+  }
+  .amaras-care-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+  .amaras-care-card {
+    padding: 24px 20px;
+  }
+  .amaras-care-card-title {
+    font-size: 18px;
+  }
+  .amaras-care-icon-wrap {
+    width: 46px;
+    height: 46px;
+    margin-bottom: 18px;
+  }
+  .amaras-motto-banner {
+    padding: 28px 18px;
+    border-radius: 18px;
+  }
+  .amaras-motto-title {
+    font-size: 21px;
+  }
+  .amaras-motto-desc {
+    font-size: 14px;
+  }
+}
