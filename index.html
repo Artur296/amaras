@@ -158,7 +158,7 @@
       <!-- Right Actions Cluster (Image 1 & Image 2 + Login/Register) -->
       <div class="amaras-nav-actions">
         <!-- Atmosphere Background Music Toggle Button -->
-        <button class="amaras-music-btn is-muted" id="amarasMusicBtn" aria-label="Фоновая музыка" title="Включить атмосферную музыку (Комитас — Jazz)" onclick="toggleAmarasMusic()">
+        <button class="amaras-music-btn is-playing" id="amarasMusicBtn" aria-label="Фоновая музыка" title="Отключить атмосферную музыку (Комитас — Jazz)" onclick="toggleAmarasMusic()">
           <span class="amaras-music-wave" aria-hidden="true">
             <span class="amaras-bar b1"></span>
             <span class="amaras-bar b2"></span>
@@ -4680,11 +4680,11 @@
     </div>
   </div>
   <!-- Atmosphere Background Music (Komitas Jazz) -->
-  <audio id="amarasAtmosphereAudio" src="site_atmosphere_music/komitas_jazz.mp3" preload="metadata" loop></audio>
+  <audio id="amarasAtmosphereAudio" src="site_atmosphere_music/komitas_jazz.mp3" preload="auto" loop autoplay></audio>
 
   <script>
     // ==========================================================================
-    // Ambient Atmosphere Music Player (Komitas Jazz)
+    // Ambient Atmosphere Music Player (Komitas Jazz - Always Enabled on Entry)
     // ==========================================================================
     (function () {
       const audio = document.getElementById('amarasAtmosphereAudio');
@@ -4693,7 +4693,7 @@
 
       const TARGET_VOLUME = 0.18; // Soft, comfortable ambient lounge volume
       let fadeInterval = null;
-      let isMutedByUser = localStorage.getItem('amaras_music_pref') === 'off';
+      let manuallyPaused = false;
 
       function getTitles() {
         const lang = (window.currentLang || localStorage.getItem('amaras_lang') || 'RU').toUpperCase();
@@ -4730,7 +4730,7 @@
         }
       }
 
-      function fadeInAudio(target = TARGET_VOLUME, durationMs = 3500) {
+      function fadeInAudio(target = TARGET_VOLUME, durationMs = 2800) {
         if (!audio) return;
         clearInterval(fadeInterval);
         audio.volume = 0;
@@ -4738,7 +4738,7 @@
         if (playPromise !== undefined) {
           playPromise.then(() => {
             updateBtnUI(true);
-            const steps = 35;
+            const steps = 30;
             const stepTime = durationMs / steps;
             const volStep = target / steps;
             fadeInterval = setInterval(() => {
@@ -4750,13 +4750,13 @@
               }
             }, stepTime);
           }).catch(err => {
-            // Autoplay restriction: wait for user interaction or button click
-            updateBtnUI(false);
+            // If browser blocks autoplay with sound, keep wave UI active and retry on interaction
+            updateBtnUI(true);
           });
         }
       }
 
-      function fadeOutAndPause(durationMs = 450) {
+      function fadeOutAndPause(durationMs = 400) {
         if (!audio) return;
         clearInterval(fadeInterval);
         const steps = 15;
@@ -4776,40 +4776,27 @@
 
       window.toggleAmarasMusic = function () {
         if (audio.paused) {
-          isMutedByUser = false;
-          localStorage.setItem('amaras_music_pref', 'on');
-          fadeInAudio(TARGET_VOLUME, 1400);
+          manuallyPaused = false;
+          fadeInAudio(TARGET_VOLUME, 1200);
         } else {
-          isMutedByUser = true;
-          localStorage.setItem('amaras_music_pref', 'off');
+          manuallyPaused = true;
           fadeOutAndPause(400);
         }
       };
 
-      // Soft auto-start on first user interaction with website (if not muted by user)
-      if (!isMutedByUser) {
-        let started = false;
-        const startOnInteraction = () => {
-          if (started) return;
-          started = true;
-          removeListeners();
-          if (audio.paused && !isMutedByUser) {
-            fadeInAudio(TARGET_VOLUME, 3500); // 3.5s smooth, non-intrusive fade-in
-          }
-        };
+      // Always initiate playback on entrance
+      updateBtnUI(true);
+      fadeInAudio(TARGET_VOLUME, 2800);
 
-        function removeListeners() {
-          ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(evt => {
-            window.removeEventListener(evt, startOnInteraction, { capture: true });
-          });
+      // In case browser requires a user gesture first, trigger immediately on first gesture
+      const events = ['pointerdown', 'touchstart', 'scroll', 'keydown', 'click', 'wheel'];
+      function triggerOnGesture() {
+        if (!manuallyPaused && audio.paused) {
+          fadeInAudio(TARGET_VOLUME, 2500);
         }
-
-        ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(evt => {
-          window.addEventListener(evt, startOnInteraction, { capture: true, once: true });
-        });
-      } else {
-        updateBtnUI(false);
+        events.forEach(evt => window.removeEventListener(evt, triggerOnGesture, { capture: true }));
       }
+      events.forEach(evt => window.addEventListener(evt, triggerOnGesture, { capture: true, once: true }));
     })();
   </script>
   <script>
