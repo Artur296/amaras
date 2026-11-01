@@ -73,8 +73,9 @@ All brand logos are centrally managed in `assets/`:
 
 ## 5. Strict Development Guardrails
 
-1. ❌ Never introduce colors outside the 4 approved brand colors (`#FFFFFF`, `#312F2F`, `#586EFF`, `#C7FF32`).
-2. ❌ Never distort logo aspect ratios. Always let width or height scale proportionally with `height: auto` or `width: auto`.
-3. ❌ Never use pure black (`#000000`); always use deep brand charcoal (`#312F2F`).
-4. ❌ Never use unbranded orange (`#fa4f2d`) or navy (`#0C101D`).
-5. ❌ Never break responsive touch targets on mobile (< 44px tap area).
+1. [X] Never introduce colors outside the 4 approved brand colors (`#FFFFFF`, `#312F2F`, `#586EFF`, `#C7FF32`).
+2. [X] Never distort logo aspect ratios. Always let width or height scale proportionally with `height: auto` or `width: auto`.
+3. [X] Never use pure black (`#000000`); always use deep brand charcoal (`#312F2F`).
+4. [X] Never use unbranded orange (`#fa4f2d`) or navy (`#0C101D`).
+5. [X] Never break responsive touch targets on mobile (< 44px tap area).
+6. [X] NEVER use emojis anywhere in the website (no emojis in navigation, menus, headings, buttons, cards, badges, or text).

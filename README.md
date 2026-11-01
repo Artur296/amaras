@@ -4,7 +4,7 @@ High-converting, responsive web experience inspired by and cloned from [getyourg
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
 - **Pixel-Perfect Clone of GetYourGuide Supply:**
   - Hero Section with interactive earnings calculator (`$5,232/month` offer by country)
@@ -25,7 +25,7 @@ High-converting, responsive web experience inspired by and cloned from [getyourg
 
 ---
 
-## 🚀 How to Run Locally
+## How to Run Locally
 
 You can run the project locally with any static server:
 
@@ -42,13 +42,13 @@ Or simply open `index.html` directly in any web browser.
 
 ---
 
-## 📐 Design System & Future Development
+## Design System & Future Development
 
 All future pages, components, dashboards, and additions in this project must strictly comply with [`DESIGN_SYSTEM.md`](./DESIGN_SYSTEM.md).
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 AMARAS WEBSITE/
