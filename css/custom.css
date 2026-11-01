@@ -2125,7 +2125,7 @@ body[data-exit-popup-open="true"] {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 28px;
-  padding: 36px 32px 28px;
+  padding: 56px 32px 32px;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -2136,6 +2136,7 @@ body[data-exit-popup-open="true"] {
   width: 100%;
   height: 340px;
   display: block;
+  overflow: visible;
 }
 
 .amaras-jeep-svg-canvas {
@@ -2157,6 +2158,15 @@ body[data-exit-popup-open="true"] {
   align-items: center;
   cursor: pointer;
   z-index: 5;
+  outline: none;
+  user-select: none;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.amaras-waypoint:focus-visible {
+  outline: 2px solid #586EFF;
+  outline-offset: 4px;
+  border-radius: 12px;
 }
 
 .amaras-wp-1 { left: 8.5%; bottom: 82px; }
@@ -2164,33 +2174,50 @@ body[data-exit-popup-open="true"] {
 .amaras-wp-3 { left: 64.5%; bottom: 208px; }
 .amaras-wp-4 { left: 91.5%; bottom: 272px; }
 
-/* The 4x4 Jeep Vehicle */
+/* The 4x4 Jeep Vehicle - Positioned directly ABOVE the waypoint numbers */
 .amaras-jeep-car {
   position: absolute;
-  bottom: 30px;
-  left: -22px;
   width: 96px;
   height: 54px;
+  z-index: 10;
   pointer-events: none;
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
-  animation: amarasJeepFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.75));
+  transform: translate(-50%, 0) rotate(-11deg);
+  transform-origin: 50% 85%;
+  transition: left 0.75s cubic-bezier(0.25, 1, 0.5, 1),
+              bottom 0.75s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-@keyframes amarasJeepFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
+.amaras-suv-svg {
+  display: block;
+  animation: amarasJeepIdle 3s ease-in-out infinite alternate;
+}
+
+@keyframes amarasJeepIdle {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-3px); }
+}
+
+.amaras-jeep-car.is-driving .amaras-suv-svg {
+  animation: amarasJeepDrive 0.12s ease-in-out infinite alternate;
+}
+
+@keyframes amarasJeepDrive {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-2.5px) scale(1.02); }
 }
 
 .amaras-headlight-beam {
   position: absolute;
   left: 92px;
-  top: 20px;
-  width: 150px;
-  height: 44px;
-  background: linear-gradient(90deg, rgba(199, 255, 50, 0.5) 0%, rgba(199, 255, 50, 0.15) 55%, transparent 100%);
+  top: 18px;
+  width: 155px;
+  height: 48px;
+  background: linear-gradient(90deg, rgba(199, 255, 50, 0.55) 0%, rgba(199, 255, 50, 0.18) 55%, transparent 100%);
   clip-path: polygon(0% 38%, 100% 0%, 100% 100%, 0% 62%);
   filter: blur(3px);
   pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 /* Waypoint Badge (circle on trail) */
@@ -2211,16 +2238,16 @@ body[data-exit-popup-open="true"] {
 }
 
 .amaras-waypoint:hover .amaras-wp-badge {
-  transform: scale(1.15);
-  border-color: #586EFF;
-  box-shadow: 0 0 20px rgba(88, 110, 255, 0.6);
+  transform: scale(1.18);
+  border-color: #C7FF32;
+  box-shadow: 0 0 24px rgba(199, 255, 50, 0.6);
 }
 
 .amaras-wp-badge.is-active {
   background: #181717;
   border-color: #C7FF32;
   color: #C7FF32;
-  box-shadow: 0 0 22px rgba(199, 255, 50, 0.45);
+  box-shadow: 0 0 24px rgba(199, 255, 50, 0.55);
 }
 
 .amaras-wp-badge.is-peak {
@@ -2230,11 +2257,19 @@ body[data-exit-popup-open="true"] {
   box-shadow: 0 0 26px rgba(88, 110, 255, 0.75);
 }
 
+.amaras-wp-badge.is-peak.is-active {
+  background: #0E1A63;
+  border-color: #C7FF32;
+  color: #C7FF32;
+  box-shadow: 0 0 30px rgba(199, 255, 50, 0.7);
+}
+
 /* Waypoint Card below badge */
 .amaras-wp-card {
   margin-top: 18px;
   text-align: center;
   white-space: nowrap;
+  transition: color 0.25s ease;
 }
 
 .amaras-wp-title {
@@ -2243,6 +2278,12 @@ body[data-exit-popup-open="true"] {
   font-weight: 700;
   color: #FFFFFF;
   letter-spacing: -0.01em;
+  transition: color 0.25s ease;
+}
+
+.amaras-waypoint.is-active .amaras-wp-title,
+.amaras-waypoint:hover .amaras-wp-title {
+  color: #C7FF32;
 }
 
 .amaras-wp-elevation {
@@ -2313,10 +2354,25 @@ body[data-exit-popup-open="true"] {
     justify-content: center;
     font-size: 14px;
   }
+  .amaras-mwp-item {
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s ease;
+  }
+  .amaras-mwp-item:hover {
+    transform: translateX(4px);
+  }
   .amaras-mwp-num.is-active {
     border-color: #C7FF32;
     color: #C7FF32;
     box-shadow: 0 0 16px rgba(199, 255, 50, 0.45);
+  }
+  .amaras-mwp-item.is-active .amaras-mwp-details {
+    border-color: rgba(199, 255, 50, 0.5);
+    background: rgba(199, 255, 50, 0.06);
+  }
+  .amaras-mwp-item.is-active .amaras-mwp-name {
+    color: #C7FF32;
   }
   .amaras-mwp-num.is-peak {
     background: #0E1A63;
