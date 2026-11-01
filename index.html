@@ -73,7 +73,10 @@
   </style>
   <link href="https://cdn.plyr.io/3.8.4/plyr.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.css" rel="stylesheet" />
-  <link href="css/custom.css?v=27" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+Armenian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="css/custom.css?v=28" rel="stylesheet" />
 </head>
 
 <body class="rebrand-body">
@@ -475,10 +478,10 @@
         tag_gastro: "Գաստրոտուրեր",
         tag_workshops: "Վարպետության դասեր",
         hero_ticket_fixed: "Ձեր ",
-        hero_ticket_item_1: "Խոր Վիրապ",
-        hero_ticket_item_2: "Սևան",
-        hero_ticket_item_3: "ջիպ-տուր",
-        hero_ticket_item_4: "վարպետաց դաս",
+        hero_ticket_item_1: "Խոր Վիրապը",
+        hero_ticket_item_2: "Սևանը",
+        hero_ticket_item_3: "ջիպ-տուրը",
+        hero_ticket_item_4: "վարպետաց դասը",
         rev_eyebrow: "5.0 • ՀՅՈՒՐԵՐԻ ԿԱՐԾԻՔՆԵՐԸ",
         rev_title: "Ինչ են ասում AMARAS-ի հետ ճանապարհորդությունների մասին",
         rev_subtitle: "Ճանապարհորդների անկեղծ տպավորությունները, ովքեր բացահայտեցին Հայաստանը մեր գիդերի և վարորդների հետ:",
@@ -548,6 +551,8 @@
 
     function setLang(lang) {
       if (!AMARAS_I18N[lang]) return;
+      document.body.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('lang', lang.toLowerCase());
 
       // Update switcher active buttons
       document.querySelectorAll('.amaras-lang-btn').forEach(btn => {

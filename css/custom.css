@@ -2956,3 +2956,37 @@ body[data-exit-popup-open="true"] {
     border-radius: 20px;
   }
 }
+
+/* ==========================================================================
+   MODERN ARMENIAN & GLOBAL SANS-SERIF TYPOGRAPHY
+   Replaces default system serif (Sylfaen) with sleek Noto Sans Armenian & Montserrat
+   ========================================================================== */
+
+:root {
+  --amaras-font-family: 'GYG Sans VF', 'Noto Sans Armenian', 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body,
+.rebrand-body,
+h1, h2, h3, h4, h5, h6,
+.headingh1, .headingh2, .headingh3, .headingh4, .headingh5, .headingh6,
+.rebrand-section-hero-frame-title,
+.rebrand-section-hero-title-fixed,
+.rebrand-section-hero-title-dynamic {
+  font-family: 'GYG Sans VF', 'Noto Sans Armenian', 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* Specific styling for Armenian language & elements */
+:lang(hy),
+[lang="hy"],
+[lang="hy"] *,
+body[data-lang="HY"],
+body[data-lang="HY"] * {
+  font-family: 'Noto Sans Armenian', 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.headingh3.rebrand-section-hero-frame-title,
+.rebrand-section-hero-title-fixed,
+.rebrand-section-hero-title-dynamic {
+  font-family: 'GYG Sans VF', 'Noto Sans Armenian', 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
