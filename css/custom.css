@@ -1230,22 +1230,106 @@ body[data-exit-popup-open="true"] {
   margin-bottom: 48px;
 }
 
+/* 4 Distinct Brand Colors for Care / Advantage Cards */
 .amaras-care-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  padding: 32px 24px 28px;
-  transition: all 0.25s ease;
+  border-radius: 26px;
+  padding: 36px 26px 32px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
 
-.amaras-care-card:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(88, 110, 255, 0.45);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+/* Card 1: Electric Cobalt Blue (#586EFF) */
+.amaras-care-card:nth-child(1) {
+  background-color: #586EFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 14px 34px rgba(88, 110, 255, 0.28);
+}
+.amaras-care-card:nth-child(1) .amaras-care-card-title {
+  color: #FFFFFF !important;
+}
+.amaras-care-card:nth-child(1) .amaras-care-card-desc {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+.amaras-care-card:nth-child(1) .amaras-care-icon-wrap {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: #FFFFFF !important;
+}
+.amaras-care-card:nth-child(1):hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 46px rgba(88, 110, 255, 0.45) !important;
+}
+
+/* Card 2: Deep Midnight Navy (#0E1A63) */
+.amaras-care-card:nth-child(2) {
+  background-color: #0E1A63 !important;
+  border: 1px solid rgba(88, 110, 255, 0.25) !important;
+  box-shadow: 0 14px 34px rgba(14, 26, 99, 0.4);
+}
+.amaras-care-card:nth-child(2) .amaras-care-card-title {
+  color: #FFFFFF !important;
+}
+.amaras-care-card:nth-child(2) .amaras-care-card-desc {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+.amaras-care-card:nth-child(2) .amaras-care-icon-wrap {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #FFFFFF !important;
+}
+.amaras-care-card:nth-child(2):hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 46px rgba(14, 26, 99, 0.6) !important;
+}
+
+/* Card 3: Neon Lime Green (#C7FF32) */
+.amaras-care-card:nth-child(3) {
+  background-color: #C7FF32 !important;
+  border: 1px solid transparent !important;
+  box-shadow: 0 14px 34px rgba(199, 255, 50, 0.25);
+}
+.amaras-care-card:nth-child(3) .amaras-care-card-title {
+  color: #161616 !important;
+  font-weight: 800 !important;
+}
+.amaras-care-card:nth-child(3) .amaras-care-card-desc {
+  color: #262F12 !important;
+  font-weight: 500 !important;
+}
+.amaras-care-card:nth-child(3) .amaras-care-icon-wrap {
+  background: rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  color: #161616 !important;
+}
+.amaras-care-card:nth-child(3):hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 46px rgba(199, 255, 50, 0.45) !important;
+}
+
+/* Card 4: Crisp Clean Off-White (#F5F5F7) */
+.amaras-care-card:nth-child(4) {
+  background-color: #F5F5F7 !important;
+  border: 1px solid transparent !important;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+}
+.amaras-care-card:nth-child(4) .amaras-care-card-title {
+  color: #161616 !important;
+  font-weight: 800 !important;
+}
+.amaras-care-card:nth-child(4) .amaras-care-card-desc {
+  color: #4A4947 !important;
+  font-weight: 400 !important;
+}
+.amaras-care-card:nth-child(4) .amaras-care-icon-wrap {
+  background: rgba(88, 110, 255, 0.1) !important;
+  border: 1px solid rgba(88, 110, 255, 0.2) !important;
+  color: #586EFF !important;
+}
+.amaras-care-card:nth-child(4):hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.35) !important;
 }
 
 .amaras-care-icon-wrap {
