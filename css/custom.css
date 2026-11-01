@@ -164,14 +164,37 @@ a.rebrand-button.secondary---md:hover {
   object-fit: contain !important;
 }
 
-/* Hero Ticket Text & Stars in Amaras Lime #C7FF32 */
-.rebrand-section-hero-title-fixed,
-.rebrand-section-hero-frame-title {
+/* Hero Ticket Text & Stars in Amaras Lime #C7FF32 & White #FFFFFF */
+.headingh3.rebrand-section-hero-frame-title {
+  font-size: clamp(20px, 3.8vw, 34px) !important;
+  max-width: calc(100% - 44px) !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  line-height: 1.2 !important;
+}
+
+.rebrand-section-hero-title-fixed {
   color: var(--amaras-lime) !important;
+  font-size: inherit !important;
+  font-weight: 800 !important;
+}
+
+.rebrand-section-hero-title-dynamic {
+  color: #FFFFFF !important;
+  font-size: inherit !important;
+  font-weight: 800 !important;
 }
 
 .rebrand-section-hero-frame-stars path {
   fill: var(--amaras-lime) !important;
+}
+
+@media (max-width: 480px) {
+  .headingh3.rebrand-section-hero-frame-title {
+    font-size: 20px !important;
+    left: 20px !important;
+    max-width: calc(100% - 32px) !important;
+  }
 }
 
 /* Video Play Button in Lime #C7FF32 with Charcoal #312F2F Icon */
