@@ -76,7 +76,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+Armenian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="css/custom.css?v=38" rel="stylesheet" />
+  <link href="css/custom.css?v=39" rel="stylesheet" />
 </head>
 
 <body class="rebrand-body">
@@ -289,6 +289,10 @@
         tag_transfers: "Трансферы",
         tag_gastro: "Гастрономические туры",
         tag_workshops: "Мастер-классы",
+        hero_eyebrow: "Туроператор по Армении с 2014 года",
+        hero_title: "Откройте настоящую Армению вместе с Amaras",
+        hero_desc: "Авторские экскурсии, комфортабельный автопарк Mercedes-Benz и подготовленные внедорожники 4×4. Индивидуальные и групповые маршруты с заботой о каждом госте.",
+        hero_cta: "Выбрать экскурсию",
         hero_ticket_fixed: "Ваш ",
         hero_ticket_item_1: "Хор Вирап",
         hero_ticket_item_2: "Севан",
@@ -429,6 +433,10 @@
         tag_transfers: "Transfers",
         tag_gastro: "Gastronomic Tours",
         tag_workshops: "Masterclasses",
+        hero_eyebrow: "Armenia Tour Operator Since 2014",
+        hero_title: "Discover Authentic Armenia with Amaras",
+        hero_desc: "Signature guided tours, premium Mercedes-Benz fleet, and equipped 4×4 SUVs. Private and group journeys crafted with genuine care.",
+        hero_cta: "Explore Tours",
         hero_ticket_fixed: "Your ",
         hero_ticket_item_1: "Khor Virap",
         hero_ticket_item_2: "Lake Sevan",
@@ -569,6 +577,10 @@
         tag_transfers: "Տրանսֆերներ",
         tag_gastro: "Գաստրոտուրեր",
         tag_workshops: "Վարպետության դասեր",
+        hero_eyebrow: "Տուրօպերատոր Հայաստանում 2014 թվականից",
+        hero_title: "Բացահայտեք իսկական Հայաստանը Amaras-ի հետ",
+        hero_desc: "Հեղինակային էքսկուրսիաներ, Mercedes-Benz հարմարավետ ավտոպարկ և 4×4 ամենագնացներ: Անհատական և խմբային երթուղիներ՝ հոգատարությամբ յուրաքանչյուր հյուրի նկատմամբ:",
+        hero_cta: "Ընտրել տուրը",
         hero_ticket_fixed: "Ձեր ",
         hero_ticket_item_1: "Խոր Վիրապը",
         hero_ticket_item_2: "Սևանը",
@@ -964,111 +976,18 @@
               </script>
             </div>
             <div class="rebrand-section-hero-left">
-              <div class="headingh4 rebrand-section-hero-eyebrow">Partner with Amaras</div>
+              <div class="headingh4 rebrand-section-hero-eyebrow" data-i18n="hero_eyebrow">Туроператор по Армении с 2014 года</div>
               <div class="rebrand-section-hero-heading">
                 <div class="headingh1 rebrand-section-hero-title w-richtext">
-                  <h1>Reach millions of travelers. Grow your business.</h1>
+                  <h1 data-i18n="hero_title">Откройте настоящую Армению вместе с Amaras</h1>
                 </div>
-                <div class="rebrand-custom-code w-embed w-script">
-                  <style>
-                    .rebrand-section-home-hero-description * {
-                      color: var(--_1-alias-tokens---color--content--primary-inversed);
-                      font-family: 'GYG Sans VF';
-                      font-size: 16px;
-                      line-height: 90%;
-                      font-variation-settings:
-                        'wght' 400,
-                        'opsz' 100;
-                      font-weight: 400;
-                    }
-                  </style>
-                  <script async="">
-                    window.addEventListener('DOMContentLoaded', () => {
-                      const OFFER_BY_COUNTRY = {
-                        'United States': { symbol: '$', amount: '5,232' },
-                        'United Kingdom': { symbol: '£', amount: '5.366' },
-                        Italy: { symbol: '€', amount: '7.863' },
-                        Spain: { symbol: '€', amount: '5.035' },
-                        Portugal: { symbol: '€', amount: '2.893' },
-                        France: { symbol: '€', amount: '4.108' },
-                        Greece: { symbol: '€', amount: '3.438' },
-                        Germany: { symbol: '€', amount: '11.573' },
-                        Japan: { symbol: '¥', amount: '589.963' },
-                        Netherlands: { symbol: '€', amount: '6.218' },
-                      };
-
-                      /* "the" before the country in English copy. */
-                      const COUNTRIES_WITH_THE = new Set([
-                        'Bahamas',
-                        'Maldives',
-                        'Netherlands',
-                        'Philippines',
-                        'United Kingdom',
-                        'United States',
-                        'United Arab Emirates',
-                        'Czech Republic',
-                        'Dominican Republic',
-                      ]);
-
-                      function inCountryLabel(countryName) {
-                        return COUNTRIES_WITH_THE.has(countryName) ? 'the ' + countryName : countryName;
-                      }
-
-                      function setBrowserLocale() {
-                        var loc = (navigator.languages && navigator.languages[0]) || navigator.language;
-                        if (loc) {
-                          document.documentElement.lang = loc;
-                        }
-                      }
-
-                      setBrowserLocale();
-
-                      const GEOJS_COUNTRY_URL = 'https://get.geojs.io/v1/ip/country.json';
-
-                      fetch(GEOJS_COUNTRY_URL)
-                        .then(function (res) {
-                          if (!res.ok) {
-                            throw new Error('GeoJS country request failed');
-                          }
-                          return res.json();
-                        })
-                        .then(function (json) {
-                          var countryName = json && json.name;
-                          var offer = countryName && OFFER_BY_COUNTRY[countryName];
-                          if (!offer) {
-                            return;
-                          }
-
-                          var el = document.querySelector('[data-locale-currency]');
-
-                          if (!el) {
-                            return;
-                          }
-
-                          el.style.fontFamily = 'GYG Sans VF';
-                          el.textContent =
-                            'Earn up to ' +
-                            offer.symbol +
-                            offer.amount +
-                            ' a month in ' +
-                            inCountryLabel(countryName) +
-                            ' – no upfront costs.';
-                        })
-                        .catch(function () {
-                          console.error('GeoJS country request failed');
-                        });
-                    });
-                  </script>
-                </div>
-                <p class="body-1 loose rebrand-section-hero-description" data-locale-currency="">Tap into global demand
-                  that drives more visibility, more bookings and more revenue.</p>
+                <p class="body-1 loose rebrand-section-hero-description" data-i18n="hero_desc">Авторские экскурсии, комфортабельный автопарк Mercedes-Benz и подготовленные внедорожники 4×4. Индивидуальные и групповые маршруты с заботой о каждом госте.</p>
               </div>
-              <div class="rebrand-section-hero-button"
-                data-wf-target='[[["7966251f-0a9e-1da7-3c5a-a6e3dfc96c41","204f737c-0878-1d49-8445-b9eb00805871"],["b40939fe-55ba-d4bb-7c77-40cd9939ed6a","b40939fe-55ba-d4bb-7c77-40cd9939ed6e_instance-0"]]]'>
+              <div class="rebrand-section-hero-button">
                 <a class="rebrand-button w-variant-713d7970-afd3-878e-b357-83c0d7403fb6 w-inline-block"
-                  data-utm-pass="true" data-wf--button--variant="primary---md"
-                  href="https://supplier.getyourguide.com/register/" target="_blank">
-                  <div class="buttonsm w-variant-713d7970-afd3-878e-b357-83c0d7403fb6">Become a supplier</div>
+                  data-wf--button--variant="primary---md"
+                  href="#tours">
+                  <div class="buttonsm w-variant-713d7970-afd3-878e-b357-83c0d7403fb6" data-i18n="hero_cta">Выбрать экскурсию</div>
                 </a>
               </div>
             </div>
