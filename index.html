@@ -76,7 +76,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+Armenian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="css/custom.css?v=28" rel="stylesheet" />
+  <link href="css/custom.css?v=29" rel="stylesheet" />
 </head>
 
 <body class="rebrand-body">
@@ -292,6 +292,8 @@
         rev_title: "Что говорят о поездках с AMARAS",
         rev_subtitle: "Искренние впечатления путешественников, открывших для себя Армению вместе с нашими гидами и водителями.",
         rev_leave_btn: "Оставить отзыв",
+        rev_read_more: "Показать весь отзыв",
+        rev_modal_close: "Закрыть",
         faq_eyebrow: "ЧАСТЫЕ ВОПРОСЫ",
         faq_title: "Всё, что нужно знать перед путешествием с Amaras Tour",
         faq_subtitle: "Мы позаботились о том, чтобы подготовка к путешествию была простой и понятной. Здесь вы найдёте ответы на вопросы о бронировании, оплате, организации экскурсий и других важных деталях.",
@@ -389,6 +391,8 @@
         rev_title: "What travelers say about trips with AMARAS",
         rev_subtitle: "Genuine impressions of travelers who discovered Armenia with our guides and drivers.",
         rev_leave_btn: "Leave a Review",
+        rev_read_more: "Read full review",
+        rev_modal_close: "Close",
         faq_eyebrow: "FREQUENTLY ASKED QUESTIONS",
         faq_title: "Everything you need to know before traveling with Amaras Tour",
         faq_subtitle: "We made sure that preparing for your journey is simple and clear. Here you will find answers regarding bookings, payments, tour arrangements and details.",
@@ -486,6 +490,8 @@
         rev_title: "Ինչ են ասում AMARAS-ի հետ ճանապարհորդությունների մասին",
         rev_subtitle: "Ճանապարհորդների անկեղծ տպավորությունները, ովքեր բացահայտեցին Հայաստանը մեր գիդերի և վարորդների հետ:",
         rev_leave_btn: "Թողնել կարծիք",
+        rev_read_more: "Կարդալ ամբողջը",
+        rev_modal_close: "Փակել",
         faq_eyebrow: "ՀԱՃԱԽ ՏՐՎՈՂ ՀԱՐՑԵՐ",
         faq_title: "Ամեն ինչ, ինչ պետք է իմանալ Amaras Tour-ի հետ ճամփորդելուց առաջ",
         faq_subtitle: "Մենք հոգացել ենք, որպեսզի ճանապարհորդության նախապատրաստումը լինի պարզ և հասկանալի:",
@@ -1153,7 +1159,7 @@
     <div class="amaras-rev-carousel-wrapper">
       <div class="amaras-rev-track" id="amarasRevTrack">
         
-            <div class="amaras-rev-slide" data-index="0">
+                  <div class="amaras-rev-slide" data-index="0">
         <div class="amaras-rev-card">
           <div class="amaras-rev-card-top">
             <div class="amaras-rev-stars">
@@ -1180,6 +1186,8 @@
           <div class="amaras-rev-quote">
             <p>Григор отличный гид , поможет , расскажет все что знает еще и гатой угостит)))</p>
           </div>
+
+<div class="amaras-rev-more-placeholder"></div>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">С</div>
@@ -1214,10 +1222,17 @@
             <span class="amaras-rev-guide">Гид: Артур</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>Экскурсия по Армении прошла отлично. Маршрут продуман так, чтобы успеть многое, но не устать: остановки в самых знаковых местах, достаточно времени на осмотр, на фото. Водитель вёл машину аккуратно, в салоне была вода, а гид заранее предупреждал про особенности маршрутов — например, где лучше надеть удобную обувь или взять ветровку.</p>
             <p>Понравилось, что программа не была «жёсткой»: если группа хотела чуть дольше задержаться в каком-то месте, гид шёл навстречу. Отдельно отмечу, что рассказ был информативным, но без перегруза фактами — всё по делу, с интересными деталями. В целом, экскурсия отлично подойдёт тем, кто хочет увидеть максимум за один день и при этом чувствовать себя комфортно. Рекомендую и обязательно вернусь снова!!</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(1)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">И</div>
@@ -1251,7 +1266,7 @@
             <span class="amaras-rev-tour">Севан, Дилижан, Агарцин, Димац / Гарни, Герард, Арка Чаренца, Симфония Камней / Хор Вирап, Арени, Пи</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>To, что я испытала там в монастырях, я точно запомню на всю свою жизнь.</p>
             <p>Это было похоже на чувство, когда после очень долгой и тернистой дороги ты наконец возвращаешься домой.</p>
             <p>Терапия, которую не выпишет ни один врач: свежий воздух, горы и чувство свободы.</p>
@@ -1269,12 +1284,15 @@
             <p>И даже если вы приехали с разбитым сердцем — оно соберётся обратно само.</p>
             <p>Проверено.</p>
             <p>Армения , пережила счастливые и печальные моменты в истории, но всё-таки не растеряла харизму, а приобрела еще большее очарование даря любовь и тепло.</p>
-            <p>Отдельная благодарность команде «Amaras tour»: гидам - дяде Артуру и Григору, водителям - Саргису81:T816,Заказали в Amaras Tour однодневный индивидуальный тур в Татев, а в итоге остались путешествовать по Армении ещё на три дня</p>
-            <p>А всё благодаря нашему гиду Мануэлю! По дороге он начал рассказывать, сколько красивых мест в Сюнике, показывал фотографии. Мы с женой переглянулись и спросили, а можно остаться на несколько дней? Мануэль засмеялся и сказал, что не просто можно, а нужно</p>
-            <p>За эти дни увидели Арарат, Нораванк, водопад Шаки, монастырь Татев, Чёртов мост и Джермук. Купались в горячих источниках, ездили на джипе к гейзеру, дегустировали вино. Ночевали в уютном гостевом доме в Горисе, жарили шашлык и до поздней ночи общались. Было столько впечатлений, что словами не передать!</p>
-            <p>Самое смешное, что гостиница в Ереване у нас была забронирована на весь отпуск, а ночевали мы там только первую ночь В последний день забрали чемоданы, и Мануэль отвёз нас в аэропорт.</p>
-            <p>Мануэль, дружище, ты красавчик! Спасибо за заботу, настро</p>
+            <p>Отдельная благодарность команде «Amaras tour»: гидам - дяде Артуру и Григору, водителям - Саргису</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(2)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">Н</div>
@@ -1309,9 +1327,16 @@
             <span class="amaras-rev-guide">Гид: Григор</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>Были на экскурсии 08 и остались очень довольны! Для нашего недолгого пребывания в Армении это идеальный вариант - успели увидеть много красивых мест и прочувствовать страну. Отдельное спасибо Юрию за помощь в выборе экскурсии и Григоргу за очень интересные рассказы, приятное общение и ответы на все вопросы. Трансфер очень комфортабельный. Однозначно рекомендуем!</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(3)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">Д</div>
@@ -1345,9 +1370,16 @@
             <span class="amaras-rev-tour">Озеро Севан и Дилижан</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>Поездка на Севан и в Дилижан превзошла все ожидания! Водитель очень аккуратный, гид рассказывал потрясающие истории о монастырях и природе. Организация на высшем уровне, обязательно поедем с вами снова!</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(4)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">А</div>
@@ -1381,9 +1413,16 @@
             <span class="amaras-rev-tour">Джип-тур на вулкан Аждаак</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>Джип-тур к кратерному озеру — это чистый восторг! Проехали туда, куда на обычной машине и не сунешься. Мощные внедорожники, отличная команда и море незабываемых впечатлений.</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(5)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">D</div>
@@ -1421,6 +1460,8 @@
             <p>Брали 5-дневный тур-пакет. Отели отличные, трансферы минута в минуту, программа очень насыщенная и комфортная. Ни о чем не беспокоились, только наслаждались Арменией!</p>
           </div>
 
+<div class="amaras-rev-more-placeholder"></div>
+
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">Е</div>
             <div class="amaras-rev-author-info">
@@ -1457,6 +1498,8 @@
             <p>Прекрасный однодневный тур на юг! Вид на Арарат из Хор Вирапа захватывает дух, а дегустация вина в Арени была великолепной. Очень душевный и внимательный гид.</p>
           </div>
 
+<div class="amaras-rev-more-placeholder"></div>
+
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">С</div>
             <div class="amaras-rev-author-info">
@@ -1489,10 +1532,17 @@
             <span class="amaras-rev-tour">Тур в Татев и канатная дорога</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>Добрый день. Мы с вами ездили в Татев во вторник. Приехали «без ног», поэтому сразу не написали впечатления. А вчера я просто забыл.</p>
             <p>Экскурсия оказалась дольше, чем ожидалось, поэтому последнее место нам пришлось смотреть в темноте. Но мы всё равно очень довольны. Спасибо вам за замечательную экскурсию!</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(8)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">П</div>
@@ -1526,10 +1576,17 @@
             <span class="amaras-rev-tour">3-дневный тур-пакет по Армении</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>Путешествовали по Армении с Amaras Tour, и у нас остались самые приятные впечатления! Гид интересно рассказывал об истории и достопримечательностях Армении. На каждой остановке было достаточно времени, чтобы без спешки полюбоваться красивыми видами, погулять и сделать фотографии.</p>
             <p>Спасибо команде Amaras Tour за прекрасно организованные экскурсии, заботу и незабываемые эмоции! Армения навсегда останется в наших сердцах! ️</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(9)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">К</div>
@@ -1564,11 +1621,18 @@
             <span class="amaras-rev-guide">Гид: Григор</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>Доброе утро. Съездили вчера с Григором на экскурсию. Хор Вирап и далее по маршруту.</p>
             <p>Были на многих экскурсиях, в разных странах Европы. Ни разу не было настолько потрясающего гида.</p>
             <p>Приехали поздно в Ереван, жаль было расставаться. Наши девочки-попутчицы расплакались Считаю, что только благодаря Григору сложилась такая атмосфера в поездке.</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(10)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">А</div>
@@ -1602,9 +1666,16 @@
             <span class="amaras-rev-tour">Индивидуальная экскурсия</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>Мне очень всё понравилось. И машина удобная. И очень приветливый гид, много интересного рассказал. Очень приятные впечатления остались. Хорошая экскурсия ️ И приятные цены</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(11)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">Е</div>
@@ -1642,6 +1713,8 @@
             <p>Добрый вечер! Экскурсия прекрасная, нам все понравилось, водитель прекрасный человек, было очень интересно, спасибо большое ️</p>
           </div>
 
+<div class="amaras-rev-more-placeholder"></div>
+
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">А</div>
             <div class="amaras-rev-author-info">
@@ -1675,10 +1748,17 @@
             <span class="amaras-rev-guide">Гид: Григор</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>Спасибо большое Amaras Tour за такую тёплую встречу! Всё было очень душевно, вы правда очень приятные люди! Остались самые тёплые впечатления от общения с вами. От всей души желаю вашей компании процветания, успехов и много новых клиентов!</p>
             <p>Отдельно хочу поблагодарить Григора, он просто топчик! Очень приятный, добрый и позитивный парень! Спасибо вам за всё! ️</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(13)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">Д</div>
@@ -1712,9 +1792,16 @@
             <span class="amaras-rev-tour">Озеро Севан</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>Спасибо Amaras Tour за заботу и отличную поездку на Севан! От всей души желаю процветания вашей компании и прекрасной стране Армении! Продолжайте в том же духе, у вас всё обязательно получится! ️</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(14)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">Т</div>
@@ -1751,6 +1838,8 @@
           <div class="amaras-rev-quote">
             <p>Спасибо Амарас тур за классную экскурсию!</p>
           </div>
+
+<div class="amaras-rev-more-placeholder"></div>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">Р</div>
@@ -1789,6 +1878,8 @@
             <p>Сегодня экскурсия прошла великолепно! Отдельное спасибо Григору за интересный рассказ и прекрасно проведённое время! Обязательно будем рекомендовать вас нашим друзьям!</p>
           </div>
 
+<div class="amaras-rev-more-placeholder"></div>
+
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">С</div>
             <div class="amaras-rev-author-info">
@@ -1821,9 +1912,16 @@
             <span class="amaras-rev-tour">Экскурсии по Армении</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>Спасибо большое за замечательные экскурсии! Нам всё очень понравилось! Остались очень довольны поездками и получили массу приятных впечатлений. Спасибо Amaras Tour за прекрасное время в Армении! ️</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(17)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">И</div>
@@ -1858,12 +1956,19 @@
             <span class="amaras-rev-guide">Гид: Григор</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>Путешествовали по Армении с Amaras Tour. Тур был очень интересным, насыщенным и разнообразным, получили много впечатлений!</p>
             <p>Особенно понравился наш гид Григор. Сын даже сказал: «Как хорошо получилось, что у нас был такой водитель-экскурсовод. С ним нам было очень интересно и спокойно». Думаю, лучше и не скажешь!</p>
             <p>Гостиница тоже понравилась, чистая и уютная, завтракали во дворе в беседке, хозяин очень добрый.</p>
             <p>Спасибо Amaras Tour и отдельно Григору за прекрасную поездку! Всё прошло замечательно, остались очень довольны!</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(18)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">А</div>
@@ -1898,11 +2003,18 @@
             <span class="amaras-rev-guide">Гид: Артур</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>Спасибо большое Amaras Tour за прекрасную экскурсию! Нам всем очень понравилось, получили массу приятных впечатлений!</p>
             <p>Отдельное спасибо нашему водителю Артуру, очень приятный, доброжелательный человек, с которым легко и комфортно общаться. Машина просто кайф! Поездка прошла замечательно, всё было удобно и спокойно.</p>
             <p>Остались очень довольны! Спасибо за отличную организацию и хорошее настроение. Обязательно будем обращаться к вам снова и рекомендовать друзьям! ️</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(19)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">А</div>
@@ -1937,9 +2049,16 @@
             <span class="amaras-rev-guide">Гид: Армине</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>Отличная экскурсия! Спасибо нашему гиду Армине за интересные рассказы и хорошее настроение. Всё прошло легко и интересно, даже не заметили, как пролетел день. Армения прекрасна! ️</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(20)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">Н</div>
@@ -1974,9 +2093,16 @@
             <span class="amaras-rev-guide">Гид: Абраам</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>Ездили на Севан с Amaras Tour. Всё очень понравилось! Отдельное спасибо нашему гиду Абрааму, столько интересного узнали об Армении. Красивые виды, комфортная машина и замечательная атмосфера. Спасибо за этот день!</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(21)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">М</div>
@@ -2011,11 +2137,18 @@
             <span class="amaras-rev-guide">Гид: Мгер</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>По рекомендации друзей обратились в Amaras Tour и взяли двухдневный тур в Татев. Даже не ожидали, что Армения окажется настолько красивой!</p>
             <p>Отдельное спасибо нашему гиду Мгеру. Очень добрый, внимательный и заботливый человек. Показал нам столько красивых мест, угощал домашним вином и фруктами, останавливался там, где хотелось сделать фотографии. Всё было спокойно, без спешки, как будто путешествовали с хорошим другом.</p>
             <p>За эти два дня получили столько впечатлений! Спасибо Мгеру и Amaras Tour за прекрасное путешествие. Теперь и мы будем рекомендовать вас своим друзьям!</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(22)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">Е</div>
@@ -2050,18 +2183,26 @@
             <span class="amaras-rev-guide">Гид: Мануэль</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>Заказали в Amaras Tour однодневный индивидуальный тур в Татев, а в итоге остались путешествовать по Армении ещё на три дня</p>
             <p>А всё благодаря нашему гиду Мануэлю! По дороге он начал рассказывать, сколько красивых мест в Сюнике, показывал фотографии. Мы с женой переглянулись и спросили, а можно остаться на несколько дней? Мануэль засмеялся и сказал, что не просто можно, а нужно</p>
             <p>За эти дни увидели Арарат, Нораванк, водопад Шаки, монастырь Татев, Чёртов мост и Джермук. Купались в горячих источниках, ездили на джипе к гейзеру, дегустировали вино. Ночевали в уютном гостевом доме в Горисе, жарили шашлык и до поздней ночи общались. Было столько впечатлений, что словами не передать!</p>
             <p>Самое смешное, что гостиница в Ереване у нас была забронирована на весь отпуск, а ночевали мы там только первую ночь В последний день забрали чемоданы, и Мануэль отвёз нас в аэропорт.</p>
             <p>Мануэль, дружище, ты красавчик! Спасибо за заботу, настроение и незабываемые дни! Отдельное спасибо Amaras Tour за такого замечательного человека.</p>
-            <p>Приехали на обычную экскурсию, а в итоге нашли настоящего друга. Обязательно вернёмся, ведь теперь в Армении у нас есть свой человек! ️82:T86c,Amaras Tour-ում պատվիրեցինք մեկօրյա անհատական տուր դեպի Տաթև, իսկ արդյունքում մնացինք ճամփորդելու Հայաստանում ևս երեք օր</p>
+            <p>Приехали на обычную экскурсию, а в итоге нашли настоящего друга. Обязательно вернёмся, ведь теперь в Армении у нас есть свой человек! ️</p>
             <p>Եվ այդ ամենը մեր գիդ Մանուելի շնորհիվ: Ճանապարհին նա սկսեց պատմել, թե որքան գեղեցիկ վայրեր կան Սյունիքում, ցույց տվեց լուսանկարներ: Մենք կնոջս հետ նայեցինք իրար ու հարցրինք՝ իսկ կարո՞ղ ենք մնալ մի քանի օր: Մանուելը ծիծաղեց և ասաց, որ ոչ միայն կարելի է, այլ պետք է</p>
             <p>Այս օրերին տեսանք Արարատը, Նորավանքը, Շաքիի ջրվեժը, Տաթևի վանքը, Սատանի կամուրջը և Ջերմուկը: Լողացինք տաք աղբյուրներում, ջիպով գնացինք դեպի գեյզեր, համտեսեցինք գինի: Գիշերեցինք Գորիսի հարմարավետ հյուրատանը, խորոված արեցինք և մինչև ուշ գիշեր զրուցեցինք: Տպավորություններն անբացատրելի էին:</p>
             <p>Ամենազվարճալին այն էր, որ Երևանի հյուրանոցն ամրագրված էր ամբողջ արձակուրդի համար, իսկ մենք այնտեղ քնեցինք միայն առաջին գիշերը Վերջին օրը վերցրինք ճամպրուկները, և Մանուելը մեզ տարավ օդանավակայան:</p>
-            <p>Մանուել ջան, հրաշալի մարդ ես: Շնոր</p>
+            <p>Մանուել ջան, հրաշալի մարդ ես: Շնորհակալություն հոգատարության, բարձր տրամադրության և անմոռանալի օրերի համար: Հատուկ շնորհակալություն Amaras Tour-ին նման հիանալի մարդու համար:</p>
+            <p>Եկանք սովորական էքսկուրսիայի, իսկ արդյունքում գտանք իսկական ընկեր: Անպայման կվերադառնանք, չէ՞ որ այժմ Հայաստանում ունենք մեր հարազատ մարդը: ️</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(23)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">А</div>
@@ -2096,7 +2237,7 @@
             <span class="amaras-rev-guide">Гид: Григор, Завен</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>По рекомендации подруги заказала турпакет на 6 дней в Amaras Tour. И это были действительно незабываемые дни!</p>
             <p>В аэропорту меня встретил водитель, помог с вещами и отвёз в отель в центре Еревана. Отель оказался именно таким, как и обещали… комфортный, чистый, с вкусными завтраками и очень добрым, внимательным персоналом.</p>
             <p>На следующий день отправились на экскурсию небольшой группой с гидом Григором, а в следующие дни путешествовали с Завеном.</p>
@@ -2104,6 +2245,13 @@
             <p>Но больше всего мне запомнились люди! Столько доброты, внимания и заботы я давно не встречала. Спасибо всей команде Amaras Tour за такой тёплый приём и прекрасные воспоминания!</p>
             <p>Дай Бог, ещё вернусь в вашу чудесную Армению! ️</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(24)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">Ю</div>
@@ -2138,13 +2286,20 @@
             <span class="amaras-rev-guide">Гид: Мануэль</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>В Армении мы с женой уже третий раз. Казалось бы, столько всего видели, но в этот отпуск поняли, что Армению мы ещё совсем не знаем</p>
             <p>Все популярные места уже посещали, поэтому в этот раз решили посмотреть что-то новое. Нашим водителем и гидом был Мануэль, который за три дня показал нам совершенно другую Армению!</p>
             <p>Побывали у водопада в Хосровском заповеднике, в Ваагни, покатались на лошадях, посетили Каньон ангелов. На следующий день поехали к водопаду Трчкан, пешком поднимались в горы к Святому Ованесу, путешествовали по Лори, добрались почти до границы с Грузией. Столько красивых мест, о которых мы раньше даже не слышали!</p>
             <p>Мануэль, спасибо тебе за эти три дня! Респект тебе и всей команде Amaras Tour! Желаем вам процветания и побольше хороших туристов!</p>
             <p>Обязательно ещё вернёмся!</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(25)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">В</div>
@@ -2179,11 +2334,18 @@
             <span class="amaras-rev-guide">Гид: Армине</span>
           </div>
 
-          <div class="amaras-rev-quote">
+          <div class="amaras-rev-quote has-more">
             <p>Заказала групповую экскурсию в Гарни, Гегард, на озеро Севан и другие красивые места. Осталась очень довольна, всё было отлично организовано!</p>
             <p>Отдельное спасибо нашему гиду Армине за интересный и душевный рассказ об Армении. День прошёл замечательно, получила массу впечатлений!</p>
             <p>Спасибо Amaras Tour! Обязательно буду вас рекомендовать!</p>
           </div>
+
+          <button type="button" class="amaras-rev-more-btn" onclick="openAmarasReviewModal(26)" aria-label="Показать весь отзыв">
+            <span data-i18n="rev_read_more">Показать весь отзыв</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="amaras-rev-author-bar">
             <div class="amaras-rev-avatar">Н</div>
@@ -3991,6 +4153,115 @@
       p.appendChild(document.createTextNode(str));
       return p.innerHTML;
     }
+  </script>
+
+
+  <!-- ==========================================================================
+       AMARAS FULL REVIEW MODAL POPUP
+       ========================================================================== -->
+  <div class="amaras-rev-modal-overlay" id="amarasRevModalOverlay" onclick="closeAmarasReviewModal(event)" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="amaras-rev-modal-dialog" onclick="event.stopPropagation()">
+      <div class="amaras-rev-modal-header">
+        <div class="amaras-rev-modal-user">
+          <div class="amaras-rev-avatar" id="amarasModalAvatar">A</div>
+          <div class="amaras-rev-modal-meta">
+            <div class="amaras-rev-author-name" id="amarasModalAuthor">Автор</div>
+            <div class="amaras-rev-meta" id="amarasModalSub">Локация • Дата</div>
+          </div>
+        </div>
+        <button class="amaras-rev-modal-close" onclick="closeAmarasReviewModal()" aria-label="Закрыть">✕</button>
+      </div>
+
+      <div class="amaras-rev-modal-rating-row">
+        <div class="amaras-rev-stars">
+          <span class="amaras-rev-star">★</span>
+          <span class="amaras-rev-star">★</span>
+          <span class="amaras-rev-star">★</span>
+          <span class="amaras-rev-star">★</span>
+          <span class="amaras-rev-star">★</span>
+          <span class="amaras-rev-rating-num">5.0</span>
+        </div>
+        <span class="amaras-rev-verified">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Проверенный отзыв
+        </span>
+      </div>
+
+      <div class="amaras-rev-tags" id="amarasModalTags"></div>
+
+      <div class="amaras-rev-modal-body" id="amarasModalBody">
+        <!-- Review paragraphs injected here -->
+      </div>
+
+      <div class="amaras-rev-modal-footer">
+        <button class="amaras-rev-modal-dismiss-btn" onclick="closeAmarasReviewModal()" data-i18n="rev_modal_close">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const AMARAS_REVIEWS_DATA = [{"index": 0, "author": "Станислав", "location": "Санкт-Петербург", "tour": "Севан", "guide": "Григор", "date": "2026-10-23", "rating": 5, "paragraphs": ["Григор отличный гид , поможет , расскажет все что знает еще и гатой угостит)))"]}, {"index": 1, "author": "Ирина Талалян", "location": "Минеральные Воды, Россия", "tour": "Хор Вирап → Азатское водохранилище → храм Гарни → Симфония камней → монастырь Гегард → озеро Севан →", "guide": "Артур", "date": "2026-10-22", "rating": 5, "paragraphs": ["Экскурсия по Армении прошла отлично. Маршрут продуман так, чтобы успеть многое, но не устать: остановки в самых знаковых местах, достаточно времени на осмотр, на фото. Водитель вёл машину аккуратно, в салоне была вода, а гид заранее предупреждал про особенности маршрутов — например, где лучше надеть удобную обувь или взять ветровку.", "Понравилось, что программа не была «жёсткой»: если группа хотела чуть дольше задержаться в каком-то месте, гид шёл навстречу. Отдельно отмечу, что рассказ был информативным, но без перегруза фактами — всё по делу, с интересными деталями. В целом, экскурсия отлично подойдёт тем, кто хочет увидеть максимум за один день и при этом чувствовать себя комфортно. Рекомендую и обязательно вернусь снова!!"]}, {"index": 2, "author": "Наргис А.", "location": "", "tour": "Севан, Дилижан, Агарцин, Димац / Гарни, Герард, Арка Чаренца, Симфония Камней / Хор Вирап, Арени, Пи", "guide": "", "date": "2026-10-20", "rating": 5, "paragraphs": ["To, что я испытала там в монастырях, я точно запомню на всю свою жизнь.", "Это было похоже на чувство, когда после очень долгой и тернистой дороги ты наконец возвращаешься домой.", "Терапия, которую не выпишет ни один врач: свежий воздух, горы и чувство свободы.", "Путешествуя с «Amaras Tour» чувствуешь, что любовь с первой секунды существует.", "Эти места, дарят ощущения большой семьи.", "Здесь всё по-настоящему.", "Люди не торопятся, кофе варят с душой, а обнимают так, будто ждали тебя всю жизнь.", "Вы влюбляетесь в горы, в людей, в себя.", "Монастыри, храмы, водопады, скалы, дороги над пропастью, атмосферные улочки — это не просто красиво.", "Это перегрузка и обновление.", "Оказывается в горах невозможно думать о плохом.", "В горах ты влюбляешься без вариантов.", "Всё, что кажется важным в городе, в горах просто исчезает.", "Остается только то, что действительно имеет значение.", "И даже если вы приехали с разбитым сердцем — оно соберётся обратно само.", "Проверено.", "Армения , пережила счастливые и печальные моменты в истории, но всё-таки не растеряла харизму, а приобрела еще большее очарование даря любовь и тепло.", "Отдельная благодарность команде «Amaras tour»: гидам - дяде Артуру и Григору, водителям - Саргису"]}, {"index": 3, "author": "Дарья Буренкова", "location": "Одесса", "tour": "08", "guide": "Григор", "date": "2026-10-16", "rating": 5, "paragraphs": ["Были на экскурсии 08 и остались очень довольны! Для нашего недолгого пребывания в Армении это идеальный вариант - успели увидеть много красивых мест и прочувствовать страну. Отдельное спасибо Юрию за помощь в выборе экскурсии и Григоргу за очень интересные рассказы, приятное общение и ответы на все вопросы. Трансфер очень комфортабельный. Однозначно рекомендуем!"]}, {"index": 4, "author": "Анна и Михаил С.", "location": "Москва", "tour": "Озеро Севан и Дилижан", "guide": "", "date": "2026-09-15", "rating": 5, "paragraphs": ["Поездка на Севан и в Дилижан превзошла все ожидания! Водитель очень аккуратный, гид рассказывал потрясающие истории о монастырях и природе. Организация на высшем уровне, обязательно поедем с вами снова!"]}, {"index": 5, "author": "David K.", "location": "Yerevan / Los Angeles", "tour": "Джип-тур на вулкан Аждаак", "guide": "", "date": "2026-09-20", "rating": 5, "paragraphs": ["Джип-тур к кратерному озеру — это чистый восторг! Проехали туда, куда на обычной машине и не сунешься. Мощные внедорожники, отличная команда и море незабываемых впечатлений."]}, {"index": 6, "author": "Елена В.", "location": "Санкт-Петербург", "tour": "5-дневный тур-пакет «Армения в сердце»", "guide": "", "date": "2026-09-24", "rating": 5, "paragraphs": ["Брали 5-дневный тур-пакет. Отели отличные, трансферы минута в минуту, программа очень насыщенная и комфортная. Ни о чем не беспокоились, только наслаждались Арменией!"]}, {"index": 7, "author": "Сергей и Наталья", "location": "Екатеринбург", "tour": "Хор Вирап, Нораванк и Арени", "guide": "", "date": "2026-09-28", "rating": 5, "paragraphs": ["Прекрасный однодневный тур на юг! Вид на Арарат из Хор Вирапа захватывает дух, а дегустация вина в Арени была великолепной. Очень душевный и внимательный гид."]}, {"index": 8, "author": "Павел", "location": "Москва", "tour": "Тур в Татев и канатная дорога", "guide": "", "date": "2026-10-06", "rating": 5, "paragraphs": ["Добрый день. Мы с вами ездили в Татев во вторник. Приехали «без ног», поэтому сразу не написали впечатления. А вчера я просто забыл.", "Экскурсия оказалась дольше, чем ожидалось, поэтому последнее место нам пришлось смотреть в темноте. Но мы всё равно очень довольны. Спасибо вам за замечательную экскурсию!"]}, {"index": 9, "author": "Ксения", "location": "Санкт-Петербург", "tour": "3-дневный тур-пакет по Армении", "guide": "", "date": "2026-10-08", "rating": 5, "paragraphs": ["Путешествовали по Армении с Amaras Tour, и у нас остались самые приятные впечатления! Гид интересно рассказывал об истории и достопримечательностях Армении. На каждой остановке было достаточно времени, чтобы без спешки полюбоваться красивыми видами, погулять и сделать фотографии.", "Спасибо команде Amaras Tour за прекрасно организованные экскурсии, заботу и незабываемые эмоции! Армения навсегда останется в наших сердцах! ️"]}, {"index": 10, "author": "Альбина Рашитовна", "location": "Казань", "tour": "Хор Вирап и монастыри Армении", "guide": "Григор", "date": "2026-10-12", "rating": 5, "paragraphs": ["Доброе утро. Съездили вчера с Григором на экскурсию. Хор Вирап и далее по маршруту.", "Были на многих экскурсиях, в разных странах Европы. Ни разу не было настолько потрясающего гида.", "Приехали поздно в Ереван, жаль было расставаться. Наши девочки-попутчицы расплакались Считаю, что только благодаря Григору сложилась такая атмосфера в поездке."]}, {"index": 11, "author": "Елена", "location": "Москва", "tour": "Индивидуальная экскурсия", "guide": "", "date": "2026-10-14", "rating": 5, "paragraphs": ["Мне очень всё понравилось. И машина удобная. И очень приветливый гид, много интересного рассказал. Очень приятные впечатления остались. Хорошая экскурсия ️ И приятные цены"]}, {"index": 12, "author": "Анна М.", "location": "Краснодар", "tour": "Экскурсионный тур по Армении", "guide": "", "date": "2026-09-09", "rating": 5, "paragraphs": ["Добрый вечер! Экскурсия прекрасная, нам все понравилось, водитель прекрасный человек, было очень интересно, спасибо большое ️"]}, {"index": 13, "author": "Диля", "location": "Казань", "tour": "Экскурсионный тур и тёплый вечер в Ереване", "guide": "Григор", "date": "2026-10-15", "rating": 5, "paragraphs": ["Спасибо большое Amaras Tour за такую тёплую встречу! Всё было очень душевно, вы правда очень приятные люди! Остались самые тёплые впечатления от общения с вами. От всей души желаю вашей компании процветания, успехов и много новых клиентов!", "Отдельно хочу поблагодарить Григора, он просто топчик! Очень приятный, добрый и позитивный парень! Спасибо вам за всё! ️"]}, {"index": 14, "author": "Татьяна", "location": "Москва", "tour": "Озеро Севан", "guide": "", "date": "2026-10-16", "rating": 5, "paragraphs": ["Спасибо Amaras Tour за заботу и отличную поездку на Севан! От всей души желаю процветания вашей компании и прекрасной стране Армении! Продолжайте в том же духе, у вас всё обязательно получится! ️"]}, {"index": 15, "author": "Рустам", "location": "Москва", "tour": "Экскурсия по Армении", "guide": "", "date": "2025-11-22", "rating": 5, "paragraphs": ["Спасибо Амарас тур за классную экскурсию!"]}, {"index": 16, "author": "Сергей", "location": "Краснодар", "tour": "Экскурсия с гидом Григором", "guide": "Григор", "date": "2025-12-29", "rating": 5, "paragraphs": ["Сегодня экскурсия прошла великолепно! Отдельное спасибо Григору за интересный рассказ и прекрасно проведённое время! Обязательно будем рекомендовать вас нашим друзьям!"]}, {"index": 17, "author": "Иоанна", "location": "", "tour": "Экскурсии по Армении", "guide": "", "date": "2025-12-04", "rating": 5, "paragraphs": ["Спасибо большое за замечательные экскурсии! Нам всё очень понравилось! Остались очень довольны поездками и получили массу приятных впечатлений. Спасибо Amaras Tour за прекрасное время в Армении! ️"]}, {"index": 18, "author": "Анатолий", "location": "США", "tour": "Тур по Армении", "guide": "Григор", "date": "2025-08-26", "rating": 5, "paragraphs": ["Путешествовали по Армении с Amaras Tour. Тур был очень интересным, насыщенным и разнообразным, получили много впечатлений!", "Особенно понравился наш гид Григор. Сын даже сказал: «Как хорошо получилось, что у нас был такой водитель-экскурсовод. С ним нам было очень интересно и спокойно». Думаю, лучше и не скажешь!", "Гостиница тоже понравилась, чистая и уютная, завтракали во дворе в беседке, хозяин очень добрый.", "Спасибо Amaras Tour и отдельно Григору за прекрасную поездку! Всё прошло замечательно, остались очень довольны!"]}, {"index": 19, "author": "Анастасия", "location": "Челябинск", "tour": "Экскурсия по Армении", "guide": "Артур", "date": "2025-08-23", "rating": 5, "paragraphs": ["Спасибо большое Amaras Tour за прекрасную экскурсию! Нам всем очень понравилось, получили массу приятных впечатлений!", "Отдельное спасибо нашему водителю Артуру, очень приятный, доброжелательный человек, с которым легко и комфортно общаться. Машина просто кайф! Поездка прошла замечательно, всё было удобно и спокойно.", "Остались очень довольны! Спасибо за отличную организацию и хорошее настроение. Обязательно будем обращаться к вам снова и рекомендовать друзьям! ️"]}, {"index": 20, "author": "Наталья", "location": "Москва", "tour": "Экскурсия с гидом Армине", "guide": "Армине", "date": "2024-05-18", "rating": 5, "paragraphs": ["Отличная экскурсия! Спасибо нашему гиду Армине за интересные рассказы и хорошее настроение. Всё прошло легко и интересно, даже не заметили, как пролетел день. Армения прекрасна! ️"]}, {"index": 21, "author": "Марина", "location": "Краснодар", "tour": "Озеро Севан", "guide": "Абраам", "date": "2024-07-07", "rating": 5, "paragraphs": ["Ездили на Севан с Amaras Tour. Всё очень понравилось! Отдельное спасибо нашему гиду Абрааму, столько интересного узнали об Армении. Красивые виды, комфортная машина и замечательная атмосфера. Спасибо за этот день!"]}, {"index": 22, "author": "Екатерина Смирнова", "location": "Москва", "tour": "Двухдневный тур в Татев", "guide": "Мгер", "date": "2024-09-18", "rating": 5, "paragraphs": ["По рекомендации друзей обратились в Amaras Tour и взяли двухдневный тур в Татев. Даже не ожидали, что Армения окажется настолько красивой!", "Отдельное спасибо нашему гиду Мгеру. Очень добрый, внимательный и заботливый человек. Показал нам столько красивых мест, угощал домашним вином и фруктами, останавливался там, где хотелось сделать фотографии. Всё было спокойно, без спешки, как будто путешествовали с хорошим другом.", "За эти два дня получили столько впечатлений! Спасибо Мгеру и Amaras Tour за прекрасное путешествие. Теперь и мы будем рекомендовать вас своим друзьям!"]}, {"index": 23, "author": "Александр и Алёна", "location": "Санкт-Петербург", "tour": "Индивидуальный тур в Татев и Сюник", "guide": "Мануэль", "date": "2023-07-12", "rating": 5, "paragraphs": ["Заказали в Amaras Tour однодневный индивидуальный тур в Татев, а в итоге остались путешествовать по Армении ещё на три дня", "А всё благодаря нашему гиду Мануэлю! По дороге он начал рассказывать, сколько красивых мест в Сюнике, показывал фотографии. Мы с женой переглянулись и спросили, а можно остаться на несколько дней? Мануэль засмеялся и сказал, что не просто можно, а нужно", "За эти дни увидели Арарат, Нораванк, водопад Шаки, монастырь Татев, Чёртов мост и Джермук. Купались в горячих источниках, ездили на джипе к гейзеру, дегустировали вино. Ночевали в уютном гостевом доме в Горисе, жарили шашлык и до поздней ночи общались. Было столько впечатлений, что словами не передать!", "Самое смешное, что гостиница в Ереване у нас была забронирована на весь отпуск, а ночевали мы там только первую ночь В последний день забрали чемоданы, и Мануэль отвёз нас в аэропорт.", "Мануэль, дружище, ты красавчик! Спасибо за заботу, настроение и незабываемые дни! Отдельное спасибо Amaras Tour за такого замечательного человека.", "Приехали на обычную экскурсию, а в итоге нашли настоящего друга. Обязательно вернёмся, ведь теперь в Армении у нас есть свой человек! ️", "Եվ այդ ամենը մեր գիդ Մանուելի շնորհիվ: Ճանապարհին նա սկսեց պատմել, թե որքան գեղեցիկ վայրեր կան Սյունիքում, ցույց տվեց լուսանկարներ: Մենք կնոջս հետ նայեցինք իրար ու հարցրինք՝ իսկ կարո՞ղ ենք մնալ մի քանի օր: Մանուելը ծիծաղեց և ասաց, որ ոչ միայն կարելի է, այլ պետք է", "Այս օրերին տեսանք Արարատը, Նորավանքը, Շաքիի ջրվեժը, Տաթևի վանքը, Սատանի կամուրջը և Ջերմուկը: Լողացինք տաք աղբյուրներում, ջիպով գնացինք դեպի գեյզեր, համտեսեցինք գինի: Գիշերեցինք Գորիսի հարմարավետ հյուրատանը, խորոված արեցինք և մինչև ուշ գիշեր զրուցեցինք: Տպավորություններն անբացատրելի էին:", "Ամենազվարճալին այն էր, որ Երևանի հյուրանոցն ամրագրված էր ամբողջ արձակուրդի համար, իսկ մենք այնտեղ քնեցինք միայն առաջին գիշերը Վերջին օրը վերցրինք ճամպրուկները, և Մանուելը մեզ տարավ օդանավակայան:", "Մանուել ջան, հրաշալի մարդ ես: Շնորհակալություն հոգատարության, բարձր տրամադրության և անմոռանալի օրերի համար: Հատուկ շնորհակալություն Amaras Tour-ին նման հիանալի մարդու համար:", "Եկանք սովորական էքսկուրսիայի, իսկ արդյունքում գտանք իսկական ընկեր: Անպայման կվերադառնանք, չէ՞ որ այժմ Հայաստանում ունենք մեր հարազատ մարդը: ️"]}, {"index": 24, "author": "Юлия", "location": "Благовещенск", "tour": "6-дневный тур-пакет по Армении", "guide": "Григор, Завен", "date": "2023-09-22", "rating": 5, "paragraphs": ["По рекомендации подруги заказала турпакет на 6 дней в Amaras Tour. И это были действительно незабываемые дни!", "В аэропорту меня встретил водитель, помог с вещами и отвёз в отель в центре Еревана. Отель оказался именно таким, как и обещали… комфортный, чистый, с вкусными завтраками и очень добрым, внимательным персоналом.", "На следующий день отправились на экскурсию небольшой группой с гидом Григором, а в следующие дни путешествовали с Завеном.", "За эти дни увидела столько красивых мест! Хор Вирап, Гарни, Гегард, Симфонию камней, Севан, Дилижан, Лори, Нораванк, Татев, подвесной мост и ещё много всего интересного.", "Но больше всего мне запомнились люди! Столько доброты, внимания и заботы я давно не встречала. Спасибо всей команде Amaras Tour за такой тёплый приём и прекрасные воспоминания!", "Дай Бог, ещё вернусь в вашу чудесную Армению! ️"]}, {"index": 25, "author": "Вова и Екатерина", "location": "Сочи", "tour": "Индивидуальный маршрут", "guide": "Мануэль", "date": "2025-09-29", "rating": 5, "paragraphs": ["В Армении мы с женой уже третий раз. Казалось бы, столько всего видели, но в этот отпуск поняли, что Армению мы ещё совсем не знаем", "Все популярные места уже посещали, поэтому в этот раз решили посмотреть что-то новое. Нашим водителем и гидом был Мануэль, который за три дня показал нам совершенно другую Армению!", "Побывали у водопада в Хосровском заповеднике, в Ваагни, покатались на лошадях, посетили Каньон ангелов. На следующий день поехали к водопаду Трчкан, пешком поднимались в горы к Святому Ованесу, путешествовали по Лори, добрались почти до границы с Грузией. Столько красивых мест, о которых мы раньше даже не слышали!", "Мануэль, спасибо тебе за эти три дня! Респект тебе и всей команде Amaras Tour! Желаем вам процветания и побольше хороших туристов!", "Обязательно ещё вернёмся!"]}, {"index": 26, "author": "Наталья", "location": "Краснодар", "tour": "Гарни, Гегард, озеро Севан", "guide": "Армине", "date": "2025-09-21", "rating": 5, "paragraphs": ["Заказала групповую экскурсию в Гарни, Гегард, на озеро Севан и другие красивые места. Осталась очень довольна, всё было отлично организовано!", "Отдельное спасибо нашему гиду Армине за интересный и душевный рассказ об Армении. День прошёл замечательно, получила массу впечатлений!", "Спасибо Amaras Tour! Обязательно буду вас рекомендовать!"]}];
+
+    function openAmarasReviewModal(idx) {
+      const data = AMARAS_REVIEWS_DATA[idx];
+      if (!data) return;
+
+      const overlay = document.getElementById('amarasRevModalOverlay');
+      const avatar = document.getElementById('amarasModalAvatar');
+      const author = document.getElementById('amarasModalAuthor');
+      const sub = document.getElementById('amarasModalSub');
+      const tags = document.getElementById('amarasModalTags');
+      const body = document.getElementById('amarasModalBody');
+
+      if (!overlay) return;
+
+      avatar.textContent = (data.author && data.author[0]) ? data.author[0].toUpperCase() : 'A';
+      author.textContent = data.author;
+
+      const locText = data.location ? `• ${data.location} ` : '';
+      sub.innerHTML = `${locText}<span class="amaras-rev-date">${data.date}</span>`;
+
+      // Tags
+      tags.innerHTML = '';
+      if (data.tour) {
+        const tSpan = document.createElement('span');
+        tSpan.className = 'amaras-rev-tour';
+        tSpan.textContent = data.tour;
+        tags.appendChild(tSpan);
+      }
+      if (data.guide) {
+        const gSpan = document.createElement('span');
+        gSpan.className = 'amaras-rev-guide';
+        gSpan.textContent = `Гид: ${data.guide}`;
+        tags.appendChild(gSpan);
+      }
+
+      // Paragraphs
+      body.innerHTML = '';
+      data.paragraphs.forEach(pText => {
+        const p = document.createElement('p');
+        p.textContent = pText;
+        body.appendChild(p);
+      });
+
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeAmarasReviewModal(e) {
+      const overlay = document.getElementById('amarasRevModalOverlay');
+      if (overlay) {
+        overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeAmarasReviewModal();
+    });
   </script>
 
 </body>
