@@ -76,7 +76,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+Armenian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="css/custom.css?v=46" rel="stylesheet" />
+  <link href="css/custom.css?v=47" rel="stylesheet" />
 </head>
 
 <body class="rebrand-body">
@@ -124,7 +124,19 @@
             <a class="amaras-dropdown-item" href="#festivals" data-i18n="arm_festivals">Фестивали и праздники</a>
           </div>
         </div>
-        <a class="amaras-nav-link" href="#fleet" data-i18n="nav_fleet">Автопарк</a>
+        <div class="amaras-nav-dropdown">
+          <a class="amaras-nav-link" href="#transports">
+            <span data-i18n="nav_transports">Транспорты</span>
+            <svg class="amaras-chevron" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
+          <div class="amaras-nav-dropdown-menu">
+            <a class="amaras-dropdown-item" href="#fleet" data-i18n="nav_fleet">Наш автопарк</a>
+            <a class="amaras-dropdown-item" href="#transfers" data-i18n="nav_transfers">Трансферы</a>
+          </div>
+        </div>
         <a class="amaras-nav-link" href="#guests" data-i18n="nav_guests">Гости</a>
         <a class="amaras-nav-link" href="#about" data-i18n="nav_about">О нас</a>
         <a class="amaras-nav-link" href="#contact" data-i18n="nav_contact">Контакты</a>
@@ -252,7 +264,19 @@
             <a class="amaras-mobile-sublink" href="#festivals" data-i18n="arm_festivals">Фестивали и праздники</a>
           </div>
         </div>
-        <a class="amaras-mobile-link" href="#fleet" data-i18n="nav_fleet">Автопарк</a>
+        <div class="amaras-mobile-dropdown">
+          <button class="amaras-mobile-dropdown-btn" type="button" onclick="toggleMobileDropdown(this)">
+            <span class="amaras-mobile-dropdown-title" data-i18n="nav_transports">Транспорты</span>
+            <svg class="amaras-mobile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+          <div class="amaras-mobile-submenu">
+            <a class="amaras-mobile-sublink" href="#fleet" data-i18n="nav_fleet">Наш автопарк</a>
+            <a class="amaras-mobile-sublink" href="#transfers" data-i18n="nav_transfers">Трансферы</a>
+          </div>
+        </div>
         <a class="amaras-mobile-link" href="#guests" data-i18n="nav_guests">Гости</a>
         <a class="amaras-mobile-link" href="#about" data-i18n="nav_about">О нас</a>
         <a class="amaras-mobile-link" href="#contact" data-i18n="nav_contact">Контакты</a>
@@ -302,7 +326,9 @@
         arm_restaurants: "Рестораны и клубы",
         arm_festivals: "Фестивали и праздники",
         nav_attractions: "Что посмотреть",
-        nav_fleet: "Автопарк",
+        nav_transports: "Транспорты",
+        nav_fleet: "Наш автопарк",
+        nav_transfers: "Трансферы",
         nav_guests: "Гости",
         nav_about: "О нас",
         nav_contact: "Контакты",
@@ -453,7 +479,9 @@
         arm_restaurants: "Restaurants & Clubs",
         arm_festivals: "Festivals & Holidays",
         nav_attractions: "Attractions",
-        nav_fleet: "Fleet",
+        nav_transports: "Transports",
+        nav_fleet: "Our Fleet",
+        nav_transfers: "Transfers",
         nav_guests: "Guests",
         nav_about: "About Us",
         nav_contact: "Contact",
@@ -604,7 +632,9 @@
         arm_restaurants: "Ռեստորաններ և ակումբներ",
         arm_festivals: "Փառատոներ և տոներ",
         nav_attractions: "Ինչ տեսնել",
-        nav_fleet: "Ավտոպարկ",
+        nav_transports: "Տրանսպորտ",
+        nav_fleet: "Մեր ավտոպարկը",
+        nav_transfers: "Տրանսֆերներ",
         nav_guests: "Հյուրեր",
         nav_about: "Մեր մասին",
         nav_contact: "Կոնտակտներ",
@@ -853,6 +883,12 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.amaras-mobile-drawer-links a').forEach(a => {
+        a.addEventListener('click', () => {
+          const drawer = document.querySelector('.amaras-mobile-drawer');
+          if (drawer) drawer.classList.remove('is-open');
+        });
+      });
       try {
         const saved = localStorage.getItem('amaras_preferred_lang');
         if (saved && AMARAS_I18N[saved]) {
@@ -2501,7 +2537,7 @@
                       </div>
 
                       <!-- CARD 2: PREMIUM FLEET -->
-                      <div class="rebrand-section-bento-card amaras-bento-card amaras-bento-card-2 rebrand-section-bento-card-right-top">
+                      <div class="rebrand-section-bento-card amaras-bento-card amaras-bento-card-2 rebrand-section-bento-card-right-top" id="fleet">
                         <div class="rebrand-section-bento-card-content">
                           <div class="rebrand-section-cta-rich-text headingh3 w-richtext" data-gsap="section-bento-card-title">
                             <h3 data-i18n="bento_c2_title">Премиум-автопарк и комфорт</h3>
@@ -3301,7 +3337,7 @@
       <div class="amaras-faq-item" data-category="organization">
         <button type="button" class="amaras-faq-question-btn" aria-expanded="false">
           <div class="amaras-faq-q-left">
-            <span class="amaras-faq-cat-badge">Организация экскурсии • #12</span>
+            <span class="amaras-faq-cat-badge" id="transfers">Организация экскурсии • #12</span>
             <span class="amaras-faq-q-text">Можно ли заказать трансфер из отеля или начать экскурсию с удобного адреса?</span>
           </div>
           <span class="amaras-faq-toggle-icon">
