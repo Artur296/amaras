@@ -2384,7 +2384,7 @@ body[data-exit-popup-open="true"] {
   width: 62px;
   height: 62px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #586EFF 0%, #0E1A63 100%);
+  background: #586EFF !important;
   border: 2px solid rgba(255, 255, 255, 0.2);
   color: #FFFFFF;
   display: flex;
@@ -2492,7 +2492,7 @@ body[data-exit-popup-open="true"] {
 
 /* Chat Header */
 .amaras-chat-header {
-  background: linear-gradient(135deg, #0E1A63 0%, #586EFF 100%);
+  background: #586EFF !important;
   padding: 18px 20px 16px;
   color: #FFFFFF;
   display: flex;
@@ -2597,7 +2597,7 @@ body[data-exit-popup-open="true"] {
 
 /* Start New Conversation Card */
 .amaras-chat-start-card {
-  background: linear-gradient(135deg, rgba(88, 110, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+  background: rgba(88, 110, 255, 0.1) !important;
   border: 1px solid rgba(88, 110, 255, 0.35);
   border-radius: 18px;
   padding: 16px 18px;
@@ -2611,7 +2611,7 @@ body[data-exit-popup-open="true"] {
 }
 
 .amaras-chat-start-card:hover {
-  background: linear-gradient(135deg, rgba(88, 110, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 100%);
+  background: rgba(88, 110, 255, 0.18) !important;
   border-color: #586EFF;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(88, 110, 255, 0.25);
@@ -3870,3 +3870,12 @@ body[data-lang="HY"] * {
 }
 
 .amaras-chat-status { display: none !important; }
+
+/* Chat Widget - Flat solid colors, strictly no gradients */
+.amaras-chat-header {
+  background: #586EFF !important;
+}
+
+.amaras-chat-launcher {
+  background: #586EFF !important;
+}
