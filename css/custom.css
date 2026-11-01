@@ -1340,24 +1340,6 @@ body[data-exit-popup-open="true"] {
   text-align: left;
 }
 
-.amaras-about-badge-wrap {
-  margin-bottom: 14px;
-}
-
-.amaras-about-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 14px;
-  border-radius: 999px;
-  background: rgba(88, 110, 255, 0.08);
-  border: 1px solid rgba(88, 110, 255, 0.22);
-  color: #586EFF;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
 
 .amaras-about-title {
   font-family: var(--amaras-font-family, system-ui, -apple-system, sans-serif);
@@ -1397,10 +1379,6 @@ body[data-exit-popup-open="true"] {
     text-align: center;
     margin-bottom: 40px;
     padding-bottom: 32px;
-  }
-  .amaras-about-badge-wrap {
-    display: flex;
-    justify-content: center;
   }
   .amaras-about-title {
     font-size: 28px;
