@@ -1,31 +1,195 @@
 /* ==========================================================================
-   AMARAS / GETYOURGUIDE SUPPLY - BESPOKE DESIGN ENHANCEMENTS
-   Adheres to high-end-visual-design & premium-website design system rules
+   AMARAS TRAVEL AGENCY - BRAND COLORS & STYLING
+   Official Logo Colors:
+   - Vibrant Lime Green: #C7FF32
+   - Electric Cobalt Blue: #586EFF
+   - Midnight Obsidian Dark: #0C101D
+   - Deep Charcoal: #312F2F
    ========================================================================== */
 
 :root {
-  --font-fallback: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --brand-orange: #fa4f2d;
-  --brand-orange-hover: #e03f1f;
-  --midnight-blue: #132338;
-  --surface-muted: #f8f9fb;
-  --border-subtle: #e3e6ec;
-  --ease-elastic: cubic-bezier(0.32, 0.72, 0, 1);
+  --amaras-lime: #C7FF32;
+  --amaras-lime-hover: #b8f024;
+  --amaras-lime-glow: rgba(199, 255, 50, 0.4);
+
+  --amaras-blue: #586EFF;
+  --amaras-blue-hover: #485de0;
+  --amaras-blue-glow: rgba(88, 110, 255, 0.4);
+
+  --amaras-dark: #0C101D;
+  --amaras-charcoal: #312F2F;
+
+  /* Overwrite GYG Brand Color Variables */
+  --guiding-red: #586EFF;
+  --plyr-color-main: #C7FF32;
+  --_0-base-tokens---colors--foundation--guiding-orange--500-guiding-orange: #586EFF;
+  --_0-base-tokens---colors--foundation--guiding-orange--600: #485de0;
+  --_0-base-tokens---colors--foundation--guiding-orange--700: #3747bf;
+  --_0-base-tokens---colors--foundation--guiding-orange--900-maroon: #0C101D;
+  --_0-base-tokens---colors--foundation--guiding-orange--050: #EEF2FF;
+  --_1-alias-tokens---color--surface--brand-emphasis: #0C101D;
+  --_1-alias-tokens---color--fill--brand: #586EFF;
+  --_1-alias-tokens---color--fill--brand-hover: #485de0;
+  --_1-alias-tokens---color--content--brand: #586EFF;
+  --_1-alias-tokens---color--surface--brand: #586EFF;
+  --_1-alias-tokens---color--stroke--brand: #586EFF;
 }
 
-/* Smooth Scrolling & Typography Ergonomics */
-html {
-  scroll-behavior: smooth;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Fix Plyr Absolute Containment */
+.rebrand-section-testimonials-slide,
+.rebrand-section-testimonials-player {
+  position: relative !important;
 }
 
-body {
-  font-family: "GYG Sans VF", "Gt Eesti Pro Display", var(--font-fallback);
-  overflow-x: hidden;
-  background-color: #ffffff;
-  color: var(--midnight-blue);
+/* Hero Section Typography & Visibility */
+.headingh1.rebrand-section-hero-title,
+.headingh1.rebrand-section-hero-title h1,
+.rebrand-section-hero h1 {
+  color: #ffffff !important;
+}
+
+.rebrand-section-hero-eyebrow,
+.rebrand-section-home-hero-eyebrow {
+  color: var(--amaras-lime) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Primary Action Button (Neon Lime #C7FF32 with High-Contrast Dark Text) */
+.rebrand-button.primary---md,
+[data-wf--button--variant="primary---md"],
+a.rebrand-button.primary---md,
+input.rebrand-button.primary---md,
+.rebrand-nav-bar a.rebrand-button:last-child {
+  background-color: var(--amaras-lime) !important;
+  color: #111625 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 8px 24px var(--amaras-lime-glow) !important;
+  border: none !important;
+  transition: transform 0.25s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.25s cubic-bezier(0.32, 0.72, 0, 1), background-color 0.2s ease !important;
+}
+
+.rebrand-button.primary---md:hover,
+[data-wf--button--variant="primary---md"]:hover,
+a.rebrand-button.primary---md:hover,
+input.rebrand-button.primary---md:hover,
+.rebrand-nav-bar a.rebrand-button:last-child:hover {
+  background-color: var(--amaras-lime-hover) !important;
+  color: #111625 !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 12px 30px rgba(199, 255, 50, 0.5) !important;
+}
+
+/* Secondary Action Button (Cobalt Blue #586EFF with White Text) */
+.rebrand-button.secondary---md,
+[data-wf--button--variant="secondary---md"],
+a.rebrand-button.secondary---md {
+  background-color: var(--amaras-blue) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 20px var(--amaras-blue-glow) !important;
+  border: none !important;
+  transition: transform 0.25s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.25s cubic-bezier(0.32, 0.72, 0, 1), background-color 0.2s ease !important;
+}
+
+.rebrand-button.secondary---md:hover,
+[data-wf--button--variant="secondary---md"]:hover,
+a.rebrand-button.secondary---md:hover {
+  background-color: var(--amaras-blue-hover) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+}
+
+/* Header Login Pill Button */
+.rebrand-nav-bar a.rebrand-button:not(:last-child) {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 9999px !important;
+}
+
+.rebrand-nav-bar a.rebrand-button:not(:last-child):hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: var(--amaras-lime) !important;
+  color: var(--amaras-lime) !important;
+}
+
+/* Navbar Logo sizing */
+.rebrand-logo-wrapper img {
+  height: 38px !important;
+  width: auto !important;
+  max-width: 250px !important;
+  object-fit: contain !important;
+}
+
+/* Hero Ticket Text & Stars in Amaras Lime */
+.rebrand-section-hero-title-fixed,
+.rebrand-section-hero-frame-title {
+  color: var(--amaras-lime) !important;
+}
+
+.rebrand-section-hero-frame-stars path {
+  fill: var(--amaras-lime) !important;
+}
+
+/* Video Play Button in Lime */
+.plyr--video .plyr__control.plyr__tab-focus,
+.plyr--video .plyr__control:hover,
+.plyr--video .plyr__control[aria-expanded=true],
+.plyr__control--overlaid,
+.rebrand-video-play-button {
+  background: var(--amaras-lime) !important;
+  color: #111625 !important;
+  box-shadow: 0 10px 30px rgba(199, 255, 50, 0.45) !important;
+}
+
+/* Trust Stats Icons in Cobalt Blue */
+.rebrand-section-data-point-icon svg path,
+.rebrand-section-data-data-point svg path {
+  fill: var(--amaras-blue) !important;
+}
+
+/* Bento Accent Card (Global Exposure) in Cobalt Blue */
+.rebrand-section-reach-card.is-orange,
+[style*="background-color: rgb(250, 79, 45)"],
+[style*="background-color: #fa4f2d"] {
+  background-color: var(--amaras-blue) !important;
+}
+
+/* FAQ Accordion */
+.accordion-css__item-top:hover .headingh5 {
+  color: var(--amaras-blue) !important;
+}
+
+.accordion-css__item[data-accordion-status="active"] {
+  border-left: 3px solid var(--amaras-blue) !important;
+}
+
+.accordion-css__item-icon-svg {
+  color: var(--amaras-blue) !important;
+}
+
+/* Ask Support Button */
+.rebrand-section-faq-button-container a.rebrand-button,
+a[href*="contact"].rebrand-button {
+  background-color: var(--amaras-blue) !important;
+  color: #ffffff !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 8px 25px var(--amaras-blue-glow) !important;
+}
+
+.rebrand-section-faq-button-container a.rebrand-button:hover,
+a[href*="contact"].rebrand-button:hover {
+  background-color: var(--amaras-blue-hover) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+}
+
+/* Footer Background and Logo */
+.rebrand-section-footer {
+  background-color: var(--amaras-dark) !important;
+  border-top: 1px solid rgba(88, 110, 255, 0.15) !important;
+}
+
+.rebrand-section-footer a:hover {
+  color: var(--amaras-lime) !important;
 }
 
 /* Custom Scrollbar */
@@ -35,92 +199,19 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f3f7;
+  background: #0C101D;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c5cbd6;
+  background: #586EFF;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a0a7b5;
+  background: #C7FF32;
 }
 
-/* Double-Bezel & Haptic Button Interactions */
-.rebrand-button,
-a.rebrand-button,
-.button-primary,
-[data-wf-element="button"] {
-  transition: transform 0.25s var(--ease-elastic), box-shadow 0.25s var(--ease-elastic), background-color 0.2s ease;
-  will-change: transform;
-}
-
-.rebrand-button:hover,
-a.rebrand-button:hover {
-  transform: translateY(-2px) scale(1.01);
-  box-shadow: 0 10px 25px -5px rgba(250, 79, 45, 0.35);
-}
-
-.rebrand-button:active,
-a.rebrand-button:active {
-  transform: translateY(0) scale(0.98);
-}
-
-/* Interactive Card Hover Depth */
-.rebrand-section-benefit-card,
-.rebrand-bento-card,
-.rebrand-section-reach-card {
-  transition: transform 0.35s var(--ease-elastic), box-shadow 0.35s var(--ease-elastic);
-  will-change: transform, box-shadow;
-}
-
-.rebrand-section-benefit-card:hover,
-.rebrand-bento-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 35px -10px rgba(19, 35, 56, 0.08);
-}
-
-/* Marquee Smooth Continuous Animation */
-.rebrand-marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee-scroll 40s linear infinite;
-  will-change: transform;
-}
-
-.rebrand-marquee-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes marquee-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* Accordion Smooth State */
-.rebrand-faq-accordion-item {
-  border-radius: 16px;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-}
-
-.rebrand-faq-accordion-item:hover {
-  background-color: #fbfcfd;
-}
-
-/* Accessibility Focus States */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible {
-  outline: 2px solid var(--brand-orange);
-  outline-offset: 3px;
-}
-
-/* Responsive Polish */
-@media (max-width: 768px) {
-  .rebrand-section-hero-title {
-    font-size: clamp(2.5rem, 8vw, 3.5rem) !important;
-    line-height: 1.05 !important;
-  }
+::selection {
+  background-color: var(--amaras-lime);
+  color: #111625;
 }

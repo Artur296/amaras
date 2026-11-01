@@ -1,118 +1,102 @@
-# Design System & Style Guide: GetYourGuide Supply Aesthetic
+# Amaras Travel Agency — Design System & Brand Identity
 
-> **Mandate:** All current and future pages, components, dashboards, and interactions in this project must adhere strictly to this design system. It combines the authentic **GetYourGuide Supply (Rebrand 2026)** identity with the elite design standards outlined in the `premium-website` and `high-end-visual-design` global skills.
-
----
-
-## 1. Core Visual Identity & Tone
-
-- **Aesthetic:** Editorial Commerce & Global Travel Marketplace.
-- **Personality:** Confident, human, high-converting, clean, fluid, and trustworthy.
-- **The Golden Rule:** High-contrast typographic headlines, generous macro-whitespace, authentic photography, interactive micro-widgets, and signature **GetYourGuide Guiding Red/Orange** accents.
+> **Mandate:** All current and future pages, components, dashboards, and interactions in this project must adhere strictly to this design system. It fuses the authentic **GetYourGuide Supply layout system** with the **Amaras Travel Agency** brand identity (derived directly from the official SVG vector logomarks) and the elite design standards outlined in the `premium-website` and `high-end-visual-design` global skills.
 
 ---
 
-## 2. Color Tokens
+## 1. Core Visual Identity & Brand Philosophy
 
-### Primary & Accent Colors
+- **Brand:** Amaras Travel Agency
+- **Aesthetic:** Editorial Commerce, Global Modern Tourism, High-Contrast Precision.
+- **Personality:** Visionary, vibrant, premium, fluid, and trustworthy.
+- **The Golden Rule:** High-contrast typographic headlines, generous macro-whitespace, authentic photography, interactive micro-widgets, and signature **Amaras Lime & Electric Cobalt Blue** accents against dark obsidian backgrounds and crisp white light surfaces.
+
+---
+
+## 2. Official Amaras Brand Color System
+
+Extracted directly from the master vector SVG files (`Слой 1.svg` and `Слой 1-1.svg`):
+
+### Primary Brand Palette
+| Token Name | Hex Code | Visual Reference | Usage |
+| :--- | :--- | :--- | :--- |
+| `--amaras-lime` | `#C7FF32` | Neon Chartreuse / Lime Green | Primary Action CTAs ("Sell on Amaras", "Get started"), active badges, key stats, interactive highlights |
+| `--amaras-lime-hover` | `#b8f024` | Slightly deeper neon lime | Hover & active state for primary lime buttons |
+| `--amaras-lime-glow` | `rgba(199, 255, 50, 0.4)` | Lime aura | High-end button glows and focus rings |
+| `--amaras-blue` | `#586EFF` | Electric Cobalt / Royal Blue | Secondary buttons, hero badge backgrounds, icon accents, ticket card borders |
+| `--amaras-blue-hover` | `#485de0` | Deep cobalt | Hover state for cobalt buttons |
+| `--amaras-blue-glow` | `rgba(88, 110, 255, 0.4)` | Cobalt aura | High-end button glows and elevation shadows |
+| `--amaras-dark` | `#0C101D` | Midnight Obsidian / Dark Navy | Hero section background, dark mode cards, footer surface |
+| `--amaras-charcoal` | `#312F2F` | Deep Charcoal | Primary logo typography, high-contrast dark text |
+
+### Neutral & Surface Palettes
 | Token Name | Hex Code | Usage |
 | :--- | :--- | :--- |
-| `--guiding-red` (Brand Emphasis) | `#fa4f2d` | Primary CTAs, active badges, highlights, key metrics |
-| `--guiding-red-hover` | `#e03f1f` | Hover state for primary buttons |
-| `--guiding-red-light` | `rgba(250, 79, 45, 0.08)` | Subtle tag backgrounds, active item fills |
-| `--midnight-blue` (Deep Navy) | `#132338` | Primary display text, hero dark surfaces, high-contrast badges |
-| `--navy-secondary` | `#1a2b49` | Secondary cards, headers, borders |
-
-### Surface & Neutral Colors
-| Token Name | Hex Code | Usage |
-| :--- | :--- | :--- |
-| `--surface-canvas` | `#ffffff` | Primary page background |
-| `--surface-muted` | `#f8f9fb` | Section alternate backgrounds, bento card trays |
-| `--surface-subtle` | `#f1f3f7` | Inputs, interactive tab tracks |
-| `--border-grey` | `#e3e6ec` | Hairline borders, dividers |
-| `--text-primary` | `#132338` | Headings, high-emphasis copy |
-| `--text-secondary` | `#63687a` | Body descriptions, subtitles, metadata |
-| `--text-muted` | `#8c92a4` | Footnotes, placeholders, disabled states |
-
-### Accent Palettes (Categories & Badges)
-- `--plant-green`: `#a1d55d` (Positive growth, earnings badges)
-- `--poolside-blue`: `#81beff` (Informational tags, oceanic experiences)
-- `--paradise-pink`: `#f4cdd7` (Festive, cultural badges)
+| `--surface-canvas` | `#FFFFFF` | Primary light section backgrounds |
+| `--surface-muted` | `#F8F9FB` | Alternating section backgrounds, bento card trays |
+| `--surface-subtle` | `#EEF2FF` | Soft cobalt tint inputs, interactive tab tracks |
+| `--border-grey` | `#E3E6EC` | Hairline dividers, subtle card borders |
+| `--text-primary` | `#0C101D` | Headings, high-emphasis copy |
+| `--text-secondary` | `#5A6275` | Body descriptions, subtitles, metadata |
+| `--text-muted` | `#8C92A4` | Footnotes, placeholders, disabled states |
 
 ---
 
-## 3. Typography & Hierarchy
+## 3. Brand Assets & Logo Usage
+
+All brand logos are centrally managed in `assets/`:
+1. `assets/amaras-logo.svg`: Full official logo featuring the wordmark **AMARAS**, subtitle **TRAVEL AGENCY**, and circular badge **TOUR**. Used on light backgrounds.
+2. `assets/amaras-logo-white.svg`: Full official logo with pure white typography. Used on the obsidian hero navbar (`.rebrand-nav-bar`) and dark footer (`.rebrand-section-footer`).
+3. `assets/amaras-logo-mark.svg`: Compact horizontal wordmark **AMARAS**. Used for mobile headers, compact badges, or app icons.
+
+---
+
+## 4. Typography & Hierarchy
 
 ### Font Families
 - **Primary Display & Headings:** `"GYG Sans VF"`, `"Gt Eesti Pro Display"`, `sans-serif`
 - **Fallback Stack:** `"Plus Jakarta Sans"`, `-apple-system`, `BlinkMacSystemFont`, `"Segoe UI"`, `sans-serif`
 - **Handwritten / Expressive Accents:** `"Caveat"`, `cursive`
 
-### Fluid Type Scale
-- **Hero Display H1:** `clamp(2.75rem, 5.5vw, 5rem)` — `font-weight: 700`, `line-height: 0.95`, `letter-spacing: -0.03em`
-- **Section Heading H2:** `clamp(2rem, 3.5vw, 3rem)` — `font-weight: 700`, `line-height: 1.05`, `letter-spacing: -0.02em`
-- **Subheading H3:** `clamp(1.5rem, 2.2vw, 2rem)` — `font-weight: 600`, `line-height: 1.15`
-- **Card Title H4:** `1.25rem - 1.5rem` — `font-weight: 600`, `line-height: 1.25`
-- **Body Large:** `1.125rem (18px)` — `line-height: 1.6`
-- **Body Base:** `1rem (16px)` — `line-height: 1.6`
-- **Caption / Metadata:** `0.875rem (14px)` — `line-height: 1.5`
-- **Eyebrow Badges:** `0.75rem (12px)` — `font-weight: 600`, `text-transform: uppercase`, `letter-spacing: 0.15em`
+### Hierarchy Scale
+- **Display 1 (Hero):** 64px–84px, clamp(3.5rem, 6vw, 5.25rem), weight 700, letter-spacing -0.03em, line-height 1.05.
+- **Heading 1:** 48px–56px, clamp(2.5rem, 4vw, 3.5rem), weight 700, letter-spacing -0.025em.
+- **Heading 2:** 36px–42px, clamp(2rem, 3vw, 2.625rem), weight 600, letter-spacing -0.02em.
+- **Heading 3 (Card Titles):** 24px–28px, weight 600, letter-spacing -0.015em.
+- **Body Large:** 18px–20px, line-height 1.6, weight 400/500.
+- **Body Regular:** 15px–16px, line-height 1.5, weight 400.
+- **Caption / Meta:** 12px–13px, weight 500/600, uppercase with 0.05em tracking.
 
 ---
 
-## 4. Component Patterns & UI Architecture
+## 5. Component Patterns & Interactive Physics
 
-### A. CTA & Action Buttons
-- **Shape:** Fully rounded pill (`border-radius: 9999px` or `50px`).
-- **Primary CTA:**
-  - Background: `#fa4f2d`
-  - Text: `#ffffff`
-  - Padding: `14px 28px` (desktop), `12px 24px` (mobile)
-  - Hover: `transform: translateY(-2px) scale(1.01)`, shadow `0 10px 25px -5px rgba(250, 79, 45, 0.35)`
-  - Active: `transform: translateY(0) scale(0.98)`
-- **Secondary CTA:**
-  - Background: Transparent or `rgba(255, 255, 255, 0.1)` on dark / `#ffffff` with subtle border on light.
-  - Text: High-contrast primary.
-- **Button-in-Button Trailing Icon:** When an arrow icon (`↗` or `→`) is included, it is enclosed in an inner circular badge with subtle opacity.
+### Primary Button ("Sell on Amaras")
+- Background: `#C7FF32` (Neon Lime)
+- Color: `#111625` (High-contrast dark charcoal)
+- Padding: `14px 28px`
+- Border-radius: `9999px` (Full pill shape)
+- Shadow: `0 8px 24px rgba(199, 255, 50, 0.4)`
+- Hover: Scale `1.02`, translateY `-2px`, box-shadow `0 12px 30px rgba(199, 255, 50, 0.5)`
 
-### B. Double-Bezel Card System (Doppelrand)
-Every major feature card, bento cell, or preview widget uses concentric nested boundaries:
-1. **Outer Shell / Tray:**
-   - Background: `var(--surface-muted)` (`#f8f9fb`)
-   - Border: `1px solid var(--border-grey)` (`#e3e6ec`)
-   - Radius: `24px` to `32px` (`rounded-[2rem]`)
-   - Padding: `8px` to `16px`
-2. **Inner Content Box:**
-   - Background: `#ffffff`
-   - Radius: `calc(outer-radius - padding)` (e.g. `16px` to `24px`)
-   - Shadow: `0 4px 20px rgba(19, 35, 56, 0.04)`
+### Secondary Button
+- Background: `#586EFF` (Cobalt Blue)
+- Color: `#FFFFFF`
+- Padding: `14px 28px`
+- Border-radius: `9999px`
+- Shadow: `0 6px 20px rgba(88, 110, 255, 0.4)`
 
-### C. Bento Grid Layouts
-- Asymmetrical masonry layout: high-priority items take 2 columns or larger heights.
-- Generous gap: `gap-6` (`24px`) to `gap-8` (`32px`).
-- Mobile collapse: single column stack (`grid-cols-1`) with `gap-6`.
-
-### D. Interactive Widgets
-- **Live Revenue Calculator:** Interactive country/city select updating monthly estimated earnings with localized currency symbols.
-- **Video Carousel:** Multi-slide testimonial rail with integrated Vimeo/HTML5 video players and synchronized quotes.
-- **Marquee Logos:** Seamless infinite horizontal loop of partner logos with hover-to-pause capability.
-- **Smooth FAQ Accordion:** Animated CSS grid rows (`grid-template-rows: 0fr -> 1fr`) with custom cubic-bezier transitions.
+### Concentric Double-Bezel Containers
+Every major feature card or bento cell uses concentric radii:
+- Outer wrapper: `border-radius: 28px; padding: 12px; background: #f8f9fb; border: 1px solid #e3e6ec;`
+- Inner container: `border-radius: 20px; background: #ffffff;`
 
 ---
 
-## 5. Motion Choreography & Transitions
+## 6. Strict Development Guardrails
 
-- **Default Easing:** `cubic-bezier(0.32, 0.72, 0, 1)` (mass and spring physics).
-- **Smooth Scrolling:** Powered by **Lenis** (`new Lenis()`) with GSAP ScrollTrigger synchronization.
-- **3D Hero Tilt:** Interactive mouse move parallax with gyro fallback on mobile.
-- **Never Use:** Generic `linear` or snappy instant transitions. Always use hardware-accelerated `transform` and `opacity`.
-
----
-
-## 6. Strict Anti-Patterns (Do NOT use)
-
-1. ❌ Never use generic Bootstrap-style 3-column feature boxes.
-2. ❌ Never use neon AI gradients (purple-pink meshes) or glowing sci-fi orbs.
-3. ❌ Never use pure `#000000` text; always use deep brand midnight blue (`#132338`).
-4. ❌ Never place flat borders without inner padding or concentric radius.
+1. ❌ Never use generic unbranded orange `#fa4f2d` — always use Amaras Lime `#C7FF32` or Cobalt Blue `#586EFF`.
+2. ❌ Never distort logo aspect ratios. Always let width or height scale proportionally with `height: auto` or `width: auto`.
+3. ❌ Never use raw `#000000` text; always use deep brand midnight `#0C101D` or charcoal `#312F2F`.
+4. ❌ Never remove Subresource Integrity without local file verification.
 5. ❌ Never break responsive touch targets on mobile (< 44px tap area).
