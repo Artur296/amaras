@@ -79,3 +79,4 @@ All brand logos are centrally managed in `assets/`:
 4. [X] Never use unbranded orange (`#fa4f2d`) or navy (`#0C101D`).
 5. [X] Never break responsive touch targets on mobile (< 44px tap area).
 6. [X] NEVER use emojis anywhere in the website (no emojis in navigation, menus, headings, buttons, cards, badges, or text).
+82: 7. [X] ALWAYS guarantee flawless mobile adaptation and responsiveness: zero horizontal scrolling (`scrollWidth === window.innerWidth`), compact scalable logos, mobile drawer menu with touch-friendly targets (>= 44px), and adaptive grids (desktop 4 cols, tablet 2 cols, mobile 1 col).

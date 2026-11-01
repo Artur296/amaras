@@ -36,9 +36,12 @@
 }
 
 /* Base Typography & Defaults in Spec Colors */
+html,
 body {
   color: #312F2F;
   background-color: #FFFFFF;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 .headingh1,
@@ -642,21 +645,32 @@ body[data-exit-popup-open="true"] {
   right: 0;
   bottom: 0;
   width: 100%;
-  max-width: 340px;
+  max-width: 330px;
   background: #312F2F;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 2000;
-  padding: 24px;
+  padding: 20px 22px;
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
-  transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1), visibility 0.3s ease;
   overflow-y: auto;
   box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .amaras-mobile-drawer.is-open {
   transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.amaras-mobile-drawer .amaras-login-btn,
+.amaras-mobile-drawer .amaras-register-btn {
+  display: flex !important;
+  width: 100%;
+  justify-content: center;
 }
 
 .amaras-mobile-drawer-header {
@@ -751,6 +765,66 @@ body[data-exit-popup-open="true"] {
   }
   .amaras-mobile-toggle {
     display: flex;
+  }
+}
+
+@media (max-width: 860px) {
+  .amaras-login-btn,
+  .amaras-register-btn {
+    display: none !important;
+  }
+  .amaras-nav-container {
+    padding: 0 14px;
+    height: 60px;
+  }
+  .amaras-nav-logo img {
+    height: 26px;
+    max-width: 115px;
+  }
+  .amaras-nav-actions {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 540px) {
+  .amaras-nav-container {
+    padding: 0 10px;
+    height: 56px;
+  }
+  .amaras-nav-logo img {
+    height: 23px;
+    max-width: 100px;
+  }
+  .amaras-search-btn {
+    display: none !important;
+  }
+  .amaras-nav-actions {
+    gap: 6px;
+  }
+  .amaras-cart-btn {
+    width: 34px;
+    height: 34px;
+  }
+  .amaras-cart-btn svg {
+    width: 17px;
+    height: 17px;
+  }
+  .amaras-lang-switcher {
+    padding: 2px;
+    border-radius: 16px;
+  }
+  .amaras-lang-btn {
+    font-size: 10.5px;
+    padding: 3px 5px;
+  }
+  .amaras-mobile-toggle {
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+  }
+  .amaras-mobile-toggle svg {
+    width: 18px;
+    height: 18px;
   }
 }
 
