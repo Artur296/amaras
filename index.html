@@ -109,7 +109,21 @@
           </div>
         </div>
 
-        <a class="amaras-nav-link" href="#attractions" data-i18n="nav_attractions">Что посмотреть</a>
+        <div class="amaras-nav-dropdown">
+          <a class="amaras-nav-link" href="#armenia">
+            <span data-i18n="nav_armenia">Армения</span>
+            <svg class="amaras-chevron" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
+          <div class="amaras-nav-dropdown-menu">
+            <a class="amaras-dropdown-item" href="#guidebook" data-i18n="arm_guide">Путеводитель</a>
+            <a class="amaras-dropdown-item" href="#attractions" data-i18n="arm_attractions">Достопримечательности</a>
+            <a class="amaras-dropdown-item" href="#restaurants" data-i18n="arm_restaurants">Рестораны и клубы</a>
+            <a class="amaras-dropdown-item" href="#festivals" data-i18n="arm_festivals">Фестивали и праздники</a>
+          </div>
+        </div>
         <a class="amaras-nav-link" href="#fleet" data-i18n="nav_fleet">Автопарк</a>
         <a class="amaras-nav-link" href="#guests" data-i18n="nav_guests">Гости</a>
         <a class="amaras-nav-link" href="#about" data-i18n="nav_about">О нас</a>
@@ -223,7 +237,21 @@
             <a class="amaras-mobile-sublink" href="#tours-gastro" data-i18n="tour_gastro">Гастро-туры</a>
           </div>
         </div>
-        <a class="amaras-mobile-link" href="#attractions" data-i18n="nav_attractions">Что посмотреть</a>
+        <div class="amaras-mobile-dropdown">
+          <button class="amaras-mobile-dropdown-btn" type="button" onclick="toggleMobileDropdown(this)">
+            <span class="amaras-mobile-dropdown-title" data-i18n="nav_armenia">Армения</span>
+            <svg class="amaras-mobile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+          <div class="amaras-mobile-submenu">
+            <a class="amaras-mobile-sublink" href="#guidebook" data-i18n="arm_guide">Путеводитель</a>
+            <a class="amaras-mobile-sublink" href="#attractions" data-i18n="arm_attractions">Достопримечательности</a>
+            <a class="amaras-mobile-sublink" href="#restaurants" data-i18n="arm_restaurants">Рестораны и клубы</a>
+            <a class="amaras-mobile-sublink" href="#festivals" data-i18n="arm_festivals">Фестивали и праздники</a>
+          </div>
+        </div>
         <a class="amaras-mobile-link" href="#fleet" data-i18n="nav_fleet">Автопарк</a>
         <a class="amaras-mobile-link" href="#guests" data-i18n="nav_guests">Гости</a>
         <a class="amaras-mobile-link" href="#about" data-i18n="nav_about">О нас</a>
@@ -268,6 +296,11 @@
         tour_gastro: "Гастро-туры",
         tour_jeep: "Джип и экстрим туры",
         tour_custom: "Индивидуальные маршруты",
+        nav_armenia: "Армения",
+        arm_guide: "Путеводитель",
+        arm_attractions: "Достопримечательности",
+        arm_restaurants: "Рестораны и клубы",
+        arm_festivals: "Фестивали и праздники",
         nav_attractions: "Что посмотреть",
         nav_fleet: "Автопарк",
         nav_guests: "Гости",
@@ -414,6 +447,11 @@
         tour_gastro: "Gastro Tours",
         tour_jeep: "Jeep & Adventure Tours",
         tour_custom: "Custom Itineraries",
+        nav_armenia: "Armenia",
+        arm_guide: "Travel Guide",
+        arm_attractions: "Attractions & Sights",
+        arm_restaurants: "Restaurants & Clubs",
+        arm_festivals: "Festivals & Holidays",
         nav_attractions: "Attractions",
         nav_fleet: "Fleet",
         nav_guests: "Guests",
@@ -560,6 +598,11 @@
         tour_gastro: "Գաստրո տուրեր",
         tour_jeep: "Ջիպ տուրեր և էքստրիմ",
         tour_custom: "Անհատական երթուղիներ",
+        nav_armenia: "Հայաստան",
+        arm_guide: "Ուղեցույց",
+        arm_attractions: "Տեսարժան վայրեր",
+        arm_restaurants: "Ռեստորաններ և ակումբներ",
+        arm_festivals: "Փառատոներ և տոներ",
         nav_attractions: "Ինչ տեսնել",
         nav_fleet: "Ավտոպարկ",
         nav_guests: "Հյուրեր",
