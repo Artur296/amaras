@@ -871,27 +871,35 @@ body[data-exit-popup-open="true"] {
 }
 
 .amaras-feature-icon-badge {
-  width: 50px;
-  height: 50px;
-  background: #312F2F;
-  border-radius: 13px;
+  width: auto;
+  height: auto;
+  background: transparent !important;
+  border-radius: 0 !important;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 18px;
-  box-shadow: 0 4px 14px rgba(49, 47, 47, 0.15);
-  transition: all 0.22s ease;
+  justify-content: flex-start;
+  margin-bottom: 16px;
+  box-shadow: none !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   flex-shrink: 0;
 }
 
 .amaras-feature-icon-badge svg {
   display: block;
-  stroke: #C7FF32;
+  width: 32px;
+  height: 32px;
+  stroke: #586EFF !important;
+  stroke-width: 2 !important;
+  transition: transform 0.25s ease, filter 0.25s ease;
 }
 
-.amaras-feature-card:hover .amaras-feature-icon-badge {
-  transform: scale(1.06);
-  box-shadow: 0 8px 20px rgba(49, 47, 47, 0.22);
+.amaras-feature-icon-badge svg circle[fill] {
+  fill: #586EFF !important;
+}
+
+.amaras-feature-card:hover .amaras-feature-icon-badge svg {
+  transform: translateY(-2px) scale(1.08);
+  filter: drop-shadow(0 4px 12px rgba(88, 110, 255, 0.3));
 }
 
 .amaras-feature-title {
