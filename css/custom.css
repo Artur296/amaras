@@ -402,14 +402,17 @@ body[data-exit-popup-open="true"] {
   color: #312F2F;
 }
 
-/* Dropdown Menu for Туры */
+/* Dropdown Menus for Navbar (Туры, Армения, Транспорты) */
 .amaras-nav-dropdown {
   position: relative;
+  display: inline-flex;
+  align-items: center;
 }
 
 .amaras-nav-dropdown-menu {
   position: absolute;
-  top: calc(100% + 10px);
+  top: 100%;
+  margin-top: 6px;
   left: 0;
   min-width: 240px;
   background: #312F2F;
@@ -417,22 +420,39 @@ body[data-exit-popup-open="true"] {
   border-radius: 16px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
   padding: 8px;
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 4px;
   z-index: 1010;
   backdrop-filter: blur(16px);
-  animation: amarasDropdownFade 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+  -webkit-backdrop-filter: blur(16px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s ease;
+  transition-delay: 0.18s; /* Grace period prevents accidental close while moving cursor */
 }
 
-@keyframes amarasDropdownFade {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Invisible hover bridge to eliminate any gap between trigger and menu */
+.amaras-nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -18px;
+  left: 0;
+  right: 0;
+  height: 18px;
+  background: transparent;
+  display: block;
 }
 
 .amaras-nav-dropdown:hover .amaras-nav-dropdown-menu,
 .amaras-nav-dropdown.is-open .amaras-nav-dropdown-menu {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition-delay: 0s; /* Open immediately on hover */
 }
 
 .amaras-nav-dropdown.is-open .amaras-chevron,

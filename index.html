@@ -76,7 +76,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+Armenian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="css/custom.css?v=49" rel="stylesheet" />
+  <link href="css/custom.css?v=50" rel="stylesheet" />
 </head>
 
 <body class="rebrand-body">
@@ -886,6 +886,32 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      // Desktop Nav Dropdown Click-to-Pin Support
+      document.querySelectorAll('.amaras-nav-dropdown').forEach(dropdown => {
+        const link = dropdown.querySelector('.amaras-nav-link');
+        if (link) {
+          link.addEventListener('click', (e) => {
+            // Prevent accidental hash navigation and toggle pin state
+            e.preventDefault();
+            const isOpen = dropdown.classList.contains('is-open');
+            document.querySelectorAll('.amaras-nav-dropdown').forEach(d => d.classList.remove('is-open'));
+            if (!isOpen) dropdown.classList.add('is-open');
+          });
+        }
+      });
+
+      // Close pinned dropdowns when clicking outside or selecting item
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.amaras-nav-dropdown')) {
+          document.querySelectorAll('.amaras-nav-dropdown').forEach(d => d.classList.remove('is-open'));
+        }
+      });
+      document.querySelectorAll('.amaras-dropdown-item').forEach(item => {
+        item.addEventListener('click', () => {
+          document.querySelectorAll('.amaras-nav-dropdown').forEach(d => d.classList.remove('is-open'));
+        });
+      });
+
       document.querySelectorAll('.amaras-mobile-drawer-links a').forEach(a => {
         a.addEventListener('click', () => {
           const drawer = document.querySelector('.amaras-mobile-drawer');
