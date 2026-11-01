@@ -76,7 +76,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+Armenian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="css/custom.css?v=43" rel="stylesheet" />
+  <link href="css/custom.css?v=44" rel="stylesheet" />
 </head>
 
 <body class="rebrand-body">
@@ -786,7 +786,11 @@
     }
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLangSheet();
+      if (e.key === 'Escape') {
+        closeLangSheet();
+        const chatWin = document.getElementById('amarasChatWindow');
+        if (chatWin && chatWin.classList.contains('is-open')) toggleSupportChat();
+      }
     });
 
     function setLang(lang) {
@@ -3984,7 +3988,12 @@
             <h3 class="amaras-chat-agent-title" data-i18n="chat_header_title">Служба заботы Amaras</h3>
           </div>
         </div>
-        <button class="amaras-chat-close-btn" onclick="toggleSupportChat()" aria-label="Закрыть чат">✕</button>
+        <button class="amaras-chat-close-btn" onclick="toggleSupportChat()" aria-label="Закрыть чат">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
       </div>
 
       <!-- Body -->
@@ -4135,19 +4144,62 @@
   </div>
 
   <script>
+    function updateChatMobileViewport() {
+      const win = document.getElementById('amarasChatWindow');
+      if (!win || !win.classList.contains('is-open')) return;
+      if (window.innerWidth <= 768 && window.visualViewport) {
+        win.style.height = `${window.visualViewport.height}px`;
+        win.style.top = `${window.visualViewport.offsetTop}px`;
+      } else {
+        win.style.height = '';
+        win.style.top = '';
+      }
+      const scroll = document.getElementById('amarasChatScroll');
+      if (scroll) {
+        scroll.scrollTop = scroll.scrollHeight;
+      }
+    }
+
     function toggleSupportChat() {
       const win = document.getElementById('amarasChatWindow');
       const btn = document.getElementById('amarasChatLauncher');
       if (!win || !btn) return;
       const isOpen = win.classList.toggle('is-open');
       btn.classList.toggle('is-open', isOpen);
+      document.body.classList.toggle('amaras-chat-open', isOpen);
       if (isOpen) {
+        if (window.innerWidth <= 768) {
+          updateChatMobileViewport();
+        }
         const input = document.getElementById('amarasChatInput');
         if (input && document.getElementById('amarasChatViewMessages').classList.contains('is-active')) {
           setTimeout(() => input.focus(), 150);
         }
+      } else {
+        win.style.height = '';
+        win.style.top = '';
       }
     }
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', updateChatMobileViewport);
+      window.visualViewport.addEventListener('scroll', updateChatMobileViewport);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const chatInput = document.getElementById('amarasChatInput');
+      if (chatInput) {
+        chatInput.addEventListener('focus', () => {
+          if (window.innerWidth <= 768) {
+            setTimeout(() => {
+              updateChatMobileViewport();
+              const scroll = document.getElementById('amarasChatScroll');
+              if (scroll) scroll.scrollTop = scroll.scrollHeight;
+            }, 250);
+          }
+        });
+      }
+    });
 
     function openSupportChatView(view) {
       const homeView = document.getElementById('amarasChatViewHome');

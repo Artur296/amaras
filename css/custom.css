@@ -3248,21 +3248,139 @@ body[data-exit-popup-open="true"] {
   box-shadow: 0 0 6px #586EFF;
 }
 
-/* Mobile full width responsiveness */
-@media (max-width: 480px) {
-  .amaras-chat-launcher {
-    right: 18px;
-    bottom: 18px;
-    width: 56px;
-    height: 56px;
+/* ==========================================================================
+   Mobile Support Chat Fullscreen & Keyboard Responsiveness (<= 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Prevent background page scroll when chat is open */
+  body.amaras-chat-open {
+    overflow: hidden !important;
   }
+
+  /* Completely HIDE the circular launcher button when chat is open on mobile */
+  body.amaras-chat-open .amaras-chat-launcher,
+  .amaras-chat-launcher.is-open {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
+
+  .amaras-chat-launcher {
+    right: 16px;
+    bottom: 16px;
+    width: 54px;
+    height: 54px;
+  }
+
+  /* Fullscreen Chat Window on Phones - Intercom/WhatsApp style */
   .amaras-chat-window {
-    right: 12px;
-    bottom: 84px;
-    width: calc(100vw - 24px);
-    max-width: 100vw;
-    height: calc(100vh - 100px);
-    border-radius: 20px;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100% !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+    border: none !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    z-index: 100000 !important;
+    background: #181717 !important;
+    transform: translateY(100%);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  }
+
+  .amaras-chat-window.is-open {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  /* Header anchored with safe area top on modern phones (notch / dynamic island) */
+  .amaras-chat-header {
+    padding-top: max(14px, env(safe-area-inset-top)) !important;
+    padding-bottom: 14px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    border-radius: 0 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .amaras-chat-close-btn {
+    width: 38px !important;
+    height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.18) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    color: #FFFFFF !important;
+    cursor: pointer !important;
+  }
+
+  /* Body flex structure for zero overflow */
+  .amaras-chat-body {
+    flex: 1 1 0 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .amaras-chat-view-home {
+    flex: 1 1 0 !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 18px 16px !important;
+  }
+
+  .amaras-chat-view-messages {
+    flex: 1 1 0 !important;
+    min-height: 0 !important;
+    display: none !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+
+  .amaras-chat-view-messages.is-active {
+    display: flex !important;
+  }
+
+  .amaras-chat-scroll {
+    flex: 1 1 0 !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 16px 14px !important;
+  }
+
+  /* Input bar fits right above on-screen keyboard */
+  .amaras-chat-input-bar {
+    padding: 10px 14px !important;
+    background: #1F1E1E !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    flex-shrink: 0 !important;
+  }
+
+  .amaras-chat-input-field {
+    font-size: 15px !important;
+    padding: 10px 14px !important;
+  }
+
+  /* Footer tabs anchored with safe area bottom */
+  .amaras-chat-footer-tabs {
+    height: auto !important;
+    padding-top: 8px !important;
+    padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
+    background: #141414 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    flex-shrink: 0 !important;
   }
 }
 
