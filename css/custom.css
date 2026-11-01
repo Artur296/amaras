@@ -1325,6 +1325,117 @@ body[data-exit-popup-open="true"] {
    STRICT: ZERO EMOJIS - Clean Typographic Layout
    ========================================================================== */
 
+
+/* ==========================================================================
+   AMARAS ABOUT COMPANY INTRO BLOCK
+   ========================================================================== */
+#about {
+  scroll-margin-top: 90px;
+}
+
+.amaras-about-intro {
+  margin-bottom: 48px;
+  padding-bottom: 42px;
+  border-bottom: 1px solid rgba(49, 47, 47, 0.08);
+  text-align: left;
+}
+
+.amaras-about-badge-wrap {
+  margin-bottom: 14px;
+}
+
+.amaras-about-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(88, 110, 255, 0.08);
+  border: 1px solid rgba(88, 110, 255, 0.22);
+  color: #586EFF;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.amaras-about-title {
+  font-family: var(--amaras-font-family, system-ui, -apple-system, sans-serif);
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #312F2F;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.02em;
+}
+
+.amaras-about-text {
+  max-width: 1060px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 14px;
+}
+
+.amaras-about-desc {
+  font-family: var(--amaras-font-family, system-ui, -apple-system, sans-serif);
+  font-size: 16.5px;
+  line-height: 1.68;
+  color: #4A4848;
+  margin: 0;
+  font-weight: 400;
+}
+
+.amaras-about-desc.amaras-about-lead {
+  font-size: 17.5px;
+  font-weight: 600;
+  color: #312F2F;
+  line-height: 1.65;
+}
+
+@media (max-width: 900px) {
+  .amaras-about-intro {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+  }
+  .amaras-about-badge-wrap {
+    display: flex;
+    justify-content: center;
+  }
+  .amaras-about-title {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+  .amaras-about-text {
+    margin: 0 auto;
+  }
+  .amaras-about-desc {
+    font-size: 15.5px;
+    line-height: 1.62;
+  }
+  .amaras-about-desc.amaras-about-lead {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .amaras-about-intro {
+    margin-bottom: 32px;
+    padding-bottom: 26px;
+  }
+  .amaras-about-title {
+    font-size: 23px;
+    line-height: 1.3;
+  }
+  .amaras-about-desc {
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+  .amaras-about-desc.amaras-about-lead {
+    font-size: 15px;
+  }
+}
+
 .amaras-features-section {
   background: #FFFFFF !important;
   padding: 56px 32px 64px;

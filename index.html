@@ -76,7 +76,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+Armenian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="css/custom.css?v=60" rel="stylesheet" />
+  <link href="css/custom.css?v=61" rel="stylesheet" />
 </head>
 
 <body class="rebrand-body">
@@ -374,6 +374,10 @@
         search_placeholder: "Поиск туров, достопримечательностей, направлений...",
         search_label: "Поиск",
         cart_label: "Корзина",
+        about_company_badge: "О компании",
+        about_company_title: "О компании Amaras Tour Armenia",
+        about_company_desc_1: "Amaras Tour Armenia — туристическая компания с более чем 10-летним опытом работы в Ереване, специализирующаяся на организации экскурсий и путешествий по всей Армении.",
+        about_company_desc_2: "Компания предлагает групповые и индивидуальные туры, джип-туры, фототуры, многодневные турпакеты под ключ, трансферы и транспортные услуги комфорт- и премиум-класса, а также профессиональную фото- и видеосъёмку, включая аэросъёмку с дрона.",
         feat_1_title_accent: "Более 100 000",
         feat_1_title_main: "довольных туристов на отдыхе",
         feat_1_desc: "Организовали безупречный отдых и яркие эмоции",
@@ -537,6 +541,10 @@
         search_placeholder: "Search tours, attractions, destinations...",
         search_label: "Search",
         cart_label: "Cart",
+        about_company_badge: "About Us",
+        about_company_title: "About Amaras Tour Armenia",
+        about_company_desc_1: "Amaras Tour Armenia is a travel company with over 10 years of experience in Yerevan, specializing in organizing excursions and journeys throughout Armenia.",
+        about_company_desc_2: "The company offers group and individual tours, jeep tours, photo tours, turnkey multi-day tour packages, comfort and premium transfers and transportation services, as well as professional photography and videography, including aerial drone filming.",
         feat_1_title_accent: "Over 100,000",
         feat_1_title_main: "happy travelers on vacation",
         feat_1_desc: "Organized flawless vacations and vivid emotions",
@@ -700,6 +708,10 @@
         search_placeholder: "Որոնել տուրեր, տեսարժան վայրեր, ուղղություններ...",
         search_label: "Որոնում",
         cart_label: "Զամբյուղ",
+        about_company_badge: "Ընկերության մասին",
+        about_company_title: "Amaras Tour Armenia ընկերության մասին",
+        about_company_desc_1: "Amaras Tour Armenia-ն Երևանում ավելի քան 10 տարվա փորձ ունեցող տուրիստական ընկերություն է, որը մասնագիտացած է ողջ Հայաստանով էքսկուրսիաների և ճանապարհորդությունների կազմակերպման մեջ:",
+        about_company_desc_2: "Ընկերությունն առաջարկում է խմբային և անհատական տուրեր, ջիպ-տուրեր, ֆոտոտուրեր, բազմօրյա տուրփաթեթներ «բանալին ձեռքին», կոմֆորտ և պրեմիում դասի տրանսֆերներ ու տրանսպորտային ծառայություններ, ինչպես նաև պրոֆեսիոնալ ֆոտո և վիդեո նկարահանում՝ ներառյալ դրոնով աերոնկարահանում:",
         feat_1_title_accent: "Ավելի քան 100,000",
         feat_1_title_main: "երջանիկ զբոսաշրջիկ հանգստի ընթացքում",
         feat_1_desc: "Կազմակերպել ենք անթերի հանգիստ և վառ հույզեր",
@@ -1365,8 +1377,24 @@
   <div class="collection-list-wrapper-4 w-dyn-list">
     <div class="w-dyn-items" role="list">
       <div class="w-dyn-item" role="listitem">
-        <div class="amaras-features-section">
+        <div class="amaras-features-section" id="about">
           <div class="amaras-features-container">
+            <!-- About Company Header Block -->
+            <div class="amaras-about-intro">
+              <div class="amaras-about-badge-wrap">
+                <span class="amaras-about-badge" data-i18n="about_company_badge">О компании</span>
+              </div>
+              <h2 class="amaras-about-title" data-i18n="about_company_title">О компании Amaras Tour Armenia</h2>
+              <div class="amaras-about-text">
+                <p class="amaras-about-desc amaras-about-lead" data-i18n="about_company_desc_1">
+                  Amaras Tour Armenia — туристическая компания с более чем 10-летним опытом работы в Ереване, специализирующаяся на организации экскурсий и путешествий по всей Армении.
+                </p>
+                <p class="amaras-about-desc" data-i18n="about_company_desc_2">
+                  Компания предлагает групповые и индивидуальные туры, джип-туры, фототуры, многодневные турпакеты под ключ, трансферы и транспортные услуги комфорт- и премиум-класса, а также профессиональную фото- и видеосъёмку, включая аэросъёмку с дрона.
+                </p>
+              </div>
+            </div>
+
             <div class="amaras-features-grid">
               <!-- Item 1: 100 000+ довольных туристов -->
               <div class="amaras-feature-card">
@@ -2512,7 +2540,7 @@
         <div class="w-dyn-list">
           <div class="w-dyn-items" role="list">
             <div class="w-dyn-item" role="listitem">
-              <section class="amaras-care-section" id="about">
+              <section class="amaras-care-section" id="care">
                 <div class="amaras-care-container">
                   <!-- Header -->
                   <div class="amaras-care-header">
