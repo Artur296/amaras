@@ -76,10 +76,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+Armenian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="css/custom.css?v=55" rel="stylesheet" />
+  <link href="css/custom.css?v=56" rel="stylesheet" />
 </head>
 
 <body class="rebrand-body">
+  <!-- Amaras Luxury Travel Preloader -->
+  <div id="amarasPreloader" class="amaras-preloader" aria-hidden="true">
+    <div class="amaras-preloader-center">
+      <div class="amaras-preloader-logo-wrap">
+        <img src="assets/amaras-logo-navbar.svg" alt="Amaras Tour" class="amaras-preloader-logo" />
+        <div class="amaras-preloader-glow"></div>
+      </div>
+      <div class="amaras-preloader-bar-track">
+        <div class="amaras-preloader-bar-fill"></div>
+      </div>
+      <div class="amaras-preloader-tagline">AMARAS TRAVEL AGENCY • ARMENIA</div>
+    </div>
+  </div>
   <div class="rebrand-nav-bar w-nav" role="banner">
     <div class="amaras-nav-container">
       <!-- Brand Logo -->
@@ -4797,6 +4810,44 @@
       } else {
         updateBtnUI(false);
       }
+    })();
+  </script>
+  <script>
+    // ==========================================================================
+    // Preloader Dismissal Controller
+    // ==========================================================================
+    (function () {
+      const preloader = document.getElementById('amarasPreloader');
+      if (!preloader) return;
+
+      let dismissed = false;
+      function dismissPreloader() {
+        if (dismissed) return;
+        dismissed = true;
+        preloader.classList.add('is-loaded');
+        setTimeout(() => {
+          if (preloader.parentNode) {
+            preloader.parentNode.removeChild(preloader);
+          }
+        }, 650);
+      }
+
+      const startTime = performance.now();
+      function onReady() {
+        const elapsed = performance.now() - startTime;
+        const minDisplayMs = 700; // Balanced: luxurious presence without blocking the user
+        const remaining = Math.max(0, minDisplayMs - elapsed);
+        setTimeout(dismissPreloader, remaining);
+      }
+
+      if (document.readyState === 'complete') {
+        onReady();
+      } else {
+        window.addEventListener('load', onReady, { once: true });
+      }
+
+      // Safety timeout: never lock the user out if an external asset is slow
+      setTimeout(dismissPreloader, 2200);
     })();
   </script>
 </body>

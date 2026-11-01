@@ -4826,3 +4826,164 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
 .amaras-payment-badge-img.is-mir {
   height: 14px;
 }
+
+
+/* ==========================================================================
+   Amaras Luxury Preloader
+   ========================================================================== */
+.amaras-preloader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #191717;
+  z-index: 9999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              visibility 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.amaras-preloader.is-loaded {
+  opacity: 0;
+  transform: translateY(-100%);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.amaras-preloader-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  animation: amarasPreloaderCenterEnter 0.45s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.amaras-preloader-logo-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.amaras-preloader-logo {
+  height: 52px;
+  width: auto;
+  max-width: 280px;
+  object-fit: contain;
+  display: block;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 6px 24px rgba(0, 0, 0, 0.6));
+}
+
+.amaras-preloader-glow {
+  position: absolute;
+  width: 240px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(199, 255, 50, 0.2) 0%, rgba(88, 110, 255, 0.22) 50%, transparent 75%);
+  filter: blur(28px);
+  z-index: 1;
+  animation: amarasGlowPulse 2.2s ease-in-out infinite;
+}
+
+.amaras-preloader-bar-track {
+  width: 170px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.amaras-preloader-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #586EFF 0%, #C7FF32 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 12px rgba(199, 255, 50, 0.6);
+  animation: amarasBarFill 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.amaras-preloader-tagline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.42);
+  text-transform: uppercase;
+  margin-left: 0.3em;
+}
+
+@keyframes amarasPreloaderCenterEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes amarasGlowPulse {
+  0%, 100% {
+    transform: scale(0.92);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 1;
+  }
+}
+
+@keyframes amarasBarFill {
+  0% {
+    width: 0%;
+  }
+  55% {
+    width: 74%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .amaras-preloader-logo {
+    height: 42px;
+    max-width: 220px;
+  }
+  .amaras-preloader-bar-track {
+    width: 135px;
+  }
+  .amaras-preloader-tagline {
+    font-size: 0.6rem;
+    letter-spacing: 0.24em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .amaras-preloader {
+    transition: opacity 0.2s ease !important;
+    transform: none !important;
+  }
+  .amaras-preloader-center,
+  .amaras-preloader-glow,
+  .amaras-preloader-bar-fill {
+    animation: none !important;
+  }
+}
