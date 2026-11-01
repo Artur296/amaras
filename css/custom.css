@@ -4800,3 +4800,29 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     gap: 1.5px;
   }
 }
+
+/* Payment Badges Images (assets/pay_method_logo) */
+.amaras-payment-badge-img {
+  height: 18px;
+  width: auto;
+  max-width: 60px;
+  object-fit: contain;
+  display: block;
+}
+
+.amaras-payment-badge-img.is-arca {
+  height: 15px;
+  max-width: 58px;
+}
+
+.amaras-payment-badge-img.is-visa {
+  height: 14px;
+}
+
+.amaras-payment-badge-img.is-mc {
+  height: 20px;
+}
+
+.amaras-payment-badge-img.is-mir {
+  height: 14px;
+}
