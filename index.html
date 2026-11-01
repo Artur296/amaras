@@ -73,7 +73,7 @@
   </style>
   <link href="https://cdn.plyr.io/3.8.4/plyr.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.css" rel="stylesheet" />
-  <link href="css/custom.css?v=26" rel="stylesheet" />
+  <link href="css/custom.css?v=27" rel="stylesheet" />
 </head>
 
 <body class="rebrand-body">
@@ -316,6 +316,18 @@
         jeep_p3_sub: "Скальные каньоны",
         jeep_p4_name: "Вулкан Аждаак",
         jeep_p4_sub: "Кратер и ледники",
+        chat_header_title: "Служба заботы Amaras",
+        chat_header_status: "Онлайн · Ответ за 2 минуты",
+        chat_start_title: "Начать новый диалог",
+        chat_start_sub: "Ответим прямо здесь на сайте",
+        chat_channels_label: "Удобные мессенджеры",
+        chat_phone_title: "Прямой звонок",
+        chat_faq_label: "Быстрые вопросы",
+        chat_date_today: "Сегодня",
+        chat_welcome_msg: "Здравствуйте! Рады приветствовать вас в Amaras Tour. Чем мы можем помочь вам в выборе тура или организации отдыха в Армении?",
+        chat_input_placeholder: "Напишите сообщение...",
+        chat_tab_home: "Главная",
+        chat_tab_messages: "Диалог",
       },
       ENG: {
         nav_home: "Home",
@@ -401,6 +413,18 @@
         jeep_p3_sub: "Canyon Cliffs",
         jeep_p4_name: "Azhdahak Volcano",
         jeep_p4_sub: "Crater & Glaciers",
+        chat_header_title: "Amaras Care Support",
+        chat_header_status: "Online · Reply in 2 mins",
+        chat_start_title: "Start a conversation",
+        chat_start_sub: "We will reply right here",
+        chat_channels_label: "Direct Messengers",
+        chat_phone_title: "Direct Phone Call",
+        chat_faq_label: "Quick Questions",
+        chat_date_today: "Today",
+        chat_welcome_msg: "Hello! Welcome to Amaras Tour. How can we help you plan your journey in Armenia?",
+        chat_input_placeholder: "Type a message...",
+        chat_tab_home: "Home",
+        chat_tab_messages: "Messages",
       },
       HY: {
         nav_home: "Գլխավոր",
@@ -486,6 +510,18 @@
         jeep_p3_sub: "Կիրճեր և ժայռեր",
         jeep_p4_name: "Աժդահակ հրաբուխ",
         jeep_p4_sub: "Խառնարան և սառցադաշտեր",
+        chat_header_title: "Amaras հոգատարության ծառայություն",
+        chat_header_status: "Օնլայն · Պատասխան 2 րոպեում",
+        chat_start_title: "Սկսել նոր զրույց",
+        chat_start_sub: "Կպատասխանենք անմիջապես այստեղ",
+        chat_channels_label: "Հարմար մեսենջերներ",
+        chat_phone_title: "Ուղիղ զանգ",
+        chat_faq_label: "Հաճախակի հարցեր",
+        chat_date_today: "Այսօր",
+        chat_welcome_msg: "Բարև Ձեզ: Ուրախ ենք ողջունել Ձեզ Amaras Tour-ում: Ինչպե՞ս կարող ենք օգնել Ձեզ տուրի ընտրության հարցում:",
+        chat_input_placeholder: "Գրեք հաղորդագրություն...",
+        chat_tab_home: "Գլխավոր",
+        chat_tab_messages: "Զրույց",
       }
     };
 
@@ -3580,6 +3616,280 @@
       initAmarasReviewsSlider();
       initAmarasFaqAccordion();
     });
+  </script>
+
+
+  <!-- ==========================================================================
+       AMARAS LUXURY LIVE SUPPORT CHAT WIDGET
+       Palette: #201F1F, #0E1A63, #586EFF, #C7FF32, #FFFFFF
+       Strict: Pure SVG Vectors - Zero Emojis
+       ========================================================================== -->
+  <div class="amaras-support-widget-root">
+    
+    <!-- Floating Launcher Trigger Button -->
+    <button class="amaras-chat-launcher" id="amarasChatLauncher" onclick="toggleSupportChat()" aria-label="Служба заботы Amaras" title="Поддержка онлайн">
+      <div class="amaras-launcher-pulse"></div>
+      <!-- Chat Bubble Icon -->
+      <svg class="amaras-launcher-icon-chat" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+      <!-- Close Icon -->
+      <svg class="amaras-launcher-icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Support Chat Window -->
+    <div class="amaras-chat-window" id="amarasChatWindow" role="dialog" aria-modal="true" aria-label="Чат поддержки">
+      
+      <!-- Header -->
+      <div class="amaras-chat-header">
+        <div class="amaras-chat-header-info">
+          <div class="amaras-chat-avatar">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="amaras-chat-agent-title" data-i18n="chat_header_title">Служба заботы Amaras</h3>
+            <div class="amaras-chat-status">
+              <span class="amaras-chat-status-dot"></span>
+              <span data-i18n="chat_header_status">Онлайн · Ответ за 2 минуты</span>
+            </div>
+          </div>
+        </div>
+        <button class="amaras-chat-close-btn" onclick="toggleSupportChat()" aria-label="Закрыть чат">✕</button>
+      </div>
+
+      <!-- Body -->
+      <div class="amaras-chat-body">
+        
+        <!-- View A: Home Screen -->
+        <div class="amaras-chat-view-home" id="amarasChatViewHome">
+          
+          <!-- Start New Message Card -->
+          <div class="amaras-chat-start-card" onclick="openSupportChatView('messages')">
+            <div class="amaras-chat-start-text">
+              <h4 data-i18n="chat_start_title">Начать новый диалог</h4>
+              <p data-i18n="chat_start_sub">Ответим прямо здесь на сайте</p>
+            </div>
+            <div class="amaras-chat-start-arrow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Instant Messengers -->
+          <div class="amaras-chat-section-label" data-i18n="chat_channels_label">Удобные мессенджеры</div>
+          <div class="amaras-chat-channels">
+            
+            <!-- WhatsApp -->
+            <a class="amaras-chat-channel-link" href="https://wa.me/37499250525?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%AF%20%D1%85%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%B5%D0%B5%20%D0%BE%20%D1%8D%D0%BA%D1%81%D0%BA%D1%83%D1%80%D1%81%D0%B8%D1%8F%D1%85%20Amaras%20Tour" target="_blank" rel="noopener">
+              <div class="amaras-channel-icon amaras-channel-wa">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                </svg>
+              </div>
+              <div class="amaras-channel-details">
+                <div class="amaras-channel-title">
+                  <span>WhatsApp</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+                <div class="amaras-channel-sub">+374 99 250 525 · Быстрый ответ</div>
+              </div>
+            </a>
+
+            <!-- Telegram -->
+            <a class="amaras-chat-channel-link" href="https://t.me/amarastour" target="_blank" rel="noopener">
+              <div class="amaras-channel-icon amaras-channel-tg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </div>
+              <div class="amaras-channel-details">
+                <div class="amaras-channel-title">
+                  <span>Telegram</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+                <div class="amaras-channel-sub">@amarastour · Онлайн</div>
+              </div>
+            </a>
+
+            <!-- Direct Phone -->
+            <a class="amaras-chat-channel-link" href="tel:+37499250525">
+              <div class="amaras-channel-icon amaras-channel-phone">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div class="amaras-channel-details">
+                <div class="amaras-channel-title">
+                  <span data-i18n="chat_phone_title">Прямой звонок</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+                <div class="amaras-channel-sub">+374 99 250 525</div>
+              </div>
+            </a>
+
+          </div>
+
+          <!-- Quick FAQ Chips -->
+          <div class="amaras-chat-section-label" data-i18n="chat_faq_label">Быстрые вопросы</div>
+          <div class="amaras-chat-quick-faqs">
+            <button class="amaras-chat-chip-btn" onclick="sendQuickChatMessage('Как забронировать экскурсию?')">
+              <span>Как забронировать экскурсию?</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <button class="amaras-chat-chip-btn" onclick="sendQuickChatMessage('Что входит в стоимость тура?')">
+              <span>Что входит в стоимость тура?</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <button class="amaras-chat-chip-btn" onclick="sendQuickChatMessage('Можно ли составить индивидуальный маршрут?')">
+              <span>Можно ли составить свой маршрут?</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- View B: Active Chat Messages -->
+        <div class="amaras-chat-view-messages" id="amarasChatViewMessages">
+          <div class="amaras-chat-messages-scroll" id="amarasChatScroll">
+            <div class="amaras-chat-date-divider" data-i18n="chat_date_today">Сегодня</div>
+            
+            <!-- Agent Welcome Message -->
+            <div class="amaras-chat-bubble is-agent">
+              <div data-i18n="chat_welcome_msg">
+                Здравствуйте! Рады приветствовать вас в Amaras Tour. Чем мы можем помочь вам в выборе тура или организации отдыха в Армении?
+              </div>
+              <div class="amaras-bubble-time">12:00</div>
+            </div>
+          </div>
+
+          <!-- Chat Input Bar -->
+          <form class="amaras-chat-input-bar" onsubmit="handleChatSubmit(event)">
+            <input type="text" class="amaras-chat-input-field" id="amarasChatInput" placeholder="Напишите сообщение..." data-i18n-placeholder="chat_input_placeholder" autocomplete="off" />
+            <button type="submit" class="amaras-chat-send-btn" aria-label="Отправить">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Bottom Tab Navigation -->
+      <div class="amaras-chat-footer-tabs">
+        <button class="amaras-chat-tab-btn is-active" id="amarasTabHome" onclick="openSupportChatView('home')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span data-i18n="chat_tab_home">Главная</span>
+        </button>
+
+        <button class="amaras-chat-tab-btn" id="amarasTabMessages" onclick="openSupportChatView('messages')">
+          <div class="amaras-chat-tab-badge"></div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span data-i18n="chat_tab_messages">Диалог</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function toggleSupportChat() {
+      const win = document.getElementById('amarasChatWindow');
+      const btn = document.getElementById('amarasChatLauncher');
+      if (!win || !btn) return;
+      const isOpen = win.classList.toggle('is-open');
+      btn.classList.toggle('is-open', isOpen);
+      if (isOpen) {
+        const input = document.getElementById('amarasChatInput');
+        if (input && document.getElementById('amarasChatViewMessages').classList.contains('is-active')) {
+          setTimeout(() => input.focus(), 150);
+        }
+      }
+    }
+
+    function openSupportChatView(view) {
+      const homeView = document.getElementById('amarasChatViewHome');
+      const msgView = document.getElementById('amarasChatViewMessages');
+      const tabHome = document.getElementById('amarasTabHome');
+      const tabMsg = document.getElementById('amarasTabMessages');
+
+      if (view === 'messages') {
+        homeView.classList.add('is-hidden');
+        msgView.classList.add('is-active');
+        tabHome.classList.remove('is-active');
+        tabMsg.classList.add('is-active');
+        const scroll = document.getElementById('amarasChatScroll');
+        if (scroll) scroll.scrollTop = scroll.scrollHeight;
+        const input = document.getElementById('amarasChatInput');
+        if (input) setTimeout(() => input.focus(), 120);
+      } else {
+        homeView.classList.remove('is-hidden');
+        msgView.classList.remove('is-active');
+        tabHome.classList.add('is-active');
+        tabMsg.classList.remove('is-active');
+      }
+    }
+
+    function sendQuickChatMessage(question) {
+      openSupportChatView('messages');
+      appendUserChatMessage(question);
+      triggerAgentReply();
+    }
+
+    function handleChatSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('amarasChatInput');
+      if (!input) return;
+      const val = input.value.trim();
+      if (!val) return;
+      input.value = '';
+      appendUserChatMessage(val);
+      triggerAgentReply();
+    }
+
+    function appendUserChatMessage(text) {
+      const scroll = document.getElementById('amarasChatScroll');
+      if (!scroll) return;
+      const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const bubble = document.createElement('div');
+      bubble.className = 'amaras-chat-bubble is-user';
+      bubble.innerHTML = `<div>${escapeHtml(text)}</div><div class="amaras-bubble-time">${timeStr} ✓✓</div>`;
+      scroll.appendChild(bubble);
+      scroll.scrollTop = scroll.scrollHeight;
+    }
+
+    function triggerAgentReply() {
+      const scroll = document.getElementById('amarasChatScroll');
+      if (!scroll) return;
+      setTimeout(() => {
+        const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const bubble = document.createElement('div');
+        bubble.className = 'amaras-chat-bubble is-agent';
+        bubble.innerHTML = `<div>Спасибо за ваше обращение! Менеджер Amaras Tour уже получил уведомление и свяжется с вами. Для мгновенного ответа вы также можете написать нам в <a href="https://wa.me/37499250525" target="_blank" style="color:#C7FF32;text-decoration:underline;">WhatsApp</a> или позвонить по номеру <a href="tel:+37499250525" style="color:#FFFFFF;text-decoration:underline;">+374 99 250 525</a>.</div><div class="amaras-bubble-time">${timeStr}</div>`;
+        scroll.appendChild(bubble);
+        scroll.scrollTop = scroll.scrollHeight;
+      }, 700);
+    }
+
+    function escapeHtml(str) {
+      const p = document.createElement('p');
+      p.appendChild(document.createTextNode(str));
+      return p.innerHTML;
+    }
   </script>
 
 </body>
