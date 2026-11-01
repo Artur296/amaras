@@ -549,8 +549,8 @@ body[data-exit-popup-open="true"] {
 }
 
 .amaras-lang-btn {
-  padding: 4px 8px;
-  font-size: 12px;
+  padding: 4px 10px;
+  font-size: 12.5px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.7);
   background: transparent;
@@ -559,6 +559,7 @@ body[data-exit-popup-open="true"] {
   cursor: pointer;
   text-decoration: none;
   transition: all 0.15s ease;
+  letter-spacing: 0.01em;
 }
 
 .amaras-lang-btn:hover {
@@ -570,6 +571,265 @@ body[data-exit-popup-open="true"] {
   color: #FFFFFF;
   font-weight: 700;
   box-shadow: 0 2px 8px rgba(88, 110, 255, 0.4);
+}
+
+/* Mobile Language Trigger Button (Visible on <= 960px) */
+.amaras-mobile-lang-trigger {
+  display: none;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 9999px;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  user-select: none;
+  outline: none;
+}
+
+.amaras-mobile-lang-trigger:hover,
+.amaras-mobile-lang-trigger:active {
+  background: rgba(88, 110, 255, 0.16);
+  border-color: #586EFF;
+  color: #FFFFFF;
+}
+
+.amaras-mobile-lang-trigger svg {
+  color: rgba(255, 255, 255, 0.7);
+  transition: transform 0.2s ease;
+}
+
+.amaras-mobile-lang-trigger:hover svg {
+  color: #C7FF32;
+  transform: translateY(1px);
+}
+
+/* Drawer Language Button (inside mobile menu drawer) */
+.amaras-drawer-lang-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: all 0.2s ease;
+  user-select: none;
+  outline: none;
+}
+
+.amaras-drawer-lang-btn:hover,
+.amaras-drawer-lang-btn:active {
+  background: rgba(88, 110, 255, 0.12);
+  border-color: #586EFF;
+}
+
+.amaras-drawer-lang-current {
+  display: inline-block;
+  padding: 3px 10px;
+  background: #586EFF;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   Mobile Language Bottom Sheet (Меню снизу)
+   ========================================================================== */
+.amaras-lang-sheet-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.amaras-lang-sheet-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.amaras-lang-sheet {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  background: #1C1B1B;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 28px 28px 0 0;
+  padding: 12px 20px 24px;
+  box-sizing: border-box;
+  box-shadow: 0 -12px 48px rgba(0, 0, 0, 0.75);
+  transform: translateY(100%);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
+}
+
+.amaras-lang-sheet-overlay.is-open .amaras-lang-sheet {
+  transform: translateY(0);
+}
+
+.amaras-lang-sheet-handle {
+  width: 44px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  margin: 0 auto 16px;
+}
+
+.amaras-lang-sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding: 0 4px;
+}
+
+.amaras-lang-sheet-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.amaras-lang-sheet-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.amaras-lang-sheet-close:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #FFFFFF;
+  transform: rotate(90deg);
+}
+
+.amaras-lang-sheet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.amaras-lang-sheet-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+  user-select: none;
+  outline: none;
+}
+
+.amaras-lang-sheet-item:hover,
+.amaras-lang-sheet-item:active {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.amaras-lang-sheet-item.is-active {
+  background: rgba(88, 110, 255, 0.12);
+  border-color: #586EFF;
+  box-shadow: 0 4px 20px rgba(88, 110, 255, 0.25);
+}
+
+.amaras-lang-sheet-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.amaras-lang-sheet-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+}
+
+.amaras-lang-sheet-item.is-active .amaras-lang-sheet-badge {
+  background: #586EFF;
+  border-color: #586EFF;
+  color: #FFFFFF;
+}
+
+.amaras-lang-sheet-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.amaras-lang-sheet-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+}
+
+.amaras-lang-sheet-sub {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+}
+
+.amaras-lang-sheet-check {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition: all 0.2s ease;
+}
+
+.amaras-lang-sheet-item.is-active .amaras-lang-sheet-check {
+  color: #C7FF32;
 }
 
 /* Login & Register Buttons */
@@ -956,13 +1216,10 @@ body[data-exit-popup-open="true"] {
     height: 16px;
   }
   .amaras-lang-switcher {
-    padding: 2px;
-    border-radius: 16px;
-    gap: 1px;
+    display: none !important;
   }
-  .amaras-lang-btn {
-    font-size: 10px;
-    padding: 3px 5px;
+  .amaras-mobile-lang-trigger {
+    display: inline-flex;
   }
   .amaras-mobile-toggle {
     width: 34px;
@@ -987,6 +1244,11 @@ body[data-exit-popup-open="true"] {
 }
 
 @media (max-width: 375px) {
+  .amaras-mobile-lang-trigger {
+    padding: 4px 8px;
+    font-size: 12px;
+    gap: 3px;
+  }
   .amaras-nav-container {
     padding: 0 6px;
   }

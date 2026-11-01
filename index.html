@@ -76,7 +76,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+Armenian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="css/custom.css?v=40" rel="stylesheet" />
+  <link href="css/custom.css?v=41" rel="stylesheet" />
 </head>
 
 <body class="rebrand-body">
@@ -138,12 +138,20 @@
           <span class="amaras-cart-badge">2</span>
         </a>
 
-        <!-- Language Switcher (RU / ENG / HY) -->
+        <!-- Desktop Language Switcher (Рус / Eng / Հայ) -->
         <div class="amaras-lang-switcher">
-          <button class="amaras-lang-btn is-active" type="button" onclick="setLang('RU')">RU</button>
-          <button class="amaras-lang-btn" type="button" onclick="setLang('ENG')">ENG</button>
-          <button class="amaras-lang-btn" type="button" onclick="setLang('HY')">HY</button>
+          <button class="amaras-lang-btn is-active" type="button" data-lang="RU" onclick="setLang('RU')">Рус</button>
+          <button class="amaras-lang-btn" type="button" data-lang="ENG" onclick="setLang('ENG')">Eng</button>
+          <button class="amaras-lang-btn" type="button" data-lang="HY" onclick="setLang('HY')">Հայ</button>
         </div>
+
+        <!-- Mobile Language Trigger Button (Opens Bottom Sheet) -->
+        <button class="amaras-mobile-lang-trigger" type="button" onclick="openLangSheet()" aria-label="Выбрать язык">
+          <span class="amaras-mobile-lang-current" id="mobileLangCurrent">Рус</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
 
         <!-- Login Button -->
         <a class="amaras-login-btn" href="#login" data-i18n="btn_login">Вход</a>
@@ -222,11 +230,20 @@
         <a class="amaras-mobile-link" href="#contact" data-i18n="nav_contact">Контакты</a>
       </div>
       <div class="amaras-mobile-drawer-footer">
-        <div class="amaras-lang-switcher" style="justify-content:center;margin-bottom:16px;">
-          <button class="amaras-lang-btn is-active" type="button" onclick="setLang('RU')">RU</button>
-          <button class="amaras-lang-btn" type="button" onclick="setLang('ENG')">ENG</button>
-          <button class="amaras-lang-btn" type="button" onclick="setLang('HY')">HY</button>
-        </div>
+        <button class="amaras-drawer-lang-btn" type="button" onclick="openLangSheet()" aria-label="Выбрать язык">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span data-i18n="lang_select_title">Язык</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span class="amaras-drawer-lang-current" id="drawerLangCurrent">Рус</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+        </button>
         <div style="display:flex;flex-direction:column;gap:10px;">
           <a class="amaras-login-btn" href="#login" style="text-align:center;" data-i18n="btn_login">Вход</a>
           <a class="amaras-register-btn" href="#register" style="text-align:center;"
@@ -238,6 +255,8 @@
   <script>
     const AMARAS_I18N = {
       RU: {
+        lang_sheet_title: "Выберите язык",
+        lang_select_title: "Язык",
         nav_home: "Главная",
         nav_tours: "Туры",
         tour_popular: "Популярные туры",
@@ -382,6 +401,8 @@
         bento_c4_badge: "Официальный лицензированный туроператор РА • Страховка каждого гостя",
       },
       ENG: {
+        lang_sheet_title: "Select Language",
+        lang_select_title: "Language",
         nav_home: "Home",
         nav_tours: "Tours",
         tour_popular: "Popular Tours",
@@ -526,6 +547,8 @@
         bento_c4_badge: "Licensed Tour Operator of RA • Guest Insurance Included",
       },
       HY: {
+        lang_sheet_title: "Ընտրեք լեզուն",
+        lang_select_title: "Լեզու",
         nav_home: "Գլխավոր",
         nav_tours: "Տուրեր",
         tour_popular: "Հանրաճանաչ տուրեր",
@@ -692,14 +715,59 @@
       if (drawer) drawer.classList.toggle('is-open');
     }
 
+    const LANG_SHORT_LABELS = {
+      RU: 'Рус',
+      ENG: 'Eng',
+      HY: 'Հայ'
+    };
+
+    function openLangSheet() {
+      const overlay = document.getElementById('amarasLangSheetOverlay');
+      if (overlay) {
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeLangSheet() {
+      const overlay = document.getElementById('amarasLangSheetOverlay');
+      if (overlay) {
+        overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function selectLangAndClose(lang) {
+      setLang(lang);
+      closeLangSheet();
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLangSheet();
+    });
+
     function setLang(lang) {
       if (!AMARAS_I18N[lang]) return;
       document.body.setAttribute('data-lang', lang);
       document.documentElement.setAttribute('lang', lang.toLowerCase());
 
-      // Update switcher active buttons
+      const shortLabel = LANG_SHORT_LABELS[lang] || lang;
+
+      // Update mobile trigger and drawer labels
+      const mobileCurrent = document.getElementById('mobileLangCurrent');
+      if (mobileCurrent) mobileCurrent.textContent = shortLabel;
+      const drawerCurrent = document.getElementById('drawerLangCurrent');
+      if (drawerCurrent) drawerCurrent.textContent = shortLabel;
+
+      // Update desktop switcher active buttons
       document.querySelectorAll('.amaras-lang-btn').forEach(btn => {
-        btn.classList.toggle('is-active', btn.innerText.trim() === lang);
+        const bLang = btn.getAttribute('data-lang') || btn.innerText.trim();
+        btn.classList.toggle('is-active', bLang === lang || bLang === shortLabel);
+      });
+
+      // Update bottom sheet active item
+      document.querySelectorAll('.amaras-lang-sheet-item').forEach(item => {
+        item.classList.toggle('is-active', item.getAttribute('data-lang-choice') === lang);
       });
 
       const dict = AMARAS_I18N[lang];
@@ -4437,6 +4505,72 @@
       }
     }
   </script>
+  <!-- Amaras Mobile Language Bottom Sheet (меню снизу) -->
+  <div class="amaras-lang-sheet-overlay" id="amarasLangSheetOverlay" onclick="if(event.target === this) closeLangSheet()" role="dialog" aria-modal="true" aria-labelledby="amarasLangSheetTitle">
+    <div class="amaras-lang-sheet">
+      <div class="amaras-lang-sheet-handle"></div>
+
+      <div class="amaras-lang-sheet-header">
+        <h3 class="amaras-lang-sheet-title" id="amarasLangSheetTitle" data-i18n="lang_sheet_title">Выберите язык</h3>
+        <button class="amaras-lang-sheet-close" onclick="closeLangSheet()" aria-label="Закрыть">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="amaras-lang-sheet-list">
+        <!-- Russian -->
+        <button type="button" class="amaras-lang-sheet-item is-active" data-lang-choice="RU" onclick="selectLangAndClose('RU')">
+          <div class="amaras-lang-sheet-left">
+            <span class="amaras-lang-sheet-badge">Рус</span>
+            <div class="amaras-lang-sheet-info">
+              <span class="amaras-lang-sheet-name">Русский</span>
+              <span class="amaras-lang-sheet-sub">Russian</span>
+            </div>
+          </div>
+          <div class="amaras-lang-sheet-check">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+        </button>
+
+        <!-- English -->
+        <button type="button" class="amaras-lang-sheet-item" data-lang-choice="ENG" onclick="selectLangAndClose('ENG')">
+          <div class="amaras-lang-sheet-left">
+            <span class="amaras-lang-sheet-badge">Eng</span>
+            <div class="amaras-lang-sheet-info">
+              <span class="amaras-lang-sheet-name">English</span>
+              <span class="amaras-lang-sheet-sub">Английский</span>
+            </div>
+          </div>
+          <div class="amaras-lang-sheet-check">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+        </button>
+
+        <!-- Armenian -->
+        <button type="button" class="amaras-lang-sheet-item" data-lang-choice="HY" onclick="selectLangAndClose('HY')">
+          <div class="amaras-lang-sheet-left">
+            <span class="amaras-lang-sheet-badge">Հայ</span>
+            <div class="amaras-lang-sheet-info">
+              <span class="amaras-lang-sheet-name">Հայերեն</span>
+              <span class="amaras-lang-sheet-sub">Armenian</span>
+            </div>
+          </div>
+          <div class="amaras-lang-sheet-check">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
