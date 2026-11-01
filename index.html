@@ -33,7 +33,7 @@ html{-webkit-font-smoothing:antialiased;-moz-font-smoothing:antialiased;-o-font-
 </style>
 <link href="https://cdn.plyr.io/3.8.4/plyr.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.css" rel="stylesheet"/>
-<link href="css/custom.css?v=11" rel="stylesheet"/></head><body class="rebrand-body"><div class="rebrand-nav-bar w-nav" role="banner">
+<link href="css/custom.css?v=12" rel="stylesheet"/></head><body class="rebrand-body"><div class="rebrand-nav-bar w-nav" role="banner">
   <div class="amaras-nav-container">
     <!-- Brand Logo -->
     <a class="amaras-nav-logo" href="#">
@@ -133,13 +133,20 @@ html{-webkit-font-smoothing:antialiased;-moz-font-smoothing:antialiased;-o-font-
     </div>
     <div class="amaras-mobile-drawer-links">
       <a class="amaras-mobile-link is-active" href="#" data-i18n="nav_home">Главная</a>
-      <div class="amaras-mobile-submenu">
-        <div class="amaras-mobile-submenu-title" data-i18n="nav_tours">Туры</div>
-        <a class="amaras-mobile-sublink" href="#tours-city" data-i18n="tour_city">Экскурсионные туры</a>
-        <a class="amaras-mobile-sublink" href="#tours-history" data-i18n="tour_history">Исторические туры</a>
-        <a class="amaras-mobile-sublink" href="#tours-gastro" data-i18n="tour_gastro">Гастрономические туры</a>
-        <a class="amaras-mobile-sublink" href="#tours-jeep" data-i18n="tour_jeep">Джип-туры и экстрим</a>
-        <a class="amaras-mobile-sublink" href="#tours-custom" data-i18n="tour_custom">Индивидуальные маршруты</a>
+      <div class="amaras-mobile-dropdown">
+        <button class="amaras-mobile-dropdown-btn" type="button" onclick="toggleMobileDropdown(this)">
+          <span class="amaras-mobile-dropdown-title" data-i18n="nav_tours">Туры</span>
+          <svg class="amaras-mobile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+        <div class="amaras-mobile-submenu">
+          <a class="amaras-mobile-sublink" href="#tours-city" data-i18n="tour_city">Экскурсионные туры</a>
+          <a class="amaras-mobile-sublink" href="#tours-history" data-i18n="tour_history">Исторические туры</a>
+          <a class="amaras-mobile-sublink" href="#tours-gastro" data-i18n="tour_gastro">Гастрономические туры</a>
+          <a class="amaras-mobile-sublink" href="#tours-jeep" data-i18n="tour_jeep">Джип-туры и экстрим</a>
+          <a class="amaras-mobile-sublink" href="#tours-custom" data-i18n="tour_custom">Индивидуальные маршруты</a>
+        </div>
       </div>
       <a class="amaras-mobile-link" href="#attractions" data-i18n="nav_attractions">Что посмотреть</a>
       <a class="amaras-mobile-link" href="#fleet" data-i18n="nav_fleet">Автопарк</a>
@@ -310,6 +317,11 @@ const AMARAS_I18N = {
     tag_workshops: "Վարպետության դասեր",
   }
 };
+
+function toggleMobileDropdown(btn) {
+  const dropdown = btn.closest('.amaras-mobile-dropdown');
+  if (dropdown) dropdown.classList.toggle('is-open');
+}
 
 function toggleMobileNav() {
   const drawer = document.querySelector('.amaras-mobile-drawer');
