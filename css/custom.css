@@ -4672,3 +4672,131 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   color: #555353 !important;
   margin: 0 !important;
 }
+
+
+/* ==========================================================================
+   Ambient Atmosphere Music Button & Wave Equalizer
+   ========================================================================== */
+.amaras-music-btn {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+}
+
+.amaras-music-btn:hover {
+  border-color: #C7FF32;
+  color: #C7FF32;
+  background: rgba(199, 255, 50, 0.12);
+  transform: scale(1.05);
+}
+
+.amaras-music-btn.is-playing {
+  border-color: rgba(199, 255, 50, 0.45);
+  background: rgba(199, 255, 50, 0.14);
+  color: #C7FF32;
+  box-shadow: 0 0 14px rgba(199, 255, 50, 0.2);
+}
+
+/* Sound Wave Equalizer Bars */
+.amaras-music-wave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5px;
+  height: 16px;
+}
+
+.amaras-music-wave .amaras-bar {
+  width: 2.5px;
+  border-radius: 2px;
+  background: currentColor;
+  height: 4px;
+  transition: height 0.15s ease;
+}
+
+.amaras-music-btn.is-playing .amaras-music-wave .amaras-bar {
+  animation: amarasSoundWavePulse 1.1s ease-in-out infinite;
+}
+
+.amaras-music-btn.is-playing .amaras-bar.b1 { animation-delay: 0.0s; }
+.amaras-music-btn.is-playing .amaras-bar.b2 { animation-delay: 0.24s; }
+.amaras-music-btn.is-playing .amaras-bar.b3 { animation-delay: 0.12s; }
+.amaras-music-btn.is-playing .amaras-bar.b4 { animation-delay: 0.36s; }
+
+@keyframes amarasSoundWavePulse {
+  0%, 100% {
+    height: 3px;
+  }
+  50% {
+    height: 15px;
+  }
+}
+
+/* Muted / Paused States */
+.amaras-music-btn.is-muted .amaras-music-wave {
+  display: none !important;
+}
+.amaras-music-btn.is-muted .amaras-music-muted-icon {
+  display: block !important;
+  opacity: 0.78;
+}
+.amaras-music-btn.is-playing .amaras-music-muted-icon {
+  display: none !important;
+}
+
+/* Responsive Scaling to match Search button */
+@media (max-width: 991px) {
+  .amaras-music-btn {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+  }
+}
+
+@media (max-width: 480px) {
+  .amaras-music-btn {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+  }
+  .amaras-music-btn .amaras-music-muted-icon {
+    width: 15px;
+    height: 15px;
+  }
+  .amaras-music-wave {
+    height: 13px;
+    gap: 2px;
+  }
+  .amaras-music-wave .amaras-bar {
+    width: 2px;
+  }
+}
+
+@media (max-width: 360px) {
+  .amaras-music-btn {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+  }
+  .amaras-music-btn .amaras-music-muted-icon {
+    width: 14px;
+    height: 14px;
+  }
+  .amaras-music-wave {
+    height: 11px;
+    gap: 1.5px;
+  }
+}
