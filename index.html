@@ -76,7 +76,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+Armenian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="css/custom.css?v=51" rel="stylesheet" />
+  <link href="css/custom.css?v=52" rel="stylesheet" />
 </head>
 
 <body class="rebrand-body">
@@ -3193,13 +3193,33 @@
       </p>
     </div>
     
-    <div class="amaras-faq-tabs">
-      <button type="button" class="amaras-faq-tab is-active" data-filter="all">Все вопросы (27)</button>
-      <button type="button" class="amaras-faq-tab" data-filter="booking">Бронирование и оплата (6)</button>
-      <button type="button" class="amaras-faq-tab" data-filter="cancellation">Отмена и изменение (4)</button>
-      <button type="button" class="amaras-faq-tab" data-filter="organization">Организация экскурсий (6)</button>
-      <button type="button" class="amaras-faq-tab" data-filter="safety">Комфорт и безопасность (7)</button>
-      <button type="button" class="amaras-faq-tab" data-filter="private">Индивидуальные туры (4)</button>
+    <div class="amaras-faq-tabs-wrapper">
+      <div class="amaras-faq-tabs">
+        <button type="button" class="amaras-faq-tab is-active" data-filter="all">
+          <span>Все вопросы</span>
+          <span class="amaras-faq-count">27</span>
+        </button>
+        <button type="button" class="amaras-faq-tab" data-filter="booking">
+          <span>Бронирование и оплата</span>
+          <span class="amaras-faq-count">6</span>
+        </button>
+        <button type="button" class="amaras-faq-tab" data-filter="cancellation">
+          <span>Отмена и изменение</span>
+          <span class="amaras-faq-count">4</span>
+        </button>
+        <button type="button" class="amaras-faq-tab" data-filter="organization">
+          <span>Организация экскурсий</span>
+          <span class="amaras-faq-count">6</span>
+        </button>
+        <button type="button" class="amaras-faq-tab" data-filter="safety">
+          <span>Комфорт и безопасность</span>
+          <span class="amaras-faq-count">7</span>
+        </button>
+        <button type="button" class="amaras-faq-tab" data-filter="private">
+          <span>Индивидуальные туры</span>
+          <span class="amaras-faq-count">4</span>
+        </button>
+      </div>
     </div>
     
     <div class="amaras-faq-list" id="amarasFaqList">
@@ -4034,6 +4054,9 @@
         tab.addEventListener('click', () => {
           tabs.forEach(t => t.classList.remove('is-active'));
           tab.classList.add('is-active');
+          if (window.innerWidth <= 860) {
+            tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          }
           
           const filter = tab.getAttribute('data-filter');
           items.forEach(item => {
