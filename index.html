@@ -33,7 +33,7 @@ html{-webkit-font-smoothing:antialiased;-moz-font-smoothing:antialiased;-o-font-
 </style>
 <link href="https://cdn.plyr.io/3.8.4/plyr.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.css" rel="stylesheet"/>
-<link href="css/custom.css?v=9" rel="stylesheet"/></head><body class="rebrand-body"><div class="rebrand-nav-bar w-nav" role="banner">
+<link href="css/custom.css?v=10" rel="stylesheet"/></head><body class="rebrand-body"><div class="rebrand-nav-bar w-nav" role="banner">
   <div class="amaras-nav-container">
     <!-- Brand Logo -->
     <a class="amaras-nav-logo" href="#">
@@ -1975,10 +1975,30 @@ document.addEventListener('DOMContentLoaded', () => {
 <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript> --><script src="https://cdn.plyr.io/3.8.4/plyr.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.min.js"></script>
 <script>
- // Lenis (with GSAP Scroltrigger)
-const lenis = new Lenis(); window.lenis = lenis;
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add((time) => {lenis.raf(time * 900);});
-gsap.ticker.lagSmoothing(0);
+ // Lenis (with GSAP ScrollTrigger) - Desktop Only for 100% Native Mobile Scrolling
+(function() {
+  const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || window.matchMedia('(pointer: coarse)').matches;
+  if (!isTouchDevice && typeof Lenis !== 'undefined') {
+    const lenis = new Lenis({
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      syncTouch: false
+    });
+    window.lenis = lenis;
+    if (typeof ScrollTrigger !== 'undefined') {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    }
+  } else {
+    // Mobile Touch Device: disable Lenis so native hardware-accelerated 120Hz gesture scrolling works perfectly
+    window.lenis = null;
+    document.documentElement.classList.remove('lenis', 'lenis-smooth', 'lenis-stopped');
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.refresh();
+    }
+  }
+})();
 </script>
 <script src="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1635%2F689e5ba67671442434f3ca35%2F69e2231287b3418334f76108%2Fbenefitcardsdesktopdrag-1.0.8.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1635%2F689e5ba67671442434f3ca35%2F69e2231396b856c6314bcd50%2Fcmsfiltercountbadge-1.0.4.js" type="text/javascript"></script></body></html>
