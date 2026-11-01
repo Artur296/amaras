@@ -2774,7 +2774,7 @@ body[data-exit-popup-open="true"] {
   bottom: 98px;
   width: 380px;
   max-width: calc(100vw - 32px);
-  height: 570px;
+  height: 580px;
   max-height: calc(100vh - 120px);
   background: #201F1F;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -2890,31 +2890,31 @@ body[data-exit-popup-open="true"] {
 .amaras-chat-view-home {
   flex: 1;
   overflow-y: auto;
-  padding: 20px 18px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 14px 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
   box-sizing: border-box;
 }
 
 .amaras-chat-view-home::-webkit-scrollbar {
-  width: 5px;
-}
-.amaras-chat-view-home::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 /* Start New Conversation Card */
 .amaras-chat-start-card {
   background: rgba(88, 110, 255, 0.1) !important;
   border: 1px solid rgba(88, 110, 255, 0.35);
-  border-radius: 18px;
-  padding: 16px 18px;
+  border-radius: 14px;
+  padding: 11px 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 12px;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
@@ -2928,21 +2928,21 @@ body[data-exit-popup-open="true"] {
 }
 
 .amaras-chat-start-text h4 {
-  font-size: 15.5px;
+  font-size: 14px;
   font-weight: 700;
   color: #FFFFFF;
-  margin: 0 0 4px;
+  margin: 0 0 2px;
 }
 
 .amaras-chat-start-text p {
-  font-size: 12.5px;
+  font-size: 11.5px;
   color: rgba(255, 255, 255, 0.65);
   margin: 0;
 }
 
 .amaras-chat-start-arrow {
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: #586EFF;
   color: #FFFFFF;
@@ -2972,17 +2972,17 @@ body[data-exit-popup-open="true"] {
 .amaras-chat-channels {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .amaras-chat-channel-link {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
-  padding: 12px 14px;
+  border-radius: 12px;
+  padding: 8px 12px;
   color: #FFFFFF !important;
   text-decoration: none !important;
   transition: all 0.2s ease;
@@ -2995,9 +2995,9 @@ body[data-exit-popup-open="true"] {
 }
 
 .amaras-channel-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3027,7 +3027,7 @@ body[data-exit-popup-open="true"] {
 }
 
 .amaras-channel-title {
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 700;
   color: #FFFFFF;
   margin: 0;
@@ -3037,9 +3037,9 @@ body[data-exit-popup-open="true"] {
 }
 
 .amaras-channel-sub {
-  font-size: 12px;
+  font-size: 11.5px;
   color: rgba(255, 255, 255, 0.55);
-  margin-top: 2px;
+  margin-top: 1px;
 }
 
 /* Quick FAQs in Chat */
@@ -3338,7 +3338,12 @@ body[data-exit-popup-open="true"] {
     min-height: 0 !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    padding: 18px 16px !important;
+    scrollbar-width: none !important;
+    padding: 14px 16px !important;
+    gap: 10px !important;
+  }
+  .amaras-chat-view-home::-webkit-scrollbar {
+    display: none !important;
   }
 
   .amaras-chat-view-messages {
