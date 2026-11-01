@@ -3868,3 +3868,5 @@ body[data-lang="HY"] * {
   border-color: #25D366;
   box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
 }
+
+.amaras-chat-status { display: none !important; }
