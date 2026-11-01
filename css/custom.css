@@ -1105,8 +1105,13 @@ body[data-exit-popup-open="true"] {
 /* Amaras Globe Branding */
 .amaras-globe-img,
 .rebrand-section-worldmap-imagecontainer img {
-  filter: hue-rotate(205deg) saturate(1.15) brightness(1.02);
+  filter: none !important;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.amaras-globe-img:hover,
+.rebrand-section-worldmap-imagecontainer img:hover {
+  transform: scale(1.04) rotate(3deg);
 }
 
 .rebrand-section-worldmap-imagecontainer:hover img {
