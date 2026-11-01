@@ -1184,10 +1184,17 @@ body[data-exit-popup-open="true"] {
   .amaras-nav-container {
     padding: 0 14px;
     height: 60px;
+    justify-content: space-between !important;
+  }
+  .amaras-nav-logo {
+    flex-shrink: 0 !important;
   }
   .amaras-nav-logo img {
-    height: 26px;
-    max-width: 115px;
+    height: 26px !important;
+    width: auto !important;
+    max-width: none !important;
+    object-fit: contain !important;
+    display: block !important;
   }
   .amaras-search-btn {
     display: flex !important;
@@ -1201,6 +1208,7 @@ body[data-exit-popup-open="true"] {
   }
   .amaras-nav-actions {
     gap: 8px;
+    flex-shrink: 0 !important;
   }
 }
 
@@ -1208,10 +1216,17 @@ body[data-exit-popup-open="true"] {
   .amaras-nav-container {
     padding: 0 10px;
     height: 56px;
+    justify-content: space-between !important;
+  }
+  .amaras-nav-logo {
+    flex-shrink: 0 !important;
   }
   .amaras-nav-logo img {
-    height: 23px;
-    max-width: 95px;
+    height: 24px !important;
+    width: auto !important;
+    max-width: none !important;
+    object-fit: contain !important;
+    display: block !important;
   }
   .amaras-search-btn {
     display: flex !important;
@@ -1263,18 +1278,24 @@ body[data-exit-popup-open="true"] {
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 380px) {
   .amaras-mobile-lang-trigger {
-    padding: 4px 8px;
-    font-size: 12px;
-    gap: 3px;
+    padding: 4px 7px;
+    font-size: 11.5px;
+    gap: 2px;
   }
   .amaras-nav-container {
-    padding: 0 6px;
+    padding: 0 8px;
+  }
+  .amaras-nav-logo {
+    flex-shrink: 0 !important;
   }
   .amaras-nav-logo img {
-    max-width: 78px;
-    height: 20px;
+    height: 21px !important;
+    width: auto !important;
+    max-width: none !important;
+    object-fit: contain !important;
+    display: block !important;
   }
   .amaras-nav-actions {
     gap: 4px;
