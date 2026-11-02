@@ -485,6 +485,85 @@ body[data-exit-popup-open="true"] {
   transform: translateX(3px);
 }
 
+/* Submenu / Flyout for Nested Dropdown Items (e.g. Групповые экскурсии) */
+.amaras-dropdown-subitem-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.amaras-dropdown-item.amaras-dropdown-parent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+
+.amaras-sub-chevron {
+  color: rgba(255, 255, 255, 0.6);
+  transition: transform 0.2s ease, color 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.amaras-dropdown-subitem-wrapper:hover .amaras-sub-chevron,
+.amaras-dropdown-parent:hover .amaras-sub-chevron,
+.amaras-dropdown-subitem-wrapper.is-open .amaras-sub-chevron {
+  color: #C7FF32;
+  transform: translateX(3px);
+}
+
+.amaras-dropdown-flyout {
+  position: absolute;
+  top: -6px;
+  left: 100%;
+  margin-left: 6px;
+  min-width: 275px;
+  background: #312F2F;
+  border: 1px solid rgba(88, 110, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 1020;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-6px);
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s ease;
+  transition-delay: 0.15s;
+}
+
+/* Invisible hover bridge to eliminate gap between parent item and flyout */
+.amaras-dropdown-flyout::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -18px;
+  bottom: -10px;
+  width: 18px;
+  background: transparent;
+  display: block;
+}
+
+.amaras-dropdown-subitem-wrapper:hover .amaras-dropdown-flyout,
+.amaras-dropdown-subitem-wrapper:focus-within .amaras-dropdown-flyout,
+.amaras-dropdown-subitem-wrapper.is-open .amaras-dropdown-flyout {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0);
+  transition-delay: 0s;
+}
+
+.amaras-dropdown-flyout .amaras-dropdown-item {
+  white-space: nowrap;
+}
+
 /* Right Actions Cluster */
 .amaras-nav-actions {
   display: flex;
@@ -1055,7 +1134,7 @@ body[data-exit-popup-open="true"] {
 }
 
 .amaras-mobile-dropdown.is-open .amaras-mobile-submenu {
-  max-height: 280px;
+  max-height: 560px;
   opacity: 1;
   margin-top: 4px;
   margin-bottom: 6px;
@@ -1067,6 +1146,84 @@ body[data-exit-popup-open="true"] {
   text-decoration: none;
   padding: 6px 12px;
   border-radius: 8px;
+}
+
+/* Mobile Nested Dropdown (Групповые экскурсии) */
+.amaras-mobile-nested-dropdown {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.amaras-mobile-nested-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  text-align: left;
+  transition: all 0.18s ease;
+  font-family: inherit;
+}
+
+.amaras-mobile-nested-btn:hover,
+.amaras-mobile-nested-btn:active,
+.amaras-mobile-nested-dropdown.is-open .amaras-mobile-nested-btn {
+  color: #C7FF32;
+  background: rgba(88, 110, 255, 0.12);
+}
+
+.amaras-mobile-nested-chevron {
+  color: rgba(255, 255, 255, 0.6);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.amaras-mobile-nested-dropdown.is-open .amaras-mobile-nested-chevron {
+  transform: rotate(90deg);
+  color: #C7FF32;
+}
+
+.amaras-mobile-nested-menu {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.25s ease, margin 0.25s ease;
+  padding-left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.amaras-mobile-nested-dropdown.is-open .amaras-mobile-nested-menu {
+  max-height: 180px;
+  opacity: 1;
+  margin-top: 4px;
+  margin-bottom: 6px;
+}
+
+.amaras-mobile-deep-link {
+  font-size: 13px !important;
+  color: rgba(255, 255, 255, 0.78) !important;
+  border-left: 2px solid rgba(88, 110, 255, 0.35);
+  border-radius: 0 8px 8px 0 !important;
+  padding: 7px 12px !important;
+  transition: all 0.18s ease;
+}
+
+.amaras-mobile-deep-link:hover,
+.amaras-mobile-deep-link:active {
+  color: #C7FF32 !important;
+  border-left-color: #C7FF32;
+  background: rgba(88, 110, 255, 0.15) !important;
+  transform: translateX(2px);
 }
 
 .amaras-mobile-drawer-footer {

@@ -76,7 +76,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+Armenian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="css/custom.css?v=66" rel="stylesheet" />
+  <link href="css/custom.css?v=67" rel="stylesheet" />
 </head>
 
 <body class="rebrand-body">
@@ -113,8 +113,18 @@
           </a>
           <div class="amaras-nav-dropdown-menu">
             <a class="amaras-dropdown-item" href="#tours-popular" data-i18n="tour_popular">Популярные туры</a>
-            <a class="amaras-dropdown-item" href="#tours-group" data-i18n="tour_group">Групповые туры</a>
-            <a class="amaras-dropdown-item" href="#tours-minigroup" data-i18n="tour_minigroup">Мини-групповые туры</a>
+            <div class="amaras-dropdown-subitem-wrapper">
+              <div class="amaras-dropdown-item amaras-dropdown-parent" tabindex="0" onclick="toggleDesktopSubmenu(this, event)">
+                <span data-i18n="tour_group_excursions">Групповые экскурсии</span>
+                <svg class="amaras-sub-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+              <div class="amaras-dropdown-flyout">
+                <a class="amaras-dropdown-item" href="#tours-minigroup" data-i18n="tour_mini_8">Мини группа до 8 участников</a>
+                <a class="amaras-dropdown-item" href="#tours-group" data-i18n="tour_big_19">Большая группа до 19 участников</a>
+              </div>
+            </div>
             <a class="amaras-dropdown-item" href="#tours-individual" data-i18n="tour_individual">Индивидуальные туры</a>
             <a class="amaras-dropdown-item" href="#tours-jeep" data-i18n="tour_jeep">Джип и экстрим туры</a>
             <a class="amaras-dropdown-item" href="#tours-gastro" data-i18n="tour_gastro">Гастро-туры</a>
@@ -294,8 +304,19 @@
           </button>
           <div class="amaras-mobile-submenu">
             <a class="amaras-mobile-sublink" href="#tours-popular" data-i18n="tour_popular">Популярные туры</a>
-            <a class="amaras-mobile-sublink" href="#tours-group" data-i18n="tour_group">Групповые туры</a>
-            <a class="amaras-mobile-sublink" href="#tours-minigroup" data-i18n="tour_minigroup">Мини-групповые туры</a>
+            <div class="amaras-mobile-nested-dropdown">
+              <button class="amaras-mobile-nested-btn" type="button" onclick="toggleMobileNestedDropdown(this)">
+                <span data-i18n="tour_group_excursions">Групповые экскурсии</span>
+                <svg class="amaras-mobile-nested-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+              <div class="amaras-mobile-nested-menu">
+                <a class="amaras-mobile-sublink amaras-mobile-deep-link" href="#tours-minigroup" data-i18n="tour_mini_8">Мини группа до 8 участников</a>
+                <a class="amaras-mobile-sublink amaras-mobile-deep-link" href="#tours-group" data-i18n="tour_big_19">Большая группа до 19 участников</a>
+              </div>
+            </div>
             <a class="amaras-mobile-sublink" href="#tours-individual" data-i18n="tour_individual">Индивидуальные туры</a>
             <a class="amaras-mobile-sublink" href="#tours-jeep" data-i18n="tour_jeep">Джип и экстрим туры</a>
             <a class="amaras-mobile-sublink" href="#tours-gastro" data-i18n="tour_gastro">Гастро-туры</a>
@@ -358,6 +379,9 @@
         tour_popular: "Популярные туры",
         tour_group: "Групповые туры",
         tour_minigroup: "Мини-групповые туры",
+        tour_group_excursions: "Групповые экскурсии",
+        tour_mini_8: "Мини группа до 8 участников",
+        tour_big_19: "Большая группа до 19 участников",
         tour_individual: "Индивидуальные туры",
         tour_city: "Экскурсионные туры",
         tour_history: "Исторические туры",
@@ -524,6 +548,9 @@
         tour_popular: "Popular Tours",
         tour_group: "Group Tours",
         tour_minigroup: "Small Group Tours",
+        tour_group_excursions: "Group Excursions",
+        tour_mini_8: "Small group up to 8 participants",
+        tour_big_19: "Big group up to 19 participants",
         tour_individual: "Private Tours",
         tour_city: "Sightseeing Tours",
         tour_history: "Historical Tours",
@@ -690,6 +717,9 @@
         tour_popular: "Հանրաճանաչ տուրեր",
         tour_group: "Խմբային տուրեր",
         tour_minigroup: "Մինի-խմբային տուրեր",
+        tour_group_excursions: "Խմբային էքսկուրսիաներ",
+        tour_mini_8: "Մինի խումբ մինչև 8 մասնակից",
+        tour_big_19: "Մեծ խումբ մինչև 19 մասնակից",
         tour_individual: "Անհատական տուրեր",
         tour_city: "Էքսկուրսիոն տուրեր",
         tour_history: "Պատմական տուրեր",
@@ -855,6 +885,17 @@
       if (dropdown) dropdown.classList.toggle('is-open');
     }
 
+    function toggleMobileNestedDropdown(btn) {
+      const nested = btn.closest('.amaras-mobile-nested-dropdown');
+      if (nested) nested.classList.toggle('is-open');
+    }
+
+    function toggleDesktopSubmenu(el, e) {
+      if (e) e.stopPropagation();
+      const wrapper = el.closest('.amaras-dropdown-subitem-wrapper');
+      if (wrapper) wrapper.classList.toggle('is-open');
+    }
+
     function toggleSearchBar() {
       const overlay = document.querySelector('.amaras-search-bar-overlay');
       if (overlay) {
@@ -910,11 +951,14 @@
       closeMobileLangMenu();
     }
 
-    // Close language popover when clicking anywhere outside or on scroll
+    // Close popovers when clicking anywhere outside or on scroll
     document.addEventListener('click', (e) => {
       const wrapper = document.getElementById('mobileLangWrapper');
       if (wrapper && !wrapper.contains(e.target)) {
         closeMobileLangMenu();
+      }
+      if (!e.target.closest('.amaras-dropdown-subitem-wrapper')) {
+        document.querySelectorAll('.amaras-dropdown-subitem-wrapper.is-open').forEach(w => w.classList.remove('is-open'));
       }
     });
 
