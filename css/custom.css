@@ -4621,6 +4621,24 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   }
 }
 
+
+.rebrand-section-hero-description {
+  white-space: pre-line !important;
+  line-height: 1.68 !important;
+  max-width: 580px !important;
+  font-size: 16px !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+@media (max-width: 991px) {
+  .rebrand-section-hero-description {
+    max-width: 100% !important;
+    text-align: center !important;
+    font-size: 15px !important;
+    line-height: 1.62 !important;
+  }
+}
+
 /* ==========================================================================
    Hero Action Cluster with Social & Direct Call Round Buttons
    ========================================================================== */
