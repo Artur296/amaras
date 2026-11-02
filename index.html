@@ -4719,7 +4719,7 @@
 
   <script>
     // ==========================================================================
-    // Ambient Atmosphere Music Player (Komitas Jazz)
+    // Ambient Atmosphere Music Player (Komitas Jazz) - iOS Safari & Cross-Platform
     // ==========================================================================
     (function () {
       const audio = document.getElementById('amarasAtmosphereAudio');
@@ -4729,6 +4729,10 @@
       const TARGET_VOLUME = 0.18; // Soft, comfortable ambient lounge volume
       let fadeInterval = null;
       let manuallyPaused = false;
+
+      // Detection for iOS Safari (volume property is strictly read-only on iOS)
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
       function getTitles() {
         const lang = (window.currentLang || localStorage.getItem('amaras_lang') || 'RU').toUpperCase();
@@ -4765,70 +4769,119 @@
         }
       }
 
-      // Sync button UI strictly with actual audio state — never fake playing status
+      // Sync button UI strictly with actual audio state
       audio.addEventListener('play', () => updateBtnUI(true));
       audio.addEventListener('pause', () => updateBtnUI(false));
       audio.addEventListener('ended', () => updateBtnUI(false));
 
-      function fadeInAudio(target = TARGET_VOLUME, durationMs = 2800) {
+      function stopAudioImmediately() {
+        clearInterval(fadeInterval);
+        try {
+          audio.pause();
+        } catch (e) {}
+        updateBtnUI(false);
+      }
+
+      function fadeInAudio(target = TARGET_VOLUME, durationMs = 2000) {
         if (!audio) return;
         clearInterval(fadeInterval);
-        audio.volume = 0;
+
+        if (isIOS) {
+          // On iOS, hardware controls volume; start directly without volume fade loop
+          const p = audio.play();
+          if (p && p.catch) {
+            p.catch(() => updateBtnUI(false));
+          }
+          return;
+        }
+
+        let currentVol = 0;
+        try { audio.volume = 0; } catch (e) {}
         const playPromise = audio.play();
         if (playPromise !== undefined) {
           playPromise.then(() => {
-            const steps = 30;
+            const steps = 25;
             const stepTime = durationMs / steps;
             const volStep = target / steps;
             fadeInterval = setInterval(() => {
-              if (audio.volume + volStep < target) {
-                audio.volume = Math.min(target, audio.volume + volStep);
+              currentVol += volStep;
+              if (currentVol < target) {
+                try { audio.volume = Math.min(target, currentVol); } catch (e) {}
               } else {
-                audio.volume = target;
+                try { audio.volume = target; } catch (e) {}
                 clearInterval(fadeInterval);
               }
             }, stepTime);
           }).catch(err => {
-            // Autoplay policy blocked sound until first user gesture: keep UI muted honestly
             updateBtnUI(false);
           });
         }
       }
 
-      function fadeOutAndPause(durationMs = 400) {
+      function fadeOutAndPause(durationMs = 250) {
         if (!audio) return;
         clearInterval(fadeInterval);
-        const steps = 15;
+
+        // On iOS, volume is read-only. Pausing immediately is required so audio stops instantly!
+        if (isIOS) {
+          stopAudioImmediately();
+          return;
+        }
+
+        let currentVol = audio.volume || TARGET_VOLUME;
+        const steps = 10;
         const stepTime = durationMs / steps;
-        const volStep = audio.volume / steps;
+        const volStep = currentVol / steps;
+
         fadeInterval = setInterval(() => {
-          if (audio.volume - volStep > 0.02) {
-            audio.volume = Math.max(0, audio.volume - volStep);
+          currentVol -= volStep;
+          if (currentVol > 0.02) {
+            try { audio.volume = Math.max(0, currentVol); } catch (e) {}
           } else {
-            audio.volume = 0;
-            audio.pause();
             clearInterval(fadeInterval);
+            try { audio.volume = 0; } catch (e) {}
+            stopAudioImmediately();
           }
         }, stepTime);
+
+        // Fail-safe guarantee: force pause if interval gets delayed
+        setTimeout(() => {
+          if (!audio.paused && manuallyPaused) {
+            stopAudioImmediately();
+          }
+        }, durationMs + 80);
       }
 
-      window.toggleAmarasMusic = function () {
+      window.toggleAmarasMusic = function (e) {
+        if (e) {
+          if (e.stopPropagation) e.stopPropagation();
+          if (e.preventDefault) e.preventDefault();
+        }
         if (audio.paused) {
           manuallyPaused = false;
-          fadeInAudio(TARGET_VOLUME, 1200);
+          fadeInAudio(TARGET_VOLUME, 1000);
         } else {
           manuallyPaused = true;
-          fadeOutAndPause(400);
+          fadeOutAndPause(250);
         }
       };
+
+      // Native touch response for iOS Safari
+      btn.addEventListener('touchend', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.toggleAmarasMusic(e);
+      }, { passive: false });
 
       // 1. Try to start playing immediately on page entry
       fadeInAudio(TARGET_VOLUME, 2800);
 
-      // 2. Since modern browsers block unmuted sound before user gesture,
-      // unlock and fade in audio on the very first touch/click/key anywhere on screen:
+      // 2. Unlock on first user gesture (ignore if gesture was on the music button itself)
       const unlockEvents = ['pointerdown', 'touchstart', 'click', 'keydown'];
-      function unlockAudio() {
+      function unlockAudio(e) {
+        if (e && e.target && e.target.closest && e.target.closest('#amarasMusicBtn')) {
+          return;
+        }
         if (!manuallyPaused && audio.paused) {
           fadeInAudio(TARGET_VOLUME, 2200);
         }
@@ -4836,7 +4889,7 @@
       }
       unlockEvents.forEach(evt => window.addEventListener(evt, unlockAudio, { capture: true, once: true }));
 
-      // 3. Preloader click immediately unlocks audio
+      // 3. Preloader click unlocks audio
       const preloader = document.getElementById('amarasPreloader');
       if (preloader) {
         preloader.addEventListener('click', unlockAudio, { once: true });

@@ -4973,6 +4973,11 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   justify-content: center;
   gap: 2.5px;
   height: 16px;
+  pointer-events: none;
+}
+
+.amaras-music-muted-icon {
+  pointer-events: none;
 }
 
 .amaras-music-wave .amaras-bar {
