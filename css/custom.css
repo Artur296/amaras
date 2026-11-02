@@ -647,9 +647,31 @@ body[data-exit-popup-open="true"] {
   padding: 2px;
 }
 
+/* Vector Flag Icons for Language Switchers */
+.amaras-flag-icon {
+  width: 16px;
+  height: 12px;
+  border-radius: 2.5px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22), 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.amaras-mobile-lang-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
 .amaras-lang-btn {
-  padding: 4px 10px;
-  font-size: 12.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  font-size: 12px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.7);
   background: transparent;
@@ -830,11 +852,15 @@ body[data-exit-popup-open="true"] {
 
 .amaras-drawer-lang-tab {
   flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
   border: none;
   background: transparent;
   color: rgba(255, 255, 255, 0.7);
   font-family: inherit;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 700;
   padding: 9px 0;
   border-radius: 999px;
