@@ -7208,3 +7208,98 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     padding: 20px;
   }
 }
+
+/* ==========================================================================
+   AMARAS CARD ACTIONS & "В КОРЗИНУ" (ADD TO CART) BUTTON
+   ========================================================================== */
+.amaras-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.amaras-btn-cart {
+  background: #FFFFFF;
+  color: #312F2F;
+  border: 1.5px solid #E5E7EB;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: inherit;
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.amaras-btn-cart svg {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.amaras-btn-cart:hover {
+  border-color: #586EFF;
+  color: #586EFF;
+  background: rgba(88, 110, 255, 0.04);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(88, 110, 255, 0.12);
+}
+
+.amaras-btn-cart:hover svg {
+  transform: scale(1.1);
+}
+
+.amaras-btn-cart:active {
+  transform: scale(0.96);
+}
+
+.amaras-btn-cart.is-added {
+  background: #C7FF32;
+  border-color: #C7FF32;
+  color: #312F2F;
+  box-shadow: 0 3px 10px rgba(199, 255, 50, 0.35);
+}
+
+.amaras-btn-cart.is-added svg {
+  stroke: #312F2F;
+}
+
+/* Cart badge bounce animation */
+@keyframes amarasCartBounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+.amaras-cart-badge.is-bumped {
+  animation: amarasCartBounce 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@media screen and (max-width: 480px) {
+  .amaras-cat-card-footer,
+  .amaras-pop-tour-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .amaras-card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+  }
+  .amaras-btn-cart,
+  .amaras-cat-card-btn,
+  .amaras-pop-book-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 12px;
+    font-size: 12.5px;
+  }
+}
