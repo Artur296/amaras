@@ -5374,65 +5374,43 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
 }
 
 /* ==========================================================================
-   Amaras Tours Showcase Section (Стиль: панорама Армении + карточки как у Hyur Service)
+   Amaras Tours Showcase Section (Категории туров - чистый современный фон)
    ========================================================================== */
+.amaras-tours-showcase-section,
 .amaras-tours-hyur-section {
   position: relative;
   width: 100%;
-  background: #FAFAFA;
-  padding-bottom: 40px;
-  overflow: hidden;
+  background: #F8F9FA;
+  padding: 56px 0 60px 0;
+  border-top: 1px solid rgba(49, 47, 47, 0.06);
 }
 
-.amaras-tours-cover-banner {
-  position: relative;
-  width: 100%;
-  height: 250px;
-  background: url('../assets/hero/poppies-panorama.webp') center top / cover no-repeat;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 36px;
+.amaras-tours-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-.amaras-tours-cover-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(12, 16, 29, 0.52) 0%, rgba(12, 16, 29, 0.28) 50%, rgba(250, 250, 250, 1) 100%);
-  pointer-events: none;
-}
-
-.amaras-tours-banner-header {
-  position: relative;
-  z-index: 2;
+.amaras-tours-header {
   text-align: center;
-  padding: 0 20px;
+  max-width: 720px;
+  margin: 0 auto 36px auto;
 }
 
-.amaras-tours-banner-title {
-  color: #FFFFFF;
-  font-size: 28px;
+.amaras-tours-title {
+  color: #312F2F;
+  font-size: 32px;
   font-weight: 800;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin: 0 0 6px 0;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.2px;
+  margin: 0 0 8px 0;
 }
 
-.amaras-tours-banner-subtitle {
-  color: rgba(255, 255, 255, 0.95);
+.amaras-tours-subtitle {
+  color: #6B7280;
   font-size: 15px;
   font-weight: 500;
   margin: 0;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
-}
-
-.amaras-tours-cards-container {
-  max-width: 1320px;
-  margin: -110px auto 0 auto;
-  position: relative;
-  z-index: 5;
-  padding: 0 20px;
+  line-height: 1.5;
 }
 
 .amaras-tours-cards-grid {
