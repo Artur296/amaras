@@ -6368,11 +6368,7 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
 
 /* Category CTA & Consultation */
 .amaras-cat-cta-section {
-  background: #0C101D;
-  color: #FFFFFF;
-  padding: 60px 0;
-  position: relative;
-  overflow: hidden;
+  display: none !important;
 }
 
 .amaras-cat-cta-box {
