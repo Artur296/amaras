@@ -5374,67 +5374,248 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
 }
 
 /* ==========================================================================
-   Tours Category Section (Категории туров)
+   Amaras Tours Showcase Section (Стиль: панорама Армении + карточки как у Hyur Service)
    ========================================================================== */
-.amaras-tours-categories-section {
-  padding-top: 56px !important;
-  padding-bottom: 24px !important;
-  border-top: 1px solid rgba(49, 47, 47, 0.08);
+.amaras-tours-hyur-section {
+  position: relative;
+  width: 100%;
+  background: #FAFAFA;
+  padding-bottom: 40px;
+  overflow: hidden;
 }
 
-.amaras-tours-heading-wrapper {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 16px !important;
-  margin-bottom: 24px !important;
-}
-
-.amaras-tours-nav-pills {
+.amaras-tours-cover-banner {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  background: url('../assets/hero/poppies-panorama.webp') center top / cover no-repeat;
   display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 36px;
 }
 
-.amaras-tour-pill {
-  background: rgba(49, 47, 47, 0.05);
-  color: #312F2F;
-  border: 1px solid rgba(49, 47, 47, 0.12);
-  padding: 7px 14px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  display: inline-flex;
-  align-items: center;
+.amaras-tours-cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(12, 16, 29, 0.52) 0%, rgba(12, 16, 29, 0.28) 50%, rgba(250, 250, 250, 1) 100%);
+  pointer-events: none;
 }
 
-.amaras-tour-pill:hover,
-.amaras-tour-pill:active {
-  background: #586EFF;
+.amaras-tours-banner-header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.amaras-tours-banner-title {
   color: #FFFFFF;
-  border-color: #586EFF;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(88, 110, 255, 0.28);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin: 0 0 6px 0;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
 }
 
-.amaras-tour-subbadges {
+.amaras-tours-banner-subtitle {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+.amaras-tours-cards-container {
+  max-width: 1320px;
+  margin: -110px auto 0 auto;
+  position: relative;
+  z-index: 5;
+  padding: 0 20px;
+}
+
+.amaras-tours-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.amaras-tour-card {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  overflow: hidden;
   display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin: 6px 0 8px 0;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
 }
 
-.amaras-tour-badge {
-  background: rgba(88, 110, 255, 0.09);
-  color: #586EFF;
-  border: 1px solid rgba(88, 110, 255, 0.22);
-  border-radius: 6px;
-  font-size: 11px;
+.amaras-tour-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.14), 0 6px 14px rgba(88, 110, 255, 0.12);
+  border-color: rgba(88, 110, 255, 0.35);
+}
+
+.amaras-tour-card-body {
+  padding: 20px 18px 16px 18px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.amaras-tour-card-title {
+  margin: 0 0 12px 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #586EFF;
+  transition: border-color 0.25s ease;
+}
+
+.amaras-tour-card:hover .amaras-tour-card-title {
+  border-bottom-color: #C7FF32;
+}
+
+.amaras-tour-card-title-link {
+  color: #312F2F;
+  font-size: 16px;
   font-weight: 700;
-  padding: 3px 8px;
+  text-decoration: none;
+  display: block;
   line-height: 1.3;
+  transition: color 0.2s ease;
+}
+
+.amaras-tour-card:hover .amaras-tour-card-title-link {
+  color: #586EFF;
+}
+
+.amaras-tour-card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.amaras-tour-card-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  border-bottom: 1px solid #EFEFEF;
+  padding-bottom: 7px;
+  font-size: 12.5px;
+  color: #4B5563;
+  line-height: 1.35;
+  transition: color 0.2s ease;
+}
+
+.amaras-tour-card-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.amaras-tour-card:hover .amaras-tour-card-item {
+  color: #1F2937;
+}
+
+.amaras-tour-item-arrow {
+  color: #9CA3AF;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.amaras-tour-card:hover .amaras-tour-item-arrow {
+  color: #586EFF;
+  transform: translateX(2px);
+}
+
+.amaras-tour-card-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 36 / 25;
+  overflow: hidden;
+  background: #E5E7EB;
+  border-radius: 0 0 12px 12px;
+}
+
+.amaras-tour-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.amaras-tour-card:hover .amaras-tour-card-img {
+  transform: scale(1.07);
+}
+
+/* Responsive Breakpoints */
+@media screen and (max-width: 1200px) {
+  .amaras-tours-cards-grid {
+    gap: 12px;
+  }
+  .amaras-tour-card-body {
+    padding: 16px 14px 12px 14px;
+  }
+  .amaras-tour-card-title-link {
+    font-size: 15px;
+  }
+  .amaras-tour-card-item {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .amaras-tours-cover-banner {
+    height: 220px;
+  }
+  .amaras-tours-cards-container {
+    margin-top: -90px;
+    padding: 0 16px;
+  }
+  .amaras-tours-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .amaras-tours-cover-banner {
+    height: 180px;
+    padding-top: 24px;
+  }
+  .amaras-tours-banner-title {
+    font-size: 22px;
+  }
+  .amaras-tours-banner-subtitle {
+    font-size: 13px;
+  }
+  .amaras-tours-cards-container {
+    margin-top: -70px;
+    padding: 0;
+  }
+  .amaras-tours-cards-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 14px;
+    padding: 10px 20px 24px 20px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .amaras-tours-cards-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .amaras-tour-card {
+    min-width: 250px;
+    max-width: 260px;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+  }
 }
