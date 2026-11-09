@@ -7303,3 +7303,339 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     font-size: 12.5px;
   }
 }
+
+
+/* ==========================================================================
+   ADVANCED MOBILE ADAPTATION (ALL SCREENS: 320px - 768px)
+   ========================================================================== */
+
+/* Prevent any horizontal overflow on mobile devices */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* 1. Header & Navigation on Mobile (<768px) */
+@media screen and (max-width: 768px) {
+  .amaras-header {
+    height: 64px;
+    padding: 0 14px;
+  }
+  .amaras-header-nav-grid {
+    gap: 8px;
+    align-items: center;
+  }
+  .amaras-logo-svg {
+    height: 32px;
+    width: auto;
+  }
+  .amaras-nav-actions {
+    gap: 6px;
+  }
+  .amaras-search-btn,
+  .amaras-cart-btn,
+  .amaras-music-btn {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+  }
+  .amaras-mobile-lang-trigger {
+    height: 36px;
+    padding: 0 8px;
+    font-size: 13px;
+  }
+  .amaras-mobile-toggle {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* 2. Mobile Drawer Navigation */
+.amaras-mobile-drawer {
+  padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+}
+.amaras-mobile-drawer-link,
+.amaras-mobile-dropdown-btn {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+/* 3. Category Hero & Banners on Mobile */
+@media screen and (max-width: 768px) {
+  .amaras-cat-hero {
+    padding: 88px 16px 32px 16px;
+  }
+  .amaras-cat-hero-container {
+    padding: 0;
+  }
+  .amaras-cat-breadcrumbs {
+    font-size: 12.5px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .amaras-cat-breadcrumbs::-webkit-scrollbar {
+    display: none;
+  }
+  .amaras-cat-title {
+    font-size: clamp(22px, 5.5vw, 30px);
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .amaras-cat-subtitle {
+    font-size: 13.5px;
+    line-height: 1.55;
+    max-width: 100%;
+  }
+
+  /* Sticky Category Tabs Bar on Mobile */
+  .amaras-cat-nav-tabs-bar {
+    top: 64px;
+    padding: 10px 0;
+  }
+  .amaras-cat-nav-tabs-container {
+    padding: 0 14px;
+  }
+  .amaras-cat-nav-tabs {
+    gap: 6px;
+    padding: 2px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .amaras-cat-tab-link {
+    padding: 8px 14px;
+    font-size: 12.5px;
+  }
+
+  /* Tours Grid & Cards */
+  .amaras-cat-content-section {
+    padding: 28px 0 60px 0;
+  }
+  .amaras-cat-container {
+    padding: 0 14px;
+  }
+  .amaras-cat-grid-header {
+    margin-bottom: 18px;
+  }
+  .amaras-cat-grid-title {
+    font-size: 20px;
+  }
+  .amaras-cat-tours-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .amaras-cat-tour-card {
+    border-radius: 18px;
+  }
+  .amaras-cat-card-thumb {
+    height: 210px;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+  }
+  .amaras-cat-card-body {
+    padding: 16px;
+  }
+  .amaras-cat-card-title {
+    font-size: 17px;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+  .amaras-cat-card-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .amaras-cat-hero {
+    padding: 82px 14px 28px 14px;
+  }
+  .amaras-cat-title {
+    font-size: 21px;
+  }
+  .amaras-cat-card-thumb {
+    height: 195px;
+  }
+  .amaras-cat-card-footer {
+    padding-top: 12px;
+  }
+  .amaras-card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+  }
+  .amaras-btn-cart,
+  .amaras-cat-card-btn,
+  .amaras-pop-book-btn {
+    height: 42px;
+    padding: 0 10px;
+    font-size: 12.5px;
+    justify-content: center;
+  }
+}
+
+/* 4. Tour Constructor Mobile Adaptation */
+@media screen and (max-width: 768px) {
+  .amaras-builder-section {
+    padding: 24px 0 80px 0;
+  }
+  .amaras-builder-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .amaras-builder-step {
+    padding: 20px 16px;
+    border-radius: 18px;
+    margin-bottom: 16px;
+  }
+  .amaras-step-head {
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .amaras-step-num {
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+  .amaras-step-title {
+    font-size: 17px;
+  }
+  .amaras-step-sub {
+    font-size: 12.5px;
+  }
+
+  /* Locations: 2 compact columns on mobile (touch-friendly) */
+  .amaras-loc-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .amaras-loc-card-thumb {
+    height: 110px;
+  }
+  .amaras-loc-card-body {
+    padding: 10px;
+  }
+  .amaras-loc-card-name {
+    font-size: 13px;
+    line-height: 1.3;
+  }
+  .amaras-loc-card-sub {
+    font-size: 11px;
+    margin-top: 2px;
+  }
+
+  /* Vehicles on mobile */
+  .amaras-veh-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .amaras-veh-card {
+    padding: 14px;
+    border-radius: 14px;
+  }
+  .amaras-veh-name {
+    font-size: 15px;
+  }
+  .amaras-veh-model {
+    font-size: 12px;
+  }
+
+  /* Services on mobile */
+  .amaras-srv-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .amaras-srv-card {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  /* Form on mobile */
+  .amaras-form-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .amaras-form-input,
+  .amaras-form-select,
+  .amaras-form-textarea {
+    font-size: 16px !important; /* Prevents auto-zoom on iOS */
+    padding: 12px 14px;
+  }
+
+  /* Summary Sidebar */
+  .amaras-builder-sidebar {
+    position: static;
+  }
+  .amaras-builder-summary-card {
+    padding: 20px 18px;
+    border-radius: 18px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .amaras-loc-grid {
+    grid-template-columns: 1fr;
+  }
+  .amaras-loc-card-thumb {
+    height: 140px;
+  }
+}
+
+/* Sticky Bottom Bar on Mobile for Instant Booking */
+.amaras-builder-mobile-bar {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .amaras-builder-mobile-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #312F2F;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)) 16px;
+    z-index: 999;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35);
+  }
+  .amaras-builder-mobile-bar-info {
+    display: flex;
+    flex-direction: column;
+  }
+  .amaras-builder-mobile-bar-label {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .amaras-builder-mobile-bar-val {
+    font-size: 15px;
+    font-weight: 800;
+    color: #C7FF32;
+  }
+  .amaras-builder-mobile-bar-btn {
+    background: #25D366;
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 13px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 3px 12px rgba(37, 211, 102, 0.35);
+  }
+}
