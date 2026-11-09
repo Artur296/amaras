@@ -76,7 +76,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+Armenian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="css/custom.css?v=82" rel="stylesheet" />
+  <link href="css/custom.css?v=83" rel="stylesheet" />
 </head>
 
 <body class="rebrand-body">
@@ -1280,7 +1280,7 @@
   <span>Индивидуальные туры по Армении</span>
 </div>
       <h1 class="amaras-cat-title">Индивидуальные туры по Армении</h1>
-      <p class="amaras-cat-subtitle">Путешествие только для вас и вашей компании. Свободный график без спешки, автомобили комфорт- и премиум-класса с личным профессиональным гидом и полной гибкостью.</p>
+      <p class="amaras-cat-subtitle">Соберите свой собственный маршрут: выберите любимые локации, подходящий автомобиль и желаемые услуги — мы мгновенно рассчитаем поездку и организуем идеальный отдых.</p>
     </div>
   </div><div class="amaras-cat-nav-tabs-bar">
   <div class="amaras-cat-nav-tabs-container">
@@ -1309,12 +1309,432 @@
     </div>
   </div>
 </div>
-  <div class="amaras-cat-content-section">
+ 
+  <!-- ================= AMARAS TOUR CONSTRUCTOR ================= -->
+  <section id="tour-builder" class="amaras-builder-section">
+    <div class="amaras-cat-container">
+      <div class="amaras-builder-intro">
+        <h2 class="amaras-builder-heading">Конструктор вашего индивидуального тура</h2>
+        <p class="amaras-builder-desc">
+          Соберите поездку под свои пожелания: выберите интересующие локации, подходящий класс автомобиля и дополнительные услуги.
+          Справа сразу формируется готовая программа, которую можно отправить в WhatsApp за один клик.
+        </p>
+      </div>
+
+      <div class="amaras-builder-layout">
+        <!-- LEFT: BUILDER STEPS -->
+        <div class="amaras-builder-main">
+          
+          <!-- STEP 1: LOCATIONS -->
+          <div class="amaras-builder-step" id="step-locations">
+            <div class="amaras-step-head">
+              <div class="amaras-step-num">1</div>
+              <div>
+                <h3 class="amaras-step-title">Выберите локации и достопримечательности</h3>
+                <p class="amaras-step-sub">Отметьте места, которые хотите посетить (можно выбрать несколько)</p>
+              </div>
+            </div>
+
+            <div class="amaras-loc-grid">
+              
+              <!-- Loc 1 -->
+              <div class="amaras-loc-card is-selected" data-loc-id="khorvirap" data-loc-name="Хор Вирап & Арарат" data-loc-hours="3">
+                <div class="amaras-loc-thumb">
+                  <img src="assets/hero/tour-1-khorvirap.jpg?v=5" alt="Хор Вирап" class="amaras-loc-img" loading="lazy" />
+                  <div class="amaras-loc-check">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                </div>
+                <div class="amaras-loc-body">
+                  <h4 class="amaras-loc-title">Хор Вирап & Арарат</h4>
+                  <span class="amaras-loc-region">Араратская долина</span>
+                </div>
+              </div>
+
+              <!-- Loc 2 -->
+              <div class="amaras-loc-card is-selected" data-loc-id="garni" data-loc-name="Гарни & Гегард" data-loc-hours="3">
+                <div class="amaras-loc-thumb">
+                  <img src="assets/hero/tour-3-jeep.jpg?v=5" alt="Гарни и Гегард" class="amaras-loc-img" loading="lazy" />
+                  <div class="amaras-loc-check">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                </div>
+                <div class="amaras-loc-body">
+                  <h4 class="amaras-loc-title">Гарни & Гегард</h4>
+                  <span class="amaras-loc-region">Котайкский регион</span>
+                </div>
+              </div>
+
+              <!-- Loc 3 -->
+              <div class="amaras-loc-card is-selected" data-loc-id="sevan" data-loc-name="Озеро Севан & Севанаванк" data-loc-hours="3">
+                <div class="amaras-loc-thumb">
+                  <img src="assets/hero/tour-2-sevan.jpg?v=5" onerror="this.onerror=null;this.src='assets/hero/tour-2-sevan.webp?v=5';" alt="Озеро Севан" class="amaras-loc-img" loading="lazy" />
+                  <div class="amaras-loc-check">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                </div>
+                <div class="amaras-loc-body">
+                  <h4 class="amaras-loc-title">Озеро Севан & Севанаванк</h4>
+                  <span class="amaras-loc-region">Гегаркуник</span>
+                </div>
+              </div>
+
+              <!-- Loc 4 -->
+              <div class="amaras-loc-card" data-loc-id="dilijan" data-loc-name="Дилижан & озеро Парз" data-loc-hours="3">
+                <div class="amaras-loc-thumb">
+                  <img src="assets/armenia/card-attractions.jpg" alt="Дилижан" class="amaras-loc-img" loading="lazy" />
+                  <div class="amaras-loc-check">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                </div>
+                <div class="amaras-loc-body">
+                  <h4 class="amaras-loc-title">Дилижан & озеро Парз</h4>
+                  <span class="amaras-loc-region">Тавуш (Армянская Швейцария)</span>
+                </div>
+              </div>
+
+              <!-- Loc 5 -->
+              <div class="amaras-loc-card" data-loc-id="noravank" data-loc-name="Нораванк & красные скалы" data-loc-hours="4">
+                <div class="amaras-loc-thumb">
+                  <img src="assets/armenia/card-festivals.jpg" alt="Нораванк" class="amaras-loc-img" loading="lazy" />
+                  <div class="amaras-loc-check">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                </div>
+                <div class="amaras-loc-body">
+                  <h4 class="amaras-loc-title">Нораванк & ущелье</h4>
+                  <span class="amaras-loc-region">Вайоц Дзор</span>
+                </div>
+              </div>
+
+              <!-- Loc 6 -->
+              <div class="amaras-loc-card" data-loc-id="areni" data-loc-name="Винный завод Арени" data-loc-hours="2">
+                <div class="amaras-loc-thumb">
+                  <img src="assets/hero/tour-4-gastro.jpg?v=5" alt="Арени" class="amaras-loc-img" loading="lazy" />
+                  <div class="amaras-loc-check">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                </div>
+                <div class="amaras-loc-body">
+                  <h4 class="amaras-loc-title">Винный завод Арени</h4>
+                  <span class="amaras-loc-region">Вайоц Дзор</span>
+                </div>
+              </div>
+
+              <!-- Loc 7 -->
+              <div class="amaras-loc-card" data-loc-id="tatev" data-loc-name="Крылья Татева & монастырь" data-loc-hours="6">
+                <div class="amaras-loc-thumb">
+                  <img src="assets/armenia/card-attractions.jpg" alt="Татев" class="amaras-loc-img" loading="lazy" />
+                  <div class="amaras-loc-check">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                </div>
+                <div class="amaras-loc-body">
+                  <h4 class="amaras-loc-title">Крылья Татева</h4>
+                  <span class="amaras-loc-region">Сюник</span>
+                </div>
+              </div>
+
+              <!-- Loc 8 -->
+              <div class="amaras-loc-card" data-loc-id="shaki" data-loc-name="Водопад Шаки" data-loc-hours="3">
+                <div class="amaras-loc-thumb">
+                  <img src="assets/hero/tour-1-khorvirap.jpg?v=5" alt="Водопад Шаки" class="amaras-loc-img" loading="lazy" />
+                  <div class="amaras-loc-check">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                </div>
+                <div class="amaras-loc-body">
+                  <h4 class="amaras-loc-title">Водопад Шаки</h4>
+                  <span class="amaras-loc-region">Сюник</span>
+                </div>
+              </div>
+
+              <!-- Loc 9 -->
+              <div class="amaras-loc-card" data-loc-id="symphony" data-loc-name="Симфония камней" data-loc-hours="2">
+                <div class="amaras-loc-thumb">
+                  <img src="assets/hero/tour-3-jeep.jpg?v=5" alt="Симфония камней" class="amaras-loc-img" loading="lazy" />
+                  <div class="amaras-loc-check">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                </div>
+                <div class="amaras-loc-body">
+                  <h4 class="amaras-loc-title">Симфония камней</h4>
+                  <span class="amaras-loc-region">Ущелье Гарни</span>
+                </div>
+              </div>
+
+              <!-- Custom Location -->
+              <div class="amaras-custom-loc-box">
+                <input type="text" id="custom-location-input" class="amaras-custom-loc-input" placeholder="+ Добавить другую локацию (напишите своё место, село или монастырь)..." />
+              </div>
+
+            </div>
+          </div>
+
+          <!-- STEP 2: VEHICLE -->
+          <div class="amaras-builder-step" id="step-vehicle">
+            <div class="amaras-step-head">
+              <div class="amaras-step-num">2</div>
+              <div>
+                <h3 class="amaras-step-title">Выберите класс автомобиля</h3>
+                <p class="amaras-step-sub">Все автомобили оборудованы кондиционером, питьевой водой и бесплатным Wi-Fi</p>
+              </div>
+            </div>
+
+            <div class="amaras-veh-grid">
+              
+              <!-- Veh 1 -->
+              <div class="amaras-veh-card is-selected" data-veh-id="comfort" data-veh-name="Седан Комфорт" data-veh-models="Toyota Camry / Hyundai Sonata (до 3 гостей)">
+                <div class="amaras-veh-head">
+                  <h4 class="amaras-veh-name">Седан Комфорт</h4>
+                  <div class="amaras-veh-radio"><div class="amaras-veh-radio-inner"></div></div>
+                </div>
+                <div class="amaras-veh-models">Toyota Camry, Hyundai Sonata</div>
+                <p class="amaras-veh-desc">Идеально для пар и небольших семей (1–3 гостя). Мягкий плавный ход, кондиционер, просторный багажник.</p>
+              </div>
+
+              <!-- Veh 2 -->
+              <div class="amaras-veh-card" data-veh-id="business" data-veh-name="Бизнес-класс" data-veh-models="Mercedes-Benz E-Class (до 3 гостей)">
+                <div class="amaras-veh-head">
+                  <h4 class="amaras-veh-name">Бизнес-класс</h4>
+                  <div class="amaras-veh-radio"><div class="amaras-veh-radio-inner"></div></div>
+                </div>
+                <div class="amaras-veh-models">Mercedes-Benz E-Class W213</div>
+                <p class="amaras-veh-desc">Премиальный уровень комфорта. Кожаный салон, климат-контроль, бесшумный ход и представительский статус.</p>
+              </div>
+
+              <!-- Veh 3 -->
+              <div class="amaras-veh-card" data-veh-id="minivan" data-veh-name="Минивэн Премиум" data-veh-models="Mercedes V-Class / Vito (до 7 гостей)">
+                <div class="amaras-veh-head">
+                  <h4 class="amaras-veh-name">Минивэн Премиум</h4>
+                  <div class="amaras-veh-radio"><div class="amaras-veh-radio-inner"></div></div>
+                </div>
+                <div class="amaras-veh-models">Mercedes-Benz V-Class / Vito</div>
+                <p class="amaras-veh-desc">Для семей и компаний (4–7 гостей). Капитанские кресла, панорамные окна, индивидуальный климат, вместительный багаж.</p>
+              </div>
+
+              <!-- Veh 4 -->
+              <div class="amaras-veh-card" data-veh-id="suv" data-veh-name="Внедорожник 4×4" data-veh-models="Toyota Land Cruiser / Prado (до 4 гостей)">
+                <div class="amaras-veh-head">
+                  <h4 class="amaras-veh-name">Внедорожник 4×4</h4>
+                  <div class="amaras-veh-radio"><div class="amaras-veh-radio-inner"></div></div>
+                </div>
+                <div class="amaras-veh-models">Toyota Land Cruiser / Prado</div>
+                <p class="amaras-veh-desc">Повышенная проходимость для горных перевалов, каньонов, водопадов и труднодоступных вершин Армении.</p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- STEP 3: SERVICES -->
+          <div class="amaras-builder-step" id="step-services">
+            <div class="amaras-step-head">
+              <div class="amaras-step-num">3</div>
+              <div>
+                <h3 class="amaras-step-title">Дополнительные услуги и комфорт</h3>
+                <p class="amaras-step-sub">Выберите опции, которые сделают ваше путешествие ещё ярче и комфортнее</p>
+              </div>
+            </div>
+
+            <div class="amaras-srv-grid">
+              
+              <!-- Srv 1 -->
+              <div class="amaras-srv-card is-selected" data-srv-id="guide" data-srv-name="Личный профессиональный гид">
+                <div class="amaras-srv-icon-box">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 12c-5 0-9 2.5-9 5v1h18v-1c0-2.5-4-5-9-5z"/></svg>
+                </div>
+                <div class="amaras-srv-content">
+                  <h4 class="amaras-srv-title">Личный лицензированный гид</h4>
+                  <p class="amaras-srv-sub">Глубокие исторические рассказы и живое общение на русском или английском языке.</p>
+                </div>
+                <div class="amaras-srv-check">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+              </div>
+
+              <!-- Srv 2 -->
+              <div class="amaras-srv-card is-selected" data-srv-id="wine" data-srv-name="Дегустация вин и обед">
+                <div class="amaras-srv-icon-box">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 22h8M12 11v11M5 2h14v3a7 7 0 0 1-14 0V2z"/></svg>
+                </div>
+                <div class="amaras-srv-content">
+                  <h4 class="amaras-srv-title">Винная дегустация и обед</h4>
+                  <p class="amaras-srv-sub">Бронирование столиков в аутентичных винодельнях и колоритных ресторанах с лучшей кухней.</p>
+                </div>
+                <div class="amaras-srv-check">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+              </div>
+
+              <!-- Srv 3 -->
+              <div class="amaras-srv-card" data-srv-id="lavash" data-srv-name="Мастер-класс лаваша">
+                <div class="amaras-srv-icon-box">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+                </div>
+                <div class="amaras-srv-content">
+                  <h4 class="amaras-srv-title">Мастер-класс армянского лаваша</h4>
+                  <p class="amaras-srv-sub">Выпечка горячего хрустящего лаваша в подземном тонире с домашним сыром и зеленью.</p>
+                </div>
+                <div class="amaras-srv-check">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+              </div>
+
+              <!-- Srv 4 -->
+              <div class="amaras-srv-card" data-srv-id="photo" data-srv-name="Профессиональный фотограф">
+                <div class="amaras-srv-icon-box">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                </div>
+                <div class="amaras-srv-content">
+                  <h4 class="amaras-srv-title">Фотограф в поездку</h4>
+                  <p class="amaras-srv-sub">Профессиональная фото- и видеосъемка на фоне Арарата, Севана и древних храмов.</p>
+                </div>
+                <div class="amaras-srv-check">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+              </div>
+
+              <!-- Srv 5 -->
+              <div class="amaras-srv-card" data-srv-id="airport" data-srv-name="Трансфер из аэропорта Звартноц">
+                <div class="amaras-srv-icon-box">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 20.5 3s-3 .5-4.5 1.5L12.5 8 4.3 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5 0 1 .4 1.3L8 12l-2 2-2.5-.5c-.3-.1-.7 0-.9.3l-.2.3c-.2.4 0 .8.3 1l3 2 2 3c.2.3.6.5 1 .3l.3-.2c.3-.2.4-.6.3-.9L8.8 18l2-2 3.5 4.7c.3.4.8.6 1.3.4l.5-.3c.4-.2.6-.6.5-1.1z"/></svg>
+                </div>
+                <div class="amaras-srv-content">
+                  <h4 class="amaras-srv-title">Трансфер из аэропорта Звартноц</h4>
+                  <p class="amaras-srv-sub">Встреча с именной табличкой в зале прилёта, помощь с багажом и доставка в отель.</p>
+                </div>
+                <div class="amaras-srv-check">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- STEP 4: TRIP DETAILS -->
+          <div class="amaras-builder-step" id="step-details">
+            <div class="amaras-step-head">
+              <div class="amaras-step-num">4</div>
+              <div>
+                <h3 class="amaras-step-title">Детали поездки и ваши контакты</h3>
+                <p class="amaras-step-sub">Укажите желаемую дату, количество участников и как с вами связаться</p>
+              </div>
+            </div>
+
+            <div class="amaras-form-grid">
+              
+              <div class="amaras-form-field">
+                <label class="amaras-form-label" for="builder-date">Дата поездки</label>
+                <input type="date" id="builder-date" class="amaras-form-input" />
+              </div>
+
+              <div class="amaras-form-field">
+                <label class="amaras-form-label">Количество гостей</label>
+                <div class="amaras-guest-counter">
+                  <button type="button" class="amaras-counter-btn" id="btn-guest-minus">−</button>
+                  <span class="amaras-counter-val" id="builder-guests-val">2</span>
+                  <button type="button" class="amaras-counter-btn" id="btn-guest-plus">+</button>
+                </div>
+              </div>
+
+              <div class="amaras-form-field">
+                <label class="amaras-form-label" for="builder-name">Ваше имя</label>
+                <input type="text" id="builder-name" class="amaras-form-input" placeholder="Например: Артур" />
+              </div>
+
+              <div class="amaras-form-field">
+                <label class="amaras-form-label" for="builder-phone">Телефон / WhatsApp</label>
+                <input type="tel" id="builder-phone" class="amaras-form-input" placeholder="+7 (___) ___-__-__" />
+              </div>
+
+              <div class="amaras-form-field is-full">
+                <label class="amaras-form-label" for="builder-notes">Пожелания, отель или особые остановки</label>
+                <textarea id="builder-notes" rows="2" class="amaras-form-input" placeholder="Например: забрать из отеля в центре Еревана, хотим успеть на закат в Хор Вирапе..."></textarea>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: STICKY SUMMARY -->
+        <aside class="amaras-builder-sidebar">
+          <div class="amaras-summary-card">
+            <div class="amaras-summary-head">
+              <h3 class="amaras-summary-title">Ваш маршрут</h3>
+              <p class="amaras-summary-subtitle">Индивидуальный расчет под вашу компанию</p>
+            </div>
+
+            <!-- Locations summary -->
+            <div class="amaras-summary-block">
+              <div class="amaras-summary-label">Выбранные локации (<span id="sum-loc-count">3</span>):</div>
+              <div class="amaras-summary-chips" id="sum-loc-chips">
+                <!-- Injected via JS -->
+              </div>
+            </div>
+
+            <!-- Vehicle summary -->
+            <div class="amaras-summary-block">
+              <div class="amaras-summary-label">Автомобиль:</div>
+              <div class="amaras-summary-val" id="sum-vehicle-val">Седан Комфорт (Toyota Camry / Hyundai Sonata)</div>
+            </div>
+
+            <!-- Services summary -->
+            <div class="amaras-summary-block">
+              <div class="amaras-summary-label">Выбранные услуги (<span id="sum-srv-count">2</span>):</div>
+              <div class="amaras-summary-val" id="sum-services-val">Личный гид, Винная дегустация и обед</div>
+            </div>
+
+            <!-- Duration estimated -->
+            <div class="amaras-summary-duration-box">
+              <span class="amaras-duration-label">Ориентировочное время:</span>
+              <span class="amaras-duration-val" id="sum-duration-val">~6–8 часов</span>
+            </div>
+
+            <!-- Actions -->
+            <div class="amaras-builder-actions">
+              <a href="#" id="btn-builder-whatsapp" target="_blank" rel="noopener" class="amaras-btn-wa-submit">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                <span>Отправить заявку в WhatsApp</span>
+              </a>
+
+              <button type="button" id="btn-builder-modal" class="amaras-btn-direct-submit">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                <span>Запросить расчет онлайн</span>
+              </button>
+            </div>
+
+            <div class="amaras-summary-footnote">
+              Отвечаем в течение 2 минут • Фиксированная стоимость без скрытых платежей
+            </div>
+
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Confirmation Modal -->
+  <div class="amaras-modal-overlay" id="builder-success-modal">
+    <div class="amaras-modal-box">
+      <div class="amaras-modal-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#312F2F" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3 class="amaras-modal-title">Заявка успешно отправлена!</h3>
+      <p class="amaras-modal-desc">
+        Спасибо! Ваш индивидуальный маршрут передан старшему гиду Amaras Tour.
+        Мы свяжемся с вами в WhatsApp или по телефону в течение 2–5 минут для подтверждения времени и точного расчета.
+      </p>
+      <button type="button" class="amaras-modal-close-btn" id="btn-modal-close">Отлично, спасибо</button>
+    </div>
+  </div>
+\n  <div class="amaras-cat-content-section">
     <div class="amaras-cat-container">
       <div class="amaras-cat-grid-header">
         <div>
-          <h2 class="amaras-cat-grid-title">Доступные маршруты</h2>
-          <span class="amaras-cat-grid-count">Найдено 5 предложений</span>
+          <h2 class="amaras-cat-grid-title">Или выберите готовый проверенный маршрут</h2>
+          <span class="amaras-cat-grid-count">Классические авторские программы «под ключ»</span>
         </div>
       </div>
       <div class="amaras-cat-tours-grid">
@@ -2601,6 +3021,247 @@
     })();
   </script>
 
-</body>
+
+  <script>
+  // ==========================================
+  // AMARAS TOUR CONSTRUCTOR LOGIC
+  // ==========================================
+  document.addEventListener('DOMContentLoaded', function() {
+    const state = {
+      locations: [
+        { id: 'khorvirap', name: 'Хор Вирап & Арарат', hours: 3 },
+        { id: 'garni', name: 'Гарни & Гегард', hours: 3 },
+        { id: 'sevan', name: 'Озеро Севан & Севанаванк', hours: 3 }
+      ],
+      customLocation: '',
+      vehicle: {
+        id: 'comfort',
+        name: 'Севан Комфорт (Toyota Camry / Hyundai Sonata)'
+      },
+      services: [
+        { id: 'guide', name: 'Личный лицензированный гид' },
+        { id: 'wine', name: 'Винная дегустация и обед' }
+      ],
+      guests: 2,
+      date: '',
+      name: '',
+      phone: '',
+      notes: ''
+    };
+
+    // Elements
+    const locCards = document.querySelectorAll('.amaras-loc-card');
+    const customLocInput = document.getElementById('custom-location-input');
+    const vehCards = document.querySelectorAll('.amaras-veh-card');
+    const srvCards = document.querySelectorAll('.amaras-srv-card');
+    const btnGuestMinus = document.getElementById('btn-guest-minus');
+    const btnGuestPlus = document.getElementById('btn-guest-plus');
+    const guestValEl = document.getElementById('builder-guests-val');
+    const dateInput = document.getElementById('builder-date');
+    const nameInput = document.getElementById('builder-name');
+    const phoneInput = document.getElementById('builder-phone');
+    const notesInput = document.getElementById('builder-notes');
+
+    // Summary Elements
+    const sumLocCount = document.getElementById('sum-loc-count');
+    const sumLocChips = document.getElementById('sum-loc-chips');
+    const sumVehicleVal = document.getElementById('sum-vehicle-val');
+    const sumSrvCount = document.getElementById('sum-srv-count');
+    const sumServicesVal = document.getElementById('sum-services-val');
+    const sumDurationVal = document.getElementById('sum-duration-val');
+    const btnWhatsApp = document.getElementById('btn-builder-whatsapp');
+    const btnModal = document.getElementById('btn-builder-modal');
+    const modalOverlay = document.getElementById('builder-success-modal');
+    const btnModalClose = document.getElementById('btn-modal-close');
+
+    // 1. Locations Click
+    locCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const id = card.dataset.locId;
+        const name = card.dataset.locName;
+        const hours = parseInt(card.dataset.locHours, 10) || 3;
+
+        const existsIdx = state.locations.findIndex(l => l.id === id);
+        if (existsIdx > -1) {
+          state.locations.splice(existsIdx, 1);
+          card.classList.remove('is-selected');
+        } else {
+          state.locations.push({ id, name, hours });
+          card.classList.add('is-selected');
+        }
+        updateSummary();
+      });
+    });
+
+    // Custom Location
+    if (customLocInput) {
+      customLocInput.addEventListener('input', (e) => {
+        state.customLocation = e.target.value.trim();
+        updateSummary();
+      });
+    }
+
+    // 2. Vehicle Click
+    vehCards.forEach(card => {
+      card.addEventListener('click', () => {
+        vehCards.forEach(c => c.classList.remove('is-selected'));
+        card.classList.add('is-selected');
+        state.vehicle = {
+          id: card.dataset.vehId,
+          name: card.dataset.vehName + ' (' + card.dataset.vehModels + ')'
+        };
+        updateSummary();
+      });
+    });
+
+    // 3. Services Click
+    srvCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const id = card.dataset.srvId;
+        const name = card.dataset.srvName;
+
+        const existsIdx = state.services.findIndex(s => s.id === id);
+        if (existsIdx > -1) {
+          state.services.splice(existsIdx, 1);
+          card.classList.remove('is-selected');
+        } else {
+          state.services.push({ id, name });
+          card.classList.add('is-selected');
+        }
+        updateSummary();
+      });
+    });
+
+    // 4. Guests counter
+    if (btnGuestMinus && btnGuestPlus) {
+      btnGuestMinus.addEventListener('click', () => {
+        if (state.guests > 1) {
+          state.guests--;
+          guestValEl.textContent = state.guests;
+          updateSummary();
+        }
+      });
+      btnGuestPlus.addEventListener('click', () => {
+        if (state.guests < 20) {
+          state.guests++;
+          guestValEl.textContent = state.guests;
+          updateSummary();
+        }
+      });
+    }
+
+    // Inputs listeners
+    if (dateInput) dateInput.addEventListener('change', (e) => { state.date = e.target.value; updateSummary(); });
+    if (nameInput) nameInput.addEventListener('input', (e) => { state.name = e.target.value.trim(); updateSummary(); });
+    if (phoneInput) phoneInput.addEventListener('input', (e) => { state.phone = e.target.value.trim(); updateSummary(); });
+    if (notesInput) notesInput.addEventListener('input', (e) => { state.notes = e.target.value.trim(); updateSummary(); });
+
+    // UPDATE SUMMARY FUNCTION
+    function updateSummary() {
+      // 1. Locations Chips
+      const allLocs = [...state.locations];
+      if (state.customLocation) {
+        allLocs.push({ id: 'custom', name: state.customLocation, hours: 2 });
+      }
+
+      sumLocCount.textContent = allLocs.length;
+      sumLocChips.innerHTML = '';
+      if (allLocs.length === 0) {
+        sumLocChips.innerHTML = '<span style="color:rgba(255,255,255,0.4);font-size:12px;">Локации пока не выбраны</span>';
+      } else {
+        allLocs.forEach(loc => {
+          const chip = document.createElement('span');
+          chip.className = 'amaras-summary-chip';
+          chip.innerHTML = `${loc.name} <span class="amaras-summary-chip-del" data-chip-id="${loc.id}">×</span>`;
+          sumLocChips.appendChild(chip);
+        });
+
+        // Chip delete handlers
+        sumLocChips.querySelectorAll('.amaras-summary-chip-del').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const delId = e.target.dataset.chipId;
+            if (delId === 'custom') {
+              state.customLocation = '';
+              if (customLocInput) customLocInput.value = '';
+            } else {
+              const idx = state.locations.findIndex(l => l.id === delId);
+              if (idx > -1) {
+                state.locations.splice(idx, 1);
+                const targetCard = document.querySelector(`.amaras-loc-card[data-loc-id="${delId}"]`);
+                if (targetCard) targetCard.classList.remove('is-selected');
+              }
+            }
+            updateSummary();
+          });
+        });
+      }
+
+      // 2. Vehicle
+      sumVehicleVal.textContent = state.vehicle.name;
+
+      // 3. Services
+      sumSrvCount.textContent = state.services.length;
+      if (state.services.length === 0) {
+        sumServicesVal.textContent = 'Без дополнительных услуг';
+      } else {
+        sumServicesVal.textContent = state.services.map(s => s.name).join(', ');
+      }
+
+      // 4. Duration Estimation
+      let totalHours = allLocs.reduce((acc, curr) => acc + (curr.hours || 3), 0);
+      if (allLocs.length === 0) {
+        sumDurationVal.textContent = '0 ч.';
+      } else if (allLocs.length === 1) {
+        sumDurationVal.textContent = `~4–5 часов`;
+      } else if (allLocs.length === 2) {
+        sumDurationVal.textContent = `~6–7 часов`;
+      } else if (allLocs.length === 3) {
+        sumDurationVal.textContent = `~8–9 часов`;
+      } else {
+        sumDurationVal.textContent = `~10–12 ч. (или 2 дня)`;
+      }
+
+      // 5. Generate WhatsApp Message Link
+      const locNamesList = allLocs.length > 0 ? allLocs.map(l => l.name).join(', ') : 'Индивидуальный выбор';
+      const srvNamesList = state.services.length > 0 ? state.services.map(s => s.name).join(', ') : 'Базовый пакет';
+      const dateText = state.date ? state.date : 'Уточняется';
+      const clientName = state.name ? state.name : 'Гость';
+      const clientPhone = state.phone ? state.phone : '';
+      const notesText = state.notes ? `\nПожелания: ${state.notes}` : '';
+
+      const waMsg = `Здравствуйте! Хочу заказать индивидуальный тур по Армении:
+- Локации: ${locNamesList}
+- Автомобиль: ${state.vehicle.name}
+- Услуги: ${srvNamesList}
+- Гостей: ${state.guests}
+- Желаемая дата: ${dateText}
+- Заказчик: ${clientName} ${clientPhone}${notesText}
+
+Подскажите, пожалуйста, свободные автомобили и точный расчет стоимости. Спасибо!`;
+
+      btnWhatsApp.href = `https://wa.me/37499250525?text=${encodeURIComponent(waMsg)}`;
+    }
+
+    // Modal Handlers
+    if (btnModal && modalOverlay && btnModalClose) {
+      btnModal.addEventListener('click', (e) => {
+        e.preventDefault();
+        modalOverlay.classList.add('is-open');
+      });
+      btnModalClose.addEventListener('click', () => {
+        modalOverlay.classList.remove('is-open');
+      });
+      modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+          modalOverlay.classList.remove('is-open');
+        }
+      });
+    }
+
+    // Initial render
+    updateSummary();
+  });
+  </script>
+\n</body>
 
 </html>

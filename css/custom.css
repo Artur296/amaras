@@ -6480,3 +6480,731 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     font-size: 22px;
   }
 }
+
+/* ==========================================================================
+   AMARAS TOUR CONSTRUCTOR (Interactive Custom Tour Builder)
+   ========================================================================== */
+.amaras-builder-section {
+  background: #F8F9FA;
+  padding: 40px 0 80px 0;
+  position: relative;
+}
+
+.amaras-builder-intro {
+  margin-bottom: 36px;
+  max-width: 760px;
+}
+
+.amaras-builder-heading {
+  font-size: 34px;
+  font-weight: 800;
+  color: #312F2F;
+  letter-spacing: -0.5px;
+  margin: 0 0 10px 0;
+}
+
+.amaras-builder-desc {
+  font-size: 16px;
+  color: #6B7280;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.amaras-builder-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 32px;
+  align-items: start;
+}
+
+.amaras-builder-step {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 20px;
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.2s ease;
+}
+
+.amaras-builder-step:hover {
+  border-color: #D1D5DB;
+}
+
+.amaras-step-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.amaras-step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: #586EFF;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.amaras-step-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #312F2F;
+  margin: 0;
+}
+
+.amaras-step-sub {
+  font-size: 13px;
+  color: #6B7280;
+  margin: 2px 0 0 0;
+}
+
+/* Step 1: Locations Grid */
+.amaras-loc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.amaras-loc-card {
+  border: 2px solid #E5E7EB;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #FFFFFF;
+  transition: all 0.2s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+.amaras-loc-card:hover {
+  border-color: #586EFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(88, 110, 255, 0.1);
+}
+
+.amaras-loc-card.is-selected {
+  border-color: #586EFF;
+  background: rgba(88, 110, 255, 0.02);
+  box-shadow: 0 0 0 2px rgba(88, 110, 255, 0.2);
+}
+
+.amaras-loc-thumb {
+  position: relative;
+  width: 100%;
+  height: 110px;
+  overflow: hidden;
+  background: #E5E7EB;
+}
+
+.amaras-loc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.amaras-loc-card:hover .amaras-loc-img {
+  transform: scale(1.04);
+}
+
+.amaras-loc-check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1.5px solid #D1D5DB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  color: transparent;
+}
+
+.amaras-loc-card.is-selected .amaras-loc-check {
+  background: #586EFF;
+  border-color: #586EFF;
+  color: #FFFFFF;
+}
+
+.amaras-loc-body {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.amaras-loc-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #312F2F;
+  margin: 0 0 4px 0;
+  line-height: 1.35;
+}
+
+.amaras-loc-region {
+  font-size: 12px;
+  color: #6B7280;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Custom Location Input */
+.amaras-custom-loc-box {
+  grid-column: 1 / -1;
+  margin-top: 8px;
+}
+
+.amaras-custom-loc-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  border: 1.5px dashed #D1D5DB;
+  border-radius: 12px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #312F2F;
+  background: #FAFAFA;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.amaras-custom-loc-input:focus {
+  outline: none;
+  border-color: #586EFF;
+  border-style: solid;
+  background: #FFFFFF;
+}
+
+/* Step 2: Vehicles Grid */
+.amaras-veh-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.amaras-veh-card {
+  border: 2px solid #E5E7EB;
+  border-radius: 16px;
+  padding: 18px 20px;
+  cursor: pointer;
+  background: #FFFFFF;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  user-select: none;
+}
+
+.amaras-veh-card:hover {
+  border-color: #586EFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(88, 110, 255, 0.08);
+}
+
+.amaras-veh-card.is-selected {
+  border-color: #586EFF;
+  background: rgba(88, 110, 255, 0.02);
+  box-shadow: 0 0 0 2px rgba(88, 110, 255, 0.2);
+}
+
+.amaras-veh-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.amaras-veh-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: #312F2F;
+  margin: 0;
+}
+
+.amaras-veh-radio {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #D1D5DB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.amaras-veh-card.is-selected .amaras-veh-radio {
+  border-color: #586EFF;
+}
+
+.amaras-veh-radio-inner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.2s ease;
+}
+
+.amaras-veh-card.is-selected .amaras-veh-radio-inner {
+  background: #586EFF;
+}
+
+.amaras-veh-models {
+  font-size: 13px;
+  font-weight: 600;
+  color: #586EFF;
+  margin: 0 0 6px 0;
+}
+
+.amaras-veh-desc {
+  font-size: 12.5px;
+  color: #6B7280;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Step 3: Services Grid */
+.amaras-srv-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.amaras-srv-card {
+  border: 2px solid #E5E7EB;
+  border-radius: 14px;
+  padding: 16px;
+  cursor: pointer;
+  background: #FFFFFF;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  user-select: none;
+}
+
+.amaras-srv-card:hover {
+  border-color: #586EFF;
+  background: rgba(88, 110, 255, 0.02);
+}
+
+.amaras-srv-card.is-selected {
+  border-color: #586EFF;
+  background: rgba(88, 110, 255, 0.04);
+  box-shadow: 0 0 0 2px rgba(88, 110, 255, 0.2);
+}
+
+.amaras-srv-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(88, 110, 255, 0.08);
+  color: #586EFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.amaras-srv-content {
+  flex: 1;
+}
+
+.amaras-srv-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #312F2F;
+  margin: 0 0 3px 0;
+}
+
+.amaras-srv-sub {
+  font-size: 12px;
+  color: #6B7280;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.amaras-srv-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 1.5px solid #D1D5DB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.amaras-srv-card.is-selected .amaras-srv-check {
+  background: #586EFF;
+  border-color: #586EFF;
+  color: #FFFFFF;
+}
+
+/* Step 4: Details & Form Inputs */
+.amaras-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.amaras-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.amaras-form-field.is-full {
+  grid-column: 1 / -1;
+}
+
+.amaras-form-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #312F2F;
+}
+
+.amaras-form-input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #E5E7EB;
+  border-radius: 12px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #312F2F;
+  background: #FFFFFF;
+  transition: border-color 0.2s ease;
+}
+
+.amaras-form-input:focus {
+  outline: none;
+  border-color: #586EFF;
+}
+
+/* Guest Counter */
+.amaras-guest-counter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1.5px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 6px 10px;
+  width: fit-content;
+  background: #FFFFFF;
+}
+
+.amaras-counter-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: #F3F4F6;
+  color: #312F2F;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.amaras-counter-btn:hover {
+  background: #586EFF;
+  color: #FFFFFF;
+}
+
+.amaras-counter-val {
+  font-size: 15px;
+  font-weight: 800;
+  color: #312F2F;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* Sidebar: Summary Card */
+.amaras-builder-sidebar {
+  position: sticky;
+  top: 96px;
+}
+
+.amaras-summary-card {
+  background: #312F2F;
+  color: #FFFFFF;
+  border-radius: 22px;
+  padding: 26px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
+}
+
+.amaras-summary-head {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+}
+
+.amaras-summary-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 6px 0;
+}
+
+.amaras-summary-subtitle {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.amaras-summary-block {
+  margin-bottom: 18px;
+}
+
+.amaras-summary-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #C7FF32;
+  margin-bottom: 8px;
+}
+
+.amaras-summary-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 28px;
+}
+
+.amaras-summary-chip {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.amaras-summary-chip-del {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.amaras-summary-chip-del:hover {
+  color: #FF5858;
+}
+
+.amaras-summary-val {
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.amaras-summary-duration-box {
+  background: rgba(88, 110, 255, 0.12);
+  border: 1px solid rgba(88, 110, 255, 0.3);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.amaras-duration-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.amaras-duration-val {
+  font-size: 15px;
+  font-weight: 800;
+  color: #C7FF32;
+}
+
+/* Action Buttons */
+.amaras-builder-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.amaras-btn-wa-submit {
+  background: #25D366;
+  color: #FFFFFF;
+  text-decoration: none;
+  border-radius: 14px;
+  padding: 15px 20px;
+  font-size: 15px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.amaras-btn-wa-submit:hover {
+  background: #20BD5A;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.45);
+}
+
+.amaras-btn-direct-submit {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  padding: 13px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.amaras-btn-direct-submit:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: #586EFF;
+}
+
+.amaras-summary-footnote {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  margin-top: 14px;
+  line-height: 1.4;
+}
+
+/* Modal for Direct Submission Confirmation */
+.amaras-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.amaras-modal-overlay.is-open {
+  display: flex;
+}
+
+.amaras-modal-box {
+  background: #FFFFFF;
+  border-radius: 20px;
+  max-width: 480px;
+  width: 100%;
+  padding: 32px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  animation: amarasPop 0.25s ease-out;
+}
+
+@keyframes amarasPop {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.amaras-modal-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(199, 255, 50, 0.2);
+  color: #312F2F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px auto;
+}
+
+.amaras-modal-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #312F2F;
+  margin: 0 0 10px 0;
+}
+
+.amaras-modal-desc {
+  font-size: 14px;
+  color: #6B7280;
+  line-height: 1.5;
+  margin: 0 0 24px 0;
+}
+
+.amaras-modal-close-btn {
+  background: #586EFF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.amaras-modal-close-btn:hover {
+  background: #4659D9;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .amaras-builder-layout {
+    grid-template-columns: 1fr;
+  }
+  .amaras-loc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .amaras-builder-sidebar {
+    position: static;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .amaras-loc-grid,
+  .amaras-veh-grid,
+  .amaras-srv-grid,
+  .amaras-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .amaras-builder-heading {
+    font-size: 26px;
+  }
+  .amaras-builder-step {
+    padding: 20px;
+  }
+}
