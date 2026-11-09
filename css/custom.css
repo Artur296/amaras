@@ -5970,3 +5970,540 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     font-size: 12px;
   }
 }
+
+
+/* ==========================================================================
+   AMARAS CATEGORY PAGES (HERO, BREADCRUMBS, TABS, CATALOG GRID, CTA, FAQ)
+   ========================================================================== */
+.amaras-cat-page {
+  background: #FFFFFF;
+  min-height: 100vh;
+}
+
+.amaras-cat-hero {
+  position: relative;
+  background: #0C101D;
+  color: #FFFFFF;
+  padding: 130px 0 50px 0;
+  overflow: hidden;
+}
+
+.amaras-cat-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.28;
+  filter: blur(2px);
+  transform: scale(1.05);
+}
+
+.amaras-cat-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(88, 110, 255, 0.25) 0%, transparent 60%),
+              linear-gradient(180deg, rgba(12, 16, 29, 0.4) 0%, rgba(12, 16, 29, 0.95) 100%);
+}
+
+.amaras-cat-hero-container {
+  position: relative;
+  z-index: 3;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.amaras-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.amaras-breadcrumbs a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.amaras-breadcrumbs a:hover {
+  color: #C7FF32;
+}
+
+.amaras-breadcrumbs-sep {
+  opacity: 0.4;
+}
+
+.amaras-cat-badge {
+  display: inline-block;
+  background: rgba(199, 255, 50, 0.12);
+  color: #C7FF32;
+  border: 1px solid rgba(199, 255, 50, 0.3);
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  margin-bottom: 14px;
+}
+
+.amaras-cat-title {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #FFFFFF;
+  margin: 0 0 14px 0;
+}
+
+.amaras-cat-subtitle {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 780px;
+  margin: 0 0 24px 0;
+}
+
+.amaras-cat-chips {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.amaras-cat-chip {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #FFFFFF;
+  padding: 6px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.amaras-cat-chip svg {
+  color: #C7FF32;
+}
+
+/* Category Filter Tabs */
+.amaras-cat-nav-tabs-bar {
+  background: #F8F9FA;
+  border-bottom: 1px solid rgba(49, 47, 47, 0.08);
+  padding: 16px 0;
+  position: sticky;
+  top: 70px;
+  z-index: 90;
+  backdrop-filter: blur(10px);
+}
+
+.amaras-cat-nav-tabs-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.amaras-cat-nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 4px 0;
+}
+
+.amaras-cat-nav-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.amaras-cat-tab-link {
+  background: #FFFFFF;
+  color: #312F2F;
+  border: 1px solid rgba(49, 47, 47, 0.12);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+}
+
+.amaras-cat-tab-link:hover {
+  border-color: #586EFF;
+  color: #586EFF;
+  transform: translateY(-1px);
+}
+
+.amaras-cat-tab-link.is-active {
+  background: #586EFF;
+  color: #FFFFFF;
+  border-color: #586EFF;
+  box-shadow: 0 4px 14px rgba(88, 110, 255, 0.28);
+}
+
+/* Catalog Grid */
+.amaras-cat-content-section {
+  padding: 50px 0 80px 0;
+  background: #FFFFFF;
+}
+
+.amaras-cat-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.amaras-cat-grid-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.amaras-cat-grid-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #312F2F;
+  margin: 0;
+}
+
+.amaras-cat-grid-count {
+  font-size: 14px;
+  color: #6B7280;
+  font-weight: 500;
+}
+
+.amaras-cat-tours-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.amaras-cat-tour-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid rgba(49, 47, 47, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+}
+
+.amaras-cat-tour-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12), 0 6px 14px rgba(88, 110, 255, 0.1);
+  border-color: rgba(88, 110, 255, 0.35);
+}
+
+.amaras-cat-card-thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #1F2937;
+}
+
+.amaras-cat-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.amaras-cat-tour-card:hover .amaras-cat-card-img {
+  transform: scale(1.07);
+}
+
+.amaras-cat-card-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: #312F2F;
+  color: #C7FF32;
+  border: 1px solid rgba(199, 255, 50, 0.35);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+}
+
+.amaras-cat-card-duration {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(6px);
+  color: #1F2937;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+.amaras-cat-card-body {
+  padding: 22px 20px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.amaras-cat-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.amaras-cat-card-stars {
+  color: #F59E0B;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.amaras-cat-card-score {
+  color: #1F2937;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.amaras-cat-card-reviews {
+  color: #9CA3AF;
+  font-size: 12px;
+}
+
+.amaras-cat-card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #312F2F;
+  line-height: 1.35;
+  margin: 0 0 10px 0;
+  transition: color 0.2s ease;
+}
+
+.amaras-cat-tour-card:hover .amaras-cat-card-title {
+  color: #586EFF;
+}
+
+.amaras-cat-card-desc {
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+  flex: 1 1 auto;
+}
+
+.amaras-cat-card-features {
+  list-style: none;
+  padding: 10px 0 0 0;
+  margin: 0 0 16px 0;
+  border-top: 1px solid #F3F4F6;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.amaras-cat-card-feature-item {
+  font-size: 12px;
+  color: #4B5563;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.amaras-cat-card-feature-item svg {
+  color: #586EFF;
+  flex-shrink: 0;
+}
+
+.amaras-cat-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid #F3F4F6;
+  padding-top: 14px;
+}
+
+.amaras-cat-card-price-block {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.amaras-cat-card-price-label {
+  font-size: 11.5px;
+  color: #9CA3AF;
+}
+
+.amaras-cat-card-price-val {
+  font-size: 19px;
+  font-weight: 800;
+  color: #312F2F;
+}
+
+.amaras-cat-card-price-unit {
+  font-size: 11.5px;
+  color: #9CA3AF;
+}
+
+.amaras-cat-card-btn {
+  background: #586EFF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 9px 18px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(88, 110, 255, 0.25);
+}
+
+.amaras-cat-card-btn:hover {
+  background: #C7FF32;
+  color: #0C101D;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(199, 255, 50, 0.35);
+}
+
+/* Category CTA & Consultation */
+.amaras-cat-cta-section {
+  background: #0C101D;
+  color: #FFFFFF;
+  padding: 60px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.amaras-cat-cta-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.amaras-cat-cta-left {
+  max-width: 680px;
+}
+
+.amaras-cat-cta-title {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  color: #FFFFFF;
+}
+
+.amaras-cat-cta-desc {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.amaras-cat-cta-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.amaras-cat-cta-wa-btn {
+  background: #25D366;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+}
+
+.amaras-cat-cta-wa-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(37, 211, 102, 0.5);
+}
+
+.amaras-cat-cta-call-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.amaras-cat-cta-call-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #FFFFFF;
+}
+
+/* Category Responsive */
+@media screen and (max-width: 1024px) {
+  .amaras-cat-tours-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .amaras-cat-title {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .amaras-cat-hero {
+    padding: 100px 0 40px 0;
+  }
+  .amaras-cat-title {
+    font-size: 26px;
+  }
+  .amaras-cat-subtitle {
+    font-size: 14px;
+  }
+  .amaras-cat-tours-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .amaras-cat-cta-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .amaras-cat-cta-title {
+    font-size: 22px;
+  }
+}
