@@ -6045,10 +6045,7 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
 }
 
 .amaras-cat-chips {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
+  display: none !important;
 }
 
 .amaras-cat-chip {
