@@ -5372,3 +5372,69 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     animation: none !important;
   }
 }
+
+/* ==========================================================================
+   Tours Category Section (Категории туров)
+   ========================================================================== */
+.amaras-tours-categories-section {
+  padding-top: 56px !important;
+  padding-bottom: 24px !important;
+  border-top: 1px solid rgba(49, 47, 47, 0.08);
+}
+
+.amaras-tours-heading-wrapper {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+  margin-bottom: 24px !important;
+}
+
+.amaras-tours-nav-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.amaras-tour-pill {
+  background: rgba(49, 47, 47, 0.05);
+  color: #312F2F;
+  border: 1px solid rgba(49, 47, 47, 0.12);
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+}
+
+.amaras-tour-pill:hover,
+.amaras-tour-pill:active {
+  background: #586EFF;
+  color: #FFFFFF;
+  border-color: #586EFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(88, 110, 255, 0.28);
+}
+
+.amaras-tour-subbadges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 6px 0 8px 0;
+}
+
+.amaras-tour-badge {
+  background: rgba(88, 110, 255, 0.09);
+  color: #586EFF;
+  border: 1px solid rgba(88, 110, 255, 0.22);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  line-height: 1.3;
+}
