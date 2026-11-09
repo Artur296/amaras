@@ -4,6 +4,31 @@
  */
 const AMARAS_I18N = {
   RU: {
+    "cart_page_title": "Корзина туров — Amaras Tour",
+    "cart_title": "Корзина туров",
+    "cart_subtitle": "Проверьте выбранные экскурсии, укажите количество участников и оформите бронирование.",
+    "cart_empty_title": "Ваша корзина пуста",
+    "cart_empty_desc": "Вы еще не добавили ни одного тура. Выберите подходящие экскурсии в каталоге!",
+    "cart_btn_explore": "Перейти к турам",
+    "cart_table_tour": "Тур и маршрут",
+    "cart_table_price": "Цена за чел.",
+    "cart_table_qty": "Участников",
+    "cart_table_total": "Сумма",
+    "cart_btn_clear": "Очистить корзину",
+    "cart_btn_continue": "← Продолжить выбор туров",
+    "cart_order_summary": "Детали бронирования",
+    "cart_total_tours": "Количество туров:",
+    "cart_total_guests": "Всего участников:",
+    "cart_total_price": "Итого к оплате:",
+    "cart_form_name": "Ваше имя *",
+    "cart_form_name_placeholder": "Как к вам обращаться",
+    "cart_form_phone": "Телефон / WhatsApp *",
+    "cart_form_phone_placeholder": "+7 (999) 000-00-00",
+    "cart_form_date": "Желаемая дата первой поездки",
+    "cart_form_comment": "Комментарий или пожелания",
+    "cart_form_comment_placeholder": "Детские кресла, отель для трансфера, пожелания по времени...",
+    "cart_btn_checkout": "Оформить бронирование в WhatsApp",
+    "cart_checkout_note": "⚡ Менеджер моментально подтвердит бронь и согласует детали поездки.",
     "about_company_desc_1": "Amaras Tour — туристическая компания с более чем 12-летним опытом работы в Ереване, специализирующаяся на организации экскурсий и путешествий по всей Армении.",
     "about_company_desc_2": "Компания предлагает групповые и индивидуальные туры, джип-туры, фототуры, многодневные турпакеты под ключ, трансферы и транспортные услуги комфорт- и премиум-класса, а также профессиональную фото- и видеосъёмку, включая аэросъёмку с дрона.",
     "about_company_title": "О компании Amaras Tour",
@@ -438,6 +463,31 @@ const AMARAS_I18N = {
     "worldmap_title": "Более 100 000 довольных гостей со всего мира",
   },
   ENG: {
+    "cart_page_title": "Tour Cart — Amaras Tour",
+    "cart_title": "Tour Cart",
+    "cart_subtitle": "Review your selected excursions, choose the number of guests, and confirm your booking.",
+    "cart_empty_title": "Your cart is empty",
+    "cart_empty_desc": "You haven't added any tours yet. Explore our curated excursions in the catalog!",
+    "cart_btn_explore": "Explore Tours",
+    "cart_table_tour": "Tour & Route",
+    "cart_table_price": "Price per person",
+    "cart_table_qty": "Guests",
+    "cart_table_total": "Subtotal",
+    "cart_btn_clear": "Clear Cart",
+    "cart_btn_continue": "← Continue Exploring",
+    "cart_order_summary": "Booking Summary",
+    "cart_total_tours": "Selected tours:",
+    "cart_total_guests": "Total guests:",
+    "cart_total_price": "Total Amount:",
+    "cart_form_name": "Your Name *",
+    "cart_form_name_placeholder": "How should we address you",
+    "cart_form_phone": "Phone / WhatsApp *",
+    "cart_form_phone_placeholder": "+1 (000) 000-0000",
+    "cart_form_date": "Preferred date for 1st tour",
+    "cart_form_comment": "Special requests or comments",
+    "cart_form_comment_placeholder": "Child seats, pickup hotel, timing preferences...",
+    "cart_btn_checkout": "Confirm Booking via WhatsApp",
+    "cart_checkout_note": "⚡ Our manager will instantly confirm your reservation and arrange trip details.",
     "about_company_desc_1": "Amaras Tour is a travel company with over 12 years of experience in Yerevan, specializing in organizing excursions and journeys throughout Armenia.",
     "about_company_desc_2": "The company offers group and individual tours, jeep tours, photo tours, turnkey multi-day tour packages, comfort and premium transfers and transportation services, as well as professional photography and videography, including aerial drone filming.",
     "about_company_title": "About Amaras Tour",
@@ -872,6 +922,31 @@ const AMARAS_I18N = {
     "worldmap_title": "More than 100,000 happy guests from around the world",
   },
   HY: {
+    "cart_page_title": "Տուրերի զամբյուղ — Amaras Tour",
+    "cart_title": "Տուրերի զամբյուղ",
+    "cart_subtitle": "Ստուգեք ընտրված էքսկուրսիաները, նշեք մասնակիցների քանակը և ամրագրեք:",
+    "cart_empty_title": "Ձեր զամբյուղը դատարկ է",
+    "cart_empty_desc": "Դուք դեռ չեք ավելացրել որևէ տուր: Ընտրեք հարմար էքսկուրսիաներ մեր կատալոգից:",
+    "cart_btn_explore": "Դիտել տուրերը",
+    "cart_table_tour": "Տուր և երթուղի",
+    "cart_table_price": "Արժեքը 1 անձի համար",
+    "cart_table_qty": "Մասնակիցներ",
+    "cart_table_total": "Ընդհանուր",
+    "cart_btn_clear": "Մաքրել զամբյուղը",
+    "cart_btn_continue": "← Շարունակել տուրերի ընտրությունը",
+    "cart_order_summary": "Ամրագրման մանրամասներ",
+    "cart_total_tours": "Տուրերի քանակը.",
+    "cart_total_guests": "Ընդհանուր մասնակիցներ.",
+    "cart_total_price": "Ընդհանուր գումարը.",
+    "cart_form_name": "Ձեր անունը *",
+    "cart_form_name_placeholder": "Ինչպես դիմել Ձեզ",
+    "cart_form_phone": "Հեռախոս / WhatsApp *",
+    "cart_form_phone_placeholder": "+374 (00) 00-00-00",
+    "cart_form_date": "Առաջին տուրի ցանկալի օրը",
+    "cart_form_comment": "Մեկնաբանություն կամ ցանկություններ",
+    "cart_form_comment_placeholder": "Մանկական նստատեղ, հյուրանոցի հասցե, ժամի նախընտրություն...",
+    "cart_btn_checkout": "Հաստատել ամրագրումը WhatsApp-ով",
+    "cart_checkout_note": "⚡ Մենեջերը վայրկյանապես կհաստատի ամրագրումը և կհամաձայնեցնի մանրամասները:",
     "about_company_desc_1": "Amaras Tour-ը Երևանում ավելի քան 12 տարվա փորձ ունեցող տուրիստական ընկերություն է, որը մասնագիտացած է ողջ Հայաստանով էքսկուրսիաների և ճանապարհորդությունների կազմակերպման մեջ:",
     "about_company_desc_2": "Ընկերությունն առաջարկում է խմբային և անհատական տուրեր, ջիպ-տուրեր, ֆոտոտուրեր, բազմօրյա տուրփաթեթներ «բանալին ձեռքին», կոմֆորտ և պրեմիում դասի տրանսֆերներ ու տրանսպորտային ծառայություններ, ինչպես նաև պրոֆեսիոնալ ֆոտո և վիդեո նկարահանում՝ ներառյալ դրոնով աերոնկարահանում:",
     "about_company_title": "Amaras Tour ընկերության մասին",
@@ -1469,6 +1544,10 @@ function setLang(lang) {
   if (typeof window.recalcTourBuilder === 'function') {
     window.recalcTourBuilder();
   }
+  // Re-render cart if on cart.html
+  if (typeof renderCartPage === 'function') {
+    renderCartPage();
+  }
 
   try {
     localStorage.setItem('amaras_preferred_lang', lang);
@@ -1575,4 +1654,243 @@ document.addEventListener('DOMContentLoaded', () => {
   } catch (e) {
     setLang('RU');
   }
+});
+
+
+// ==========================================================================
+// AMARAS UNIVERSAL CART ENGINE
+// ==========================================================================
+const CART_STORAGE_KEY = 'amaras_cart_items';
+
+function getCart() {
+  try {
+    const raw = localStorage.getItem(CART_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveCart(cart) {
+  try {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  } catch (e) {}
+  updateCartBadges();
+}
+
+function updateCartBadges() {
+  const cart = getCart();
+  const totalCount = cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
+  document.querySelectorAll('.amaras-cart-badge').forEach(badge => {
+    badge.textContent = totalCount;
+    if (totalCount > 0) {
+      badge.style.display = 'inline-flex';
+    }
+  });
+}
+
+function addToCart(item) {
+  const cart = getCart();
+  const existing = cart.find(i => i.id === item.id);
+  if (existing) {
+    existing.quantity = (existing.quantity || 1) + (item.quantity || 1);
+  } else {
+    cart.push({
+      id: item.id || ('tour_' + Date.now()),
+      title: item.title || 'Экскурсионный тур',
+      price: item.price || 12000,
+      image: item.image || 'assets/hero/tour-1-khorvirap.jpg',
+      route: item.route || '',
+      quantity: item.quantity || 1
+    });
+  }
+  saveCart(cart);
+
+  // Bump badges
+  document.querySelectorAll('.amaras-cart-badge').forEach(badge => {
+    badge.classList.remove('is-bumped');
+    void badge.offsetWidth;
+    badge.classList.add('is-bumped');
+  });
+}
+
+function updateCartItemQty(id, delta) {
+  let cart = getCart();
+  const item = cart.find(i => i.id === id);
+  if (item) {
+    item.quantity = (item.quantity || 1) + delta;
+    if (item.quantity <= 0) {
+      cart = cart.filter(i => i.id !== id);
+    }
+  }
+  saveCart(cart);
+  renderCartPage();
+}
+
+function removeCartItem(id) {
+  let cart = getCart();
+  cart = cart.filter(i => i.id !== id);
+  saveCart(cart);
+  renderCartPage();
+}
+
+function clearCart() {
+  saveCart([]);
+  renderCartPage();
+}
+
+function renderCartPage() {
+  const container = document.getElementById('cartPageContainer');
+  if (!container) return; // Not on cart.html
+
+  const cart = getCart();
+  const emptyState = document.getElementById('cartEmptyState');
+  const filledState = document.getElementById('cartFilledState');
+  const itemsList = document.getElementById('cartItemsList');
+  const sumToursCount = document.getElementById('cartSumToursCount');
+  const sumGuestsCount = document.getElementById('cartSumGuestsCount');
+  const sumTotalPrice = document.getElementById('cartSumTotalPrice');
+  const btnCheckout = document.getElementById('btnCartCheckout');
+
+  const curLang = window.currentLang || localStorage.getItem('amaras_preferred_lang') || 'RU';
+  const dict = AMARAS_I18N[curLang] || AMARAS_I18N.RU;
+
+  if (cart.length === 0) {
+    if (emptyState) emptyState.style.display = 'block';
+    if (filledState) filledState.style.display = 'none';
+    return;
+  }
+
+  if (emptyState) emptyState.style.display = 'none';
+  if (filledState) filledState.style.display = 'grid';
+
+  let totalGuests = 0;
+  let totalPrice = 0;
+
+  if (itemsList) {
+    itemsList.innerHTML = '';
+    cart.forEach(item => {
+      const itemSubtotal = (item.price || 0) * (item.quantity || 1);
+      totalGuests += (item.quantity || 1);
+      totalPrice += itemSubtotal;
+
+      const itemRow = document.createElement('div');
+      itemRow.className = 'amaras-cart-item-row';
+      itemRow.innerHTML = `
+        <div class="amaras-cart-item-thumb">
+          <img src="${item.image || 'assets/hero/tour-1-khorvirap.jpg'}" alt="${item.title}" loading="lazy" />
+        </div>
+        <div class="amaras-cart-item-info">
+          <div class="amaras-cart-item-title">${item.title}</div>
+          ${item.route ? `<div class="amaras-cart-item-route">${item.route}</div>` : ''}
+          <div class="amaras-cart-item-price-unit">${(item.price || 0).toLocaleString('ru-RU')} ֏ ${dict.per_person || '/ чел.'}</div>
+        </div>
+        <div class="amaras-cart-item-qty-ctrl">
+          <button type="button" class="amaras-qty-btn" onclick="updateCartItemQty('${item.id}', -1)" aria-label="Меньше">−</button>
+          <span class="amaras-qty-val">${item.quantity || 1}</span>
+          <button type="button" class="amaras-qty-btn" onclick="updateCartItemQty('${item.id}', 1)" aria-label="Больше">+</button>
+        </div>
+        <div class="amaras-cart-item-subtotal">
+          ${itemSubtotal.toLocaleString('ru-RU')} ֏
+        </div>
+        <button type="button" class="amaras-cart-item-remove" onclick="removeCartItem('${item.id}')" title="Удалить" aria-label="Удалить тур">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+        </button>
+      `;
+      itemsList.appendChild(itemRow);
+    });
+  }
+
+  if (sumToursCount) sumToursCount.textContent = cart.length;
+  if (sumGuestsCount) sumGuestsCount.textContent = totalGuests;
+  if (sumTotalPrice) sumTotalPrice.textContent = `${totalPrice.toLocaleString('ru-RU')} ֏`;
+
+  // Build WhatsApp Booking URL
+  const nameInput = document.getElementById('cartInputName');
+  const phoneInput = document.getElementById('cartInputPhone');
+  const dateInput = document.getElementById('cartInputDate');
+  const commentInput = document.getElementById('cartInputComment');
+
+  function updateWhatsAppLink() {
+    if (!btnCheckout) return;
+    const clientName = nameInput && nameInput.value.trim() ? nameInput.value.trim() : (curLang === 'ENG' ? 'Guest' : (curLang === 'HY' ? 'Հյուր' : 'Гость'));
+    const clientPhone = phoneInput && phoneInput.value.trim() ? phoneInput.value.trim() : '';
+    const travelDate = dateInput && dateInput.value ? dateInput.value : (curLang === 'ENG' ? 'Flexible' : (curLang === 'HY' ? 'Ճշտվում է' : 'Уточняется'));
+    const comment = commentInput && commentInput.value.trim() ? `\nПожелания: ${commentInput.value.trim()}` : '';
+
+    let itemsText = cart.map((item, idx) => {
+      const sub = (item.price || 0) * (item.quantity || 1);
+      return `${idx + 1}. «${item.title}» — ${item.quantity} чел. × ${(item.price || 0).toLocaleString('ru-RU')} ֏ = ${sub.toLocaleString('ru-RU')} ֏`;
+    }).join('\n');
+
+    let waText = '';
+    if (curLang === 'ENG') {
+      waText = `Hello! I would like to book the following tours from my cart:
+${itemsText}
+
+Total Amount: ${totalPrice.toLocaleString('ru-RU')} ֏
+Total Guests: ${totalGuests}
+Date: ${travelDate}
+Client: ${clientName} ${clientPhone}${comment}
+
+Please confirm availability and booking. Thank you!`;
+    } else if (curLang === 'HY') {
+      waText = `Բարև ձեզ: Ցանկանում եմ ամրագրել զամբյուղի տուրերը.
+${itemsText}
+
+Ընդհանուր գումար՝ ${totalPrice.toLocaleString('ru-RU')} ֏
+Մասնակիցներ՝ ${totalGuests} անձ
+Օր՝ ${travelDate}
+Պատվիրատու՝ ${clientName} ${clientPhone}${comment}
+
+Խնդրում եմ հաստատել ամրագրումը: Շնորհակալություն:`;
+    } else {
+      waText = `Здравствуйте! Хочу оформить бронирование туров из корзины:
+${itemsText}
+
+Итого к оплате: ${totalPrice.toLocaleString('ru-RU')} ֏
+Всего участников: ${totalGuests} чел.
+Дата поездки: ${travelDate}
+Заказчик: ${clientName} ${clientPhone}${comment}
+
+Подтвердите, пожалуйста, бронь и свяжитесь со мной. Спасибо!`;
+    }
+
+    btnCheckout.href = `https://wa.me/37499250525?text=${encodeURIComponent(waText)}`;
+  }
+
+  [nameInput, phoneInput, dateInput, commentInput].forEach(inp => {
+    if (inp) inp.addEventListener('input', updateWhatsAppLink);
+  });
+
+  updateWhatsAppLink();
+}
+
+// Intercept Add to Cart click and save item to cart storage
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.amaras-btn-cart');
+  if (btn) {
+    const card = btn.closest('.amaras-cat-tour-card') || btn.closest('.amaras-pop-tour-card') || btn.closest('.w-dyn-item') || btn.closest('.amaras-card-actions').parentElement;
+    if (card) {
+      const titleEl = card.querySelector('.amaras-cat-card-title') || card.querySelector('.amaras-pop-tour-name') || card.querySelector('h3');
+      const priceEl = card.querySelector('.amaras-cat-card-price-val') || card.querySelector('.amaras-pop-price-val');
+      const imgEl = card.querySelector('img');
+      const routeEl = card.querySelector('.amaras-cat-card-features') || card.querySelector('.amaras-pop-tour-route');
+
+      const title = titleEl ? titleEl.textContent.trim() : 'Экскурсионный тур';
+      const priceRaw = priceEl ? priceEl.textContent.replace(/[^\d]/g, '') : '12000';
+      const price = parseInt(priceRaw, 10) || 12000;
+      const image = imgEl ? (imgEl.getAttribute('src') || 'assets/hero/tour-1-khorvirap.jpg') : 'assets/hero/tour-1-khorvirap.jpg';
+      const route = routeEl ? routeEl.textContent.trim() : '';
+      const id = title.toLowerCase().replace(/[^a-zа-яё0-9]/gi, '_');
+
+      addToCart({ id, title, price, image, route, quantity: 1 });
+    }
+  }
+});
+
+// Auto-init cart on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartBadges();
+  renderCartPage();
 });
