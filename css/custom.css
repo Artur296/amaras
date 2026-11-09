@@ -5630,7 +5630,10 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
 }
 
 .amaras-popular-pill-badge,
-.amaras-cat-badge {
+.amaras-cat-badge,
+.amaras-pop-tag-rank,
+.amaras-cat-card-badge,
+.amaras-cat-chips {
   display: none !important;
 }
 
