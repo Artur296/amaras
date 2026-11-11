@@ -7,17 +7,6 @@
 (function () {
   'use strict';
 
-  // Demo user data for immediate preview
-  const DEMO_USER = {
-    id: 'usr_demo_77',
-    name: 'Артур Мурадян',
-    email: 'amuradyan296@gmail.com',
-    phone: '+374 99 250 525',
-    avatarText: 'АМ',
-    createdAt: '2024-03-15',
-    bookingsCount: 2
-  };
-
   const AmarasToast = {
     container: null,
 
@@ -371,43 +360,12 @@
       }, 500);
     },
 
-    quickDemoLogin() {
-      this.saveUser(DEMO_USER);
-      this.saveRegisteredUser({ ...DEMO_USER, password: 'password123' });
-      this.close();
-      AmarasToast.show('Вы вошли как Артур Мурадян (Демо-аккаунт).', 'success');
-    },
-
     loginWithGoogle() {
-      const googleUser = {
-        id: 'usr_g_' + Date.now(),
-        name: 'Artur Muradyan',
-        email: 'amuradyan296@gmail.com',
-        phone: '+374 99 250 525',
-        avatarText: 'AM',
-        provider: 'Google',
-        createdAt: new Date().toISOString().split('T')[0],
-        bookingsCount: 1
-      };
-      this.saveUser(googleUser);
-      this.close();
-      AmarasToast.show('Успешный вход через Google!', 'success');
+      AmarasToast.show('Для входа используйте регистрацию через Email. Вход через Google будет активен после подключения OAuth бэкенда.', 'info');
     },
 
     loginWithTelegram() {
-      const tgUser = {
-        id: 'usr_tg_' + Date.now(),
-        name: 'Amaras Traveler',
-        email: 'traveler@t.me',
-        phone: '+374 99 250 525',
-        avatarText: 'AT',
-        provider: 'Telegram',
-        createdAt: new Date().toISOString().split('T')[0],
-        bookingsCount: 1
-      };
-      this.saveUser(tgUser);
-      this.close();
-      AmarasToast.show('Успешный вход через Telegram!', 'success');
+      AmarasToast.show('Для входа используйте регистрацию через Email. Вход через Telegram будет активен после подключения бота.', 'info');
     },
 
     logout() {
@@ -686,14 +644,6 @@
                 <span>Telegram</span>
               </button>
             </div>
-
-            <!-- Demo 1-click Test Account -->
-            <div class="amaras-auth-demo-box">
-              <button type="button" class="amaras-auth-demo-btn" onclick="AmarasAuth.quickDemoLogin()">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                <span>Войти как Артур Мурадян (1 клик)</span>
-              </button>
-            </div>
           </div>
 
           <!-- TAB 2: REGISTER -->
@@ -704,7 +654,7 @@
                 <label for="regName">Имя и фамилия</label>
                 <div class="amaras-auth-input-box">
                   <svg class="amaras-auth-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                  <input type="text" id="regName" name="reg_name" placeholder="Артур Мурадян" required autocomplete="name" />
+                  <input type="text" id="regName" name="reg_name" placeholder="Ваше имя и фамилия" required autocomplete="name" />
                 </div>
               </div>
 
@@ -720,7 +670,7 @@
                 <label for="regPhone">Телефон для связи</label>
                 <div class="amaras-auth-input-box">
                   <svg class="amaras-auth-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                  <input type="tel" id="regPhone" name="reg_phone" placeholder="+374 99 250 525" autocomplete="tel" />
+                  <input type="tel" id="regPhone" name="reg_phone" placeholder="+374 99 000 000" autocomplete="tel" />
                 </div>
               </div>
 
