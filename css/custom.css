@@ -5108,75 +5108,417 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   box-shadow: 0 8px 22px rgba(199, 255, 50, 0.45);
 }
 
-/* Tablet & Mobile Hero Action Centering (Matches centered heading & description) */
-@media (max-width: 991px) {
-  .rebrand-section-hero-inner {
-    display: flex !important;
-    flex-direction: column !important;
-  }
+/* ==========================================================================
+   Amaras Hero Showcase: Floating Orbit Gallery (Desktop) & Curved Ribbons (Mobile)
+   Inspired by award-winning portfolio hero layouts (Elliot design reference)
+   ========================================================================== */
 
-  /* Interactive Ticket Card is the FIRST element at the very top of the page on mobile */
-  .rebrand-section-hero-right {
-    order: -1 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    margin: 8px auto 26px !important;
-  }
-
-  .rebrand-section-hero-left {
-    order: 2 !important;
-    align-items: center !important;
-    text-align: center !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-  .rebrand-section-hero-button.amaras-hero-actions {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    align-self: center !important;
-    text-align: center !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 16px auto 0 !important;
-    gap: 16px !important;
-  }
-
-  .amaras-hero-actions .rebrand-button {
-    display: inline-flex !important;
-    align-self: center !important;
-    justify-content: center !important;
-    margin: 0 auto !important;
-    text-align: center !important;
-  }
-
-  .amaras-hero-social-buttons {
-    display: inline-flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    align-self: center !important;
-    width: 100% !important;
-    margin: 0 auto !important;
-    gap: 12px !important;
-  }
+.rebrand-section-hero {
+  background-color: #312F2F !important;
+  position: relative !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  min-height: calc(100vh - 72px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-@media (max-width: 600px) {
-  .rebrand-section-hero-button.amaras-hero-actions {
-    gap: 14px !important;
-    margin-top: 14px !important;
+.amaras-hero-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 40px 24px;
+  box-sizing: border-box;
+  max-width: 1680px;
+  margin: 0 auto;
+}
+
+/* --- Desktop Orbit Container --- */
+.amaras-hero-orbit-showcase {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+}
+
+.amaras-orbit-card {
+  position: absolute;
+  pointer-events: auto;
+  width: clamp(105px, 8.5vw, 142px);
+  height: clamp(130px, 10.5vw, 172px);
+  border-radius: 14px;
+  overflow: visible;
+  cursor: pointer;
+  text-decoration: none;
+  transform: translate3d(var(--orbit-px, 0px), var(--orbit-py, 0px), 0) rotate(var(--rot, 0deg));
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), z-index 0.3s ease;
+  z-index: 2;
+}
+
+.amaras-orbit-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.2);
+  background: #1E1D1D;
+  animation: amarasOrbitFloat 6s ease-in-out infinite alternate;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.orbit-pos-1 .amaras-orbit-card-inner  { animation-delay: 0s; }
+.orbit-pos-2 .amaras-orbit-card-inner  { animation-delay: -0.7s; }
+.orbit-pos-3 .amaras-orbit-card-inner  { animation-delay: -1.4s; }
+.orbit-pos-4 .amaras-orbit-card-inner  { animation-delay: -2.1s; }
+.orbit-pos-5 .amaras-orbit-card-inner  { animation-delay: -2.8s; }
+.orbit-pos-6 .amaras-orbit-card-inner  { animation-delay: -3.5s; }
+.orbit-pos-7 .amaras-orbit-card-inner  { animation-delay: -4.2s; }
+.orbit-pos-8 .amaras-orbit-card-inner  { animation-delay: -4.9s; }
+.orbit-pos-9 .amaras-orbit-card-inner  { animation-delay: -0.5s; }
+.orbit-pos-10 .amaras-orbit-card-inner { animation-delay: -1.2s; }
+.orbit-pos-11 .amaras-orbit-card-inner { animation-delay: -1.9s; }
+.orbit-pos-12 .amaras-orbit-card-inner { animation-delay: -2.6s; }
+.orbit-pos-13 .amaras-orbit-card-inner { animation-delay: -3.3s; }
+.orbit-pos-14 .amaras-orbit-card-inner { animation-delay: -4.0s; }
+.orbit-pos-15 .amaras-orbit-card-inner { animation-delay: -4.7s; }
+.orbit-pos-16 .amaras-orbit-card-inner { animation-delay: -5.4s; }
+
+@keyframes amarasOrbitFloat {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-7px); }
+  100% { transform: translateY(2px); }
+}
+
+.amaras-orbit-card-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.amaras-orbit-card:hover {
+  transform: translate3d(var(--orbit-px, 0px), calc(var(--orbit-py, 0px) - 8px), 0) scale(1.1) rotate(0deg) !important;
+  z-index: 30 !important;
+}
+
+.amaras-orbit-card:hover .amaras-orbit-card-inner {
+  border-color: rgba(199, 255, 50, 0.8) !important;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 26px rgba(199, 255, 50, 0.45) !important;
+}
+
+.amaras-orbit-card:hover .amaras-orbit-card-inner img {
+  transform: scale(1.1);
+}
+
+.amaras-orbit-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  background: rgba(18, 18, 18, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 8px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid rgba(199, 255, 50, 0.35);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  letter-spacing: 0.02em;
+}
+
+.amaras-orbit-card:hover .amaras-orbit-badge {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Desktop Placement Coordinates around Center */
+@media (min-width: 992px) {
+  /* Top Arc */
+  .orbit-pos-1  { top: 11%; left: 3%; }
+  .orbit-pos-2  { top: 4.5%; left: 13.5%; }
+  .orbit-pos-3  { top: 1.5%; left: 24.5%; }
+  .orbit-pos-4  { top: 0.5%; left: 36%; }
+  .orbit-pos-5  { top: 0.5%; left: 54%; }
+  .orbit-pos-6  { top: 1.5%; left: 65.5%; }
+  .orbit-pos-7  { top: 4.5%; left: 76.5%; }
+  .orbit-pos-8  { top: 11%; left: 87%; }
+
+  /* Side Cards */
+  .orbit-pos-9  { top: 38%; right: 2%; }
+  .orbit-pos-16 { top: 38%; left: 2%; }
+
+  /* Bottom Arc */
+  .orbit-pos-10 { bottom: 11%; right: 3%; }
+  .orbit-pos-11 { bottom: 4.5%; right: 13.5%; }
+  .orbit-pos-12 { bottom: 1.5%; right: 25%; }
+  .orbit-pos-13 { bottom: 1%; left: 53%; }
+  .orbit-pos-14 { bottom: 1.5%; left: 37%; }
+  .orbit-pos-15 { bottom: 5%; left: 14%; }
+}
+
+/* --- Center Content --- */
+.amaras-hero-center-content {
+  position: relative;
+  z-index: 10;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 20px;
+  box-sizing: border-box;
+}
+
+.amaras-hero-eyebrow {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  color: var(--amaras-lime) !important;
+  margin-bottom: 18px !important;
+  padding: 6px 16px !important;
+  background: rgba(199, 255, 50, 0.08) !important;
+  border: 1px solid rgba(199, 255, 50, 0.28) !important;
+  border-radius: 100px !important;
+  display: inline-block !important;
+}
+
+.amaras-hero-title {
+  margin: 0 0 16px !important;
+  text-align: center !important;
+}
+
+.amaras-hero-title h1 {
+  font-size: clamp(34px, 4.4vw, 56px) !important;
+  line-height: 1.14 !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  margin: 0 !important;
+  letter-spacing: -0.025em !important;
+  text-wrap: balance !important;
+}
+
+.amaras-hero-desc {
+  font-size: clamp(14px, 1.2vw, 16px) !important;
+  line-height: 1.6 !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+  max-width: 580px !important;
+  margin: 0 auto 26px !important;
+  text-align: center !important;
+}
+
+.amaras-hero-actions-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.amaras-hero-cta-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 14px 28px !important;
+  border-radius: 50px !important;
+  background: var(--amaras-lime) !important;
+  color: #312F2F !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  text-decoration: none !important;
+  box-shadow: 0 8px 24px rgba(199, 255, 50, 0.4) !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, background-color 0.2s ease !important;
+}
+
+.amaras-hero-cta-btn:hover {
+  transform: translateY(-2px) scale(1.03) !important;
+  box-shadow: 0 12px 32px rgba(199, 255, 50, 0.55) !important;
+  background: var(--amaras-lime-hover) !important;
+}
+
+.amaras-hero-scroll-down {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transition: color 0.2s ease, transform 0.25s ease;
+  animation: amarasScrollBounce 2.2s ease-in-out infinite;
+  text-decoration: none;
+  margin-top: 4px;
+}
+
+.amaras-hero-scroll-down:hover {
+  color: var(--amaras-lime);
+  transform: translateY(4px);
+}
+
+@keyframes amarasScrollBounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(6px); }
+  60% { transform: translateY(3px); }
+}
+
+/* --- Mobile / Tablet Curvature & Ribbons (matches Elliot mobile reference) --- */
+.amaras-hero-mobile-ribbon {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .amaras-hero-orbit-showcase {
+    display: none !important;
   }
-  .amaras-hero-circle-btn {
-    width: 46px;
-    height: 46px;
+
+  .amaras-hero-wrapper {
+    min-height: auto !important;
+    padding: 16px 0 24px !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
   }
-  .amaras-hero-social-buttons {
+
+  .amaras-hero-mobile-ribbon {
+    display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 6px 12px !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+
+  .amaras-hero-mobile-ribbon::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .amaras-mobile-ribbon-track {
+    display: flex !important;
     gap: 10px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: max-content !important;
+    min-width: 100% !important;
+    padding: 0 16px !important;
+  }
+
+  .amaras-mobile-ribbon-card {
+    flex: 0 0 auto !important;
+    width: 88px !important;
+    height: 114px !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    transition: transform 0.3s ease !important;
+    display: block !important;
+    background: #1E1D1D !important;
+  }
+
+  .amaras-mobile-ribbon-card img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+
+  /* Curved arches matching media_1794408311923_b0176c5f.jpg */
+  .amaras-hero-mobile-ribbon.is-top {
+    padding-top: 12px !important;
+  }
+  .amaras-hero-mobile-ribbon.is-top .c1 { transform: translateY(14px) rotate(-3deg); }
+  .amaras-hero-mobile-ribbon.is-top .c2 { transform: translateY(5px) rotate(1deg); }
+  .amaras-hero-mobile-ribbon.is-top .c3 { transform: translateY(0px) rotate(-1deg); }
+  .amaras-hero-mobile-ribbon.is-top .c4 { transform: translateY(0px) rotate(1deg); }
+  .amaras-hero-mobile-ribbon.is-top .c5 { transform: translateY(5px) rotate(-1deg); }
+  .amaras-hero-mobile-ribbon.is-top .c6 { transform: translateY(14px) rotate(3deg); }
+
+  .amaras-hero-mobile-ribbon.is-bottom {
+    padding-bottom: 12px !important;
+  }
+  .amaras-hero-mobile-ribbon.is-bottom .c7  { transform: translateY(0px) rotate(2deg); }
+  .amaras-hero-mobile-ribbon.is-bottom .c8  { transform: translateY(-7px) rotate(-1deg); }
+  .amaras-hero-mobile-ribbon.is-bottom .c9  { transform: translateY(-13px) rotate(1deg); }
+  .amaras-hero-mobile-ribbon.is-bottom .c10 { transform: translateY(-13px) rotate(-1deg); }
+  .amaras-hero-mobile-ribbon.is-bottom .c11 { transform: translateY(-7px) rotate(2deg); }
+  .amaras-hero-mobile-ribbon.is-bottom .c12 { transform: translateY(0px) rotate(-2deg); }
+
+  .amaras-hero-center-content {
+    padding: 10px 16px !important;
+  }
+
+  .amaras-hero-eyebrow {
+    font-size: 11px !important;
+    letter-spacing: 0.12em !important;
+    margin-bottom: 10px !important;
+    padding: 5px 12px !important;
+  }
+
+  .amaras-hero-title h1 {
+    font-size: clamp(24px, 6.8vw, 34px) !important;
+    line-height: 1.18 !important;
+  }
+
+  .amaras-hero-desc {
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 16px !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .amaras-hero-actions-container {
+    gap: 12px !important;
+    margin-bottom: 14px !important;
+    flex-direction: column !important;
+  }
+
+  .amaras-hero-cta-btn {
+    padding: 12px 22px !important;
+    font-size: 14px !important;
+  }
+
+  .amaras-hero-social-buttons {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+
+  .amaras-hero-scroll-down {
+    width: 32px !important;
+    height: 32px !important;
+    margin-top: 0 !important;
   }
 }
 

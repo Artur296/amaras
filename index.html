@@ -433,239 +433,176 @@
               });
             </script>
           </div>
-          <div class="w-layout-blockcontainer rebrand-section-hero-inner w-container">
-            <div class="rebrand-section-hero-gsap-code w-embed w-script">
-              <style>
-                [data-gsap='section-hero-tilt-container'] {
-                  transform: scale(var(--vw-scale));
-                }
-
-                .headingh1.rebrand-section-hero-title {
-                  animation: 0.8s ease-out slide-in;
-                  animation-delay: 0.1s;
-                }
-
-                .rebrand-section-hero-eyebrow {
-                  animation: 0.4s ease-out slide-in;
-                }
-
-                .rebrand-section-hero-description {
-                  animation: 0.4s ease-out slide-in;
-                  animation-delay: 0.3s;
-                }
-
-                /* 
-  .rebrand-section-hero-button {
-    animation: 0.3s ease-out slide-in;
-    animation-delay: 0.8s;
-  }   */
-
-                @keyframes slide-in {
-                  0% {
-                    opacity: 0;
-                    transform: translateY(12px);
-                  }
-
-                  100% {
-                    opacity: 1;
-                    transform: translateY(0);
-                  }
-                }
-              </style>
-              <script>
-
-                const MAX_TILT_DEG = 7;
-                const SMOOTH_DURATION = 0.55;
-
-                const PARALLAX_MAX_X = 44;
-                const PARALLAX_MAX_Y = 32;
-                const PARALLAX_DEPTH = 0.42;
-                const PARALLAX_DURATION = 0.72;
-
-                /** Width above which --vw-scale stays 1; at 1440px and below scale tracks the shorter viewport side. */
-                const RESIZE_SCALE_WIDTH_REF = 1440;
-                const RESIZE_SCALE_MIN = 0.5;
-
-                function initResizeScale() {
-                  const range = 1 / RESIZE_SCALE_WIDTH_REF;
-
-                  const applyVwScale = () => {
-                    const w = window.innerWidth;
-                    const vw = w > RESIZE_SCALE_WIDTH_REF ? 1 : Math.max(RESIZE_SCALE_MIN, Math.min(1, range * w));
-                    document.documentElement.style.setProperty('--vw-scale', `${vw}`);
-                  };
-
-                  applyVwScale();
-
-                  window.addEventListener('resize', applyVwScale, { passive: true });
-                }
-
-                function initPerspectiveTilt() {
-                  const box = document.querySelector('[data-gsap="section-hero-tilt-box"]');
-                  const pin = document.querySelector('[data-gsap="section-hero-pin"]');
-                  if (!box) return;
-
-                  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-                  if (reduceMotion.matches) return;
-
-                  gsap.set(box, {
-                    transformPerspective: 1100,
-                    transformOrigin: '50% 50%',
-                    rotationX: 0,
-                    rotationY: 0,
-                  });
-
-                  const rotateXTo = gsap.quickTo(box, 'rotationX', {
-                    duration: SMOOTH_DURATION,
-                    ease: 'power3.out',
-                  });
-                  const rotateYTo = gsap.quickTo(box, 'rotationY', {
-                    duration: SMOOTH_DURATION,
-                    ease: 'power3.out',
-                  });
-
-                  let pinXTo, pinYTo;
-                  if (pin) {
-                    gsap.set(pin, { x: 0, y: 0 });
-                    pinXTo = gsap.quickTo(pin, 'x', { duration: PARALLAX_DURATION, ease: 'power3.out' });
-                    pinYTo = gsap.quickTo(pin, 'y', { duration: PARALLAX_DURATION, ease: 'power3.out' });
-                  }
-
-                  function pointerToTilt(clientX, clientY) {
-                    // Always reads live window dimensions — resize-safe already
-                    const w = window.innerWidth || 1;
-                    const h = window.innerHeight || 1;
-                    const nx = (clientX / w) * 2 - 1;
-                    const ny = (clientY / h) * 2 - 1;
-                    const clampedX = Math.max(-1, Math.min(1, nx));
-                    const clampedY = Math.max(-1, Math.min(1, ny));
-                    rotateXTo(-clampedY * MAX_TILT_DEG);
-                    rotateYTo(clampedX * MAX_TILT_DEG);
-                    if (pinXTo && pinYTo) {
-                      pinXTo(-clampedX * PARALLAX_MAX_X * PARALLAX_DEPTH);
-                      pinYTo(-clampedY * PARALLAX_MAX_Y * PARALLAX_DEPTH);
-                    }
-                  }
-
-                  function resetTilt() {
-                    rotateXTo(0);
-                    rotateYTo(0);
-                    pinXTo?.(0);
-                    pinYTo?.(0);
-                  }
-
-                  document.body.addEventListener('pointermove', (e) => pointerToTilt(e.clientX, e.clientY));
-                  document.body.addEventListener('pointerleave', resetTilt);
-
-                  // On resize: snap tilt back to neutral so there's no stale rotation
-                  // while the pointer position is unknown relative to the new viewport
-                  window.addEventListener('resize', resetTilt, { passive: true });
-                }
-
-                function initHeroCarouselSync() {
-                  const HOLD_SECONDS = 1.7;
-                  const TRANSITION_SECONDS = 0.4;
-
-                  const wordEls = Array.from(document.querySelectorAll('[data-gsap="section-hero-your-text"]'));
-                  if (wordEls.length === 0) return;
-
-                  const track = document.createElement('span');
-                  track.dataset.gsap = 'section-hero-your-text-track';
-                  track.setAttribute('aria-live', 'polite');
-                  track.setAttribute('aria-atomic', 'true');
-
-                  const parent = wordEls[0].parentElement;
-                  if (!parent) return;
-
-                  parent.insertBefore(track, wordEls[0]);
-                  wordEls.forEach((el) => track.appendChild(el));
-
-                  gsap.set(wordEls, { opacity: 0, yPercent: 100 });
-                  gsap.set(wordEls[0], { opacity: 1, yPercent: 0 });
-                  track.setAttribute('aria-label', wordEls[0].textContent?.trim() ?? '');
-
-                  const carousel = document.querySelector('[data-gsap="section-hero-carousel"]');
-                  const imageList = carousel ? Array.from(carousel.querySelectorAll('img')) : [];
-                  const canAnimateImages = imageList.length >= 2;
-
-                  if (canAnimateImages) {
-                    gsap.set(imageList, { xPercent: 100, zIndex: 1 });
-                    gsap.set(imageList[0], { xPercent: 0 });
-                  }
-
-                  if (wordEls.length === 1) return;
-
-                  const tl = gsap.timeline({
-                    repeat: -1,
-                    defaults: { duration: TRANSITION_SECONDS, ease: 'power2.inOut' },
-                  });
-
-                  wordEls.forEach((_, i) => {
-                    const current = wordEls[i];
-                    const next = wordEls[(i + 1) % wordEls.length];
-                    const nextWord = next.textContent?.trim() ?? '';
-
-                    tl.to(current, { opacity: 0, yPercent: -100 }, `+=${HOLD_SECONDS}`).set(next, { opacity: 0, yPercent: 100 }, '<').to(next, { opacity: 1, yPercent: 0 }, '<');
-
-                    if (canAnimateImages) {
-                      const currentImg = imageList[i % imageList.length];
-                      const nextImg = imageList[(i + 1) % imageList.length];
-                      tl.set(nextImg, { xPercent: 100, zIndex: 2 }, '<').to(currentImg, { xPercent: -100 }, '<').to(nextImg, { xPercent: 0 }, '<');
-                    }
-
-                    tl.add(() => {
-                      track.setAttribute('aria-label', nextWord);
-                      if (canAnimateImages) gsap.set(imageList, { zIndex: 1 });
-                    });
-                  });
-
-                  // Pause timeline during resize to prevent mid-animation layout glitches,
-                  // then resume once the browser has settled
-                  let resizeTimer;
-                  window.addEventListener(
-                    'resize',
-                    () => {
-                      tl.pause();
-                      clearTimeout(resizeTimer);
-                      resizeTimer = setTimeout(() => tl.resume(), 150);
-                    },
-                    { passive: true },
-                  );
-                }
-
-                addEventListener('DOMContentLoaded', () => {
-                  initResizeScale();
-                  initHeroCarouselSync();
-                  initPerspectiveTilt();
-                });
-              </script>
-            </div>
-            <div class="rebrand-section-hero-left">
-              <div class="headingh4 rebrand-section-hero-eyebrow" data-i18n="hero_eyebrow">Туроператор по Армении с 2014 года</div>
-              <div class="rebrand-section-hero-heading">
-                <div class="headingh1 rebrand-section-hero-title w-richtext">
-                  <h1 data-i18n="hero_title">Армения, в которую хочется возвращаться.</h1>
+          <div class="amaras-hero-wrapper rebrand-section-hero-inner">
+            <!-- Desktop Floating Orbit Gallery (matches Elliot desktop reference) -->
+            <div class="amaras-hero-orbit-showcase" id="amarasOrbitShowcase" aria-hidden="true">
+              <!-- Card 1: Khor Virap (Top Far-Left) -->
+              <a href="#tours" class="amaras-orbit-card orbit-pos-1" data-label="Хор Вирап & Арарат" style="--rot: -7deg; --depth: 0.65;">
+                <div class="amaras-orbit-card-inner">
+                  <img src="assets/hero/tour-1-khorvirap.webp" alt="Хор Вирап" loading="eager" />
+                  <span class="amaras-orbit-badge">Хор Вирап</span>
                 </div>
-                <p class="body-1 loose rebrand-section-hero-description" data-i18n="hero_desc">Откройте для себя красоту Армении, её богатую историю, удивительные традиции и искреннее гостеприимство.
+              </a>
 
-Уже более 12 лет мы создаём путешествия с вниманием к каждой детали — от тщательно продуманных маршрутов и высокого уровня комфорта до особенной атмосферы, в которой каждый гость чувствует себя желанным.
+              <!-- Card 2: Sevan (Top Left 1) -->
+              <a href="#tours" class="amaras-orbit-card orbit-pos-2" data-label="Озеро Севан" style="--rot: 4deg; --depth: 0.85;">
+                <div class="amaras-orbit-card-inner">
+                  <img src="assets/hero/tour-2-sevan.webp" alt="Севан" loading="eager" />
+                  <span class="amaras-orbit-badge">Севан</span>
+                </div>
+              </a>
 
-Путешествуйте с комфортом. Открывайте с интересом. Возвращайтесь с любовью.</p>
+              <!-- Card 3: Jeep Tour / Garni Gorge (Top Left 2) -->
+              <a href="#tours" class="amaras-orbit-card orbit-pos-3" data-label="Симфония камней" style="--rot: -4deg; --depth: 0.5;">
+                <div class="amaras-orbit-card-inner">
+                  <img src="assets/hero/tour-3-jeep.webp" alt="Симфония камней" loading="eager" />
+                  <span class="amaras-orbit-badge">Симфония камней</span>
+                </div>
+              </a>
+
+              <!-- Card 4: Ararat Valley (Top Mid-Left) -->
+              <a href="#tours" class="amaras-orbit-card orbit-pos-4" data-label="Араратская долина" style="--rot: 2deg; --depth: 0.75;">
+                <div class="amaras-orbit-card-inner">
+                  <img src="assets/armenia/card-attractions.jpg" alt="Араратская долина" loading="eager" />
+                  <span class="amaras-orbit-badge">Арарат</span>
+                </div>
+              </a>
+
+              <!-- Card 5: Poppies Panorama (Top Mid-Right) -->
+              <a href="#tours" class="amaras-orbit-card orbit-pos-5" data-label="Маковые поля" style="--rot: -3deg; --depth: 0.9;">
+                <div class="amaras-orbit-card-inner">
+                  <img src="assets/hero/poppies-panorama.webp" alt="Маковые поля" loading="eager" />
+                  <span class="amaras-orbit-badge">Маковые поля</span>
+                </div>
+              </a>
+
+              <!-- Card 6: Wine Days (Top Right 1) -->
+              <a href="#tours" class="amaras-orbit-card orbit-pos-6" data-label="Винные дни Арени" style="--rot: 4deg; --depth: 0.55;">
+                <div class="amaras-orbit-card-inner">
+                  <img src="assets/armenia/card-festivals.jpg" alt="Винные дни" loading="eager" />
+                  <span class="amaras-orbit-badge">Винный Арени</span>
+                </div>
+              </a>
+
+              <!-- Card 7: Lavash (Top Right 2) -->
+              <a href="#tours" class="amaras-orbit-card orbit-pos-7" data-label="Мастер-класс лаваша" style="--rot: -5deg; --depth: 0.8;">
+                <div class="amaras-orbit-card-inner">
+                  <img src="assets/hero/tour-4-gastro.webp" alt="Лаваш" loading="eager" />
+                  <span class="amaras-orbit-badge">Гастро-тур</span>
+                </div>
+              </a>
+
+              <!-- Card 8: Khorovats BBQ (Top Far-Right) -->
+              <a href="#tours" class="amaras-orbit-card orbit-pos-8" data-label="Армянский хоровац" style="--rot: 6deg; --depth: 0.65;">
+                <div class="amaras-orbit-card-inner">
+                  <img src="assets/armenia/fest-khorovats.jpg" alt="Хоровац" loading="eager" />
+                  <span class="amaras-orbit-badge">Хоровац</span>
+                </div>
+              </a>
+
+              <!-- Card 9: Transport (Mid Right Edge) -->
+              <a href="#tours" class="amaras-orbit-card orbit-pos-9" data-label="Комфортный транспорт" style="--rot: -6deg; --depth: 0.7;">
+                <div class="amaras-orbit-card-inner">
+                  <img src="assets/armenia/trad-khachkar.jpg" alt="Транспорт" loading="eager" />
+                  <span class="amaras-orbit-badge">Комфорт</span>
+                </div>
+              </a>
+
+              <!-- Card 10: Sevan Shore (Bottom Far-Right) -->
+              <a href="#tours" class="amaras-orbit-card orbit-pos-10" data-label="Озеро Севан" style="--rot: 5deg; --depth: 0.85;">
+                <div class="amaras-orbit-card-inner">
+                  <img src="assets/hero/tour-2-sevan.webp" alt="Севан" loading="eager" />
+                  <span class="amaras-orbit-badge">Севанский бриз</span>
+                </div>
+              </a>
+
+              <!-- Card 11: Traditional Bakery (Bottom Right 1) -->
+              <a href="#tours" class="amaras-orbit-card orbit-pos-11" data-label="Выпечка в тонире" style="--rot: -4deg; --depth: 0.6;">
+                <div class="amaras-orbit-card-inner">
+                  <img src="assets/armenia/card-dishes.jpg" alt="Тонир" loading="eager" />
+                  <span class="amaras-orbit-badge">Традиции</span>
+                </div>
+              </a>
+
+              <!-- Card 12: Khor Virap (Bottom Mid-Right) -->
+              <a href="#tours" class="amaras-orbit-card orbit-pos-12" data-label="Хор Вирап" style="--rot: 3deg; --depth: 0.95;">
+                <div class="amaras-orbit-card-inner">
+                  <img src="assets/hero/tour-1-khorvirap.webp" alt="Хор Вирап" loading="eager" />
+                  <span class="amaras-orbit-badge">Хор Вирап</span>
+                </div>
+              </a>
+
+              <!-- Card 13: Poppies (Bottom Mid-Left) -->
+              <a href="#tours" class="amaras-orbit-card orbit-pos-13" data-label="Закат над Араратом" style="--rot: -3deg; --depth: 0.7;">
+                <div class="amaras-orbit-card-inner">
+                  <img src="assets/hero/poppies-panorama.webp" alt="Закат над Араратом" loading="eager" />
+                  <span class="amaras-orbit-badge">Закат над Араратом</span>
+                </div>
+              </a>
+
+              <!-- Card 14: Wine Culture (Bottom Left 1) -->
+              <a href="#tours" class="amaras-orbit-card orbit-pos-14" data-label="Праздники Армении" style="--rot: 4deg; --depth: 0.55;">
+                <div class="amaras-orbit-card-inner">
+                  <img src="assets/armenia/card-festivals.jpg" alt="Праздники" loading="eager" />
+                  <span class="amaras-orbit-badge">Праздники</span>
+                </div>
+              </a>
+
+              <!-- Card 15: Jeep Adventure (Bottom Far-Left) -->
+              <a href="#tours" class="amaras-orbit-card orbit-pos-15" data-label="Джип-приключения" style="--rot: -5deg; --depth: 0.8;">
+                <div class="amaras-orbit-card-inner">
+                  <img src="assets/hero/tour-3-jeep.webp" alt="Джип-приключения" loading="eager" />
+                  <span class="amaras-orbit-badge">Джип-тур</span>
+                </div>
+              </a>
+
+              <!-- Card 16: Yerevan Cafe (Mid Left Edge) -->
+              <a href="#tours" class="amaras-orbit-card orbit-pos-16" data-label="Колоритный Ереван" style="--rot: 5deg; --depth: 0.65;">
+                <div class="amaras-orbit-card-inner">
+                  <img src="assets/armenia/card-restaurants.jpg" alt="Ереван" loading="eager" />
+                  <span class="amaras-orbit-badge">Ереван</span>
+                </div>
+              </a>
+            </div>
+
+            <!-- Mobile Top Ribbon (matches Elliot mobile reference) -->
+            <div class="amaras-hero-mobile-ribbon is-top" aria-hidden="true">
+              <div class="amaras-mobile-ribbon-track">
+                <a href="#tours" class="amaras-mobile-ribbon-card c1"><img src="assets/hero/tour-1-khorvirap.webp" alt="Хор Вирап" loading="eager" /></a>
+                <a href="#tours" class="amaras-mobile-ribbon-card c2"><img src="assets/hero/tour-2-sevan.webp" alt="Севан" loading="eager" /></a>
+                <a href="#tours" class="amaras-mobile-ribbon-card c3"><img src="assets/hero/tour-3-jeep.webp" alt="Джип-тур" loading="eager" /></a>
+                <a href="#tours" class="amaras-mobile-ribbon-card c4"><img src="assets/armenia/card-attractions.jpg" alt="Арарат" loading="eager" /></a>
+                <a href="#tours" class="amaras-mobile-ribbon-card c5"><img src="assets/armenia/card-festivals.jpg" alt="Винные дни" loading="eager" /></a>
+                <a href="#tours" class="amaras-mobile-ribbon-card c6"><img src="assets/hero/poppies-panorama.webp" alt="Маковые поля" loading="eager" /></a>
               </div>
-              <div class="rebrand-section-hero-button amaras-hero-actions">
-                <a class="rebrand-button w-variant-713d7970-afd3-878e-b357-83c0d7403fb6 w-inline-block"
-                  data-wf--button--variant="primary---md"
-                  href="#tours">
-                  <div class="buttonsm w-variant-713d7970-afd3-878e-b357-83c0d7403fb6" data-i18n="hero_cta">Выбрать экскурсию</div>
+            </div>
+
+            <!-- Hero Center Content -->
+            <div class="amaras-hero-center-content">
+              <div class="headingh4 rebrand-section-hero-eyebrow amaras-hero-eyebrow" data-i18n="hero_eyebrow">
+                Туроператор по Армении с 2014 года
+              </div>
+              <div class="headingh1 rebrand-section-hero-title amaras-hero-title">
+                <h1 data-i18n="hero_title">Армения, в которую хочется возвращаться.</h1>
+              </div>
+              <p class="body-1 loose rebrand-section-hero-description amaras-hero-desc" data-i18n="hero_desc">
+                Откройте для себя красоту Армении, её богатую историю, удивительные традиции и искреннее гостеприимство.
+                Уже более 12 лет мы создаём путешествия с вниманием к каждой детали — от тщательно продуманных маршрутов и высокого уровня комфорта до особенной атмосферы, в которой каждый гость чувствует себя желанным.
+              </p>
+
+              <div class="amaras-hero-actions-container">
+                <a class="rebrand-button primary---md amaras-hero-cta-btn" href="#tours">
+                  <span class="buttonsm" data-i18n="hero_cta">Выбрать экскурсию</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
                 </a>
                 <div class="amaras-hero-social-buttons">
-                  <!-- Telegram -->
                   <a class="amaras-hero-circle-btn is-tg" href="https://t.me/amarastour" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram (@amarastour)">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.92 9.07c-.14.65-.53.81-1.07.51l-2.95-2.18-1.42 1.37c-.16.16-.29.29-.6.29l.21-3.01 5.48-4.95c.24-.21-.05-.33-.37-.12l-6.77 4.26-2.92-.91c-.63-.2-.64-.63.13-.94l11.41-4.4c.53-.19.99.13.82.91z"/>
                     </svg>
                   </a>
-                  <!-- Instagram -->
                   <a class="amaras-hero-circle-btn is-ig" href="https://instagram.com/amarastour" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram (@amarastour)">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -673,13 +610,11 @@
                       <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                     </svg>
                   </a>
-                  <!-- WhatsApp -->
                   <a class="amaras-hero-circle-btn is-wa" href="https://wa.me/37499250525" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp (+374 99 250 525)">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                     </svg>
                   </a>
-                  <!-- Phone -->
                   <a class="amaras-hero-circle-btn is-phone" href="tel:+37499250525" aria-label="Позвонить" title="Позвонить: +374 99 250 525">
                     <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
@@ -687,111 +622,69 @@
                   </a>
                 </div>
               </div>
+
+              <!-- Animated Down Indicator (as in Elliot design) -->
+              <a href="#tours" class="amaras-hero-scroll-down" aria-label="Листать вниз к турам">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+              </a>
             </div>
-            <div class="rebrand-section-hero-right">
-              <div class="rebrand-section-hero-tilt-container" data-gsap="section-hero-tilt-container">
-                <div class="rebrand-section-hero-pin" data-gsap="section-hero-pin"><img alt=""
-                    data-wf-target='[[["7966251f-0a9e-1da7-3c5a-a6e3dfc96c41","7966251f-0a9e-1da7-3c5a-a6e3dfc96c5d"],["b40939fe-55ba-d4bb-7c77-40cd9939ed6a","b40939fe-55ba-d4bb-7c77-40cd9939ed6e_instance-0"]]]'
-                    loading="eager"
-                    src="https://cdn.prod.website-files.com/69b3dce24fd8b23fdc9e1663/69f088d19352bbb2a591cdfa_5a34f33b54aa322140b515e8ad4d1c1e3001d846.webp" />
-                </div>
-                <div class="rebrand-section-hero-frame-container" data-gsap="section-hero-tilt-box">
-                  <div class="rebrand-section-hero-svg-frame w-embed"><svg fill="none" height="634"
-                      viewbox="0 0 449 634" width="449" xmlns="http://www.w3.org/2000/svg">
-                      <g filter="url(#a)">
-                        <path
-                          d="M418.891.89c14.911 0 27 12.09 27 27v419.001c-14.912 0-27 12.088-27 27 0 14.678 11.713 26.621 26.302 26.991l.698.009v103c0 14.911-12.089 27-27 27h-391c-14.912 0-27-12.089-27-27v-103c14.911 0 27-12.089 27-27 0-14.912-12.089-27-27-27v-419c0-14.912 12.088-27 27-27zm-387 9c-12.15 0-22 9.85-21.998 22l.033 383.936c0 12.151 9.852 22 22.002 22h383.935c12.151 0 21.999-9.849 21.998-22l-.033-383.935c-.001-12.15-9.852-22-22.002-22z"
-                          fill="#586EFF"></path>
-                        <path
-                          d="M418.891.89c14.911 0 27 12.09 27 27v419.001c-14.912 0-27 12.088-27 27 0 14.678 11.713 26.621 26.302 26.991l.698.009v103c0 14.911-12.089 27-27 27h-391c-14.912 0-27-12.089-27-27v-103c14.911 0 27-12.089 27-27 0-14.912-12.089-27-27-27v-419c0-14.912 12.088-27 27-27zm-387 9c-12.15 0-22 9.85-21.998 22l.033 383.936c0 12.151 9.852 22 22.002 22h383.935c12.151 0 21.999-9.849 21.998-22l-.033-383.935c-.001-12.15-9.852-22-22.002-22z"
-                          fill="url(#b)"></path>
-                      </g>
-                      <defs>
-                        <radialgradient cx="0" cy="0"
-                          gradienttransform="rotate(136.892 216.11 95.126)scale(503.381 121.025)"
-                          gradientunits="userSpaceOnUse" id="b" r="1">
-                          <stop stop-color="#586EFF"></stop>
-                          <stop offset=".65" stop-color="#586EFF" stop-opacity="0"></stop>
-                        </radialgradient>
-                        <filter color-interpolation-filters="sRGB" filterunits="userSpaceOnUse" height="633.563" id="a"
-                          width="448.563" x="0" y="0">
-                          <feflood flood-opacity="0" result="BackgroundImageFix"></feflood>
-                          <fecolormatrix in="SourceAlpha" result="hardAlpha"
-                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></fecolormatrix>
-                          <feoffset dx=".891" dy=".891"></feoffset>
-                          <fegaussianblur stddeviation=".891"></fegaussianblur>
-                          <fecomposite in2="hardAlpha" operator="out"></fecomposite>
-                          <fecolormatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"></fecolormatrix>
-                          <feblend in2="BackgroundImageFix" result="effect1_dropShadow_2715_3935"></feblend>
-                          <feblend in="SourceGraphic" in2="effect1_dropShadow_2715_3935" result="shape"></feblend>
-                          <fecolormatrix in="SourceAlpha" result="hardAlpha"
-                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></fecolormatrix>
-                          <feoffset dx="-.445" dy="-.445"></feoffset>
-                          <fecomposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"></fecomposite>
-                          <fecolormatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"></fecolormatrix>
-                          <feblend in2="shape" result="effect2_innerShadow_2715_3935"></feblend>
-                          <fecolormatrix in="SourceAlpha" result="hardAlpha"
-                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></fecolormatrix>
-                          <feoffset dx=".445" dy=".445"></feoffset>
-                          <fecomposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"></fecomposite>
-                          <fecolormatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0"></fecolormatrix>
-                          <feblend in2="effect2_innerShadow_2715_3935" result="effect3_innerShadow_2715_3935"></feblend>
-                        </filter>
-                      </defs>
-                    </svg></div>
-                  <div class="w-layout-hflex rebrand-section-hero-image-container" data-gsap="section-hero-carousel">
-                    <img alt="Монастырь Хор Вирап" class="rebrand-section-hero-image" loading="eager" sizes="100vw"
-                      src="assets/hero/tour-1-khorvirap.jpg?v=5" />
-                    <img alt="Озеро Севан" class="rebrand-section-hero-image" loading="eager" sizes="100vw"
-                      src="assets/hero/tour-2-sevan.jpg?v=5" />
-                    <img alt="Джип-тур в горы Армении" class="rebrand-section-hero-image" loading="eager" sizes="100vw"
-                      src="assets/hero/tour-3-jeep.jpg?v=5" />
-                    <img alt="Мастер-класс армянского лаваша" class="rebrand-section-hero-image" loading="eager" sizes="100vw"
-                      src="assets/hero/tour-4-gastro.jpg?v=5" />
-                  </div><svg class="rebrand-section-hero-frame-stars" fill="none" viewbox="0 0 134 22" width="100%"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M10.2258 0.612784C10.5692 -0.203387 11.726 -0.203387 12.0696 0.612784L14.4294 6.21923C14.5745 6.56352 14.8998 6.79811 15.2722 6.82763L21.3748 7.31103C22.2646 7.38172 22.6235 8.49495 21.9424 9.07177L17.3099 12.9936C17.0217 13.2378 16.8953 13.6235 16.9838 13.9907L18.4033 19.8677C18.6114 20.731 17.6745 21.4173 16.9141 20.9585L11.6658 17.7905C11.3479 17.5986 10.9504 17.5986 10.6326 17.7905L5.38479 20.9585C4.62451 21.4173 3.68744 20.7309 3.89544 19.8677L5.31388 13.9907C5.40233 13.6234 5.27589 13.2378 4.98762 12.9936L0.355447 9.07177C-0.325849 8.49499 0.0320098 7.38179 0.921702 7.31103L7.0242 6.82763C7.39666 6.79811 7.72184 6.5635 7.86692 6.21923L10.2258 0.612784Z"
-                      fill="currentColor"></path>
-                    <path
-                      d="M37.967 0.612784C38.3104 -0.203387 39.4672 -0.203387 39.8108 0.612784L42.1706 6.21923C42.3157 6.56355 42.641 6.79811 43.0135 6.82763L49.116 7.31103C50.0058 7.38167 50.3647 8.49494 49.6836 9.07177L45.0511 12.9936C44.7629 13.2378 44.6365 13.6235 44.725 13.9907L46.1445 19.8677C46.3527 20.731 45.4157 21.4174 44.6553 20.9585L39.407 17.7905C39.0891 17.5987 38.6916 17.5987 38.3738 17.7905L33.126 20.9585C32.3657 21.4173 31.4294 20.731 31.6376 19.8677L33.0551 13.9907C33.1435 13.6234 33.0171 13.2378 32.7288 12.9936L28.0967 9.07177C27.4154 8.495 27.7733 7.38184 28.6629 7.31103L34.7654 6.82763C35.1379 6.79811 35.4631 6.5635 35.6081 6.21923L37.967 0.612784Z"
-                      fill="currentColor"></path>
-                    <path
-                      d="M65.7073 0.612784C66.0506 -0.203387 67.2075 -0.203387 67.551 0.612784L69.9109 6.21923C70.056 6.56363 70.3811 6.79811 70.7537 6.82763L76.8563 7.31103C77.7461 7.38161 78.1049 8.49492 77.4238 9.07177L72.7913 12.9936C72.503 13.2379 72.3775 13.6243 72.4662 13.9917L73.8847 19.8677C74.0931 20.7311 73.156 21.4176 72.3955 20.9585L67.1472 17.7905C66.8294 17.5988 66.4318 17.5987 66.114 17.7905L60.8662 20.9585C60.1059 21.4173 59.1696 20.7311 59.3779 19.8677L60.7953 13.9917C60.884 13.6242 60.7576 13.2379 60.4691 12.9936L55.8369 9.07177C55.1555 8.49492 55.5142 7.38154 56.4041 7.31103L62.5066 6.82763C62.8789 6.79795 63.2034 6.56341 63.3484 6.21923L65.7073 0.612784Z"
-                      fill="currentColor"></path>
-                    <path
-                      d="M93.4485 0.612784C93.7919 -0.203387 94.9487 -0.203387 95.2922 0.612784L97.6521 6.21923C97.7972 6.56365 98.1223 6.79811 98.4949 6.82763L104.597 7.312C105.487 7.38259 105.846 8.49492 105.165 9.07177L100.533 12.9936C100.244 13.2379 100.119 13.6243 100.207 13.9917L101.626 19.8677C101.834 20.7311 100.897 21.4176 100.137 20.9585L94.8884 17.7905C94.5706 17.5988 94.173 17.5987 93.8552 17.7905L88.6074 20.9585C87.8471 21.4172 86.9108 20.731 87.1191 19.8677L88.5365 13.9917C88.6252 13.6242 88.4988 13.2379 88.2103 12.9936L83.5781 9.07177C82.8967 8.49492 83.2554 7.38252 84.1453 7.312L90.2478 6.82763C90.6203 6.79796 90.9456 6.56362 91.0906 6.21923L93.4485 0.612784Z"
-                      fill="currentColor"></path>
-                    <path
-                      d="M121.189 0.611808C121.532 -0.203999 122.689 -0.203873 123.032 0.611808L125.392 6.21825C125.537 6.56281 125.862 6.7981 126.235 6.82763L132.338 7.31103C133.227 7.38155 133.586 8.49386 132.905 9.07079L128.273 12.9927C127.984 13.2369 127.859 13.6233 127.948 13.9907L129.366 19.8677C129.574 20.731 128.637 21.4174 127.877 20.9585L122.629 17.7895C122.311 17.598 121.913 17.5979 121.595 17.7895L116.348 20.9585C115.587 21.417 114.651 20.7309 114.859 19.8677L116.277 13.9907C116.365 13.6233 116.239 13.2369 115.951 12.9927L111.318 9.07079C110.637 8.49392 110.996 7.38154 111.886 7.31103L117.988 6.82763C118.361 6.79798 118.686 6.5627 118.831 6.21825L121.189 0.611808Z"
-                      fill="currentColor"></path>
-                  </svg>
-                  <div class="headingh3 rebrand-section-hero-frame-title">
-                    <div class="rebrand-section-hero-title-fixed" data-i18n="hero_ticket_fixed">Ваш </div>
-                    <div class="rebrand-section-hero-frame-experience-text-container">
-                      <div class="rebrand-section-hero-title-dynamic rebrand-section-hero-title-dynamic-item-1"
-                        data-gsap="section-hero-your-text" data-i18n="hero_ticket_item_1">Хор Вирап</div>
-                      <div class="rebrand-section-hero-title-dynamic" data-gsap="section-hero-your-text"
-                        data-i18n="hero_ticket_item_2">Севан</div>
-                      <div class="rebrand-section-hero-title-dynamic" data-gsap="section-hero-your-text"
-                        data-i18n="hero_ticket_item_3">джип-тур</div>
-                      <div class="rebrand-section-hero-title-dynamic" data-gsap="section-hero-your-text"
-                        data-i18n="hero_ticket_item_4">мастер-класс</div>
-                    </div>
-                  </div>
-                </div>
+
+            <!-- Mobile Bottom Ribbon (matches Elliot mobile reference) -->
+            <div class="amaras-hero-mobile-ribbon is-bottom" aria-hidden="true">
+              <div class="amaras-mobile-ribbon-track">
+                <a href="#tours" class="amaras-mobile-ribbon-card c7"><img src="assets/hero/tour-4-gastro.webp" alt="Гастро-тур" loading="lazy" /></a>
+                <a href="#tours" class="amaras-mobile-ribbon-card c8"><img src="assets/armenia/fest-khorovats.jpg" alt="Хоровац" loading="lazy" /></a>
+                <a href="#tours" class="amaras-mobile-ribbon-card c9"><img src="assets/armenia/trad-khachkar.jpg" alt="Транспорт" loading="lazy" /></a>
+                <a href="#tours" class="amaras-mobile-ribbon-card c10"><img src="assets/hero/poppies-panorama.webp" alt="Закат над Араратом" loading="lazy" /></a>
+                <a href="#tours" class="amaras-mobile-ribbon-card c11"><img src="assets/armenia/card-restaurants.jpg" alt="Ереван" loading="lazy" /></a>
+                <a href="#tours" class="amaras-mobile-ribbon-card c12"><img src="assets/hero/tour-2-sevan.webp" alt="Севан" loading="lazy" /></a>
               </div>
             </div>
-            <div class="w-embed">
-              <style>
-                @media (min-width: 992px) and (max-height: 729px) {
-                  .rebrand-section-hero-inner {
-                    align-items: flex-start;
-                    padding-top: 70px;
+
+            <script>
+              // Lightweight Desktop Mouse Parallax for Orbit Cards
+              (function initHeroOrbitParallax() {
+                if (window.innerWidth < 992) return;
+                const showcase = document.getElementById('amarasOrbitShowcase');
+                if (!showcase) return;
+                const cards = showcase.querySelectorAll('.amaras-orbit-card');
+                if (!cards.length) return;
+
+                let mouseX = 0, mouseY = 0;
+                let curX = 0, curY = 0;
+                let rafId = null;
+
+                window.addEventListener('mousemove', function(e) {
+                  const cx = window.innerWidth / 2;
+                  const cy = window.innerHeight / 2;
+                  mouseX = (e.clientX - cx) / cx;
+                  mouseY = (e.clientY - cy) / cy;
+                  if (!rafId) rafId = requestAnimationFrame(animateOrbit);
+                }, { passive: true });
+
+                function animateOrbit() {
+                  curX += (mouseX - curX) * 0.08;
+                  curY += (mouseY - curY) * 0.08;
+
+                  cards.forEach(function(card) {
+                    const depth = parseFloat(card.style.getPropertyValue('--depth') || '0.7');
+                    const px = (curX * depth * 22).toFixed(2);
+                    const py = (curY * depth * 18).toFixed(2);
+                    card.style.setProperty('--orbit-px', px + 'px');
+                    card.style.setProperty('--orbit-py', py + 'px');
+                  });
+
+                  if (Math.abs(mouseX - curX) > 0.001 || Math.abs(mouseY - curY) > 0.001) {
+                    rafId = requestAnimationFrame(animateOrbit);
+                  } else {
+                    rafId = null;
                   }
                 }
-              </style>
-            </div>
+              })();
+            </script>
           </div>
         </section>
       </div>
