@@ -6072,27 +6072,23 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
 
 .amaras-cat-hero {
   position: relative;
-  background: #0C101D;
+  background: #0D111D;
+  background-image: none !important;
   color: #FFFFFF;
   padding: 130px 0 50px 0;
   overflow: hidden;
 }
 
 .amaras-cat-hero-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.28;
-  filter: blur(2px);
-  transform: scale(1.05);
+  display: none !important;
 }
 
 .amaras-cat-hero-gradient {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 80% 20%, rgba(88, 110, 255, 0.25) 0%, transparent 60%),
-              linear-gradient(180deg, rgba(12, 16, 29, 0.4) 0%, rgba(12, 16, 29, 0.95) 100%);
+  background: radial-gradient(circle at 80% 20%, rgba(88, 110, 255, 0.10) 0%, transparent 60%),
+              linear-gradient(180deg, #0D111D 0%, #0A0D17 100%);
+  pointer-events: none;
 }
 
 .amaras-cat-hero-container {
