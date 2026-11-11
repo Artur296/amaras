@@ -76,7 +76,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+Armenian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="css/custom.css?v=86" rel="stylesheet" />
+  <link href="css/custom.css?v=87" rel="stylesheet" />
 </head>
 
 <body class="rebrand-body">
@@ -379,7 +379,7 @@
       </div>
     </div>
   </div>
-  <script src="js/translations.js?v=86"></script>
+  <script src="js/translations.js?v=87"></script>
   <div class="w-dyn-list">
     <div class="w-dyn-items" role="list">
       <div class="w-dyn-item" role="listitem">
@@ -777,142 +777,235 @@
               <p class="amaras-tours-subtitle" data-i18n="tours_section_sub">Откройте Армению вместе с Amaras Tour</p>
             </div>
 
-            <div class="amaras-tours-cards-grid">
-              
-              <!-- Card 1: Групповые экскурсии -->
-              <div id="tours-group" class="amaras-tour-card">
-                <div class="amaras-tour-card-body">
-                  <h3 class="amaras-tour-card-title">
-                    <a href="tours-group.html" class="amaras-tour-card-title-link" data-i18n="tour_cat_1_title">Групповые экскурсии</a>
-                  </h3>
-                  <ul class="amaras-tour-card-list">
-                    <li class="amaras-tour-card-item">
-                      <span data-i18n="tour_cat_1_item_1">Мини-группы до 8 человек</span>
-                      <svg class="amaras-tour-item-arrow" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1L5 5L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </li>
-                    <li class="amaras-tour-card-item">
-                      <span data-i18n="tour_cat_1_item_2">Большие группы до 19 человек</span>
-                      <svg class="amaras-tour-item-arrow" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1L5 5L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </li>
-                    <li class="amaras-tour-card-item">
-                      <span data-i18n="tour_cat_1_item_3">Ежедневные выезды</span>
-                      <svg class="amaras-tour-item-arrow" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1L5 5L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </li>
-                  </ul>
+            <div class="amaras-cat-accordion-list" id="amarasCatAccordion">
+
+              <!-- Accordion 1: Групповые экскурсии -->
+              <div class="amaras-cat-accordion-item is-open" id="acc-group">
+                <div class="amaras-cat-accordion-header" onclick="toggleCatAccordion(this)" role="button" tabindex="0" aria-expanded="true">
+                  <div class="amaras-cat-acc-main">
+                    <div class="amaras-cat-acc-thumb">
+                      <img src="assets/hero/tour-1-khorvirap.webp" alt="Групповые экскурсии" loading="lazy" />
+                    </div>
+                    <h3 class="amaras-cat-acc-title" data-i18n="tour_cat_1_title">Групповые экскурсии</h3>
+                  </div>
+                  <div class="amaras-cat-acc-chevron">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
                 </div>
-                <div class="amaras-tour-card-photo">
-                  <img alt="Групповые экскурсии" class="amaras-tour-card-img" loading="lazy"
-                    src="assets/hero/tour-1-khorvirap.webp" width="360" height="250" />
+                <div class="amaras-cat-accordion-body">
+                  <div class="amaras-cat-acc-content">
+                    <ul class="amaras-cat-acc-sublist">
+                      <li>
+                        <a href="tours-group-mini.html" class="amaras-cat-acc-subitem">
+                          <span data-i18n="tour_cat_1_item_1">Мини-группы до 8 человек</span>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="tours-group-standard.html" class="amaras-cat-acc-subitem">
+                          <span data-i18n="tour_cat_1_item_2">Большие группы до 19 человек</span>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="tours-group.html" class="amaras-cat-acc-subitem">
+                          <span data-i18n="tour_cat_1_item_3">Ежедневные выезды</span>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="amaras-cat-acc-footer">
+                      <a href="tours-group.html" class="amaras-cat-acc-view-btn">
+                        <span data-i18n="tour_cat_btn_view">Смотреть туры категории →</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <!-- Card 2: Индивидуальные туры -->
-              <div id="tours-individual" class="amaras-tour-card">
-                <div class="amaras-tour-card-body">
-                  <h3 class="amaras-tour-card-title">
-                    <a href="tours-individual.html" class="amaras-tour-card-title-link" data-i18n="tour_cat_2_title">Индивидуальные туры</a>
-                  </h3>
-                  <ul class="amaras-tour-card-list">
-                    <li class="amaras-tour-card-item">
-                      <span data-i18n="tour_cat_2_item_1">Персональные маршруты</span>
-                      <svg class="amaras-tour-item-arrow" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1L5 5L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </li>
-                    <li class="amaras-tour-card-item">
-                      <span data-i18n="tour_cat_2_item_2">Свободный график и темп</span>
-                      <svg class="amaras-tour-item-arrow" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1L5 5L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </li>
-                    <li class="amaras-tour-card-item">
-                      <span data-i18n="tour_cat_2_item_3">Личный опытный гид</span>
-                      <svg class="amaras-tour-item-arrow" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1L5 5L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </li>
-                  </ul>
+              <!-- Accordion 2: Индивидуальные туры -->
+              <div class="amaras-cat-accordion-item" id="acc-individual">
+                <div class="amaras-cat-accordion-header" onclick="toggleCatAccordion(this)" role="button" tabindex="0" aria-expanded="false">
+                  <div class="amaras-cat-acc-main">
+                    <div class="amaras-cat-acc-thumb">
+                      <img src="assets/hero/tour-2-sevan.jpg?v=5" onerror="this.onerror=null;this.src='assets/hero/tour-2-sevan.webp?v=5';" alt="Индивидуальные туры" loading="lazy" />
+                    </div>
+                    <h3 class="amaras-cat-acc-title" data-i18n="tour_cat_2_title">Индивидуальные туры</h3>
+                  </div>
+                  <div class="amaras-cat-acc-chevron">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
                 </div>
-                <div class="amaras-tour-card-photo">
-                  <img alt="Индивидуальные туры" class="amaras-tour-card-img" loading="lazy"
-                    src="assets/hero/tour-2-sevan.jpg?v=5"
-                    onerror="this.onerror=null;this.src='assets/hero/tour-2-sevan.webp?v=5';"
-                    width="360" height="250" />
-                </div>
-              </div>
-
-              <!-- Card 3: Джип и экстрим туры -->
-              <div id="tours-jeep" class="amaras-tour-card">
-                <div class="amaras-tour-card-body">
-                  <h3 class="amaras-tour-card-title">
-                    <a href="tours-jeep.html" class="amaras-tour-card-title-link" data-i18n="tour_cat_3_title">Джип и экстрим туры</a>
-                  </h3>
-                  <ul class="amaras-tour-card-list">
-                    <li class="amaras-tour-card-item">
-                      <span data-i18n="tour_cat_3_item_1">Внедорожники 4×4</span>
-                      <svg class="amaras-tour-item-arrow" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1L5 5L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </li>
-                    <li class="amaras-tour-card-item">
-                      <span data-i18n="tour_cat_3_item_2">Горные перевалы и каньоны</span>
-                      <svg class="amaras-tour-item-arrow" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1L5 5L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </li>
-                    <li class="amaras-tour-card-item">
-                      <span data-i18n="tour_cat_3_item_3">Скрытые водопады и вершины</span>
-                      <svg class="amaras-tour-item-arrow" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1L5 5L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </li>
-                  </ul>
-                </div>
-                <div class="amaras-tour-card-photo">
-                  <img alt="Джип и экстрим туры" class="amaras-tour-card-img" loading="lazy"
-                    src="assets/hero/tour-3-jeep.webp" width="360" height="250" />
+                <div class="amaras-cat-accordion-body">
+                  <div class="amaras-cat-acc-content">
+                    <ul class="amaras-cat-acc-sublist">
+                      <li>
+                        <a href="tours-individual.html" class="amaras-cat-acc-subitem">
+                          <span data-i18n="tour_cat_2_item_1">Персональные маршруты</span>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="tours-individual.html" class="amaras-cat-acc-subitem">
+                          <span data-i18n="tour_cat_2_item_2">Свободный график и темп</span>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="tours-individual.html" class="amaras-cat-acc-subitem">
+                          <span data-i18n="tour_cat_2_item_3">Личный опытный гид</span>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="amaras-cat-acc-footer">
+                      <a href="tours-individual.html" class="amaras-cat-acc-view-btn">
+                        <span data-i18n="tour_cat_btn_view">Смотреть туры категории →</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <!-- Card 4: Гастро-туры -->
-              <div id="tours-gastro" class="amaras-tour-card">
-                <div class="amaras-tour-card-body">
-                  <h3 class="amaras-tour-card-title">
-                    <a href="tours-gastro.html" class="amaras-tour-card-title-link" data-i18n="tour_cat_4_title">Гастро-туры</a>
-                  </h3>
-                  <ul class="amaras-tour-card-list">
-                    <li class="amaras-tour-card-item">
-                      <span data-i18n="tour_cat_4_item_1">Дегустация вин в Арени</span>
-                      <svg class="amaras-tour-item-arrow" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1L5 5L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </li>
-                    <li class="amaras-tour-card-item">
-                      <span data-i18n="tour_cat_4_item_2">Выпечка лаваша в тонире</span>
-                      <svg class="amaras-tour-item-arrow" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1L5 5L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </li>
-                    <li class="amaras-tour-card-item">
-                      <span data-i18n="tour_cat_4_item_3">Колоритные застолья</span>
-                      <svg class="amaras-tour-item-arrow" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1L5 5L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </li>
-                  </ul>
+              <!-- Accordion 3: Джип и экстрим туры -->
+              <div class="amaras-cat-accordion-item" id="acc-jeep">
+                <div class="amaras-cat-accordion-header" onclick="toggleCatAccordion(this)" role="button" tabindex="0" aria-expanded="false">
+                  <div class="amaras-cat-acc-main">
+                    <div class="amaras-cat-acc-thumb">
+                      <img src="assets/hero/tour-3-jeep.webp" alt="Джип и экстрим туры" loading="lazy" />
+                    </div>
+                    <h3 class="amaras-cat-acc-title" data-i18n="tour_cat_3_title">Джип и экстрим туры</h3>
+                  </div>
+                  <div class="amaras-cat-acc-chevron">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
                 </div>
-                <div class="amaras-tour-card-photo">
-                  <img alt="Гастро-туры" class="amaras-tour-card-img" loading="lazy"
-                    src="assets/hero/tour-4-gastro.webp" width="360" height="250" />
+                <div class="amaras-cat-accordion-body">
+                  <div class="amaras-cat-acc-content">
+                    <ul class="amaras-cat-acc-sublist">
+                      <li>
+                        <a href="tours-jeep.html" class="amaras-cat-acc-subitem">
+                          <span data-i18n="tour_cat_3_item_1">Внедорожники 4×4</span>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="tours-jeep.html" class="amaras-cat-acc-subitem">
+                          <span data-i18n="tour_cat_3_item_2">Горные перевалы и каньоны</span>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="tours-jeep.html" class="amaras-cat-acc-subitem">
+                          <span data-i18n="tour_cat_3_item_3">Скрытые водопады и вершины</span>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="amaras-cat-acc-footer">
+                      <a href="tours-jeep.html" class="amaras-cat-acc-view-btn">
+                        <span data-i18n="tour_cat_btn_view">Смотреть туры категории →</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <!-- Card 5: Турпакеты -->
-              <div id="tours-packages" class="amaras-tour-card">
-                <div class="amaras-tour-card-body">
-                  <h3 class="amaras-tour-card-title">
-                    <a href="tours-packages.html" class="amaras-tour-card-title-link" data-i18n="tour_cat_5_title">Турпакеты</a>
-                  </h3>
-                  <ul class="amaras-tour-card-list">
-                    <li class="amaras-tour-card-item">
-                      <span data-i18n="tour_cat_5_item_1">Многодневные туры «под ключ»</span>
-                      <svg class="amaras-tour-item-arrow" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1L5 5L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </li>
-                    <li class="amaras-tour-card-item">
-                      <span data-i18n="tour_cat_5_item_2">Отели и встреча в аэропорту</span>
-                      <svg class="amaras-tour-item-arrow" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1L5 5L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </li>
-                    <li class="amaras-tour-card-item">
-                      <span data-i18n="tour_cat_5_item_3">Полное сопровождение</span>
-                      <svg class="amaras-tour-item-arrow" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1L5 5L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </li>
-                  </ul>
+              <!-- Accordion 4: Гастро-туры -->
+              <div class="amaras-cat-accordion-item" id="acc-gastro">
+                <div class="amaras-cat-accordion-header" onclick="toggleCatAccordion(this)" role="button" tabindex="0" aria-expanded="false">
+                  <div class="amaras-cat-acc-main">
+                    <div class="amaras-cat-acc-thumb">
+                      <img src="assets/hero/tour-4-gastro.webp" alt="Гастро-туры" loading="lazy" />
+                    </div>
+                    <h3 class="amaras-cat-acc-title" data-i18n="tour_cat_4_title">Гастро-туры</h3>
+                  </div>
+                  <div class="amaras-cat-acc-chevron">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
                 </div>
-                <div class="amaras-tour-card-photo">
-                  <img alt="Турпакеты" class="amaras-tour-card-img" loading="lazy"
-                    src="assets/armenia/card-attractions.jpg" width="360" height="250" />
+                <div class="amaras-cat-accordion-body">
+                  <div class="amaras-cat-acc-content">
+                    <ul class="amaras-cat-acc-sublist">
+                      <li>
+                        <a href="tours-gastro.html" class="amaras-cat-acc-subitem">
+                          <span data-i18n="tour_cat_4_item_1">Дегустация вин в Арени</span>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="tours-gastro.html" class="amaras-cat-acc-subitem">
+                          <span data-i18n="tour_cat_4_item_2">Выпечка лаваша в тонире</span>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="tours-gastro.html" class="amaras-cat-acc-subitem">
+                          <span data-i18n="tour_cat_4_item_3">Колоритные застолья</span>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="amaras-cat-acc-footer">
+                      <a href="tours-gastro.html" class="amaras-cat-acc-view-btn">
+                        <span data-i18n="tour_cat_btn_view">Смотреть туры категории →</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Accordion 5: Турпакеты -->
+              <div class="amaras-cat-accordion-item" id="acc-packages">
+                <div class="amaras-cat-accordion-header" onclick="toggleCatAccordion(this)" role="button" tabindex="0" aria-expanded="false">
+                  <div class="amaras-cat-acc-main">
+                    <div class="amaras-cat-acc-thumb">
+                      <img src="assets/armenia/card-attractions.jpg" alt="Турпакеты" loading="lazy" />
+                    </div>
+                    <h3 class="amaras-cat-acc-title" data-i18n="tour_cat_5_title">Турпакеты</h3>
+                  </div>
+                  <div class="amaras-cat-acc-chevron">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                </div>
+                <div class="amaras-cat-accordion-body">
+                  <div class="amaras-cat-acc-content">
+                    <ul class="amaras-cat-acc-sublist">
+                      <li>
+                        <a href="tours-packages.html" class="amaras-cat-acc-subitem">
+                          <span data-i18n="tour_cat_5_item_1">Многодневные туры «под ключ»</span>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="tours-packages.html" class="amaras-cat-acc-subitem">
+                          <span data-i18n="tour_cat_5_item_2">Отели и встреча в аэропорту</span>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="tours-packages.html" class="amaras-cat-acc-subitem">
+                          <span data-i18n="tour_cat_5_item_3">Полное сопровождение</span>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="amaras-cat-acc-footer">
+                      <a href="tours-packages.html" class="amaras-cat-acc-view-btn">
+                        <span data-i18n="tour_cat_btn_view">Смотреть туры категории →</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
 

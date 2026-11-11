@@ -4,6 +4,7 @@
  */
 const AMARAS_I18N = {
   RU: {
+    "tour_cat_btn_view": "Смотреть туры категории →",
     "cart_page_title": "Корзина туров — Amaras Tour",
     "cart_title": "Корзина туров",
     "cart_subtitle": "Проверьте выбранные экскурсии, укажите количество участников и оформите бронирование.",
@@ -463,6 +464,7 @@ const AMARAS_I18N = {
     "worldmap_title": "Более 100 000 довольных гостей со всего мира",
   },
   ENG: {
+    "tour_cat_btn_view": "View All Category Tours →",
     "cart_page_title": "Tour Cart — Amaras Tour",
     "cart_title": "Tour Cart",
     "cart_subtitle": "Review your selected excursions, choose the number of guests, and confirm your booking.",
@@ -922,6 +924,7 @@ const AMARAS_I18N = {
     "worldmap_title": "More than 100,000 happy guests from around the world",
   },
   HY: {
+    "tour_cat_btn_view": "Դիտել կատեգորիայի տուրերը →",
     "cart_page_title": "Տուրերի զամբյուղ — Amaras Tour",
     "cart_title": "Տուրերի զամբյուղ",
     "cart_subtitle": "Ստուգեք ընտրված էքսկուրսիաները, նշեք մասնակիցների քանակը և ամրագրեք:",
@@ -1894,3 +1897,27 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCartBadges();
   renderCartPage();
 });
+
+
+// Category Accordion Toggle (Image 2 style)
+function toggleCatAccordion(headerEl) {
+  const item = headerEl.closest('.amaras-cat-accordion-item');
+  if (!item) return;
+  const wasOpen = item.classList.contains('is-open');
+
+  document.querySelectorAll('.amaras-cat-accordion-item.is-open').forEach(other => {
+    if (other !== item) {
+      other.classList.remove('is-open');
+      const hdr = other.querySelector('.amaras-cat-accordion-header');
+      if (hdr) hdr.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  if (wasOpen) {
+    item.classList.remove('is-open');
+    headerEl.setAttribute('aria-expanded', 'false');
+  } else {
+    item.classList.add('is-open');
+    headerEl.setAttribute('aria-expanded', 'true');
+  }
+}
