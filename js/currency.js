@@ -201,3 +201,4 @@
     getSymbol: (c) => CURRENCY_SYMBOLS[c || currentCurrency]
   };
 })();
+

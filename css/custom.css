@@ -6480,7 +6480,7 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
 }
 
 .amaras-cat-card-body {
-  padding: 22px 20px 18px 20px;
+  padding: 22px 20px;
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
@@ -6539,6 +6539,10 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+
+.amaras-cat-card-features:last-child {
+  margin-bottom: 0;
 }
 
 .amaras-cat-card-feature-item {
