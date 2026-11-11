@@ -1495,9 +1495,9 @@ body[data-exit-popup-open="true"] {
     flex-shrink: 0 !important;
   }
   .amaras-nav-logo img {
-    height: 23px !important;
+    height: 27px !important;
     width: auto !important;
-    max-width: 78px !important;
+    max-width: 155px !important;
     object-fit: contain !important;
     display: block !important;
   }
@@ -1634,15 +1634,16 @@ body[data-exit-popup-open="true"] {
 
 @media (max-width: 480px) {
   .amaras-nav-container {
-    padding: 0 16px !important;
-    height: 50px !important;
+    padding: 0 12px !important;
+    height: 52px !important;
   }
   .amaras-nav-logo img {
-    height: 20px !important;
-    max-width: 68px !important;
+    height: 23px !important;
+    width: auto !important;
+    max-width: 120px !important;
   }
   .amaras-nav-actions {
-    gap: 5px !important;
+    gap: 4.5px !important;
   }
   .amaras-music-btn,
   .amaras-search-btn,
@@ -1651,9 +1652,9 @@ body[data-exit-popup-open="true"] {
   .amaras-mobile-lang-trigger,
   .amaras-user-profile-trigger,
   .amaras-mobile-toggle {
-    width: 29px !important;
-    height: 29px !important;
-    min-width: 29px !important;
+    width: 28.5px !important;
+    height: 28.5px !important;
+    min-width: 28.5px !important;
   }
   .amaras-music-btn svg,
   .amaras-search-btn svg,
@@ -1678,12 +1679,13 @@ body[data-exit-popup-open="true"] {
 
 @media (max-width: 360px) {
   .amaras-nav-container {
-    padding: 0 12px !important;
-    height: 48px !important;
+    padding: 0 10px !important;
+    height: 50px !important;
   }
   .amaras-nav-logo img {
-    height: 18px !important;
-    max-width: 62px !important;
+    height: 20px !important;
+    width: auto !important;
+    max-width: 105px !important;
   }
   .amaras-nav-actions {
     gap: 4px !important;
