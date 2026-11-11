@@ -168,10 +168,10 @@
         view.classList.toggle('is-active', view.getAttribute('data-tab') === tab);
       });
 
-      // Toggle tab header visibility (hidden when in forgot view)
+      // Toggle tab header visibility (hidden when in forgot, google, telegram view)
       const tabHeader = this.modalEl.querySelector('.amaras-auth-tabs');
       if (tabHeader) {
-        tabHeader.style.display = tab === 'forgot' ? 'none' : 'grid';
+        tabHeader.style.display = (tab === 'forgot' || tab === 'google' || tab === 'telegram') ? 'none' : 'grid';
       }
 
       if (tab === 'forgot' && !this.pendingReset) {
@@ -501,12 +501,345 @@
       }, 500);
     },
 
+    getSavedGoogle() {
+      try {
+        const val = localStorage.getItem('amaras_saved_google');
+        return val ? JSON.parse(val) : null;
+      } catch (e) {
+        return null;
+      }
+    },
+
+    getSavedTelegram() {
+      try {
+        const val = localStorage.getItem('amaras_saved_telegram');
+        return val ? JSON.parse(val) : null;
+      } catch (e) {
+        return null;
+      }
+    },
+
     loginWithGoogle() {
-      AmarasToast.show('Для входа используйте регистрацию через Email. Вход через Google будет активен после подключения OAuth бэкенда.', 'info');
+      this.switchTab('google');
+      this.renderGoogleOAuth(false);
+    },
+
+    renderGoogleOAuth(forceNew = false) {
+      const view = this.modalEl ? this.modalEl.querySelector('.amaras-auth-view[data-tab="google"]') : null;
+      if (!view) return;
+
+      const savedGoogle = this.getSavedGoogle();
+
+      if (savedGoogle && !forceNew) {
+        const initials = savedGoogle.avatarText || this.getInitials(savedGoogle.name);
+        view.innerHTML = `
+          <div class="amaras-oauth-header">
+            <div class="amaras-oauth-icon is-google">
+              <svg width="26" height="26" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.7 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.9C6.2 7.3 8.9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/><path fill="#FBBC05" d="M5.3 14.7c-.2-.7-.4-1.5-.4-2.7s.1-2 .4-2.7L1.6 6.4C.6 8.3 0 10.1 0 12s.6 3.7 1.6 5.6l3.7-2.9z"/><path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.8-2.3-6.7-5.3L1.6 16c1.9 3.8 5.8 7 10.4 7z"/></svg>
+            </div>
+            <h3 class="amaras-oauth-title">Вход с аккаунтом Google</h3>
+            <p class="amaras-oauth-subtitle">Выберите аккаунт для продолжения в Amaras</p>
+          </div>
+
+          <div class="amaras-oauth-card is-selected" onclick="AmarasAuth.handleGoogleConfirm('${savedGoogle.name.replace(/'/g, "\\'")}', '${savedGoogle.email.replace(/'/g, "\\'")}')">
+            <div class="amaras-oauth-avatar">${initials}</div>
+            <div class="amaras-oauth-info">
+              <div class="amaras-oauth-name">${savedGoogle.name}</div>
+              <div class="amaras-oauth-meta">${savedGoogle.email}</div>
+            </div>
+            <svg class="amaras-oauth-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+
+          <button type="button" class="amaras-auth-submit-btn amaras-oauth-confirm-btn" onclick="AmarasAuth.handleGoogleConfirm('${savedGoogle.name.replace(/'/g, "\\'")}', '${savedGoogle.email.replace(/'/g, "\\'")}')">
+            <span class="amaras-btn-text">Продолжить как ${savedGoogle.name.split(' ')[0]}</span>
+            <span class="amaras-btn-spinner"></span>
+          </button>
+
+          <button type="button" class="amaras-oauth-toggle-link" onclick="AmarasAuth.renderGoogleOAuth(true)">
+            Использовать другой аккаунт Google
+          </button>
+
+          <div class="amaras-auth-back-row">
+            <button type="button" class="amaras-auth-back-link" onclick="AmarasAuth.switchTab('login')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              <span>Вернуться ко входу</span>
+            </button>
+          </div>
+        `;
+      } else {
+        view.innerHTML = `
+          <div class="amaras-oauth-header">
+            <div class="amaras-oauth-icon is-google">
+              <svg width="26" height="26" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.7 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.9C6.2 7.3 8.9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/><path fill="#FBBC05" d="M5.3 14.7c-.2-.7-.4-1.5-.4-2.7s.1-2 .4-2.7L1.6 6.4C.6 8.3 0 10.1 0 12s.6 3.7 1.6 5.6l3.7-2.9z"/><path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.8-2.3-6.7-5.3L1.6 16c1.9 3.8 5.8 7 10.4 7z"/></svg>
+            </div>
+            <h3 class="amaras-oauth-title">Вход через Google</h3>
+            <p class="amaras-oauth-subtitle">Введите ваш аккаунт Google (Gmail)</p>
+          </div>
+
+          <form onsubmit="AmarasAuth.handleCustomGoogle(event)" novalidate>
+            <div class="amaras-auth-field">
+              <label for="customGEmail">Адрес Google (Gmail)</label>
+              <div class="amaras-auth-input-box">
+                <svg class="amaras-auth-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <input type="email" id="customGEmail" name="custom_g_email" placeholder="mail@gmail.com" required autocomplete="email" />
+              </div>
+            </div>
+
+            <div class="amaras-auth-field">
+              <label for="customGName">Ваше имя в профиле</label>
+              <div class="amaras-auth-input-box">
+                <svg class="amaras-auth-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" id="customGName" name="custom_g_name" placeholder="Имя и фамилия (необязательно)" autocomplete="name" />
+              </div>
+            </div>
+
+            <button type="submit" class="amaras-auth-submit-btn amaras-oauth-confirm-btn" style="margin-top: 14px;">
+              <span class="amaras-btn-text">Войти через Google</span>
+              <span class="amaras-btn-spinner"></span>
+            </button>
+          </form>
+
+          ${savedGoogle ? `
+            <button type="button" class="amaras-oauth-toggle-link" style="margin-top: 12px;" onclick="AmarasAuth.renderGoogleOAuth(false)">
+              Вернуться к сохранённому аккаунту (${savedGoogle.name.split(' ')[0]})
+            </button>
+          ` : ''}
+
+          <div class="amaras-auth-back-row">
+            <button type="button" class="amaras-auth-back-link" onclick="AmarasAuth.switchTab('login')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              <span>Вернуться ко входу</span>
+            </button>
+          </div>
+        `;
+      }
+    },
+
+    handleCustomGoogle(e) {
+      e.preventDefault();
+      const form = e.target;
+      const email = form.custom_g_email.value.trim();
+      let name = form.custom_g_name ? form.custom_g_name.value.trim() : '';
+
+      if (!email || !email.includes('@')) {
+        AmarasToast.show('Пожалуйста, введите корректный адрес Gmail или Email', 'error');
+        if (form.custom_g_email) form.custom_g_email.focus();
+        return;
+      }
+
+      if (!name) {
+        const base = email.split('@')[0].replace(/[._-]/g, ' ');
+        name = base.split(' ').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
+        if (!name) name = 'Google Пользователь';
+      }
+
+      this.handleGoogleConfirm(name, email);
+    },
+
+    handleGoogleConfirm(name, email) {
+      const submitBtn = this.modalEl ? this.modalEl.querySelector('.amaras-oauth-confirm-btn') : null;
+      if (submitBtn) submitBtn.classList.add('is-loading');
+
+      setTimeout(() => {
+        if (submitBtn) submitBtn.classList.remove('is-loading');
+        const finalName = name || 'Google Пользователь';
+        const finalEmail = email || 'user@gmail.com';
+        const initials = this.getInitials(finalName);
+
+        const googleUser = {
+          id: 'usr_g_' + Date.now(),
+          name: finalName,
+          email: finalEmail,
+          phone: '',
+          avatarText: initials,
+          provider: 'Google',
+          createdAt: new Date().toISOString().split('T')[0],
+          bookingsCount: 0
+        };
+
+        try {
+          localStorage.setItem('amaras_saved_google', JSON.stringify({
+            name: finalName,
+            email: finalEmail,
+            avatarText: initials
+          }));
+        } catch (err) {}
+
+        this.saveRegisteredUser(googleUser);
+        this.saveUser(googleUser);
+        this.close();
+        AmarasToast.show(`Успешный вход через Google: ${googleUser.name}!`, 'success');
+      }, 350);
     },
 
     loginWithTelegram() {
-      AmarasToast.show('Для входа используйте регистрацию через Email. Вход через Telegram будет активен после подключения бота.', 'info');
+      this.switchTab('telegram');
+      this.renderTelegramOAuth(false);
+    },
+
+    renderTelegramOAuth(forceNew = false) {
+      const view = this.modalEl ? this.modalEl.querySelector('.amaras-auth-view[data-tab="telegram"]') : null;
+      if (!view) return;
+
+      const savedTg = this.getSavedTelegram();
+
+      if (savedTg && !forceNew) {
+        const initials = savedTg.avatarText || this.getInitials(savedTg.name);
+        view.innerHTML = `
+          <div class="amaras-oauth-header">
+            <div class="amaras-oauth-icon is-tg">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.92 9.07c-.14.65-.53.81-1.07.51l-2.95-2.18-1.42 1.37c-.16.16-.29.29-.6.29l.21-3.01 5.48-4.95c.24-.21-.05-.33-.37-.12l-6.77 4.26-2.92-.91c-.63-.2-.64-.63.13-.94l11.41-4.4c.53-.19.99.13.82.91z"/></svg>
+            </div>
+            <h3 class="amaras-oauth-title">Вход через Telegram</h3>
+            <p class="amaras-oauth-subtitle">Выберите профиль для продолжения</p>
+          </div>
+
+          <div class="amaras-oauth-card is-selected" onclick="AmarasAuth.handleTelegramConfirm('${savedTg.name.replace(/'/g, "\\'")}', '${(savedTg.username || '').replace(/'/g, "\\'")}', '${(savedTg.phone || '').replace(/'/g, "\\'")}')">
+            <div class="amaras-oauth-avatar is-tg">${initials}</div>
+            <div class="amaras-oauth-info">
+              <div class="amaras-oauth-name">${savedTg.name}</div>
+              <div class="amaras-oauth-meta">${savedTg.username || savedTg.phone || 'Telegram'}</div>
+            </div>
+            <svg class="amaras-oauth-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+
+          <button type="button" class="amaras-auth-submit-btn amaras-oauth-confirm-btn" onclick="AmarasAuth.handleTelegramConfirm('${savedTg.name.replace(/'/g, "\\'")}', '${(savedTg.username || '').replace(/'/g, "\\'")}', '${(savedTg.phone || '').replace(/'/g, "\\'")}')">
+            <span class="amaras-btn-text">Войти как ${savedTg.name.split(' ')[0]}</span>
+            <span class="amaras-btn-spinner"></span>
+          </button>
+
+          <button type="button" class="amaras-oauth-toggle-link" onclick="AmarasAuth.renderTelegramOAuth(true)">
+            Указать другой аккаунт Telegram
+          </button>
+
+          <div class="amaras-auth-back-row">
+            <button type="button" class="amaras-auth-back-link" onclick="AmarasAuth.switchTab('login')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              <span>Вернуться ко входу</span>
+            </button>
+          </div>
+        `;
+      } else {
+        view.innerHTML = `
+          <div class="amaras-oauth-header">
+            <div class="amaras-oauth-icon is-tg">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.92 9.07c-.14.65-.53.81-1.07.51l-2.95-2.18-1.42 1.37c-.16.16-.29.29-.6.29l.21-3.01 5.48-4.95c.24-.21-.05-.33-.37-.12l-6.77 4.26-2.92-.91c-.63-.2-.64-.63.13-.94l11.41-4.4c.53-.19.99.13.82.91z"/></svg>
+            </div>
+            <h3 class="amaras-oauth-title">Вход через Telegram</h3>
+            <p class="amaras-oauth-subtitle">Авторизуйтесь через никнейм или телефон</p>
+          </div>
+
+          <form onsubmit="AmarasAuth.handleCustomTelegram(event)" novalidate>
+            <div class="amaras-auth-field">
+              <label for="customTgUser">Никнейм @username или номер телефона</label>
+              <div class="amaras-auth-input-box">
+                <svg class="amaras-auth-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                <input type="text" id="customTgUser" name="custom_tg_user" placeholder="@username или +374 ..." required autocomplete="username" />
+              </div>
+            </div>
+
+            <div class="amaras-auth-field">
+              <label for="customTgName">Ваше имя (как в профиле Telegram)</label>
+              <div class="amaras-auth-input-box">
+                <svg class="amaras-auth-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" id="customTgName" name="custom_tg_name" placeholder="Имя и фамилия (необязательно)" autocomplete="name" />
+              </div>
+            </div>
+
+            <button type="submit" class="amaras-auth-submit-btn amaras-oauth-confirm-btn" style="margin-top: 14px;">
+              <span class="amaras-btn-text">Войти через Telegram</span>
+              <span class="amaras-btn-spinner"></span>
+            </button>
+          </form>
+
+          ${savedTg ? `
+            <button type="button" class="amaras-oauth-toggle-link" style="margin-top: 12px;" onclick="AmarasAuth.renderTelegramOAuth(false)">
+              Вернуться к сохранённому аккаунту (${savedTg.name.split(' ')[0]})
+            </button>
+          ` : ''}
+
+          <div class="amaras-auth-back-row">
+            <button type="button" class="amaras-auth-back-link" onclick="AmarasAuth.switchTab('login')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              <span>Вернуться ко входу</span>
+            </button>
+          </div>
+        `;
+      }
+    },
+
+    handleCustomTelegram(e) {
+      e.preventDefault();
+      const form = e.target;
+      const userVal = form.custom_tg_user.value.trim();
+      let name = form.custom_tg_name ? form.custom_tg_name.value.trim() : '';
+
+      if (!userVal) {
+        AmarasToast.show('Пожалуйста, укажите ваш Telegram @username или номер телефона', 'error');
+        if (form.custom_tg_user) form.custom_tg_user.focus();
+        return;
+      }
+
+      let username = '';
+      let phone = '';
+
+      if (userVal.startsWith('+') || /^\d+$/.test(userVal.replace(/[\s()-]/g, ''))) {
+        phone = userVal;
+      } else {
+        username = userVal.startsWith('@') ? userVal : ('@' + userVal);
+      }
+
+      if (!name) {
+        if (username) {
+          const raw = username.replace(/^@/, '');
+          name = raw.charAt(0).toUpperCase() + raw.slice(1);
+        } else {
+          name = 'Telegram Пользователь';
+        }
+      }
+
+      this.handleTelegramConfirm(name, username, phone);
+    },
+
+    handleTelegramConfirm(name, username, phone) {
+      const submitBtn = this.modalEl ? this.modalEl.querySelector('.amaras-oauth-confirm-btn') : null;
+      if (submitBtn) submitBtn.classList.add('is-loading');
+
+      setTimeout(() => {
+        if (submitBtn) submitBtn.classList.remove('is-loading');
+        const finalName = name || 'Telegram Пользователь';
+        const initials = this.getInitials(finalName);
+
+        const tgUser = {
+          id: 'usr_tg_' + Date.now(),
+          name: finalName,
+          email: username && username.startsWith('@') ? username : (username || 'user@t.me'),
+          phone: phone || '',
+          avatarText: initials,
+          provider: 'Telegram',
+          createdAt: new Date().toISOString().split('T')[0],
+          bookingsCount: 0
+        };
+
+        try {
+          localStorage.setItem('amaras_saved_telegram', JSON.stringify({
+            name: finalName,
+            username: username,
+            phone: phone,
+            avatarText: initials
+          }));
+        } catch (err) {}
+
+        this.saveRegisteredUser(tgUser);
+        this.saveUser(tgUser);
+        this.close();
+        AmarasToast.show(`Успешный вход через Telegram: ${tgUser.name}!`, 'success');
+      }, 350);
+    },
+
+    toggleCustomOAuthForm(formId) {
+      const form = document.getElementById(formId);
+      if (form) form.classList.toggle('is-open');
     },
 
     logout() {
@@ -841,6 +1174,21 @@
                 <span class="amaras-btn-spinner"></span>
               </button>
             </form>
+
+            <div class="amaras-auth-divider">
+              <span>или быстрая регистрация через</span>
+            </div>
+
+            <div class="amaras-auth-socials">
+              <button type="button" class="amaras-auth-social-btn is-google" onclick="AmarasAuth.loginWithGoogle()">
+                <svg width="17" height="17" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.7 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.9C6.2 7.3 8.9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/><path fill="#FBBC05" d="M5.3 14.7c-.2-.7-.4-1.5-.4-2.7s.1-2 .4-2.7L1.6 6.4C.6 8.3 0 10.1 0 12s.6 3.7 1.6 5.6l3.7-2.9z"/><path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.8-2.3-6.7-5.3L1.6 16c1.9 3.8 5.8 7 10.4 7z"/></svg>
+                <span>Google</span>
+              </button>
+              <button type="button" class="amaras-auth-social-btn is-tg" onclick="AmarasAuth.loginWithTelegram()">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="#24A1DE"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.92 9.07c-.14.65-.53.81-1.07.51l-2.95-2.18-1.42 1.37c-.16.16-.29.29-.6.29l.21-3.01 5.48-4.95c.24-.21-.05-.33-.37-.12l-6.77 4.26-2.92-.91c-.63-.2-.64-.63.13-.94l11.41-4.4c.53-.19.99.13.82.91z"/></svg>
+                <span>Telegram</span>
+              </button>
+            </div>
           </div>
 
           <!-- TAB 3: FORGOT PASSWORD -->
@@ -871,6 +1219,12 @@
               </div>
             </form>
           </div>
+
+          <!-- TAB 4: GOOGLE OAUTH -->
+          <div class="amaras-auth-view" data-tab="google"></div>
+
+          <!-- TAB 5: TELEGRAM OAUTH -->
+          <div class="amaras-auth-view" data-tab="telegram"></div>
 
         </div>
       `;
