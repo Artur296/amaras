@@ -379,7 +379,7 @@
       </div>
     </div>
   </div>
-  <script src="js/translations.js?v=86"></script>
+  <script src="js/translations.js?v=88"></script>
   <div class="w-dyn-list">
     <div class="w-dyn-items" role="list">
       <div class="w-dyn-item" role="listitem">
@@ -391,9 +391,9 @@
       <div class="amaras-breadcrumbs">
   <a href="index.html" data-i18n="breadcrumb_home">Главная</a>
   <span class="amaras-breadcrumbs-sep">/</span>
-  <a href="tours-group.html">Туры</a>
+  <a href="tours-group.html" data-i18n="breadcrumb_tours">Туры</a>
   <span class="amaras-breadcrumbs-sep">/</span>
-  <span>Индивидуальные туры по Армении</span>
+  <span data-i18n="cat_ind_title">Индивидуальные туры по Армении</span>
 </div>
       <h1 class="amaras-cat-title" data-i18n="cat_ind_title">Индивидуальные туры по Армении</h1>
       <p class="amaras-cat-subtitle" data-i18n="cat_ind_subtitle">Соберите свой собственный маршрут: выберите любимые локации, подходящий автомобиль с персональным водителем и дополнительные услуги. Мы рассчитаем точную стоимость за 2 минуты.</p>
@@ -402,25 +402,25 @@
   <div class="amaras-cat-nav-tabs-container">
     <div class="amaras-cat-nav-tabs">
       <a href="tours-group.html" class="amaras-cat-tab-link">
-        <span>Все групповые</span>
+        <span data-i18n="cat_tab_all_group">Все групповые</span>
       </a>
       <a href="tours-group-mini.html" class="amaras-cat-tab-link">
-        <span>Мини-группы (до 8)</span>
+        <span data-i18n="cat_tab_mini_8">Мини-группы (до 8)</span>
       </a>
       <a href="tours-group-standard.html" class="amaras-cat-tab-link">
-        <span>Большие группы (до 19)</span>
+        <span data-i18n="cat_tab_big_19">Большие группы (до 19)</span>
       </a>
       <a href="tours-individual.html" class="amaras-cat-tab-link is-active">
-        <span>Индивидуальные</span>
+        <span data-i18n="cat_tab_individual">Индивидуальные</span>
       </a>
       <a href="tours-jeep.html" class="amaras-cat-tab-link">
-        <span>Джип и экстрим</span>
+        <span data-i18n="cat_tab_jeep">Джип и экстрим</span>
       </a>
       <a href="tours-gastro.html" class="amaras-cat-tab-link">
-        <span>Гастро-туры</span>
+        <span data-i18n="cat_tab_gastro">Гастро-туры</span>
       </a>
       <a href="tours-packages.html" class="amaras-cat-tab-link">
-        <span>Турпакеты</span>
+        <span data-i18n="cat_tab_packages">Турпакеты</span>
       </a>
     </div>
   </div>
@@ -430,11 +430,8 @@
   <section id="tour-builder" class="amaras-builder-section">
     <div class="amaras-cat-container">
       <div class="amaras-builder-intro">
-        <h2 class="amaras-builder-heading">Конструктор вашего индивидуального тура</h2>
-        <p class="amaras-builder-desc">
-          Соберите поездку под свои пожелания: выберите интересующие локации, подходящий класс автомобиля и дополнительные услуги.
-          Справа сразу формируется готовая программа, которую можно отправить в WhatsApp за один клик.
-        </p>
+        <h2 class="amaras-builder-heading" data-i18n="builder_heading">Конструктор вашего индивидуального тура</h2>
+        <p class="amaras-builder-desc" data-i18n="builder_sub">Соберите поездку под свои пожелания: выберите интересующие локации, подходящий класс автомобиля и дополнительные услуги. Справа сразу формируется готовая программа, которую можно отправить в WhatsApp за один клик.</p>
       </div>
 
       <div class="amaras-builder-layout">
@@ -446,8 +443,8 @@
             <div class="amaras-step-head">
               <div class="amaras-step-num">1</div>
               <div>
-                <h3 class="amaras-step-title">Выберите локации и достопримечательности</h3>
-                <p class="amaras-step-sub">Отметьте места, которые хотите посетить (можно выбрать несколько)</p>
+                <h3 class="amaras-step-title" data-i18n="step1_title">Шаг 1: Выберите локации Армении</h3>
+                <p class="amaras-step-sub" data-i18n="step1_sub">Отметьте места, которые хотите посетить (можно выбрать несколько)</p>
               </div>
             </div>
 
@@ -462,8 +459,8 @@
                   </div>
                 </div>
                 <div class="amaras-loc-body">
-                  <h4 class="amaras-loc-title">Хор Вирап & Арарат</h4>
-                  <span class="amaras-loc-region">Араратская долина</span>
+                  <h4 class="amaras-loc-title"><span data-i18n="loc_hor_virap">Хор Вирап & Арарат</span></h4>
+                  <span class="amaras-loc-region"><span data-i18n="loc_hor_virap_desc">Араратская долина</span></span>
                 </div>
               </div>
 
@@ -476,8 +473,8 @@
                   </div>
                 </div>
                 <div class="amaras-loc-body">
-                  <h4 class="amaras-loc-title">Гарни & Гегард</h4>
-                  <span class="amaras-loc-region">Котайкский регион</span>
+                  <h4 class="amaras-loc-title"><span data-i18n="loc_garni">Гарни & Гегард</span></h4>
+                  <span class="amaras-loc-region"><span data-i18n="loc_garni_desc">Котайкский регион</span></span>
                 </div>
               </div>
 
@@ -490,8 +487,8 @@
                   </div>
                 </div>
                 <div class="amaras-loc-body">
-                  <h4 class="amaras-loc-title">Озеро Севан & Севанаванк</h4>
-                  <span class="amaras-loc-region">Гегаркуник</span>
+                  <h4 class="amaras-loc-title"><span data-i18n="loc_sevan">Озеро Севан & Севанаванк</span></h4>
+                  <span class="amaras-loc-region"><span data-i18n="loc_sevan_desc">Гегаркуник</span></span>
                 </div>
               </div>
 
@@ -504,8 +501,8 @@
                   </div>
                 </div>
                 <div class="amaras-loc-body">
-                  <h4 class="amaras-loc-title">Дилижан & озеро Парз</h4>
-                  <span class="amaras-loc-region">Тавуш (Армянская Швейцария)</span>
+                  <h4 class="amaras-loc-title"><span data-i18n="loc_dilijan">Дилижан & озеро Парз</span></h4>
+                  <span class="amaras-loc-region"><span data-i18n="loc_dilijan_desc">Тавуш (Армянская Швейцария)</span></span>
                 </div>
               </div>
 
@@ -518,8 +515,8 @@
                   </div>
                 </div>
                 <div class="amaras-loc-body">
-                  <h4 class="amaras-loc-title">Нораванк & ущелье</h4>
-                  <span class="amaras-loc-region">Вайоц Дзор</span>
+                  <h4 class="amaras-loc-title"><span data-i18n="loc_noravank">Нораванк & ущелье</span></h4>
+                  <span class="amaras-loc-region"><span data-i18n="loc_noravank_desc">Вайоц Дзор</span></span>
                 </div>
               </div>
 
@@ -546,8 +543,8 @@
                   </div>
                 </div>
                 <div class="amaras-loc-body">
-                  <h4 class="amaras-loc-title">Крылья Татева</h4>
-                  <span class="amaras-loc-region">Сюник</span>
+                  <h4 class="amaras-loc-title"><span data-i18n="loc_tatev">Крылья Татева</span></h4>
+                  <span class="amaras-loc-region"><span data-i18n="loc_tatev_desc">Сюник</span></span>
                 </div>
               </div>
 
@@ -560,8 +557,8 @@
                   </div>
                 </div>
                 <div class="amaras-loc-body">
-                  <h4 class="amaras-loc-title">Водопад Шаки</h4>
-                  <span class="amaras-loc-region">Сюник</span>
+                  <h4 class="amaras-loc-title"><span data-i18n="loc_shaki">Водопад Шаки</span></h4>
+                  <span class="amaras-loc-region"><span data-i18n="loc_shaki_desc">Сюник</span></span>
                 </div>
               </div>
 
@@ -574,8 +571,8 @@
                   </div>
                 </div>
                 <div class="amaras-loc-body">
-                  <h4 class="amaras-loc-title">Симфония камней</h4>
-                  <span class="amaras-loc-region">Ущелье Гарни</span>
+                  <h4 class="amaras-loc-title"><span data-i18n="loc_symphony">Симфония камней</span></h4>
+                  <span class="amaras-loc-region"><span data-i18n="loc_symphony_desc">Ущелье Гарни</span></span>
                 </div>
               </div>
 
@@ -647,7 +644,7 @@
             <div class="amaras-step-head">
               <div class="amaras-step-num">3</div>
               <div>
-                <h3 class="amaras-step-title">Дополнительные услуги и комфорт</h3>
+                <h3 class="amaras-step-title" data-i18n="step3_title">Шаг 3: Дополнительные услуги</h3>
                 <p class="amaras-step-sub">Выберите опции, которые сделают ваше путешествие ещё ярче и комфортнее</p>
               </div>
             </div>
@@ -777,7 +774,7 @@
         <aside class="amaras-builder-sidebar">
           <div class="amaras-summary-card">
             <div class="amaras-summary-head">
-              <h3 class="amaras-summary-title">Ваш маршрут</h3>
+              <h3 class="amaras-summary-title" data-i18n="summary_title">Ваш маршрут</h3>
               <p class="amaras-summary-subtitle">Индивидуальный расчет под вашу компанию</p>
             </div>
 
@@ -2316,25 +2313,28 @@
       sumVehicleVal.textContent = state.vehicle.name;
 
       // 3. Services
+      const curLang = window.currentLang || localStorage.getItem('amaras_preferred_lang') || 'RU';
+      const dict = (typeof AMARAS_I18N !== 'undefined' && AMARAS_I18N[curLang]) ? AMARAS_I18N[curLang] : {};
       sumSrvCount.textContent = state.services.length;
       if (state.services.length === 0) {
-        sumServicesVal.textContent = 'Без дополнительных услуг';
+        sumServicesVal.textContent = dict.summary_srv_none || 'Без дополнительных опций';
       } else {
         sumServicesVal.textContent = state.services.map(s => s.name).join(', ');
       }
 
       // 4. Duration Estimation
       let totalHours = allLocs.reduce((acc, curr) => acc + (curr.hours || 3), 0);
+      const hUnit = curLang === 'ENG' ? 'hrs' : (curLang === 'HY' ? 'ժամ' : 'ч.');
       if (allLocs.length === 0) {
-        sumDurationVal.textContent = '0 ч.';
+        sumDurationVal.textContent = `0 ${hUnit}`;
       } else if (allLocs.length === 1) {
-        sumDurationVal.textContent = `~4–5 часов`;
+        sumDurationVal.textContent = curLang === 'ENG' ? '~4–5 hours' : (curLang === 'HY' ? '~4–5 ժամ' : '~4–5 часов');
       } else if (allLocs.length === 2) {
-        sumDurationVal.textContent = `~6–7 часов`;
+        sumDurationVal.textContent = curLang === 'ENG' ? '~6–7 hours' : (curLang === 'HY' ? '~6–7 ժամ' : '~6–7 часов');
       } else if (allLocs.length === 3) {
-        sumDurationVal.textContent = `~8–9 часов`;
+        sumDurationVal.textContent = curLang === 'ENG' ? '~8–9 hours' : (curLang === 'HY' ? '~8–9 ժամ' : '~8–9 часов');
       } else {
-        sumDurationVal.textContent = `~10–12 ч. (или 2 дня)`;
+        sumDurationVal.textContent = curLang === 'ENG' ? '~10–12 hrs (or 2 days)' : (curLang === 'HY' ? '~10–12 ժամ (կամ 2 օր)' : '~10–12 ч. (или 2 дня)');
       }
 
       // 5. Generate WhatsApp Message Link
