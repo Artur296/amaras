@@ -333,13 +333,13 @@ body[data-exit-popup-open="true"] {
 }
 
 .amaras-nav-container {
-  max-width: 1520px;
+  max-width: 1480px;
   margin: 0 auto;
-  padding: 12px 24px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
   position: relative;
 }
 
@@ -352,7 +352,7 @@ body[data-exit-popup-open="true"] {
 }
 
 .amaras-nav-logo img {
-  height: 38px;
+  height: 32px;
   width: auto;
   max-width: none;
   display: block;
@@ -366,22 +366,22 @@ body[data-exit-popup-open="true"] {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 9999px;
-  padding: 4px 6px;
+  padding: 3px 5px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
 .amaras-nav-link {
   color: #FFFFFF;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 500;
-  padding: 8px 14px;
+  padding: 7px 11px;
   border-radius: 9999px;
   text-decoration: none;
   transition: all 0.2s cubic-bezier(0.32, 0.72, 0, 1);
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   white-space: nowrap;
 }
 
@@ -568,14 +568,14 @@ body[data-exit-popup-open="true"] {
 .amaras-nav-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 7px;
   flex-shrink: 0;
 }
 
 /* Search Icon Button */
 .amaras-search-btn {
-  width: 38px;
-  height: 38px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -597,8 +597,8 @@ body[data-exit-popup-open="true"] {
 
 /* Shopping Cart Button (Image 2) */
 .amaras-cart-btn {
-  width: 38px;
-  height: 38px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -641,9 +641,9 @@ body[data-exit-popup-open="true"] {
   border: 2px solid #312F2F;
 }
 
-/* Language Switcher */
+/* Language Switcher - 3-button switcher replaced by unified compact dropdown */
 .amaras-lang-switcher {
-  display: flex;
+  display: none !important;
   align-items: center;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -703,21 +703,22 @@ body[data-exit-popup-open="true"] {
    ========================================================================== */
 .amaras-mobile-lang-wrapper {
   position: relative;
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
 }
 
 .amaras-mobile-lang-trigger {
-  display: none;
+  display: inline-flex !important;
   align-items: center;
-  gap: 8px;
-  padding: 5px 12px;
+  gap: 6px;
+  padding: 0 10px;
+  height: 35px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 9999px;
   color: #FFFFFF;
   font-family: inherit;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
   cursor: pointer;
   text-decoration: none;
@@ -854,11 +855,11 @@ body[data-exit-popup-open="true"] {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 9999px;
-  padding: 0 11px;
-  height: 36px;
+  padding: 0 10px;
+  height: 35px;
   color: #FFFFFF;
   font-family: inherit;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1027,9 +1028,9 @@ body[data-exit-popup-open="true"] {
   color: #FFFFFF;
   border: 1px solid rgba(255, 255, 255, 0.25);
   background: rgba(255, 255, 255, 0.06);
-  padding: 7px 16px;
+  padding: 6px 13px;
   border-radius: 9999px;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.2s cubic-bezier(0.32, 0.72, 0, 1);
@@ -1046,9 +1047,9 @@ body[data-exit-popup-open="true"] {
 .amaras-register-btn {
   background: #586EFF;
   color: #FFFFFF;
-  padding: 7px 18px;
+  padding: 6px 16px;
   border-radius: 9999px;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
   text-decoration: none;
   box-shadow: 0 4px 14px rgba(88, 110, 255, 0.35);
@@ -1415,25 +1416,57 @@ body[data-exit-popup-open="true"] {
     display: inline-flex !important;
   }
   .amaras-nav-logo img {
-    height: 32px;
+    height: 30px;
   }
   .amaras-nav-actions {
     gap: 6px;
   }
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1320px) {
+  .amaras-nav-container {
+    padding: 8px 16px;
+    gap: 8px;
+  }
+  .amaras-nav-logo img {
+    height: 28px;
+  }
   .amaras-nav-capsule {
     gap: 1px;
-    padding: 3px 4px;
+    padding: 2px 4px;
   }
   .amaras-nav-link {
-    font-size: 13px;
-    padding: 6px 10px;
+    font-size: 12px;
+    padding: 6px 8px;
+    gap: 3px;
+  }
+  .amaras-nav-actions {
+    gap: 5px;
+  }
+  .amaras-login-btn {
+    padding: 5px 11px;
+    font-size: 12px;
+  }
+  .amaras-register-btn {
+    padding: 5px 13px;
+    font-size: 12px;
+  }
+  .amaras-currency-trigger,
+  .amaras-mobile-lang-trigger {
+    height: 33px;
+    padding: 0 8px;
+    font-size: 12px;
+  }
+  .amaras-search-btn,
+  .amaras-cart-btn,
+  .amaras-music-btn {
+    width: 33px;
+    height: 33px;
+    min-width: 33px;
   }
 }
 
-@media (max-width: 1140px) {
+@media (max-width: 1180px) {
   .amaras-nav-capsule {
     display: none;
   }
@@ -5275,9 +5308,9 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
    Ambient Atmosphere Music Button & Wave Equalizer
    ========================================================================== */
 .amaras-music-btn {
-  width: 38px;
-  height: 38px;
-  min-width: 38px;
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.14);
