@@ -1404,6 +1404,24 @@ body[data-exit-popup-open="true"] {
 }
 
 /* Responsive Breakpoints */
+@media (max-width: 1380px) {
+  .amaras-lang-switcher {
+    display: none !important;
+  }
+  .amaras-mobile-lang-wrapper {
+    display: flex !important;
+  }
+  .amaras-mobile-lang-trigger {
+    display: inline-flex !important;
+  }
+  .amaras-nav-logo img {
+    height: 32px;
+  }
+  .amaras-nav-actions {
+    gap: 6px;
+  }
+}
+
 @media (max-width: 1280px) {
   .amaras-nav-capsule {
     gap: 1px;
@@ -1415,7 +1433,7 @@ body[data-exit-popup-open="true"] {
   }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1140px) {
   .amaras-nav-capsule {
     display: none;
   }
@@ -8621,3 +8639,916 @@ html, body {
     padding: 10px 16px;
   }
 }
+
+/* ==========================================================================
+   AMARAS AUTHENTICATION & USER PROFILE STYLES
+   Colors: #312F2F (charcoal), #586EFF (blue accent), #C7FF32 (lime highlight)
+   ZERO EMOJIS - Clean high-converting typography & micro-interactions
+   ========================================================================== */
+
+/* Prevent page scroll when modal is active */
+body.amaras-modal-locked {
+  overflow: hidden !important;
+}
+
+/* Modal Overlay & Backdrop */
+.amaras-auth-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.28s ease;
+}
+
+.amaras-auth-modal-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.amaras-auth-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 17, 23, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Modal Dialog Box */
+.amaras-auth-dialog {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 440px;
+  background: #FFFFFF;
+  border-radius: 24px;
+  padding: 32px 28px 28px 28px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25), 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(49, 47, 47, 0.08);
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+}
+
+.amaras-auth-modal-overlay.is-open .amaras-auth-dialog {
+  transform: translateY(0) scale(1);
+}
+
+/* Close Button */
+.amaras-auth-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(49, 47, 47, 0.1);
+  background: #F8F9FA;
+  color: #4B5563;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.amaras-auth-close-btn:hover {
+  background: #E5E7EB;
+  color: #111827;
+  transform: rotate(90deg);
+}
+
+/* Header */
+.amaras-auth-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.amaras-auth-brand {
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.amaras-auth-logo {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.amaras-auth-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #312F2F;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.3px;
+}
+
+.amaras-auth-subtitle {
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.45;
+  margin: 0;
+  padding: 0 8px;
+}
+
+/* Tabs Switcher */
+.amaras-auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #F3F4F6;
+  border-radius: 999px;
+  padding: 4px;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.amaras-auth-tab-btn {
+  border: none;
+  background: transparent;
+  color: #6B7280;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 9px 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.amaras-auth-tab-btn.is-active {
+  background: #FFFFFF;
+  color: #312F2F;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Tab Views */
+.amaras-auth-view {
+  display: none;
+}
+
+.amaras-auth-view.is-active {
+  display: block;
+}
+
+/* Error Box */
+.amaras-auth-error {
+  display: none;
+  background: #FEE2E2;
+  color: #DC2626;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+/* Form Fields */
+.amaras-auth-field {
+  margin-bottom: 14px;
+}
+
+.amaras-auth-field label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.amaras-auth-field-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.amaras-auth-field-header label {
+  margin-bottom: 0;
+}
+
+.amaras-auth-forgot-link {
+  border: none;
+  background: none;
+  color: #586EFF;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.amaras-auth-forgot-link:hover {
+  color: #3f55e0;
+  text-decoration: underline;
+}
+
+.amaras-auth-input-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.amaras-auth-input-icon {
+  position: absolute;
+  left: 14px;
+  color: #9CA3AF;
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.amaras-auth-input-box input {
+  width: 100%;
+  height: 44px;
+  padding: 0 42px 0 40px;
+  background: #FFFFFF;
+  border: 1px solid #D1D5DB;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #1F2937;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.amaras-auth-input-box input::placeholder {
+  color: #9CA3AF;
+  font-size: 13.5px;
+}
+
+.amaras-auth-input-box input:focus {
+  border-color: #586EFF;
+  box-shadow: 0 0 0 3px rgba(88, 110, 255, 0.14);
+}
+
+.amaras-auth-input-box input:focus + .amaras-auth-input-icon,
+.amaras-auth-input-box:focus-within .amaras-auth-input-icon {
+  color: #586EFF;
+}
+
+.amaras-auth-input-box input.is-invalid {
+  border-color: #EF4444;
+  background: #FEF2F2;
+}
+
+/* Eye Toggle */
+.amaras-auth-eye-btn {
+  position: absolute;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  color: #9CA3AF;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.amaras-auth-eye-btn:hover {
+  color: #4B5563;
+}
+
+/* Checkbox Row */
+.amaras-auth-checkbox-row {
+  margin: 14px 0 16px 0;
+}
+
+.amaras-auth-check-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.amaras-auth-check-label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.amaras-auth-checkmark {
+  position: relative;
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+  margin-top: 2px;
+  background: #FFFFFF;
+  border: 1.5px solid #D1D5DB;
+  border-radius: 5px;
+  transition: all 0.18s ease;
+}
+
+.amaras-auth-check-label:hover input ~ .amaras-auth-checkmark {
+  border-color: #586EFF;
+}
+
+.amaras-auth-check-label input:checked ~ .amaras-auth-checkmark {
+  background: #586EFF;
+  border-color: #586EFF;
+}
+
+.amaras-auth-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 5px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.amaras-auth-check-label input:checked ~ .amaras-auth-checkmark:after {
+  display: block;
+}
+
+.amaras-auth-check-text {
+  font-size: 11.5px;
+  color: #6B7280;
+  line-height: 1.45;
+}
+
+.amaras-auth-check-text a {
+  color: #586EFF;
+  text-decoration: underline;
+}
+
+/* Submit Button */
+.amaras-auth-submit-btn {
+  position: relative;
+  width: 100%;
+  height: 46px;
+  background: #586EFF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(88, 110, 255, 0.35);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 6px;
+}
+
+.amaras-auth-submit-btn:hover {
+  background: #485de0;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(88, 110, 255, 0.45);
+}
+
+.amaras-auth-submit-btn:active {
+  transform: translateY(0);
+}
+
+.amaras-auth-submit-btn .amaras-btn-spinner {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: amarasSpin 0.7s linear infinite;
+}
+
+.amaras-auth-submit-btn.is-loading .amaras-btn-text {
+  display: none;
+}
+
+.amaras-auth-submit-btn.is-loading .amaras-btn-spinner {
+  display: block;
+}
+
+@keyframes amarasSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Divider */
+.amaras-auth-divider {
+  position: relative;
+  text-align: center;
+  margin: 18px 0 14px 0;
+}
+
+.amaras-auth-divider:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #E5E7EB;
+}
+
+.amaras-auth-divider span {
+  position: relative;
+  background: #FFFFFF;
+  padding: 0 12px;
+  font-size: 11.5px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+/* Social Buttons */
+.amaras-auth-socials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.amaras-auth-social-btn {
+  height: 40px;
+  border: 1px solid #E5E7EB;
+  background: #FFFFFF;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.18s ease;
+}
+
+.amaras-auth-social-btn:hover {
+  background: #F9FAFB;
+  border-color: #D1D5DB;
+  transform: translateY(-1px);
+}
+
+/* Quick Demo Box */
+.amaras-auth-demo-box {
+  margin-top: 10px;
+}
+
+.amaras-auth-demo-btn {
+  width: 100%;
+  height: 38px;
+  border: 1px dashed rgba(199, 255, 50, 0.7);
+  background: #312F2F;
+  color: #C7FF32;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: all 0.2s ease;
+}
+
+.amaras-auth-demo-btn:hover {
+  background: #252323;
+  border-color: #C7FF32;
+  box-shadow: 0 4px 12px rgba(199, 255, 50, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Forgot Password View */
+.amaras-auth-forgot-desc {
+  font-size: 13px;
+  color: #4B5563;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  background: #F3F4F6;
+  padding: 12px 14px;
+  border-radius: 12px;
+}
+
+.amaras-auth-back-row {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.amaras-auth-back-link {
+  border: none;
+  background: none;
+  color: #6B7280;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.amaras-auth-back-link:hover {
+  color: #111827;
+}
+
+/* Success State in Modal */
+.amaras-auth-success-state {
+  text-align: center;
+  padding: 12px 0 4px 0;
+}
+
+.amaras-auth-success-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #312F2F;
+  border: 2px solid #C7FF32;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(199, 255, 50, 0.3);
+}
+
+.amaras-auth-btn-secondary {
+  width: 100%;
+  height: 44px;
+  background: #F3F4F6;
+  color: #374151;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.amaras-auth-btn-secondary:hover {
+  background: #E5E7EB;
+  color: #111827;
+}
+
+/* ==========================================================================
+   USER PROFILE NAVBAR PILL & DROPDOWN MENU
+   ========================================================================== */
+.amaras-user-menu-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.amaras-user-profile-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 36px;
+  padding: 0 10px 0 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.amaras-user-profile-trigger:hover,
+.amaras-user-profile-trigger[aria-expanded="true"] {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(199, 255, 50, 0.5);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.amaras-user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #312F2F;
+  color: #C7FF32;
+  border: 1.5px solid rgba(199, 255, 50, 0.45);
+  font-size: 11px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.amaras-user-avatar.is-large {
+  width: 42px;
+  height: 42px;
+  font-size: 15px;
+  border-width: 2px;
+}
+
+.amaras-user-name {
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.amaras-user-chevron {
+  color: rgba(255, 255, 255, 0.7);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.amaras-user-profile-trigger[aria-expanded="true"] .amaras-user-chevron {
+  transform: rotate(180deg);
+}
+
+/* User Popover Dropdown */
+.amaras-user-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 1000;
+  width: 240px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid rgba(49, 47, 47, 0.1);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18), 0 4px 12px rgba(0, 0, 0, 0.06);
+  padding: 8px;
+  box-sizing: border-box;
+  animation: amarasDropdownFade 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.amaras-user-dropdown.is-open {
+  display: block;
+}
+
+@keyframes amarasDropdownFade {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.amaras-user-dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px 12px 10px;
+}
+
+.amaras-user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.amaras-user-fullname {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #312F2F;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.amaras-user-email {
+  font-size: 11.5px;
+  color: #6B7280;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.amaras-user-dropdown-divider {
+  height: 1px;
+  background: #F3F4F6;
+  margin: 4px 0;
+}
+
+.amaras-user-dropdown-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: #374151;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.amaras-user-dropdown-item svg {
+  color: #586EFF;
+  flex-shrink: 0;
+}
+
+.amaras-user-dropdown-item:hover {
+  background: #F3F4F6;
+  color: #111827;
+}
+
+.amaras-user-dropdown-item.is-logout {
+  color: #DC2626;
+}
+
+.amaras-user-dropdown-item.is-logout svg {
+  color: #DC2626;
+}
+
+.amaras-user-dropdown-item.is-logout:hover {
+  background: #FEE2E2;
+  color: #B91C1C;
+}
+
+/* User Card in Mobile Drawer */
+.amaras-drawer-user-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.amaras-drawer-user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.amaras-drawer-user-name {
+  color: #FFFFFF;
+  font-size: 13.5px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.amaras-drawer-user-email {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 11.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 1px;
+}
+
+.amaras-drawer-logout-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid rgba(220, 38, 38, 0.4);
+  background: rgba(220, 38, 38, 0.15);
+  color: #FF6B6B;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+}
+
+.amaras-drawer-logout-btn:hover {
+  background: #DC2626;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   AMARAS TOAST NOTIFICATIONS
+   ========================================================================== */
+.amaras-toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+  max-width: calc(100vw - 32px);
+}
+
+.amaras-toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #312F2F;
+  color: #FFFFFF;
+  padding: 12px 16px;
+  border-radius: 14px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateY(16px) scale(0.96);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 380px;
+  box-sizing: border-box;
+}
+
+.amaras-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.amaras-toast.is-hiding {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.96);
+}
+
+.amaras-toast-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.amaras-toast-text {
+  flex: 1;
+}
+
+.amaras-toast-close {
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 0;
+  margin-left: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.amaras-toast-close:hover {
+  color: #FFFFFF;
+}
+
+/* Toast responsive */
+@media (max-width: 480px) {
+  .amaras-toast-container {
+    right: 16px;
+    left: 16px;
+    bottom: 16px;
+    align-items: center;
+  }
+  .amaras-toast {
+    width: 100%;
+    max-width: 100%;
+    font-size: 12.5px;
+    padding: 10px 14px;
+  }
+}
+
+/* Mobile Navbar Adaptation for User Profile Pill */
+@media (max-width: 540px) {
+  .amaras-user-profile-trigger {
+    height: 30px;
+    padding: 0 8px 0 3px;
+    font-size: 11px;
+    gap: 4px;
+  }
+  .amaras-user-avatar {
+    width: 24px;
+    height: 24px;
+    font-size: 9.5px;
+  }
+  .amaras-user-name {
+    max-width: 65px;
+  }
+}
+
