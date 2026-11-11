@@ -202,6 +202,35 @@
           <span class="amaras-cart-badge">2</span>
         </a>
 
+                <!-- Currency Switcher (֏ AMD / ₽ RUB / $ USD / € EUR) -->
+        <div class="amaras-currency-wrapper" id="currencyWrapper">
+          <button class="amaras-currency-trigger" id="currencyTrigger" type="button" onclick="toggleCurrencyMenu(event)" aria-label="Выбрать валюту" aria-haspopup="true" aria-expanded="false">
+            <span class="amaras-curr-symbol" id="currentCurrSymbol">֏</span>
+            <span class="amaras-curr-code" id="currentCurrCode">AMD</span>
+            <svg class="amaras-curr-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="amaras-currency-menu" id="currencyMenu" role="menu">
+            <button type="button" class="amaras-curr-item is-active" data-curr="AMD" onclick="setCurrency('AMD')">
+              <span class="amaras-curr-symbol">֏</span>
+              <span class="amaras-curr-code">AMD</span>
+            </button>
+            <button type="button" class="amaras-curr-item" data-curr="RUB" onclick="setCurrency('RUB')">
+              <span class="amaras-curr-symbol">₽</span>
+              <span class="amaras-curr-code">RUB</span>
+            </button>
+            <button type="button" class="amaras-curr-item" data-curr="USD" onclick="setCurrency('USD')">
+              <span class="amaras-curr-symbol">$</span>
+              <span class="amaras-curr-code">USD</span>
+            </button>
+            <button type="button" class="amaras-curr-item" data-curr="EUR" onclick="setCurrency('EUR')">
+              <span class="amaras-curr-symbol">€</span>
+              <span class="amaras-curr-code">EUR</span>
+            </button>
+          </div>
+        </div>
+
         <!-- Desktop Language Switcher (Рус / Eng / Հայ) -->
         <div class="amaras-lang-switcher">
           <button class="amaras-lang-btn is-active" type="button" data-lang="RU" onclick="setLang('RU')"><svg class="amaras-flag-icon" viewBox="0 0 16 12" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="4" fill="#FFFFFF"/><rect y="4" width="16" height="4" fill="#1C35D4"/><rect y="8" width="16" height="4" fill="#E81B23"/></svg><span>Рус</span></button>
@@ -380,6 +409,7 @@
     </div>
   </div>
   <script src="js/translations.js?v=94"></script>
+  <script src="js/currency.js?v=95"></script>
   <div class="w-dyn-list">
     <div class="w-dyn-items" role="list">
       <div class="w-dyn-item" role="listitem">

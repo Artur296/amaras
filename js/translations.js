@@ -2456,6 +2456,9 @@ function renderCartPage() {
 
   let totalGuests = 0;
   let totalPrice = 0;
+  const formatPrice = (typeof window.formatCurrencyPrice === 'function')
+    ? window.formatCurrencyPrice
+    : ((amt) => Math.round(amt).toLocaleString('ru-RU') + ' ֏');
 
   if (itemsList) {
     itemsList.innerHTML = '';
@@ -2473,7 +2476,7 @@ function renderCartPage() {
         <div class="amaras-cart-item-info">
           <div class="amaras-cart-item-title">${item.title}</div>
           ${item.route ? `<div class="amaras-cart-item-route">${item.route}</div>` : ''}
-          <div class="amaras-cart-item-price-unit">${(item.price || 0).toLocaleString('ru-RU')} ֏ ${dict.per_person || '/ чел.'}</div>
+          <div class="amaras-cart-item-price-unit">${formatPrice(item.price || 0)} ${dict.per_person || '/ чел.'}</div>
         </div>
         <div class="amaras-cart-item-qty-ctrl">
           <button type="button" class="amaras-qty-btn" onclick="updateCartItemQty('${item.id}', -1)" aria-label="Меньше">−</button>
@@ -2481,7 +2484,7 @@ function renderCartPage() {
           <button type="button" class="amaras-qty-btn" onclick="updateCartItemQty('${item.id}', 1)" aria-label="Больше">+</button>
         </div>
         <div class="amaras-cart-item-subtotal">
-          ${itemSubtotal.toLocaleString('ru-RU')} ֏
+          ${formatPrice(itemSubtotal)}
         </div>
         <button type="button" class="amaras-cart-item-remove" onclick="removeCartItem('${item.id}')" title="Удалить" aria-label="Удалить тур">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
@@ -2493,7 +2496,7 @@ function renderCartPage() {
 
   if (sumToursCount) sumToursCount.textContent = cart.length;
   if (sumGuestsCount) sumGuestsCount.textContent = totalGuests;
-  if (sumTotalPrice) sumTotalPrice.textContent = `${totalPrice.toLocaleString('ru-RU')} ֏`;
+  if (sumTotalPrice) sumTotalPrice.textContent = formatPrice(totalPrice);
 
   // Build WhatsApp Booking URL
   const nameInput = document.getElementById('cartInputName');
@@ -2510,7 +2513,7 @@ function renderCartPage() {
 
     let itemsText = cart.map((item, idx) => {
       const sub = (item.price || 0) * (item.quantity || 1);
-      return `${idx + 1}. «${item.title}» — ${item.quantity} чел. × ${(item.price || 0).toLocaleString('ru-RU')} ֏ = ${sub.toLocaleString('ru-RU')} ֏`;
+      return `${idx + 1}. «${item.title}» — ${item.quantity} чел. × ${formatPrice(item.price || 0)} = ${formatPrice(sub)}`;
     }).join('\n');
 
     let waText = '';
@@ -2518,7 +2521,7 @@ function renderCartPage() {
       waText = `Hello! I would like to book the following tours from my cart:
 ${itemsText}
 
-Total Amount: ${totalPrice.toLocaleString('ru-RU')} ֏
+Total Amount: ${formatPrice(totalPrice)}
 Total Guests: ${totalGuests}
 Date: ${travelDate}
 Client: ${clientName} ${clientPhone}${comment}
@@ -2528,7 +2531,7 @@ Please confirm availability and booking. Thank you!`;
       waText = `Բարև ձեզ: Ցանկանում եմ ամրագրել զամբյուղի տուրերը.
 ${itemsText}
 
-Ընդհանուր գումար՝ ${totalPrice.toLocaleString('ru-RU')} ֏
+Ընդհանուր գումար՝ ${formatPrice(totalPrice)}
 Մասնակիցներ՝ ${totalGuests} անձ
 Օր՝ ${travelDate}
 Պատվիրատու՝ ${clientName} ${clientPhone}${comment}
@@ -2538,7 +2541,7 @@ ${itemsText}
       waText = `Здравствуйте! Хочу оформить бронирование туров из корзины:
 ${itemsText}
 
-Итого к оплате: ${totalPrice.toLocaleString('ru-RU')} ֏
+Итого к оплате: ${formatPrice(totalPrice)}
 Всего участников: ${totalGuests} чел.
 Дата поездки: ${travelDate}
 Заказчик: ${clientName} ${clientPhone}${comment}
@@ -2568,14 +2571,29 @@ document.addEventListener('click', (e) => {
       const routeEl = card.querySelector('.amaras-cat-card-features') || card.querySelector('.amaras-pop-tour-route');
 
       const title = titleEl ? titleEl.textContent.trim() : 'Экскурсионный тур';
-      const priceRaw = priceEl ? priceEl.textContent.replace(/[^\d]/g, '') : '12000';
-      const price = parseInt(priceRaw, 10) || 12000;
+      let price = 12000;
+      if (priceEl) {
+        const baseAttr = priceEl.getAttribute('data-base-price');
+        if (baseAttr) {
+          price = parseInt(baseAttr, 10) || 12000;
+        } else {
+          const raw = priceEl.textContent.replace(/[^\d]/g, '');
+          price = parseInt(raw, 10) || 12000;
+        }
+      }
       const image = imgEl ? (imgEl.getAttribute('src') || 'assets/hero/tour-1-khorvirap.jpg') : 'assets/hero/tour-1-khorvirap.jpg';
       const route = routeEl ? routeEl.textContent.trim() : '';
       const id = title.toLowerCase().replace(/[^a-zа-яё0-9]/gi, '_');
 
       addToCart({ id, title, price, image, route, quantity: 1 });
     }
+  }
+});
+
+// Re-render cart on currency change
+window.addEventListener('amarasCurrencyChanged', () => {
+  if (typeof renderCartPage === 'function') {
+    renderCartPage();
   }
 });
 
