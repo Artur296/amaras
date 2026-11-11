@@ -152,6 +152,10 @@
       this.modalEl.classList.remove('is-open');
       document.body.classList.remove('amaras-modal-locked');
       this.clearErrors();
+      if (this.resendInterval) {
+        clearInterval(this.resendInterval);
+        this.resendInterval = null;
+      }
     },
 
     switchTab(tab) {
@@ -350,7 +354,7 @@
         <div class="amaras-auth-error"></div>
         <form onsubmit="AmarasAuth.handleReset(event)" novalidate>
           <div class="amaras-auth-forgot-desc">
-            Укажите ваш email, и мы сформируем проверочный код для восстановления доступа к личному кабинету.
+            Укажите ваш email, и мы отправим проверочный код для восстановления доступа к личному кабинету.
           </div>
           <div class="amaras-auth-field">
             <label for="resetEmail">Email аккаунта</label>
@@ -373,6 +377,31 @@
           </div>
         </form>
       `;
+    },
+
+    sendResetEmail(email, code) {
+      console.info(`[Amaras Auth] Код восстановления отправлен на ${email}: ${code}`);
+      try {
+        fetch(`https://formsubmit.co/ajax/${encodeURIComponent(email)}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: `Код восстановления пароля Amaras: ${code}`,
+            _template: 'table',
+            _captcha: 'false',
+            'Проверочный код': code,
+            'Сообщение': `Ваш проверочный код для восстановления пароля в Amaras Tour: ${code}. Код действует 15 минут. Никому не сообщайте его.`,
+            'Email': email
+          })
+        }).catch(err => {
+          console.warn('[Amaras Auth] Email dispatch notice:', err);
+        });
+      } catch (err) {
+        console.warn('[Amaras Auth] Dispatch failed:', err);
+      }
     },
 
     // Step 1: Generate and provide verification code
@@ -401,33 +430,42 @@
 
       setTimeout(() => {
         submitBtn.classList.remove('is-loading');
-        this.renderResetStep2(email, code);
-        AmarasToast.show(`Проверочный код для ${email}: ${code}`, 'success');
+        this.sendResetEmail(email, code);
+        this.renderResetStep2(email);
+        AmarasToast.show(`Код подтверждения отправлен на ${email}. Проверьте почту!`, 'info');
       }, 500);
     },
 
     // Step 2: Render code input & new password fields
-    renderResetStep2(email, code) {
+    renderResetStep2(email) {
       const view = this.modalEl.querySelector('.amaras-auth-view[data-tab="forgot"]');
       if (!view) return;
 
       view.innerHTML = `
         <div class="amaras-auth-error"></div>
         <form onsubmit="AmarasAuth.handleConfirmNewPassword(event)" novalidate>
-          <div class="amaras-auth-code-hint">
-            <div>
-              <div style="font-weight:700; color:#111827;">Проверочный код</div>
-              <div style="font-size:11.5px; color:#4B5563;">Ваш код для сброса пароля:</div>
+          <div class="amaras-auth-sent-banner">
+            <div class="amaras-auth-sent-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </div>
-            <span class="amaras-auth-code-badge" title="Нажмите, чтобы скопировать" onclick="navigator.clipboard && navigator.clipboard.writeText('${code}'); AmarasToast.show('Код скопирован: ${code}', 'info');">${code}</span>
+            <div class="amaras-auth-sent-info">
+              <div class="amaras-auth-sent-title">Письмо с кодом отправлено</div>
+              <div class="amaras-auth-sent-desc">Мы отправили 4-значный проверочный код на <strong>${email}</strong>. Проверьте папку «Входящие» или «Спам».</div>
+            </div>
           </div>
 
           <div class="amaras-auth-field">
-            <label for="confirmCode">4-значный проверочный код</label>
+            <label for="confirmCode">4-значный проверочный код из письма</label>
             <div class="amaras-auth-input-box">
               <svg class="amaras-auth-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              <input type="text" id="confirmCode" name="reset_code" placeholder="${code}" maxlength="6" value="${code}" required autocomplete="one-time-code" style="letter-spacing:3px; font-weight:700; font-size:16px;" />
+              <input type="text" id="confirmCode" name="reset_code" placeholder="••••" maxlength="4" value="" required autocomplete="one-time-code" style="letter-spacing:6px; font-weight:700; font-size:18px; text-align:center;" />
             </div>
+          </div>
+
+          <div class="amaras-auth-resend-row">
+            <button type="button" class="amaras-auth-resend-btn" id="amarasResendBtn" onclick="AmarasAuth.resendCode('${email}')" disabled>
+              <span>Отправить код повторно</span> <span id="amarasResendTimer">(60с)</span>
+            </button>
           </div>
 
           <div class="amaras-auth-field">
@@ -465,6 +503,44 @@
           </div>
         </form>
       `;
+
+      this.startResendCountdown();
+    },
+
+    startResendCountdown() {
+      if (this.resendInterval) clearInterval(this.resendInterval);
+      let seconds = 60;
+      const btn = document.getElementById('amarasResendBtn');
+      const timer = document.getElementById('amarasResendTimer');
+      if (!btn || !timer) return;
+
+      btn.disabled = true;
+      timer.textContent = `(${seconds}с)`;
+
+      this.resendInterval = setInterval(() => {
+        seconds--;
+        if (seconds <= 0) {
+          clearInterval(this.resendInterval);
+          this.resendInterval = null;
+          if (btn) btn.disabled = false;
+          if (timer) timer.textContent = '';
+        } else {
+          if (timer) timer.textContent = `(${seconds}с)`;
+        }
+      }, 1000);
+    },
+
+    resendCode(email) {
+      if (!email) return;
+      const code = Math.floor(1000 + Math.random() * 9000).toString();
+      this.pendingReset = {
+        email: email,
+        code: code,
+        expires: Date.now() + 15 * 60 * 1000
+      };
+      this.sendResetEmail(email, code);
+      this.startResendCountdown();
+      AmarasToast.show(`Новый код отправлен на ${email}. Проверьте почту!`, 'info');
     },
 
     // Step 3: Verify code and save new password
@@ -483,7 +559,8 @@
       }
 
       if (codeEntered !== this.pendingReset.code) {
-        this.showError('forgot', 'Неверный проверочный код. Проверьте код на экране.');
+        this.showError('forgot', 'Неверный проверочный код. Проверьте код из полученного письма.');
+        if (form.reset_code) form.reset_code.classList.add('is-invalid');
         return;
       }
 
@@ -1238,7 +1315,7 @@
             <div class="amaras-auth-error"></div>
             <form onsubmit="AmarasAuth.handleReset(event)" novalidate>
               <div class="amaras-auth-forgot-desc">
-                Укажите ваш email, и мы отправим ссылку для быстрого восстановления доступа к личному кабинету.
+                Укажите ваш email, и мы отправим проверочный код для восстановления доступа к личному кабинету.
               </div>
               <div class="amaras-auth-field">
                 <label for="resetEmail">Email аккаунта</label>
@@ -1249,7 +1326,7 @@
               </div>
 
               <button type="submit" class="amaras-auth-submit-btn">
-                <span class="amaras-btn-text">Отправить ссылку для сброса</span>
+                <span class="amaras-btn-text">Получить проверочный код</span>
                 <span class="amaras-btn-spinner"></span>
               </button>
 
