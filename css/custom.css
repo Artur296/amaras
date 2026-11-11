@@ -1484,7 +1484,7 @@ body[data-exit-popup-open="true"] {
     display: none !important;
   }
   .amaras-nav-container {
-    padding: 0 10px !important;
+    padding: 0 16px !important;
     height: 54px !important;
     justify-content: space-between !important;
     box-sizing: border-box !important;
@@ -1502,7 +1502,7 @@ body[data-exit-popup-open="true"] {
     display: block !important;
   }
   .amaras-nav-actions {
-    gap: 4px !important;
+    gap: 6px !important;
     flex-shrink: 0 !important;
     align-items: center !important;
   }
@@ -1634,7 +1634,7 @@ body[data-exit-popup-open="true"] {
 
 @media (max-width: 480px) {
   .amaras-nav-container {
-    padding: 0 6px !important;
+    padding: 0 16px !important;
     height: 50px !important;
   }
   .amaras-nav-logo img {
@@ -1642,7 +1642,7 @@ body[data-exit-popup-open="true"] {
     max-width: 68px !important;
   }
   .amaras-nav-actions {
-    gap: 2.5px !important;
+    gap: 5px !important;
   }
   .amaras-music-btn,
   .amaras-search-btn,
@@ -1678,7 +1678,7 @@ body[data-exit-popup-open="true"] {
 
 @media (max-width: 360px) {
   .amaras-nav-container {
-    padding: 0 4px !important;
+    padding: 0 12px !important;
     height: 48px !important;
   }
   .amaras-nav-logo img {
@@ -1686,7 +1686,7 @@ body[data-exit-popup-open="true"] {
     max-width: 62px !important;
   }
   .amaras-nav-actions {
-    gap: 2px !important;
+    gap: 4px !important;
   }
   .amaras-music-btn {
     display: none !important;
