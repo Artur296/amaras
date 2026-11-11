@@ -279,6 +279,7 @@
       const email = form.reg_email.value.trim();
       const phone = form.reg_phone.value.trim();
       const password = form.reg_password.value;
+      const passwordConfirm = form.reg_password_confirm ? form.reg_password_confirm.value : '';
       const agree = form.reg_agree.checked;
 
       if (!name || name.length < 2) {
@@ -297,6 +298,18 @@
       if (!password || password.length < 6) {
         this.showError('register', 'Пароль должен содержать не менее 6 символов');
         form.reg_password.classList.add('is-invalid');
+        return;
+      }
+
+      if (!passwordConfirm) {
+        this.showError('register', 'Пожалуйста, повторите пароль для подтверждения');
+        if (form.reg_password_confirm) form.reg_password_confirm.classList.add('is-invalid');
+        return;
+      }
+
+      if (password !== passwordConfirm) {
+        this.showError('register', 'Пароли не совпадают. Пожалуйста, проверьте ввод.');
+        if (form.reg_password_confirm) form.reg_password_confirm.classList.add('is-invalid');
         return;
       }
 
@@ -428,6 +441,17 @@
             </div>
           </div>
 
+          <div class="amaras-auth-field">
+            <label for="newPassConfirm">Повторите новый пароль</label>
+            <div class="amaras-auth-input-box">
+              <svg class="amaras-auth-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <input type="password" id="newPassConfirm" name="new_password_confirm" placeholder="••••••••" required autocomplete="new-password" />
+              <button type="button" class="amaras-auth-eye-btn" onclick="AmarasAuth.togglePasswordVisibility(this)" aria-label="Показать пароль">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+
           <button type="submit" class="amaras-auth-submit-btn">
             <span class="amaras-btn-text">Сохранить новый пароль и войти</span>
             <span class="amaras-btn-spinner"></span>
@@ -451,6 +475,7 @@
       const form = e.target;
       const codeEntered = form.reset_code.value.trim();
       const newPassword = form.new_password.value;
+      const newPasswordConfirm = form.new_password_confirm ? form.new_password_confirm.value : '';
 
       if (!this.pendingReset) {
         this.showError('forgot', 'Сессия сброса истекла. Начните заново.');
@@ -464,6 +489,12 @@
 
       if (!newPassword || newPassword.length < 6) {
         this.showError('forgot', 'Новый пароль должен содержать минимум 6 символов.');
+        return;
+      }
+
+      if (newPassword !== newPasswordConfirm) {
+        this.showError('forgot', 'Пароли не совпадают. Пожалуйста, проверьте ввод.');
+        if (form.new_password_confirm) form.new_password_confirm.classList.add('is-invalid');
         return;
       }
 
@@ -1153,6 +1184,17 @@
                 <div class="amaras-auth-input-box">
                   <svg class="amaras-auth-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                   <input type="password" id="regPass" name="reg_password" placeholder="••••••••" required autocomplete="new-password" />
+                  <button type="button" class="amaras-auth-eye-btn" onclick="AmarasAuth.togglePasswordVisibility(this)" aria-label="Показать пароль">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="amaras-auth-field">
+                <label for="regPassConfirm">Повторите пароль</label>
+                <div class="amaras-auth-input-box">
+                  <svg class="amaras-auth-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  <input type="password" id="regPassConfirm" name="reg_password_confirm" placeholder="••••••••" required autocomplete="new-password" />
                   <button type="button" class="amaras-auth-eye-btn" onclick="AmarasAuth.togglePasswordVisibility(this)" aria-label="Показать пароль">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                   </button>
