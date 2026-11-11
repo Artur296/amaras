@@ -1490,8 +1490,8 @@ body[data-exit-popup-open="true"] {
 
 @media (max-width: 540px) {
   .amaras-nav-container {
-    padding: 0 10px !important;
-    height: 54px !important;
+    padding: 0 8px !important;
+    height: 52px !important;
     justify-content: space-between !important;
     box-sizing: border-box !important;
     width: 100% !important;
@@ -1501,14 +1501,14 @@ body[data-exit-popup-open="true"] {
     flex-shrink: 0 !important;
   }
   .amaras-nav-logo img {
-    height: 23px !important;
+    height: 21px !important;
     width: auto !important;
-    max-width: 85px !important;
+    max-width: 78px !important;
     object-fit: contain !important;
     display: block !important;
   }
   .amaras-nav-actions {
-    gap: 4px !important;
+    gap: 3px !important;
     flex-shrink: 0 !important;
     align-items: center !important;
   }
@@ -1516,64 +1516,73 @@ body[data-exit-popup-open="true"] {
   .amaras-search-btn,
   .amaras-cart-btn {
     display: flex !important;
-    width: 32px !important;
-    height: 32px !important;
-    min-width: 32px !important;
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
     padding: 0 !important;
   }
   .amaras-music-btn svg,
   .amaras-search-btn svg,
   .amaras-cart-btn svg {
-    width: 15px !important;
-    height: 15px !important;
+    width: 14px !important;
+    height: 14px !important;
   }
   .amaras-music-wave {
-    height: 13px !important;
-    gap: 2px !important;
+    height: 12px !important;
+    gap: 1.5px !important;
   }
   .amaras-music-wave .amaras-bar {
-    width: 2px !important;
+    width: 1.5px !important;
   }
   .amaras-cart-badge {
-    min-width: 15px !important;
-    height: 15px !important;
-    font-size: 9.5px !important;
-    line-height: 15px !important;
-    top: -3px !important;
-    right: -3px !important;
-    padding: 0 3px !important;
+    min-width: 14px !important;
+    height: 14px !important;
+    font-size: 9px !important;
+    line-height: 14px !important;
+    top: -2px !important;
+    right: -2px !important;
+    padding: 0 2px !important;
   }
   .amaras-lang-switcher {
     display: none !important;
   }
+  .amaras-currency-trigger {
+    height: 30px !important;
+    padding: 0 6px !important;
+    font-size: 11px !important;
+    gap: 2.5px !important;
+  }
+  .amaras-currency-trigger .amaras-curr-symbol {
+    font-size: 11.5px !important;
+  }
   .amaras-mobile-lang-trigger {
     display: inline-flex !important;
-    height: 32px !important;
-    padding: 0 7px !important;
-    font-size: 11.5px !important;
-    gap: 4px !important;
+    height: 30px !important;
+    padding: 0 6px !important;
+    font-size: 11px !important;
+    gap: 3px !important;
     border-radius: 999px !important;
   }
   .amaras-flag-icon {
-    width: 15px !important;
-    height: 11px !important;
+    width: 14px !important;
+    height: 10px !important;
   }
   .amaras-lang-arrow {
-    width: 8px !important;
-    height: 8px !important;
+    width: 7px !important;
+    height: 7px !important;
   }
   .amaras-mobile-toggle {
     display: flex !important;
-    width: 34px !important;
-    height: 34px !important;
-    min-width: 34px !important;
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
     padding: 0 !important;
     flex-shrink: 0 !important;
-    margin-left: 2px !important;
+    margin-left: 1px !important;
   }
   .amaras-mobile-toggle svg {
-    width: 18px !important;
-    height: 18px !important;
+    width: 17px !important;
+    height: 17px !important;
   }
   .amaras-search-bar-overlay {
     padding: 10px 12px;
@@ -1587,72 +1596,44 @@ body[data-exit-popup-open="true"] {
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 360px) {
   .amaras-nav-container {
-    padding: 0 6px !important;
-    height: 50px !important;
+    padding: 0 5px !important;
+    height: 48px !important;
   }
   .amaras-nav-logo img {
-    height: 20px !important;
-    width: auto !important;
-    max-width: 76px !important;
+    height: 19px !important;
+    max-width: 70px !important;
   }
   .amaras-nav-actions {
-    gap: 3px !important;
+    gap: 2px !important;
   }
-  .amaras-music-btn,
+  .amaras-music-btn {
+    display: none !important;
+  }
   .amaras-search-btn,
   .amaras-cart-btn {
-    width: 29px !important;
-    height: 29px !important;
-    min-width: 29px !important;
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
     padding: 0 !important;
   }
-  .amaras-music-btn svg,
-  .amaras-search-btn svg,
-  .amaras-cart-btn svg {
-    width: 13.5px !important;
-    height: 13.5px !important;
-  }
-  .amaras-music-wave {
-    height: 11px !important;
-    gap: 1.5px !important;
-  }
-  .amaras-music-wave .amaras-bar {
-    width: 1.5px !important;
-  }
-  .amaras-cart-badge {
-    min-width: 14px !important;
-    height: 14px !important;
-    font-size: 8.5px !important;
-    line-height: 14px !important;
-    top: -2px !important;
-    right: -2px !important;
+  .amaras-currency-trigger {
+    height: 28px !important;
+    padding: 0 4px !important;
+    font-size: 10px !important;
+    gap: 2px !important;
   }
   .amaras-mobile-lang-trigger {
-    height: 29px !important;
-    padding: 0 5px !important;
-    font-size: 10.5px !important;
-    gap: 3px !important;
-  }
-  .amaras-flag-icon {
-    width: 14px !important;
-    height: 10px !important;
-  }
-  .amaras-lang-arrow {
-    width: 7px !important;
-    height: 7px !important;
+    height: 28px !important;
+    padding: 0 4px !important;
+    font-size: 10px !important;
+    gap: 2px !important;
   }
   .amaras-mobile-toggle {
-    width: 31px !important;
-    height: 31px !important;
-    min-width: 31px !important;
-    padding: 0 !important;
-    margin-left: 1px !important;
-  }
-  .amaras-mobile-toggle svg {
-    width: 16px !important;
-    height: 16px !important;
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
   }
 }
 
@@ -5056,6 +5037,10 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
 
 /* Tablet & Mobile Hero Action Centering (Matches centered heading & description) */
 @media (max-width: 991px) {
+  .rebrand-section-hero-inner {
+    flex-direction: column !important;
+  }
+
   .rebrand-section-hero-left {
     align-items: center !important;
     text-align: center !important;
