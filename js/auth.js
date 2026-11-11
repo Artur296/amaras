@@ -173,6 +173,10 @@
       if (tabHeader) {
         tabHeader.style.display = tab === 'forgot' ? 'none' : 'grid';
       }
+
+      if (tab === 'forgot' && !this.pendingReset) {
+        this.resetForgotView();
+      }
     },
 
     clearErrors() {
@@ -324,13 +328,47 @@
       }, 500);
     },
 
-    // Handle Password Reset Submission
+    pendingReset: null,
+
+    resetForgotView() {
+      const view = this.modalEl ? this.modalEl.querySelector('.amaras-auth-view[data-tab="forgot"]') : null;
+      if (!view) return;
+      view.innerHTML = `
+        <div class="amaras-auth-error"></div>
+        <form onsubmit="AmarasAuth.handleReset(event)" novalidate>
+          <div class="amaras-auth-forgot-desc">
+            Укажите ваш email, и мы сформируем проверочный код для восстановления доступа к личному кабинету.
+          </div>
+          <div class="amaras-auth-field">
+            <label for="resetEmail">Email аккаунта</label>
+            <div class="amaras-auth-input-box">
+              <svg class="amaras-auth-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <input type="email" id="resetEmail" name="reset_email" placeholder="mail@example.com" required autocomplete="email" />
+            </div>
+          </div>
+
+          <button type="submit" class="amaras-auth-submit-btn">
+            <span class="amaras-btn-text">Получить проверочный код</span>
+            <span class="amaras-btn-spinner"></span>
+          </button>
+
+          <div class="amaras-auth-back-row">
+            <button type="button" class="amaras-auth-back-link" onclick="AmarasAuth.switchTab('login')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              <span>Вернуться ко входу</span>
+            </button>
+          </div>
+        </form>
+      `;
+    },
+
+    // Step 1: Generate and provide verification code
     handleReset(e) {
       e.preventDefault();
       this.clearErrors();
 
       const form = e.target;
-      const email = form.reset_email.value.trim();
+      const email = form.reset_email.value.trim().toLowerCase();
 
       if (!email || !email.includes('@')) {
         this.showError('forgot', 'Введите корректный адрес электронной почты');
@@ -340,23 +378,126 @@
       const submitBtn = form.querySelector('.amaras-auth-submit-btn');
       submitBtn.classList.add('is-loading');
 
+      // Generate a 4-digit code
+      const code = Math.floor(1000 + Math.random() * 9000).toString();
+      this.pendingReset = {
+        email: email,
+        code: code,
+        expires: Date.now() + 15 * 60 * 1000
+      };
+
       setTimeout(() => {
         submitBtn.classList.remove('is-loading');
-        const view = this.modalEl.querySelector('.amaras-auth-view[data-tab="forgot"]');
-        view.innerHTML = `
-          <div class="amaras-auth-success-state">
-            <div class="amaras-auth-success-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        this.renderResetStep2(email, code);
+        AmarasToast.show(`Проверочный код для ${email}: ${code}`, 'success');
+      }, 500);
+    },
+
+    // Step 2: Render code input & new password fields
+    renderResetStep2(email, code) {
+      const view = this.modalEl.querySelector('.amaras-auth-view[data-tab="forgot"]');
+      if (!view) return;
+
+      view.innerHTML = `
+        <div class="amaras-auth-error"></div>
+        <form onsubmit="AmarasAuth.handleConfirmNewPassword(event)" novalidate>
+          <div class="amaras-auth-code-hint">
+            <div>
+              <div style="font-weight:700; color:#111827;">Проверочный код</div>
+              <div style="font-size:11.5px; color:#4B5563;">Ваш код для сброса пароля:</div>
             </div>
-            <h3 class="amaras-auth-title" style="margin-top:12px;">Ссылка отправлена</h3>
-            <p class="amaras-auth-subtitle" style="margin-bottom:20px;">
-              Мы отправили инструкции по восстановлению пароля на <strong>${email}</strong>. Проверьте входящие сообщения и папку «Спам».
-            </p>
-            <button type="button" class="amaras-auth-btn-secondary" onclick="AmarasAuth.switchTab('login')">
-              Вернуться ко входу
+            <span class="amaras-auth-code-badge" title="Нажмите, чтобы скопировать" onclick="navigator.clipboard && navigator.clipboard.writeText('${code}'); AmarasToast.show('Код скопирован: ${code}', 'info');">${code}</span>
+          </div>
+
+          <div class="amaras-auth-field">
+            <label for="confirmCode">4-значный проверочный код</label>
+            <div class="amaras-auth-input-box">
+              <svg class="amaras-auth-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="text" id="confirmCode" name="reset_code" placeholder="${code}" maxlength="6" value="${code}" required autocomplete="one-time-code" style="letter-spacing:3px; font-weight:700; font-size:16px;" />
+            </div>
+          </div>
+
+          <div class="amaras-auth-field">
+            <label for="newPass">Придумайте новый пароль</label>
+            <div class="amaras-auth-input-box">
+              <svg class="amaras-auth-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <input type="password" id="newPass" name="new_password" placeholder="••••••••" required autocomplete="new-password" />
+              <button type="button" class="amaras-auth-eye-btn" onclick="AmarasAuth.togglePasswordVisibility(this)" aria-label="Показать пароль">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="amaras-auth-submit-btn">
+            <span class="amaras-btn-text">Сохранить новый пароль и войти</span>
+            <span class="amaras-btn-spinner"></span>
+          </button>
+
+          <div class="amaras-auth-back-row">
+            <button type="button" class="amaras-auth-back-link" onclick="AmarasAuth.pendingReset = null; AmarasAuth.switchTab('forgot');">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              <span>Ввести другой email</span>
             </button>
           </div>
-        `;
+        </form>
+      `;
+    },
+
+    // Step 3: Verify code and save new password
+    handleConfirmNewPassword(e) {
+      e.preventDefault();
+      this.clearErrors();
+
+      const form = e.target;
+      const codeEntered = form.reset_code.value.trim();
+      const newPassword = form.new_password.value;
+
+      if (!this.pendingReset) {
+        this.showError('forgot', 'Сессия сброса истекла. Начните заново.');
+        return;
+      }
+
+      if (codeEntered !== this.pendingReset.code) {
+        this.showError('forgot', 'Неверный проверочный код. Проверьте код на экране.');
+        return;
+      }
+
+      if (!newPassword || newPassword.length < 6) {
+        this.showError('forgot', 'Новый пароль должен содержать минимум 6 символов.');
+        return;
+      }
+
+      const submitBtn = form.querySelector('.amaras-auth-submit-btn');
+      submitBtn.classList.add('is-loading');
+
+      setTimeout(() => {
+        submitBtn.classList.remove('is-loading');
+
+        const email = this.pendingReset.email;
+        const users = this.getRegisteredUsers();
+        let existingUser = users.find(u => u.email.toLowerCase() === email);
+
+        if (!existingUser) {
+          const namePart = email.split('@')[0];
+          const cleanName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
+          existingUser = {
+            id: 'usr_' + Date.now(),
+            name: cleanName,
+            email: email,
+            phone: '',
+            avatarText: cleanName.slice(0, 2).toUpperCase(),
+            createdAt: new Date().toISOString().split('T')[0],
+            bookingsCount: 0
+          };
+        }
+
+        existingUser.password = newPassword;
+        this.saveRegisteredUser(existingUser);
+        this.saveUser(existingUser);
+        this.pendingReset = null;
+
+        this.close();
+        AmarasToast.show('Пароль успешно обновлён! Вы вошли в свой аккаунт.', 'success');
       }, 500);
     },
 
