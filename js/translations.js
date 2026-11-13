@@ -4,6 +4,9 @@
  */
 const AMARAS_I18N = {
   RU: {
+    "arm_stay": "Где остановиться",
+    "arm_hotels": "Отели в Армении",
+    "arm_apartments": "Квартиры в Ереване",
     "fleet_page_title": "Автопарк — Amaras Tour",
     "fleet_hero_title": "Автопарк Amaras Tour",
     "fleet_hero_sub": "Собственный автопарк премиум- и комфорт-класса для экскурсий, индивидуальных маршрутов и трансферов по всей Армении с опытными водителями.",
@@ -772,6 +775,9 @@ const AMARAS_I18N = {
     "trad_c6_feat": "Строгая иерархия тостов, глубокий философский смысл, уважение к старшим",
   },
   ENG: {
+    "arm_stay": "Where to stay",
+    "arm_hotels": "Hotels in Armenia",
+    "arm_apartments": "Apartments in Yerevan",
     "fleet_page_title": "Our Fleet — Amaras Tour",
     "fleet_hero_title": "Amaras Tour Fleet",
     "fleet_hero_sub": "Modern company-owned premium and comfort fleet for guided tours, custom trips, and transfers across Armenia with professional drivers.",
@@ -1540,6 +1546,9 @@ const AMARAS_I18N = {
     "trad_c6_feat": "Ceremonial hierarchy of toasts, poetic storytelling, respect for elders",
   },
   HY: {
+    "arm_stay": "Որտեղ մնալ",
+    "arm_hotels": "Հյուրանոցներ Հայաստանում",
+    "arm_apartments": "Բնակարաններ Երևանում",
     "fleet_page_title": "Մեր ավտոպարկը — Amaras Tour",
     "fleet_hero_title": "Amaras Tour ավտոպարկ",
     "fleet_hero_sub": "Սեփական պրեմիում և կոմֆորտ դասի ավտոպարկ էքսկուրսիաների, անհատական երթուղիների և տրանսֆերների համար ողջ Հայաստանով փորձառու վարորդներով:",
