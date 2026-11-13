@@ -10876,3 +10876,625 @@ body.amaras-modal-locked {
     margin-top: 2px;
   }
 }
+
+/* ==========================================================================
+   AMARAS TOUR AUTOPARK / FLEET PAGE STYLES
+   ========================================================================== */
+
+.amaras-fleet-section {
+  background: #F8F9FA;
+  padding: 40px 0 80px;
+  position: relative;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.amaras-fleet-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* 1. Highlights Bar */
+.amaras-fleet-highlights {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  background: #1C1C1E;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 22px 26px;
+  margin-bottom: 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.amaras-fleet-hl-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.amaras-fleet-hl-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(199, 255, 50, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.amaras-fleet-hl-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.amaras-fleet-hl-text strong {
+  color: #FFFFFF;
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.amaras-fleet-hl-text span {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+/* 2. Filter Bar - Category Tabs */
+.amaras-fleet-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.amaras-fleet-filter-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #6B7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.amaras-fleet-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.amaras-fleet-tab {
+  background: #FFFFFF;
+  border: 1.5px solid #E5E7EB;
+  border-radius: 999px;
+  padding: 9px 18px;
+  font-weight: 600;
+  color: #4B5563;
+  font-size: 13.5px;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  outline: none;
+}
+
+.amaras-fleet-tab:hover {
+  border-color: #9CA3AF;
+  color: #111827;
+}
+
+.amaras-fleet-tab.is-active {
+  background: #1F2937;
+  color: #FFFFFF;
+  border-color: #1F2937;
+  box-shadow: 0 4px 14px rgba(31, 41, 55, 0.2);
+}
+
+.amaras-tab-cnt {
+  background: #F3F4F6;
+  color: #6B7280;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.amaras-fleet-tab.is-active .amaras-tab-cnt {
+  background: #C7FF32;
+  color: #1F2937;
+}
+
+/* 3. Secondary Capacity Filter Bar */
+.amaras-fleet-capacity-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #E5E7EB;
+  flex-wrap: wrap;
+}
+
+.amaras-capacity-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.amaras-cap-pill {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #6B7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.amaras-cap-pill:hover {
+  border-color: #9CA3AF;
+  color: #111827;
+}
+
+.amaras-cap-pill.is-active {
+  background: #3B5BDB;
+  color: #FFFFFF;
+  border-color: #3B5BDB;
+}
+
+.amaras-fleet-count-badge {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6B7280;
+}
+
+/* 4. Fleet Cards Grid */
+.amaras-fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.amaras-fleet-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+}
+
+.amaras-fleet-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+  border-color: #D1D5DB;
+}
+
+.amaras-fleet-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #E5E7EB;
+}
+
+.amaras-fleet-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.amaras-fleet-card:hover .amaras-fleet-img {
+  transform: scale(1.05);
+}
+
+.amaras-fleet-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.3px;
+}
+
+.amaras-fleet-badge.badge-vip {
+  background: rgba(31, 41, 55, 0.88);
+  color: #C7FF32;
+  border: 1px solid rgba(199, 255, 50, 0.35);
+}
+
+.amaras-fleet-badge.badge-luxe {
+  background: rgba(30, 58, 138, 0.88);
+  color: #93C5FD;
+  border: 1px solid rgba(147, 197, 253, 0.35);
+}
+
+.amaras-fleet-badge.badge-comfort {
+  background: rgba(31, 41, 55, 0.85);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.amaras-fleet-badge.badge-adventure {
+  background: #F59E0B;
+  color: #111827;
+  font-weight: 800;
+}
+
+.amaras-fleet-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.amaras-fleet-header {
+  margin-bottom: 14px;
+}
+
+.amaras-fleet-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+}
+
+.amaras-fleet-desc {
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.45;
+  margin: 0;
+  min-height: 38px;
+}
+
+/* Specs Bar */
+.amaras-fleet-specs-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  background: #F9FAFB;
+  border: 1px solid #F3F4F6;
+  border-radius: 10px;
+  padding: 8px 6px;
+  margin-bottom: 14px;
+}
+
+.amaras-fleet-spec-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #4B5563;
+  text-align: center;
+}
+
+.amaras-fleet-spec-item svg {
+  color: #9CA3AF;
+  flex-shrink: 0;
+}
+
+.amaras-fleet-spec-item span {
+  font-size: 11px;
+  font-weight: 600;
+  color: #1F2937;
+  white-space: nowrap;
+}
+
+/* Features List */
+.amaras-fleet-features-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.amaras-fleet-feat-pill {
+  background: #F3F4F6;
+  color: #374151;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+/* Card Footer */
+.amaras-fleet-card-footer {
+  border-top: 1px solid #F3F4F6;
+  margin-top: auto;
+  padding-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.amaras-fleet-price-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.amaras-fleet-price-label {
+  font-size: 11px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.amaras-fleet-price-val {
+  font-size: 17px;
+  font-weight: 800;
+  color: #1F2937;
+  margin-top: 2px;
+}
+
+.amaras-price-prefix {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #6B7280;
+}
+
+.amaras-price-period {
+  font-size: 12px;
+  font-weight: 600;
+  color: #9CA3AF;
+}
+
+.amaras-fleet-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.amaras-fleet-book-btn {
+  background: #1F2937;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 16px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.amaras-fleet-book-btn:hover {
+  background: #C7FF32;
+  color: #1F2937;
+  box-shadow: 0 4px 12px rgba(199, 255, 50, 0.4);
+}
+
+.amaras-fleet-transfer-link {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #3B5BDB;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.amaras-fleet-transfer-link:hover {
+  color: #1D4ED8;
+  text-decoration: underline;
+}
+
+/* Empty State */
+.amaras-fleet-empty {
+  text-align: center;
+  padding: 60px 20px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  border: 1px solid #E5E7EB;
+  margin-top: 20px;
+}
+
+.amaras-empty-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #4B5563;
+  margin-bottom: 16px;
+}
+
+/* Advantages Grid */
+.amaras-fleet-advantages {
+  margin-top: 70px;
+  padding-top: 30px;
+}
+
+.amaras-fleet-adv-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 32px;
+}
+
+.amaras-fleet-adv-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 18px;
+  padding: 24px 20px;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.amaras-fleet-adv-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+}
+
+.amaras-adv-num {
+  font-size: 26px;
+  font-weight: 900;
+  color: #C7FF32;
+  -webkit-text-stroke: 1px #1F2937;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.amaras-adv-title {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 8px 0;
+}
+
+.amaras-adv-desc {
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* CTA Banner */
+.amaras-fleet-cta-banner {
+  margin-top: 60px;
+  background: linear-gradient(135deg, #161618 0%, #232328 100%);
+  border-radius: 22px;
+  padding: 36px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+}
+
+.amaras-cta-content {
+  max-width: 680px;
+}
+
+.amaras-cta-title {
+  color: #FFFFFF;
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+}
+
+.amaras-cta-desc {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.amaras-cta-wa-btn {
+  background: #C7FF32;
+  color: #1F2937;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 14px 26px;
+  border-radius: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.22s ease;
+  box-shadow: 0 6px 20px rgba(199, 255, 50, 0.35);
+  flex-shrink: 0;
+}
+
+.amaras-cta-wa-btn:hover {
+  background: #b8f526;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(199, 255, 50, 0.5);
+}
+
+/* Modal Pricing Box */
+.amaras-fleet-modal-price {
+  background: rgba(199, 255, 50, 0.15);
+  color: #1F2937;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 1024px) {
+  .amaras-fleet-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .amaras-fleet-highlights {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .amaras-fleet-adv-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .amaras-fleet-cta-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .amaras-fleet-grid {
+    grid-template-columns: 1fr;
+  }
+  .amaras-fleet-highlights {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+  .amaras-fleet-adv-grid {
+    grid-template-columns: 1fr;
+  }
+  .amaras-fleet-tabs {
+    overflow-x: auto;
+    padding-bottom: 6px;
+    width: 100%;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .amaras-fleet-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .amaras-fleet-tab {
+    flex-shrink: 0;
+  }
+  .amaras-capacity-pills {
+    overflow-x: auto;
+    width: 100%;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .amaras-capacity-pills::-webkit-scrollbar {
+    display: none;
+  }
+  .amaras-cap-pill {
+    flex-shrink: 0;
+  }
+  .amaras-fleet-count-badge {
+    margin-left: 0;
+    width: 100%;
+  }
+  .amaras-fleet-cta-banner {
+    padding: 24px 20px;
+  }
+  .amaras-cta-wa-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
