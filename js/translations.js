@@ -786,6 +786,149 @@ const AMARAS_I18N = {
     "trad_c6_tag": "Мудрость стола",
     "trad_c6_loc": "За каждым армянским праздничным столом",
     "trad_c6_feat": "Строгая иерархия тостов, глубокий философский смысл, уважение к старшим",
+
+    "geo_badge": "Международные трансферы",
+    "geo_title": "Индивидуальные и групповые трансферы из Армении в Грузию",
+    "geo_desc": "Прямые комфортные поездки «от двери до двери»: подача автомобиля к вашему отелю или адресу в Ереване / аэропорту Звартноц и доставка прямо до гостиницы в Тбилиси, Батуми, Кутаиси, Гудаури или Боржоми. Без пересадок и длительных ожиданий на границе.",
+    "geo_feat_1": "Комфортный проезд границы (КПП Садахло / Бавра)",
+    "geo_feat_2": "Опытные водители с международными правами",
+    "geo_feat_3": "Кондиционер, Wi-Fi 4G и питьевая вода",
+    "geo_feat_4": "Остановки на отдых и смотровые площадки",
+    "geo_btn_tbilisi": "Ереван ⇄ Тбилиси (от 85 000 AMD)",
+    "geo_btn_batumi": "Ереван ⇄ Батуми (от 155 000 AMD)",
+    "geo_btn_kutaisi": "Ереван ⇄ Кутаиси (от 125 000 AMD)",
+    "geo_btn_gudauri": "Ереван ⇄ Гудаури (от 115 000 AMD)",
+    "modal_booking_title": "Бронирование трансфера",
+    "modal_book_wa": "Забронировать в WhatsApp",
+    "modal_book_cart": "В корзину",
+    "ph_transfer_address": "Например: Аэропорт Звартноц, рейс WZ-4321 или отель Marriott",
+    "ph_transfer_name": "Артур Арутюнян",
+    "ph_transfer_phone": "+374 99 000 000",
+    "ph_transfer_notes": "Укажите количество багажа или необходимость детского кресла",
+    "contact_quick_reply": "+374 99 250 525 · Быстрый ответ",
+    "contact_online": "@amarastour · Онлайн",
+    "contact_stories": "@amarastour · Истории и туры",
+    "fleet_lbl_category": "Категория:",
+    "fleet_lbl_capacity": "Вместимость:",
+    "fleet_cap_all": "Все места",
+    "fleet_cap_1_4": "1 – 4 места",
+    "fleet_cap_5_8": "5 – 8 мест",
+    "fleet_cap_9_20": "9 – 20 мест",
+    "fleet_cap_21_plus": "21+ мест",
+    "fleet_count_badge": "Показано: 12 автомобилей",
+    "fleet_trust_1_title": "100% Собственный парк",
+    "fleet_trust_1_sub": "Без посредников и переплат",
+    "fleet_trust_2_title": "Опытные водители",
+    "fleet_trust_2_sub": "Стаж от 8 лет, горные маршруты",
+    "fleet_trust_3_title": "Wi-Fi и A/C в салоне",
+    "fleet_trust_3_sub": "Питьевая вода для каждого гостя",
+    "fleet_trust_4_title": "Подача без опозданий",
+    "fleet_trust_4_sub": "Встреча с табличкой 24/7",
+    "fleet_seats_suffix": "мест",
+    "fleet_luggage_suffix": "чемоданов",
+    "fleet_year_suffix": "г.",
+    "fleet_gearbox_auto": "Автомат",
+    "fleet_gearbox_manual": "Механика",
+    "fleet_from": "от",
+    "fleet_per_day": "/ день",
+    "fleet_btn_book": "Забронировать",
+    "fleet_btn_transfer": "Быстрый трансфер",
+    "fleet_feat_ac": "Климат-контроль (A/C)",
+    "fleet_feat_wifi": "Wi-Fi 4G LTE",
+    "fleet_feat_leather": "Кожаный салон",
+    "fleet_feat_fridge": "Холодильник",
+    "fleet_feat_mic": "Микрофон",
+    "fleet_feat_usb": "USB-зарядки",
+    "fleet_feat_child_seat": "Детское кресло",
+    "fleet_feat_4wd": "Полный привод 4WD",
+    "fleet_feat_panoramic": "Панорамная крыша",
+    "fleet_feat_big_trunk": "Большой багажник",
+    "fleet_badge_vip": "Минивэн VIP",
+    "fleet_badge_luxe": "Минивэн Люкс",
+    "fleet_badge_comfort": "Комфорт",
+    "fleet_badge_adventure": "Внедорожник 4x4",
+    "fleet_badge_business": "Бизнес-класс",
+    "fleet_badge_tourist": "Туристический",
+    "fleet_desc_vclass": "Премиальный минивэн с капитанскими кожаными креслами и столиком. Идеален для бизнес-делегаций и семейных туров.",
+    "fleet_desc_alphard": "Японский бизнес-минивэн с креслами Ottoman с поддержкой для ног, электроприводами дверей и мягким ходом.",
+    "fleet_desc_starex": "Вместительный и практичный минивэн для малых групп до 8 человек с объемным багажным отделением.",
+    "fleet_desc_sprinter_vip": "Эксклюзивный микроавтобус с анатомическими кожаными сиденьями, контурной подсветкой и холодильником.",
+    "fleet_desc_sprinter": "Надежный туристический микроавтобус для групповых туров по историческим местам и горным монастырям.",
+    "fleet_desc_coach": "Флагманский лайнер высшего туристического класса для больших групп, форумов и масштабных экскурсий.",
+    "fleet_desc_bus": "Современный автобус среднего класса с мягкими откидными креслами и отличной обзорностью.",
+    "fleet_desc_lexus": "Рамный внедорожник премиум-класса с выдающейся проходимостью для горных маршрутов и каньонов.",
+    "fleet_desc_suv": "Надежный полноприводный внедорожник для поездок к труднодоступным крепостям и озерам.",
+    "fleet_desc_eclass": "Премиальный немецкий бизнес-седан для VIP-трансферов из аэропорта и деловых встреч.",
+    "fleet_desc_premium": "Бизнес-седан с высоким комфортом подвески, тихим салоном и вместительным багажником.",
+    "fleet_desc_sedan": "Комфортный городской седан с климат-контролем для индивидуальных трансферов и парных поездок.",
+
+    "fleet_why_title": "Почему выбирают наш транспорт",
+    "fleet_adv_1_title": "Собственная станция ТО",
+    "fleet_adv_1_desc": "Каждый автомобиль проходит обязательный технический осмотр и диагностику перед выездом на маршрут.",
+    "fleet_adv_2_title": "Безупречная чистота",
+    "fleet_adv_2_desc": "Комплексная мойка и озонирование салона перед каждой поездкой. В машине всегда свежо, чисто и приятно.",
+    "fleet_adv_3_title": "Забота о гостях",
+    "fleet_adv_3_desc": "В каждой машине: скоростной Wi-Fi 4G, прохладная бутилированная вода, влажные салфетки, зарядки для всех телефонов.",
+    "fleet_adv_4_title": "Водители-профессионалы",
+    "fleet_adv_4_desc": "Вежливые некурящие водители со стажем вождения по горным серпантинам Армении от 8 лет, владеющие русским и английским языками.",
+    "fleet_cta_box_title": "Нужен индивидуальный расчет для группы или особого события?",
+    "fleet_cta_box_desc": "Свяжитесь с нашим менеджером в WhatsApp — мы подберем идеальный транспорт под ваш маршрут, количество гостей и бюджет за 5 минут.",
+    "fleet_cta_wa_btn": "Написать в WhatsApp",
+    "fleet_price_lbl": "Аренда с водителем:",
+    "fleet_transfer_link": "Трансфер ➔",
+    "fleet_empty_title": "Автомобили по выбранным фильтрам не найдены",
+    "fleet_btn_reset": "Сбросить фильтры",
+    "fleet_modal_trans_title": "Бронирование транспорта",
+    "lbl_rent_datetime": "Дата и время начала аренды*",
+    "lbl_pax_count": "Количество пассажиров*",
+    "lbl_trip_purpose": "Цель поездки / Маршрут*",
+    "ph_trip_purpose": "Например: Экскурсия в Гарни и Гегард или трансфер Ереван-Тбилиси",
+    "fleet_badge_midibus": "Миди-автобус",
+    "fleet_badge_tourist_bus": "Туристический автобус",
+    "fleet_badge_exec_vip": "Представительский VIP",
+    "fleet_badge_premium_suv": "Премиум 4x4",
+    "pill_water": "Бутилированная вода",
+    "pill_usb_row": "USB на каждом ряду",
+    "pill_ottoman": "Кресла Ottoman",
+    "pill_spacious": "Просторный салон",
+    "pill_trunk": "Вместительный багажник",
+    "pill_indiv_ac": "Индивидуальный A/C",
+    "pill_mic_guide": "Микрофон для гида",
+    "pill_mic": "Микрофон гида",
+    "pill_mic_tour": "Микрофон экскурсовода",
+    "pill_tvdvd": "TV/DVD мультимедиа",
+    "pill_tvdvd_mon": "TV/DVD мониторы",
+    "pill_ac_full": "Кондиционер всего салона",
+    "pill_ac_simple": "Кондиционер",
+    "pill_ac_climate": "Климат-контроль",
+    "pill_ac_filtered": "Климат-контроль с фильтрацией",
+    "pill_luggage_shelves": "Полки для ручной клади",
+    "pill_panoramic_windows": "Панорамные окна",
+    "pill_seatbelts": "Ремни безопасности",
+    "pill_sound_levinson": "Mark Levinson звук",
+    "pill_air_susp": "Пневмоподвеска",
+    "pill_high_clearance": "Высокий дорожный просвет",
+    "pill_privacy_curtains": "Шторки приватности",
+    "pill_massage_seats": "Раздельные задние кресла с массажем",
+    "pill_aisle_adjust": "Кресла с регулировкой в проход",
+    "pill_vent_heat": "Вентиляция и подогрев сидений",
+    "pill_soundproof": "Максимальная шумоизоляция",
+    "pill_2zone": "2-зонный климат-контроль",
+    "pill_4zone": "4-зонный климат-контроль",
+    "pill_spacious_rear": "Просторный задний ряд",
+    "fleet_desc_sprinter_tour": "Люксовый микроавтобус с анатомическими кожаными откидными креслами, профессиональным микрофоном и мультимедиа TV/DVD.",
+    "fleet_desc_coach_53": "Флагманский лайнер европейского класса для больших групп до 53 человек: климат с фильтрацией, холодильник, мониторы.",
+    "fleet_desc_bus_33": "Манёвренный автобус средней вместимости (до 33 человек), идеально приспособленный для горных серпантинов Армении.",
+    "fleet_desc_sclass": "Флагманский седан высшего класса для VIP-гостей, официальных встреч в аэропорту, свадебных кортежей и делегаций.",
+    "fleet_desc_alphard_lux": "Японский бизнес-минивэн с креслами Ottoman с поддержкой для ног, мягкой подвеской и двумя панорамными люками.",
+    "fleet_desc_landcruiser": "Легендарный японский внедорожник с постоянным полным приводом для джип-туров, ущелий и горных перевалов.",
+    "fleet_desc_lexus_lx": "Премиальный полноприводный внедорожник с регулируемой пневмоподвеской и премиум акустикой Mark Levinson.",
+    "fleet_desc_sprinter_pan": "Надежный микроавтобус для групповых экскурсий по популярным маршрутам Армении с панорамным остеклением.",
+    "fleet_desc_octavia": "Популярный надежный седан с просторным задним рядом, эффективным кондиционером и большим багажником.",
+    "fleet_desc_starex_mid": "Вместительный и практичный минивэн для малых групп до 8 человек с просторным багажным отделением.",
+    "fleet_desc_eclass_mid": "Элегантный немецкий бизнес-седан с высоким комфортом, тишиной в поездке и плавным ходом.",
+    "rev_author_default": "Автор",
+    "rev_meta_default": "Локация • Дата",
   },
   ENG: {
     "arm_stay": "Where to stay",
@@ -1570,6 +1713,149 @@ const AMARAS_I18N = {
     "trad_c6_tag": "Table Wisdom",
     "trad_c6_loc": "At every celebratory gathering and feast across Armenia",
     "trad_c6_feat": "Ceremonial hierarchy of toasts, poetic storytelling, respect for elders",
+
+    "geo_badge": "International Transfers",
+    "geo_title": "Private and Group Transfers from Armenia to Georgia",
+    "geo_desc": "Direct door-to-door comfortable trips: car pick-up at your hotel or address in Yerevan / Zvartnots Airport and delivery straight to your hotel in Tbilisi, Batumi, Kutaisi, Gudauri, or Borjomi. No transfers and no long border waits.",
+    "geo_feat_1": "Smooth border crossing (Sadakhlo / Bavra checkpoints)",
+    "geo_feat_2": "Experienced drivers with international licenses",
+    "geo_feat_3": "Air conditioning, 4G Wi-Fi, and drinking water",
+    "geo_feat_4": "Rest stops and scenic viewpoints",
+    "geo_btn_tbilisi": "Yerevan ⇄ Tbilisi (from 85 000 AMD)",
+    "geo_btn_batumi": "Yerevan ⇄ Batumi (from 155 000 AMD)",
+    "geo_btn_kutaisi": "Yerevan ⇄ Kutaisi (from 125 000 AMD)",
+    "geo_btn_gudauri": "Yerevan ⇄ Gudauri (from 115 000 AMD)",
+    "modal_booking_title": "Transfer Booking",
+    "modal_book_wa": "Book via WhatsApp",
+    "modal_book_cart": "Add to Cart",
+    "ph_transfer_address": "E.g.: Zvartnots Airport, flight WZ-4321 or Marriott Hotel",
+    "ph_transfer_name": "Artur Harutyunyan",
+    "ph_transfer_phone": "+374 99 000 000",
+    "ph_transfer_notes": "Specify luggage details or child seat requirements",
+    "contact_quick_reply": "+374 99 250 525 · Quick Reply",
+    "contact_online": "@amarastour · Online",
+    "contact_stories": "@amarastour · Stories & Tours",
+    "fleet_lbl_category": "Category:",
+    "fleet_lbl_capacity": "Capacity:",
+    "fleet_cap_all": "All capacities",
+    "fleet_cap_1_4": "1 – 4 seats",
+    "fleet_cap_5_8": "5 – 8 seats",
+    "fleet_cap_9_20": "9 – 20 seats",
+    "fleet_cap_21_plus": "21+ seats",
+    "fleet_count_badge": "Showing: 12 vehicles",
+    "fleet_trust_1_title": "100% Own Fleet",
+    "fleet_trust_1_sub": "Direct from supplier, no markups",
+    "fleet_trust_2_title": "Experienced Drivers",
+    "fleet_trust_2_sub": "8+ years experience on mountain roads",
+    "fleet_trust_3_title": "In-Cabin Wi-Fi & A/C",
+    "fleet_trust_3_sub": "Complimentary drinking water for all guests",
+    "fleet_trust_4_title": "Punctual Pick-Up",
+    "fleet_trust_4_sub": "Name board greeting 24/7",
+    "fleet_seats_suffix": "seats",
+    "fleet_luggage_suffix": "suitcases",
+    "fleet_year_suffix": "year",
+    "fleet_gearbox_auto": "Automatic",
+    "fleet_gearbox_manual": "Manual",
+    "fleet_from": "from",
+    "fleet_per_day": "/ day",
+    "fleet_btn_book": "Book Vehicle",
+    "fleet_btn_transfer": "Quick Transfer",
+    "fleet_feat_ac": "Climate Control (A/C)",
+    "fleet_feat_wifi": "4G LTE Wi-Fi",
+    "fleet_feat_leather": "Leather Interior",
+    "fleet_feat_fridge": "Mini Fridge",
+    "fleet_feat_mic": "Microphone / PA",
+    "fleet_feat_usb": "USB Chargers",
+    "fleet_feat_child_seat": "Child Safety Seat",
+    "fleet_feat_4wd": "All-Wheel Drive (4WD)",
+    "fleet_feat_panoramic": "Panoramic Sunroof",
+    "fleet_feat_big_trunk": "Spacious Trunk",
+    "fleet_badge_vip": "VIP Minivan",
+    "fleet_badge_luxe": "Luxury Minivan",
+    "fleet_badge_comfort": "Comfort",
+    "fleet_badge_adventure": "4x4 SUV Offroad",
+    "fleet_badge_business": "Business Class",
+    "fleet_badge_tourist": "Touring Coach",
+    "fleet_desc_vclass": "Premium minivan with captain leather chairs and table. Ideal for business delegations and family tours.",
+    "fleet_desc_alphard": "Japanese business minivan with Ottoman reclining seats, leg rests, power doors, and ultra-smooth ride.",
+    "fleet_desc_starex": "Spacious and practical minivan for small groups up to 8 passengers with generous luggage storage.",
+    "fleet_desc_sprinter_vip": "Exclusive minibus with ergonomic leather seating, ambient lighting, and refreshment cooler.",
+    "fleet_desc_sprinter": "Reliable touring minibus for group excursions across historic landmarks and mountain monasteries.",
+    "fleet_desc_coach": "Flagship touring coach for large travel groups, international delegations, and conferences.",
+    "fleet_desc_bus": "Modern mid-size coach with reclining soft seats and panoramic window views.",
+    "fleet_desc_lexus": "Full-size luxury body-on-frame SUV built for mountain terrain, canyons, and rugged routes.",
+    "fleet_desc_suv": "Reliable 4WD SUV designed for trips to remote medieval fortresses and alpine lakes.",
+    "fleet_desc_eclass": "Executive German business sedan for VIP airport transfers and corporate travel.",
+    "fleet_desc_premium": "Executive sedan featuring superior ride smoothness, quiet cabin, and generous luggage capacity.",
+    "fleet_desc_sedan": "Comfortable city sedan with air conditioning for private transfers and couple trips.",
+
+    "fleet_why_title": "Why Choose Our Transport",
+    "fleet_adv_1_title": "Own Service Station",
+    "fleet_adv_1_desc": "Every vehicle undergoes mandatory technical inspection and diagnostics before departing on any route.",
+    "fleet_adv_2_title": "Impeccable Cleanliness",
+    "fleet_adv_2_desc": "Comprehensive washing and cabin ozonation before every trip. Fresh, clean, and pleasant atmosphere guaranteed.",
+    "fleet_adv_3_title": "Care for Every Guest",
+    "fleet_adv_3_desc": "In every car: high-speed 4G Wi-Fi, chilled bottled water, wet wipes, and charging cables for all devices.",
+    "fleet_adv_4_title": "Professional Drivers",
+    "fleet_adv_4_desc": "Polite non-smoking drivers with 8+ years experience navigating Armenia's mountain serpentines, speaking Russian and English.",
+    "fleet_cta_box_title": "Need a custom quote for a group or special event?",
+    "fleet_cta_box_desc": "Contact our manager on WhatsApp — we will find the ideal vehicle for your itinerary, guest count, and budget in 5 minutes.",
+    "fleet_cta_wa_btn": "Chat on WhatsApp",
+    "fleet_price_lbl": "Rental with driver:",
+    "fleet_transfer_link": "Transfer ➔",
+    "fleet_empty_title": "No vehicles found for selected filters",
+    "fleet_btn_reset": "Reset Filters",
+    "fleet_modal_trans_title": "Vehicle Booking",
+    "lbl_rent_datetime": "Rental start date and time*",
+    "lbl_pax_count": "Number of passengers*",
+    "lbl_trip_purpose": "Trip purpose / Itinerary*",
+    "ph_trip_purpose": "E.g.: Day tour to Garni & Geghard or transfer Yerevan-Tbilisi",
+    "fleet_badge_midibus": "Mid-size Bus",
+    "fleet_badge_tourist_bus": "Touring Coach",
+    "fleet_badge_exec_vip": "Executive VIP",
+    "fleet_badge_premium_suv": "Premium 4x4",
+    "pill_water": "Bottled water",
+    "pill_usb_row": "USB on each row",
+    "pill_ottoman": "Ottoman chairs",
+    "pill_spacious": "Spacious cabin",
+    "pill_trunk": "Spacious trunk",
+    "pill_indiv_ac": "Individual A/C",
+    "pill_mic_guide": "Guide microphone",
+    "pill_mic": "Guide mic",
+    "pill_mic_tour": "Tour guide mic",
+    "pill_tvdvd": "TV/DVD multimedia",
+    "pill_tvdvd_mon": "TV/DVD monitors",
+    "pill_ac_full": "Full-cabin air conditioning",
+    "pill_ac_simple": "Air conditioner",
+    "pill_ac_climate": "Climate control",
+    "pill_ac_filtered": "Filtered climate control",
+    "pill_luggage_shelves": "Overhead luggage racks",
+    "pill_panoramic_windows": "Panoramic windows",
+    "pill_seatbelts": "Safety seatbelts",
+    "pill_sound_levinson": "Mark Levinson audio",
+    "pill_air_susp": "Air suspension",
+    "pill_high_clearance": "High ground clearance",
+    "pill_privacy_curtains": "Privacy sunshades",
+    "pill_massage_seats": "Executive rear massage seats",
+    "pill_aisle_adjust": "Aisle-adjustable seats",
+    "pill_vent_heat": "Heated & ventilated seats",
+    "pill_soundproof": "Maximum soundproofing",
+    "pill_2zone": "Dual-zone climate control",
+    "pill_4zone": "4-zone climate control",
+    "pill_spacious_rear": "Spacious rear row",
+    "fleet_desc_sprinter_tour": "Luxury minibus featuring ergonomic leather reclining seats, professional microphone, and TV/DVD entertainment.",
+    "fleet_desc_coach_53": "European flagship coach for large groups up to 53 passengers: filtered climate, refrigerator, monitors.",
+    "fleet_desc_bus_33": "Agile mid-size bus (up to 33 passengers) ideally tuned for navigating Armenia's winding mountain roads.",
+    "fleet_desc_sclass": "Flagship top-tier luxury sedan for VIP guests, official airport greetings, wedding motorcades, and delegations.",
+    "fleet_desc_alphard_lux": "Japanese executive minivan with Ottoman foot-rest seats, soft suspension, and dual panoramic sunroofs.",
+    "fleet_desc_landcruiser": "Legendary Japanese 4WD SUV with permanent all-wheel drive for jeep tours, gorges, and mountain passes.",
+    "fleet_desc_lexus_lx": "Premium 4WD SUV with adjustable air suspension and Mark Levinson high-end surround sound.",
+    "fleet_desc_sprinter_pan": "Reliable touring minibus for group excursions across popular Armenian routes with panoramic windows.",
+    "fleet_desc_octavia": "Popular reliable sedan featuring spacious rear seating, efficient air conditioning, and deep luggage trunk.",
+    "fleet_desc_starex_mid": "Spacious and practical minivan for small groups up to 8 passengers with generous luggage capacity.",
+    "fleet_desc_eclass_mid": "Elegant German business sedan with superior ride comfort, whisper-quiet cabin, and silky-smooth handling.",
+    "rev_author_default": "Author",
+    "rev_meta_default": "Location • Date",
   },
   HY: {
     "arm_stay": "Որտեղ մնալ",
@@ -2354,7 +2640,148 @@ const AMARAS_I18N = {
     "trad_c6_tag": "Սեղանի իմաստնություն",
     "trad_c6_loc": "Յուրաքանչյուր հայկական տոնական սեղանի շուրջ",
     "trad_c6_feat": "Կենացների հստակ աստիճանակարգ, խորը փիլիսոփայություն, մեծերի հանդեպ հարգանք",
-  }
+
+    "geo_badge": "Միջազգային տրանսֆերներ",
+    "geo_title": "Անհատական և խմբային տրանսֆերներ Հայաստանից Վրաստան",
+    "geo_desc": "Ուղիղ հարմարավետ ուղևորություններ «դռնից դուռ». մեքենայի մոտեցում Երևանի ձեր հյուրանոցին կամ հասցեին / Զվարթնոց օդանավակայանին և տեղափոխում ուղիղ Թբիլիսիի, Բաթումիի, Քութայիսիի, Գուդաուրիի կամ Բորժոմիի հյուրանոց: Առանց վերանստումների և սահմանին երկար սպասումների:",
+    "geo_feat_1": "Հարմարավետ սահմանահատում (Սադախլոյի / Բավրայի ԱԱՊ)",
+    "geo_feat_2": "Փորձառու վարորդներ միջազգային վարորդական իրավունքով",
+    "geo_feat_3": "Օդորակիչ, 4G Wi-Fi և խմելու ջուր",
+    "geo_feat_4": "Կանգառներ հանգստի և դիտակետերի համար",
+    "geo_btn_tbilisi": "Երևան ⇄ Թբիլիսի (սկսած 85 000 AMD)",
+    "geo_btn_batumi": "Երևան ⇄ Բաթումի (սկսած 155 000 AMD)",
+    "geo_btn_kutaisi": "Երևան ⇄ Քութայիսի (սկսած 125 000 AMD)",
+    "geo_btn_gudauri": "Երևան ⇄ Գուդաուրի (սկսած 115 000 AMD)",
+    "modal_booking_title": "Տրանսֆերի ամրագրում",
+    "modal_book_wa": "Ամրագրել WhatsApp-ով",
+    "modal_book_cart": "Ավելացնել զամբյուղ",
+    "ph_transfer_address": "Օրինակ՝ Զվարթնոց օդանավակայան, չվերթ WZ-4321 կամ Marriott հյուրանոց",
+    "ph_transfer_name": "Արթուր Հարությունյան",
+    "ph_transfer_phone": "+374 99 000 000",
+    "ph_transfer_notes": "Նշեք ուղեբեռի քանակը կամ մանկական նստատեղի անհրաժեշտությունը",
+    "contact_quick_reply": "+374 99 250 525 · Արագ պատասխան",
+    "contact_online": "@amarastour · Օնլայն",
+    "contact_stories": "@amarastour · Պատմություններ և տուրեր",
+    "fleet_lbl_category": "Կատեգորիա՝",
+    "fleet_lbl_capacity": "Տարողություն՝",
+    "fleet_cap_all": "Բոլոր նստատեղերը",
+    "fleet_cap_1_4": "1 – 4 նստատեղ",
+    "fleet_cap_5_8": "5 – 8 նստատեղ",
+    "fleet_cap_9_20": "9 – 20 նստատեղ",
+    "fleet_cap_21_plus": "21+ նստատեղ",
+    "fleet_count_badge": "Ցուցադրված է՝ 12 ավտոմեքենա",
+    "fleet_trust_1_title": "100% Սեփական ավտոպարկ",
+    "fleet_trust_1_sub": "Առանց միջնորդների և հավելավճարների",
+    "fleet_trust_2_title": "Փորձառու վարորդներ",
+    "fleet_trust_2_sub": "8+ տարվա փորձ, լեռնային երթուղիներ",
+    "fleet_trust_3_title": "Wi-Fi և օդորակիչ սրահում",
+    "fleet_trust_3_sub": "Խմելու ջուր յուրաքանչյուր հյուրի համար",
+    "fleet_trust_4_title": "Մոտեցում առանց ուշացումների",
+    "fleet_trust_4_sub": "Դիմավորում ցուցանակով 24/7",
+    "fleet_seats_suffix": "նստատեղ",
+    "fleet_luggage_suffix": "ճամպրուկ",
+    "fleet_year_suffix": "թ.",
+    "fleet_gearbox_auto": "Ավտոմատ",
+    "fleet_gearbox_manual": "Մեխանիկական",
+    "fleet_from": "սկսած",
+    "fleet_per_day": "/ օր",
+    "fleet_btn_book": "Ամրագրել",
+    "fleet_btn_transfer": "Արագ տրանսֆեր",
+    "fleet_feat_ac": "Կլիմատ-կոնտրոլ (A/C)",
+    "fleet_feat_wifi": "Wi-Fi 4G LTE",
+    "fleet_feat_leather": "Կաշվե սրահ",
+    "fleet_feat_fridge": "Սառնարան",
+    "fleet_feat_mic": "Բարձրախոս / Միկրոֆոն",
+    "fleet_feat_usb": "USB լիցքավորիչներ",
+    "fleet_feat_child_seat": "Մանկական նստատեղ",
+    "fleet_feat_4wd": "Լիաքարշակ 4WD",
+    "fleet_feat_panoramic": "Պանորամային տանիք",
+    "fleet_feat_big_trunk": "Մեծ բեռնախցիկ",
+    "fleet_badge_vip": "VIP Մինիվեն",
+    "fleet_badge_luxe": "Լյուքս Մինիվեն",
+    "fleet_badge_comfort": "Կոմֆորտ",
+    "fleet_badge_adventure": "Ամենագնաց 4x4",
+    "fleet_badge_business": "Բիզնես դաս",
+    "fleet_badge_tourist": "Զբոսաշրջային",
+    "fleet_desc_vclass": "Պրեմիում դասի մինիվեն՝ կաշվե հարմարավետ նստատեղերով և սեղանիկով: Կատարյալ է բիզնես պատվիրակությունների և ընտանեկան տուրերի համար:",
+    "fleet_desc_alphard": "Ճապոնական բիզնես-մինիվեն՝ Ottoman բազկաթոռներով, ոտքերի հենարանով, էլեկտրական դռներով և փափուկ ընթացքով:",
+    "fleet_desc_starex": "Տարողունակ և հարմարավետ մինիվեն մինչև 8 հոգանոց փոքր խմբերի համար՝ մեծ բեռնախցիկով:",
+    "fleet_desc_sprinter_vip": "Էքսկլյուզիվ միկրոավտոբուս՝ անատոմիական կաշվե նստատեղերով, լուսավորությամբ և սառնարանով:",
+    "fleet_desc_sprinter": "Հուսալի զբոսաշրջային միկրոավտոբուս խմբային էքսկուրսիաների համար Հայաստանի պատմական վայրերով:",
+    "fleet_desc_coach": "Բարձրակարգ զբոսաշրջային ավտոբուս մեծ խմբերի, ֆորումների և ընդարձակ էքսկուրսիաների համար:",
+    "fleet_desc_bus": "Ժամանակակից միջին դասի ավտոբուս՝ փափուկ նստատեղերով և հիանալի տեսարանով:",
+    "fleet_desc_lexus": "Պրեմիում դասի ամենագնաց՝ հիանալի անցողունակությամբ լեռնային ճանապարհների և կիրճերի համար:",
+    "fleet_desc_suv": "Հուսալի լիաքարշակ ամենագնաց՝ դժվարամատչելի ամրոցներ և լեռնային լճեր այցելելու համար:",
+    "fleet_desc_eclass": "Գերմանական բիզնես-դասի սեդան՝ VIP օդանավակայանի տրանսֆերների և գործնական հանդիպումների համար:",
+    "fleet_desc_premium": "Բիզնես-սեդան՝ բարձր հարմարավետությամբ, անաղմուկ սրահով և ընդարձակ բեռնախցիկով:",
+    "fleet_desc_sedan": "Հարմարավետ քաղաքային սեդան՝ օդորակիչով, անհատական տրանսֆերների և զույգերի համար:",
+    "fleet_why_title": "Ինչու՞ ընտրել մեր տրանսպորտը",
+    "fleet_adv_1_title": "Սեփական տեխզննման կայան",
+    "fleet_adv_1_desc": "Յուրաքանչյուր ավտոմեքենա անցնում է պարտադիր տեխնիկական զննում և ախտորոշում նախքան երթուղի դուրս գալը:",
+    "fleet_adv_2_title": "Անթերի մաքրություն",
+    "fleet_adv_2_desc": "Համալիր լվացում և սրահի օզոնացում յուրաքանչյուր ուղևորությունից առաջ: Մեքենայում միշտ թարմ է և մաքուր:",
+    "fleet_adv_3_title": "Հոգատարություն հյուրերի նկատմամբ",
+    "fleet_adv_3_desc": "Յուրաքանչյուր մեքենայում՝ արագընթաց 4G Wi-Fi, սառը շշալցված ջուր, անձեռոցիկներ և լիցքավորիչներ բոլոր հեռախոսների համար:",
+    "fleet_adv_4_title": "Պրոֆեսիոնալ վարորդներ",
+    "fleet_adv_4_desc": "Քաղաքավարի, չծխող վարորդներ՝ Հայաստանի լեռնային ճանապարհներով վարելու 8+ տարվա փորձով, տիրապետում են ռուսերենին և անգլերենին:",
+    "fleet_cta_box_title": "Անհատական հաշվա՞րկ է պետք խմբի կամ հատուկ միջոցառման համար:",
+    "fleet_cta_box_desc": "Կապվեք մեր մենեջերի հետ WhatsApp-ով. 5 րոպեում կընտրենք իդեալական տրանսպորտ ձեր երթուղու, հյուրերի քանակի և բյուջեի համար:",
+    "fleet_cta_wa_btn": "Գրել WhatsApp-ով",
+    "fleet_price_lbl": "Վարձույթ վարորդով՝",
+    "fleet_transfer_link": "Տրանսֆեր ➔",
+    "fleet_empty_title": "Ընտրված ֆիլտրերով ավտոմեքենաներ չեն գտնվել",
+    "fleet_btn_reset": "Մաքրել ֆիլտրերը",
+    "fleet_modal_trans_title": "Տրանսպորտի ամրագրում",
+    "lbl_rent_datetime": "Վարձույթի սկզբի ամսաթիվ և ժամ*",
+    "lbl_pax_count": "Ուղևորների քանակը*",
+    "lbl_trip_purpose": "Ուղևորության նպատակը / Երթուղին*",
+    "ph_trip_purpose": "Օրինակ՝ Էքսկուրսիա Գառնի-Գեղարդ կամ Երևան-Թբիլիսի տրանսֆեր",
+    "fleet_badge_midibus": "Միդի-ավտոբուս",
+    "fleet_badge_tourist_bus": "Զբոսաշրջային ավտոբուս",
+    "fleet_badge_exec_vip": "Ներկայացուցչական VIP",
+    "fleet_badge_premium_suv": "Պրեմիում 4x4",
+    "pill_water": "Շշալցված ջուր",
+    "pill_usb_row": "USB յուրաքանչյուր շարքում",
+    "pill_ottoman": "Ottoman բազկաթոռներ",
+    "pill_spacious": "Ընդարձակ սրահ",
+    "pill_trunk": "Մեծ բեռնախցիկ",
+    "pill_indiv_ac": "Անհատական A/C",
+    "pill_mic_guide": "Միկրոֆոն գիդի համար",
+    "pill_mic": "Գիդի միկրոֆոն",
+    "pill_mic_tour": "Էքսկուրսավարի միկրոֆոն",
+    "pill_tvdvd": "TV/DVD մուլտիմեդիա",
+    "pill_tvdvd_mon": "TV/DVD մոնիտորներ",
+    "pill_ac_full": "Ամբողջ սրահի օդորակիչ",
+    "pill_ac_simple": "Օդորակիչ",
+    "pill_ac_climate": "Կլիմատ-կոնտրոլ",
+    "pill_ac_filtered": "Ֆիլտրացված կլիմատ-կոնտրոլ",
+    "pill_luggage_shelves": "Դարակներ ձեռքի ուղեբեռի համար",
+    "pill_panoramic_windows": "Պանորամային պատուհաններ",
+    "pill_seatbelts": "Անվտանգության գոտիներ",
+    "pill_sound_levinson": "Mark Levinson ձայն",
+    "pill_air_susp": "Պնևմատիկ կախոց",
+    "pill_high_clearance": "Բարձր կլիրենս",
+    "pill_privacy_curtains": "Գաղտնիության վարագույրներ",
+    "pill_massage_seats": "Առանձին հետևի նստատեղեր մերսումով",
+    "pill_aisle_adjust": "Դեպի անցում կարգավորվող նստատեղեր",
+    "pill_vent_heat": "Նստատեղերի օդափոխություն և տաքացում",
+    "pill_soundproof": "Առավելագույն ձայնամեկուսացում",
+    "pill_2zone": "2-գոտի կլիմատ-կոնտրոլ",
+    "pill_4zone": "4-գոտի կլիմատ-կոնտրոլ",
+    "pill_spacious_rear": "Ընդարձակ հետևի շարք",
+    "fleet_desc_sprinter_tour": "Լյուքս միկրոավտոբուս՝ անատոմիական կաշվե նստատեղերով, պրոֆեսիոնալ միկրոֆոնով և TV/DVD մուլտիմեդիայով:",
+    "fleet_desc_coach_53": "Եվրոպական բարձրակարգ ավտոբուս մինչև 53 հոգու համար՝ ֆիլտրացված կլիմայով, սառնարանով, էկրաններով:",
+    "fleet_desc_bus_33": "Միջին տարողության ճկուն ավտոբուս (մինչև 33 հոգի), կատարյալ հարմարեցված Հայաստանի լեռնային ոլորաններին:",
+    "fleet_desc_sclass": "Բարձրագույն դասի սեդան VIP հյուրերի, օդանավակայանի դիմավորման, հարսանեկան շարասյուների և պատվիրակությունների համար:",
+    "fleet_desc_alphard_lux": "Ճապոնական բիզնես-մինիվեն՝ Ottoman բազկաթոռներով, փափուկ կախոցով և երկու պանորամային լյուկով:",
+    "fleet_desc_landcruiser": "Լեգենդար ճապոնական ամենագնաց՝ մշտական լիաքարշակով ջիպ-տուրերի, կիրճերի և լեռնանցքների համար:",
+    "fleet_desc_lexus_lx": "Պրեմիում դասի լիաքարշակ ամենագնաց՝ կարգավորվող պնևմոկախոցով և Mark Levinson աուդիոհամակարգով:",
+    "fleet_desc_sprinter_pan": "Հուսալի միկրոավտոբուս Հայաստանի հայտնի երթուղիներով խմբային էքսկուրսիաների համար՝ պանորամային ապակիներով:",
+    "fleet_desc_octavia": "Հանրաճանաչ հուսալի սեդան՝ հետևի ընդարձակ նստատեղերով, հզոր օդորակիչով և մեծ բեռնախցիկով:",
+    "fleet_desc_starex_mid": "Տարողունակ և գործնական մինիվեն մինչև 8 հոգանոց խմբերի համար՝ ընդարձակ բեռնախցիկով:",
+    "fleet_desc_eclass_mid": "Էլեգանտ գերմանական բիզնես-սեդան՝ բարձր հարմարավետությամբ, անաղմուկ ընթացքով և սահուն վարմամբ:",
+    "rev_author_default": "Հեղինակ",
+    "rev_meta_default": "Վայր • Ամսաթիվ",  }
 };
 
 const LANG_SHORT_LABELS = {
@@ -2479,11 +2906,35 @@ function setLang(lang) {
     }
   });
 
+  // Update elements with data-i18n-label (e.g. <optgroup>)
+  document.querySelectorAll('[data-i18n-label]').forEach(el => {
+    const key = el.getAttribute('data-i18n-label');
+    if (dict[key]) {
+      el.setAttribute('label', dict[key]);
+    }
+  });
+
   // Update inputs with data-i18n-placeholder
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     const key = el.getAttribute('data-i18n-placeholder');
     if (dict[key]) {
       el.setAttribute('placeholder', dict[key]);
+    }
+  });
+
+  // Update elements with data-i18n-title
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    const key = el.getAttribute('data-i18n-title');
+    if (dict[key]) {
+      el.setAttribute('title', dict[key]);
+    }
+  });
+
+  // Update elements with data-i18n-aria-label
+  document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+    const key = el.getAttribute('data-i18n-aria-label');
+    if (dict[key]) {
+      el.setAttribute('aria-label', dict[key]);
     }
   });
 
@@ -2515,6 +2966,18 @@ function setLang(lang) {
     t.textContent = dict.btn_add_to_cart || 'В корзину';
   });
 
+  // Update popular route names in transfers carousel
+  if (typeof updatePopularRouteNames === 'function') {
+    updatePopularRouteNames();
+  }
+  // Re-run transfer calculator if on transfers.html
+  if (typeof runTransferCalc === 'function') {
+    runTransferCalc();
+  }
+  // Update fleet cards if on fleet.html
+  if (typeof updateFleetCardsLanguage === 'function') {
+    updateFleetCardsLanguage();
+  }
   // Recalculate tour constructor if active
   if (typeof window.recalcTourBuilder === 'function') {
     window.recalcTourBuilder();
@@ -3166,6 +3629,81 @@ function getTransferRouteData(from, to) {
   return { dist: '75 km', dur: '1 h 15 min', comfort: 28000, elegant: 34000, premium: 98000, suv: 39000, minivan: 42000, minibus: 68000, bus: 135000, coach_bus: 175000 };
 }
 
+
+// ==========================================================================
+// DYNAMIC LOCALIZATION HELPERS (TRANSFERS & FLEET)
+// ==========================================================================
+
+function localizeDur(dur, lang) {
+  if (!dur) return '';
+  if (lang === 'RU') {
+    return dur.replace(/hours?/g, 'ч.').replace(/h\b/g, 'ч.').replace(/min/g, 'мин');
+  } else if (lang === 'HY') {
+    return dur.replace(/hours?/g, 'ժամ').replace(/h\b/g, 'ժ.').replace(/min/g, 'րոպե');
+  }
+  return dur;
+}
+
+function localizeDist(dist, lang) {
+  if (!dist) return '';
+  if (lang === 'RU') return dist.replace(/km/g, 'км');
+  if (lang === 'HY') return dist.replace(/km/g, 'կմ');
+  return dist;
+}
+
+function updatePopularRouteNames() {
+  const curLang = window.currentLang || localStorage.getItem('amaras_preferred_lang') || 'RU';
+  const dict = (typeof AMARAS_I18N !== 'undefined' && AMARAS_I18N[curLang]) ? AMARAS_I18N[curLang] : {};
+  document.querySelectorAll('.amaras-pop-route-box[data-route-from][data-route-to]').forEach(box => {
+    const from = box.getAttribute('data-route-from');
+    const to = box.getAttribute('data-route-to');
+    const nameEl = box.querySelector('.amaras-pop-route-name');
+    if (nameEl && from && to) {
+      const fromName = dict['loc_' + from] || from;
+      const toName = dict['loc_' + to] || to;
+      nameEl.textContent = `${fromName} → ${toName}`;
+    }
+  });
+}
+
+function updateFleetCardsLanguage() {
+  const curLang = window.currentLang || localStorage.getItem('amaras_preferred_lang') || 'RU';
+  const dict = (typeof AMARAS_I18N !== 'undefined' && AMARAS_I18N[curLang]) ? AMARAS_I18N[curLang] : {};
+  
+  // Update specs: seats, luggage, year, gearbox
+  document.querySelectorAll('.spec-seats[data-seats]').forEach(el => {
+    const n = el.getAttribute('data-seats');
+    const sfx = dict.fleet_seats_suffix || 'мест';
+    el.textContent = `${n} ${sfx}`;
+  });
+  document.querySelectorAll('.spec-luggage[data-luggage]').forEach(el => {
+    const n = el.getAttribute('data-luggage');
+    const sfx = dict.fleet_luggage_suffix || 'чемоданов';
+    el.textContent = `${n} ${sfx}`;
+  });
+  document.querySelectorAll('.spec-year[data-year]').forEach(el => {
+    const y = el.getAttribute('data-year');
+    const sfx = dict.fleet_year_suffix || 'г.';
+    el.textContent = `${y} ${sfx}`;
+  });
+  document.querySelectorAll('.spec-gearbox[data-gearbox]').forEach(el => {
+    const gb = el.getAttribute('data-gearbox');
+    if (gb === 'manual') el.textContent = dict.fleet_gearbox_manual || 'Механика';
+    else if (gb === 'auto_4wd') el.textContent = dict.fleet_gearbox_auto_4wd || (curLang === 'ENG' ? 'Automatic 4WD' : (curLang === 'HY' ? 'Ավտոմատ 4WD' : 'Автомат 4WD'));
+    else if (gb === 'mixed') el.textContent = dict.fleet_gearbox_mixed || (curLang === 'ENG' ? 'Manual/Auto' : (curLang === 'HY' ? 'Մեխանիկական/Ավտոմատ' : 'Механика/Автомат'));
+    else el.textContent = dict.fleet_gearbox_auto || 'Автомат';
+  });
+
+  // Update dynamic count badge if present
+  const countBadge = document.getElementById('fleetVehCountBadge');
+  if (countBadge) {
+    const visibleCards = document.querySelectorAll('.amaras-fleet-card:not([style*="display: none"])').length;
+    const sfx = dict.fleet_vehicles_count || (curLang === 'ENG' ? 'vehicles' : (curLang === 'HY' ? 'ավտոմեքենա' : 'автомобилей'));
+    const pfx = dict.fleet_shown || (curLang === 'ENG' ? 'Showing:' : (curLang === 'HY' ? 'Ցուցադրված է՝' : 'Показано:'));
+    countBadge.textContent = `${pfx} ${visibleCards} ${sfx}`;
+  }
+}
+
 function runTransferCalc() {
   const fromSel = document.getElementById('transferFrom');
   const toSel = document.getElementById('transferTo');
@@ -3200,13 +3738,21 @@ function runTransferCalc() {
       const priceEl = card.querySelector('.val-price');
       const btn = card.querySelector('.amaras-transfer-select-btn');
 
-      if (distEl) distEl.textContent = data.dist;
-      if (durEl) durEl.textContent = data.dur;
+      const curLang = window.currentLang || localStorage.getItem('amaras_preferred_lang') || 'RU';
+      const dict = (typeof AMARAS_I18N !== 'undefined' && AMARAS_I18N[curLang]) ? AMARAS_I18N[curLang] : {};
+
+      if (distEl) distEl.textContent = localizeDist(data.dist, curLang);
+      if (durEl) durEl.textContent = localizeDur(data.dur, curLang);
       if (priceEl) {
         priceEl.setAttribute('data-base-price', veh.price);
         priceEl.textContent = `${formatNum(veh.price)} AMD`;
       }
+      const titleEl = card.querySelector('.amaras-transfer-veh-title');
+      if (titleEl && dict['veh_' + veh.key]) {
+        titleEl.textContent = dict['veh_' + veh.key];
+      }
       if (btn) {
+        btn.textContent = dict.btn_select || 'Select';
         btn.setAttribute('onclick', `openTransferBookingModal('${veh.key}', '${veh.name}', ${veh.price})`);
       }
     }
@@ -3270,10 +3816,15 @@ function scrollPopRoutes(dir) {
 }
 
 function openTransferBookingModal(key, name, price) {
+  const curLang = window.currentLang || localStorage.getItem('amaras_preferred_lang') || 'RU';
+  const dict = (typeof AMARAS_I18N !== 'undefined' && AMARAS_I18N[curLang]) ? AMARAS_I18N[curLang] : {};
   const fromSel = document.getElementById('transferFrom');
   const toSel = document.getElementById('transferTo');
-  const fromName = fromSel ? fromSel.options[fromSel.selectedIndex].text : 'Yerevan';
-  const toName = toSel ? toSel.options[toSel.selectedIndex].text : 'Aghveran';
+  const fromKey = fromSel ? fromSel.value : 'yerevan';
+  const toKey = toSel ? toSel.value : 'aghveran';
+  const fromName = dict['loc_' + fromKey] || (fromSel ? fromSel.options[fromSel.selectedIndex].text : 'Yerevan');
+  const toName = dict['loc_' + toKey] || (toSel ? toSel.options[toSel.selectedIndex].text : 'Aghveran');
+  const vehName = dict['veh_' + key] || name;
 
   const routeData = getTransferRouteData(fromSel ? fromSel.value : 'yerevan', toSel ? toSel.value : 'aghveran');
 

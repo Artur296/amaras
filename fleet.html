@@ -433,8 +433,8 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
         </div>
         <div class="amaras-fleet-hl-text">
-          <strong>100% Собственный парк</strong>
-          <span>Без посредников и переплат</span>
+          <strong data-i18n="fleet_trust_1_title">100% Собственный парк</strong>
+          <span data-i18n="fleet_trust_1_sub">Без посредников и переплат</span>
         </div>
       </div>
       <div class="amaras-fleet-hl-item">
@@ -442,8 +442,8 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
         </div>
         <div class="amaras-fleet-hl-text">
-          <strong>Опытные водители</strong>
-          <span>Стаж от 8 лет, горные маршруты</span>
+          <strong data-i18n="fleet_trust_2_title">Опытные водители</strong>
+          <span data-i18n="fleet_trust_2_sub">Стаж от 8 лет, горные маршруты</span>
         </div>
       </div>
       <div class="amaras-fleet-hl-item">
@@ -451,8 +451,8 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2.2"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
         </div>
         <div class="amaras-fleet-hl-text">
-          <strong>Wi-Fi и A/C в салоне</strong>
-          <span>Питьевая вода для каждого гостя</span>
+          <strong data-i18n="fleet_trust_3_title">Wi-Fi и A/C в салоне</strong>
+          <span data-i18n="fleet_trust_3_sub">Питьевая вода для каждого гостя</span>
         </div>
       </div>
       <div class="amaras-fleet-hl-item">
@@ -460,51 +460,44 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
         </div>
         <div class="amaras-fleet-hl-text">
-          <strong>Подача без опозданий</strong>
-          <span>Встреча с табличкой 24/7</span>
+          <strong data-i18n="fleet_trust_4_title">Подача без опозданий</strong>
+          <span data-i18n="fleet_trust_4_sub">Встреча с табличкой 24/7</span>
         </div>
       </div>
     </div>
 
     <!-- Filter Bar: Category Tabs -->
     <div class="amaras-fleet-filter-bar">
-      <div class="amaras-fleet-filter-label">Категория:</div>
+      <div class="amaras-fleet-filter-label" data-i18n="fleet_lbl_category">Категория:</div>
       <div class="amaras-fleet-tabs" id="fleetCategoryTabs">
-        <button type="button" class="amaras-fleet-tab is-active" data-filter="all" onclick="filterFleetCategory('all')">
-          Все автомобили <span class="amaras-tab-cnt">12</span>
+        <button type="button" class="amaras-fleet-tab is-active" data-filter="all" onclick="filterFleetCategory('all')"><span data-i18n="fleet_tab_all">Все автомобили</span> <span class="amaras-tab-cnt">12</span>
         </button>
-        <button type="button" class="amaras-fleet-tab" data-filter="minivan" onclick="filterFleetCategory('minivan')">
-          Минивэны <span class="amaras-tab-cnt">3</span>
+        <button type="button" class="amaras-fleet-tab" data-filter="minivan" onclick="filterFleetCategory('minivan')"><span data-i18n="fleet_tab_minivan">Минивэны</span> <span class="amaras-tab-cnt">3</span>
         </button>
-        <button type="button" class="amaras-fleet-tab" data-filter="minibus" onclick="filterFleetCategory('minibus')">
-          Микроавтобусы <span class="amaras-tab-cnt">2</span>
+        <button type="button" class="amaras-fleet-tab" data-filter="minibus" onclick="filterFleetCategory('minibus')"><span data-i18n="fleet_tab_minibus">Микроавтобусы</span> <span class="amaras-tab-cnt">2</span>
         </button>
-        <button type="button" class="amaras-fleet-tab" data-filter="bus" onclick="filterFleetCategory('bus')">
-          Автобусы <span class="amaras-tab-cnt">2</span>
+        <button type="button" class="amaras-fleet-tab" data-filter="bus" onclick="filterFleetCategory('bus')"><span data-i18n="fleet_tab_bus">Автобусы</span> <span class="amaras-tab-cnt">2</span>
         </button>
-        <button type="button" class="amaras-fleet-tab" data-filter="suv" onclick="filterFleetCategory('suv')">
-          Внедорожники 4x4 <span class="amaras-tab-cnt">2</span>
+        <button type="button" class="amaras-fleet-tab" data-filter="suv" onclick="filterFleetCategory('suv')"><span data-i18n="fleet_tab_suv">Внедорожники 4x4</span> <span class="amaras-tab-cnt">2</span>
         </button>
-        <button type="button" class="amaras-fleet-tab" data-filter="sedan_premium" onclick="filterFleetCategory('sedan_premium')">
-          Бизнес и Премиум <span class="amaras-tab-cnt">2</span>
+        <button type="button" class="amaras-fleet-tab" data-filter="sedan_premium" onclick="filterFleetCategory('sedan_premium')"><span data-i18n="fleet_tab_premium">Бизнес и Премиум</span> <span class="amaras-tab-cnt">2</span>
         </button>
-        <button type="button" class="amaras-fleet-tab" data-filter="sedan" onclick="filterFleetCategory('sedan')">
-          Седаны Комфорт <span class="amaras-tab-cnt">1</span>
+        <button type="button" class="amaras-fleet-tab" data-filter="sedan" onclick="filterFleetCategory('sedan')"><span data-i18n="fleet_tab_sedan">Седаны Комфорт</span> <span class="amaras-tab-cnt">1</span>
         </button>
       </div>
     </div>
 
     <!-- Filter Bar: Capacity Filter Pills -->
     <div class="amaras-fleet-capacity-bar">
-      <div class="amaras-fleet-filter-label">Вместимость:</div>
+      <div class="amaras-fleet-filter-label" data-i18n="fleet_lbl_capacity">Вместимость:</div>
       <div class="amaras-capacity-pills" id="fleetCapacityPills">
-        <button type="button" class="amaras-cap-pill is-active" data-cap="all" onclick="filterFleetCapacity('all')">Все места</button>
-        <button type="button" class="amaras-cap-pill" data-cap="1-4" onclick="filterFleetCapacity('1-4')">1 – 4 места</button>
-        <button type="button" class="amaras-cap-pill" data-cap="5-8" onclick="filterFleetCapacity('5-8')">5 – 8 мест</button>
-        <button type="button" class="amaras-cap-pill" data-cap="9-20" onclick="filterFleetCapacity('9-20')">9 – 20 мест</button>
-        <button type="button" class="amaras-cap-pill" data-cap="21+" onclick="filterFleetCapacity('21+')">21+ мест</button>
+        <button type="button" class="amaras-cap-pill is-active" data-cap="all" onclick="filterFleetCapacity('all')" data-i18n="fleet_cap_all">Все места</button>
+        <button type="button" class="amaras-cap-pill" data-cap="1-4" onclick="filterFleetCapacity('1-4')" data-i18n="fleet_cap_1_4">1 – 4 места</button>
+        <button type="button" class="amaras-cap-pill" data-cap="5-8" onclick="filterFleetCapacity('5-8')" data-i18n="fleet_cap_5_8">5 – 8 мест</button>
+        <button type="button" class="amaras-cap-pill" data-cap="9-20" onclick="filterFleetCapacity('9-20')" data-i18n="fleet_cap_9_20">9 – 20 мест</button>
+        <button type="button" class="amaras-cap-pill" data-cap="21+" onclick="filterFleetCapacity('21+')" data-i18n="fleet_cap_21_plus">21+ мест</button>
       </div>
-      <div class="amaras-fleet-count-badge" id="fleetVehCountBadge">Показано: 12 автомобилей</div>
+      <div class="amaras-fleet-count-badge" id="fleetVehCountBadge" data-i18n="fleet_count_badge">Показано: 12 автомобилей</div>
     </div>
 
     <!-- FLEET CARDS GRID -->
@@ -514,43 +507,43 @@
     <div class="amaras-fleet-card" data-category="minivan" data-seats="7">
       <div class="amaras-fleet-img-wrap">
         <img src="assets/fleet/vclass.jpg" alt="Mercedes-Benz V-Class VIP" class="amaras-fleet-img" loading="lazy" />
-        <span class="amaras-fleet-badge badge-vip">Минивэн VIP</span>
+        <span class="amaras-fleet-badge badge-vip" data-i18n="fleet_badge_vip">Минивэн VIP</span>
       </div>
       <div class="amaras-fleet-content">
         <div class="amaras-fleet-header">
           <h3 class="amaras-fleet-title">Mercedes-Benz V-Class VIP</h3>
-          <p class="amaras-fleet-desc">Премиальный минивэн с капитанскими кожаными креслами и столиком. Идеален для бизнес-делегаций и семейных туров.</p>
+          <p class="amaras-fleet-desc" data-i18n="fleet_desc_vclass">Премиальный минивэн с капитанскими кожаными креслами и столиком. Идеален для бизнес-делегаций и семейных туров.</p>
         </div>
         
         <!-- Specs Bar -->
         <div class="amaras-fleet-specs-bar">
           <div class="amaras-fleet-spec-item" title="Вместимость пассажиров">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <span>7 мест</span>
+            <span class="spec-seats" data-seats="7">7 мест</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Вместимость багажа">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-            <span>7 чемоданов</span>
+            <span class="spec-luggage" data-luggage="7">7 чемоданов</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Год выпуска">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            <span>2022 г.</span>
+            <span class="spec-year" data-year="2022">2022 г.</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Коробка передач">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-            <span>Автомат</span>
+            <span class="spec-gearbox" data-gearbox="auto">Автомат</span>
           </div>
         </div>
 
         <!-- Amenities -->
         <div class="amaras-fleet-features-list">
-          <span class="amaras-fleet-feat-pill">Климат-контроль (A/C)</span><span class="amaras-fleet-feat-pill">Wi-Fi 4G</span><span class="amaras-fleet-feat-pill">Бутилированная вода</span><span class="amaras-fleet-feat-pill">USB на каждом ряду</span>
+          <span class="amaras-fleet-feat-pill" data-i18n="fleet_feat_ac">Климат-контроль (A/C)</span><span class="amaras-fleet-feat-pill">Wi-Fi 4G</span><span class="amaras-fleet-feat-pill" data-i18n="pill_water">Бутилированная вода</span><span class="amaras-fleet-feat-pill" data-i18n="pill_usb_row">USB на каждом ряду</span>
         </div>
 
         <!-- Price & Action Footer -->
         <div class="amaras-fleet-card-footer">
           <div class="amaras-fleet-price-box">
-            <span class="amaras-fleet-price-label">Аренда с водителем:</span>
+            <span class="amaras-fleet-price-label" data-i18n="fleet_price_lbl">Аренда с водителем:</span>
             <div class="amaras-fleet-price-val">
               <span class="amaras-price-prefix">от </span>
               <span class="amaras-tour-price" data-base-price="55000">55,000 AMD</span>
@@ -561,9 +554,7 @@
             <button type="button" class="amaras-fleet-book-btn" onclick="openFleetModal('mb_vclass', 'Mercedes-Benz V-Class VIP', 55000)">
               Забронировать
             </button>
-            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер">
-              Трансфер ➔
-            </a>
+            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер" data-i18n="fleet_transfer_link">Трансфер ➔</a>
           </div>
         </div>
       </div>
@@ -573,43 +564,43 @@
     <div class="amaras-fleet-card" data-category="minivan" data-seats="6">
       <div class="amaras-fleet-img-wrap">
         <img src="assets/fleet/alphard.jpg" alt="Toyota Alphard Executive" class="amaras-fleet-img" loading="lazy" />
-        <span class="amaras-fleet-badge badge-luxe">Минивэн Люкс</span>
+        <span class="amaras-fleet-badge badge-luxe" data-i18n="fleet_badge_luxe">Минивэн Люкс</span>
       </div>
       <div class="amaras-fleet-content">
         <div class="amaras-fleet-header">
           <h3 class="amaras-fleet-title">Toyota Alphard Executive</h3>
-          <p class="amaras-fleet-desc">Японский бизнес-минивэн с креслами Ottoman с поддержкой для ног, мягкой подвеской и двумя панорамными люками.</p>
+          <p class="amaras-fleet-desc" data-i18n="fleet_desc_alphard_lux">Японский бизнес-минивэн с креслами Ottoman с поддержкой для ног, мягкой подвеской и двумя панорамными люками.</p>
         </div>
         
         <!-- Specs Bar -->
         <div class="amaras-fleet-specs-bar">
           <div class="amaras-fleet-spec-item" title="Вместимость пассажиров">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <span>6 мест</span>
+            <span class="spec-seats" data-seats="6">6 мест</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Вместимость багажа">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-            <span>5 чемоданов</span>
+            <span class="spec-luggage" data-luggage="5">5 чемоданов</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Год выпуска">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            <span>2021 г.</span>
+            <span class="spec-year" data-year="2021">2021 г.</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Коробка передач">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-            <span>Автомат</span>
+            <span class="spec-gearbox" data-gearbox="auto">Автомат</span>
           </div>
         </div>
 
         <!-- Amenities -->
         <div class="amaras-fleet-features-list">
-          <span class="amaras-fleet-feat-pill">Климат-контроль</span><span class="amaras-fleet-feat-pill">Кресла Ottoman</span><span class="amaras-fleet-feat-pill">Wi-Fi 4G</span><span class="amaras-fleet-feat-pill">Бутилированная вода</span>
+          <span class="amaras-fleet-feat-pill" data-i18n="pill_ac_climate">Климат-контроль</span><span class="amaras-fleet-feat-pill" data-i18n="pill_ottoman">Кресла Ottoman</span><span class="amaras-fleet-feat-pill">Wi-Fi 4G</span><span class="amaras-fleet-feat-pill" data-i18n="pill_water">Бутилированная вода</span>
         </div>
 
         <!-- Price & Action Footer -->
         <div class="amaras-fleet-card-footer">
           <div class="amaras-fleet-price-box">
-            <span class="amaras-fleet-price-label">Аренда с водителем:</span>
+            <span class="amaras-fleet-price-label" data-i18n="fleet_price_lbl">Аренда с водителем:</span>
             <div class="amaras-fleet-price-val">
               <span class="amaras-price-prefix">от </span>
               <span class="amaras-tour-price" data-base-price="45000">45,000 AMD</span>
@@ -620,9 +611,7 @@
             <button type="button" class="amaras-fleet-book-btn" onclick="openFleetModal('toyota_alphard', 'Toyota Alphard Executive', 45000)">
               Забронировать
             </button>
-            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер">
-              Трансфер ➔
-            </a>
+            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер" data-i18n="fleet_transfer_link">Трансфер ➔</a>
           </div>
         </div>
       </div>
@@ -632,43 +621,43 @@
     <div class="amaras-fleet-card" data-category="minivan" data-seats="8">
       <div class="amaras-fleet-img-wrap">
         <img src="assets/fleet/starex.jpg" alt="Hyundai Grand Starex" class="amaras-fleet-img" loading="lazy" />
-        <span class="amaras-fleet-badge badge-comfort">Минивэн 8 мест</span>
+        <span class="amaras-fleet-badge badge-comfort" data-i18n="fleet_badge_comfort">Минивэн 8 мест</span>
       </div>
       <div class="amaras-fleet-content">
         <div class="amaras-fleet-header">
           <h3 class="amaras-fleet-title">Hyundai Grand Starex</h3>
-          <p class="amaras-fleet-desc">Вместительный и практичный минивэн для малых групп до 8 человек с просторным багажным отделением.</p>
+          <p class="amaras-fleet-desc" data-i18n="fleet_desc_starex_mid">Вместительный и практичный минивэн для малых групп до 8 человек с просторным багажным отделением.</p>
         </div>
         
         <!-- Specs Bar -->
         <div class="amaras-fleet-specs-bar">
           <div class="amaras-fleet-spec-item" title="Вместимость пассажиров">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <span>8 мест</span>
+            <span class="spec-seats" data-seats="8">8 мест</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Вместимость багажа">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-            <span>8 чемоданов</span>
+            <span class="spec-luggage" data-luggage="8">8 чемоданов</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Год выпуска">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            <span>2020 г.</span>
+            <span class="spec-year" data-year="2020">2020 г.</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Коробка передач">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-            <span>Автомат</span>
+            <span class="spec-gearbox" data-gearbox="auto">Автомат</span>
           </div>
         </div>
 
         <!-- Amenities -->
         <div class="amaras-fleet-features-list">
-          <span class="amaras-fleet-feat-pill">Кондиционер</span><span class="amaras-fleet-feat-pill">Просторный салон</span><span class="amaras-fleet-feat-pill">Вместительный багажник</span><span class="amaras-fleet-feat-pill">Бутилированная вода</span>
+          <span class="amaras-fleet-feat-pill" data-i18n="pill_ac_simple">Кондиционер</span><span class="amaras-fleet-feat-pill" data-i18n="pill_spacious">Просторный салон</span><span class="amaras-fleet-feat-pill" data-i18n="pill_trunk">Вместительный багажник</span><span class="amaras-fleet-feat-pill" data-i18n="pill_water">Бутилированная вода</span>
         </div>
 
         <!-- Price & Action Footer -->
         <div class="amaras-fleet-card-footer">
           <div class="amaras-fleet-price-box">
-            <span class="amaras-fleet-price-label">Аренда с водителем:</span>
+            <span class="amaras-fleet-price-label" data-i18n="fleet_price_lbl">Аренда с водителем:</span>
             <div class="amaras-fleet-price-val">
               <span class="amaras-price-prefix">от </span>
               <span class="amaras-tour-price" data-base-price="35000">35,000 AMD</span>
@@ -679,9 +668,7 @@
             <button type="button" class="amaras-fleet-book-btn" onclick="openFleetModal('hyundai_starex', 'Hyundai Grand Starex', 35000)">
               Забронировать
             </button>
-            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер">
-              Трансфер ➔
-            </a>
+            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер" data-i18n="fleet_transfer_link">Трансфер ➔</a>
           </div>
         </div>
       </div>
@@ -691,43 +678,43 @@
     <div class="amaras-fleet-card" data-category="minibus" data-seats="19">
       <div class="amaras-fleet-img-wrap">
         <img src="assets/fleet/sprinter.jpg" alt="Mercedes-Benz Sprinter 519 VIP" class="amaras-fleet-img" loading="lazy" />
-        <span class="amaras-fleet-badge badge-vip">Микроавтобус VIP</span>
+        <span class="amaras-fleet-badge badge-vip" data-i18n="fleet_badge_vip">Микроавтобус VIP</span>
       </div>
       <div class="amaras-fleet-content">
         <div class="amaras-fleet-header">
           <h3 class="amaras-fleet-title">Mercedes-Benz Sprinter 519 VIP</h3>
-          <p class="amaras-fleet-desc">Люксовый микроавтобус с анатомическими кожаными откидными креслами, профессиональным микрофоном и мультимедиа TV/DVD.</p>
+          <p class="amaras-fleet-desc" data-i18n="fleet_desc_sprinter_tour">Люксовый микроавтобус с анатомическими кожаными откидными креслами, профессиональным микрофоном и мультимедиа TV/DVD.</p>
         </div>
         
         <!-- Specs Bar -->
         <div class="amaras-fleet-specs-bar">
           <div class="amaras-fleet-spec-item" title="Вместимость пассажиров">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <span>19 мест</span>
+            <span class="spec-seats" data-seats="19">19 мест</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Вместимость багажа">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-            <span>18 чемоданов</span>
+            <span class="spec-luggage" data-luggage="18">18 чемоданов</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Год выпуска">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            <span>2023 г.</span>
+            <span class="spec-year" data-year="2023">2023 г.</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Коробка передач">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-            <span>Автомат</span>
+            <span class="spec-gearbox" data-gearbox="auto">Автомат</span>
           </div>
         </div>
 
         <!-- Amenities -->
         <div class="amaras-fleet-features-list">
-          <span class="amaras-fleet-feat-pill">Индивидуальный A/C</span><span class="amaras-fleet-feat-pill">Микрофон для гида</span><span class="amaras-fleet-feat-pill">TV/DVD мультимедиа</span><span class="amaras-fleet-feat-pill">Wi-Fi 4G</span>
+          <span class="amaras-fleet-feat-pill" data-i18n="pill_indiv_ac">Индивидуальный A/C</span><span class="amaras-fleet-feat-pill" data-i18n="pill_mic_guide">Микрофон для гида</span><span class="amaras-fleet-feat-pill" data-i18n="pill_tvdvd">TV/DVD мультимедиа</span><span class="amaras-fleet-feat-pill">Wi-Fi 4G</span>
         </div>
 
         <!-- Price & Action Footer -->
         <div class="amaras-fleet-card-footer">
           <div class="amaras-fleet-price-box">
-            <span class="amaras-fleet-price-label">Аренда с водителем:</span>
+            <span class="amaras-fleet-price-label" data-i18n="fleet_price_lbl">Аренда с водителем:</span>
             <div class="amaras-fleet-price-val">
               <span class="amaras-price-prefix">от </span>
               <span class="amaras-tour-price" data-base-price="65000">65,000 AMD</span>
@@ -738,9 +725,7 @@
             <button type="button" class="amaras-fleet-book-btn" onclick="openFleetModal('mb_sprinter_vip', 'Mercedes-Benz Sprinter 519 VIP', 65000)">
               Забронировать
             </button>
-            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер">
-              Трансфер ➔
-            </a>
+            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер" data-i18n="fleet_transfer_link">Трансфер ➔</a>
           </div>
         </div>
       </div>
@@ -750,43 +735,43 @@
     <div class="amaras-fleet-card" data-category="minibus" data-seats="20">
       <div class="amaras-fleet-img-wrap">
         <img src="assets/fleet/minibus.jpg" alt="Mercedes-Benz Sprinter Tourist" class="amaras-fleet-img" loading="lazy" />
-        <span class="amaras-fleet-badge badge-comfort">Микроавтобус</span>
+        <span class="amaras-fleet-badge badge-comfort" data-i18n="fleet_badge_comfort">Микроавтобус</span>
       </div>
       <div class="amaras-fleet-content">
         <div class="amaras-fleet-header">
           <h3 class="amaras-fleet-title">Mercedes-Benz Sprinter Tourist</h3>
-          <p class="amaras-fleet-desc">Надежный микроавтобус для групповых экскурсий по популярным маршрутам Армении с панорамным остеклением.</p>
+          <p class="amaras-fleet-desc" data-i18n="fleet_desc_sprinter_pan">Надежный микроавтобус для групповых экскурсий по популярным маршрутам Армении с панорамным остеклением.</p>
         </div>
         
         <!-- Specs Bar -->
         <div class="amaras-fleet-specs-bar">
           <div class="amaras-fleet-spec-item" title="Вместимость пассажиров">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <span>20 мест</span>
+            <span class="spec-seats" data-seats="20">20 мест</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Вместимость багажа">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-            <span>15 чемоданов</span>
+            <span class="spec-luggage" data-luggage="15">15 чемоданов</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Год выпуска">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            <span>2021 г.</span>
+            <span class="spec-year" data-year="2021">2021 г.</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Коробка передач">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-            <span>Механика/Автомат</span>
+            <span class="spec-gearbox" data-gearbox="mixed">Механика/Автомат</span>
           </div>
         </div>
 
         <!-- Amenities -->
         <div class="amaras-fleet-features-list">
-          <span class="amaras-fleet-feat-pill">Кондиционер всего салона</span><span class="amaras-fleet-feat-pill">Микрофон гида</span><span class="amaras-fleet-feat-pill">Полки для ручной клади</span><span class="amaras-fleet-feat-pill">Бутилированная вода</span>
+          <span class="amaras-fleet-feat-pill" data-i18n="pill_ac_full">Кондиционер всего салона</span><span class="amaras-fleet-feat-pill" data-i18n="pill_mic">Микрофон гида</span><span class="amaras-fleet-feat-pill" data-i18n="pill_luggage_shelves">Полки для ручной клади</span><span class="amaras-fleet-feat-pill" data-i18n="pill_water">Бутилированная вода</span>
         </div>
 
         <!-- Price & Action Footer -->
         <div class="amaras-fleet-card-footer">
           <div class="amaras-fleet-price-box">
-            <span class="amaras-fleet-price-label">Аренда с водителем:</span>
+            <span class="amaras-fleet-price-label" data-i18n="fleet_price_lbl">Аренда с водителем:</span>
             <div class="amaras-fleet-price-val">
               <span class="amaras-price-prefix">от </span>
               <span class="amaras-tour-price" data-base-price="55000">55,000 AMD</span>
@@ -797,9 +782,7 @@
             <button type="button" class="amaras-fleet-book-btn" onclick="openFleetModal('mb_sprinter_tourist', 'Mercedes-Benz Sprinter Tourist', 55000)">
               Забронировать
             </button>
-            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер">
-              Трансфер ➔
-            </a>
+            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер" data-i18n="fleet_transfer_link">Трансфер ➔</a>
           </div>
         </div>
       </div>
@@ -809,43 +792,43 @@
     <div class="amaras-fleet-card" data-category="bus" data-seats="53">
       <div class="amaras-fleet-img-wrap">
         <img src="assets/fleet/coach.jpg" alt="Setra TopClass S 515 HD" class="amaras-fleet-img" loading="lazy" />
-        <span class="amaras-fleet-badge badge-vip">Туристический автобус</span>
+        <span class="amaras-fleet-badge badge-vip" data-i18n="fleet_badge_tourist_bus">Туристический автобус</span>
       </div>
       <div class="amaras-fleet-content">
         <div class="amaras-fleet-header">
           <h3 class="amaras-fleet-title">Setra TopClass S 515 HD</h3>
-          <p class="amaras-fleet-desc">Флагманский лайнер европейского класса для больших групп до 53 человек: климат с фильтрацией, холодильник, мониторы.</p>
+          <p class="amaras-fleet-desc" data-i18n="fleet_desc_coach_53">Флагманский лайнер европейского класса для больших групп до 53 человек: климат с фильтрацией, холодильник, мониторы.</p>
         </div>
         
         <!-- Specs Bar -->
         <div class="amaras-fleet-specs-bar">
           <div class="amaras-fleet-spec-item" title="Вместимость пассажиров">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <span>53 мест</span>
+            <span class="spec-seats" data-seats="53">53 мест</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Вместимость багажа">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-            <span>55 чемоданов</span>
+            <span class="spec-luggage" data-luggage="55">55 чемоданов</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Год выпуска">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            <span>2022 г.</span>
+            <span class="spec-year" data-year="2022">2022 г.</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Коробка передач">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-            <span>Автомат</span>
+            <span class="spec-gearbox" data-gearbox="auto">Автомат</span>
           </div>
         </div>
 
         <!-- Amenities -->
         <div class="amaras-fleet-features-list">
-          <span class="amaras-fleet-feat-pill">Климат-контроль с фильтрацией</span><span class="amaras-fleet-feat-pill">Кресла с регулировкой в проход</span><span class="amaras-fleet-feat-pill">Микрофон гида</span><span class="amaras-fleet-feat-pill">TV/DVD мониторы</span>
+          <span class="amaras-fleet-feat-pill" data-i18n="pill_ac_filtered">Климат-контроль с фильтрацией</span><span class="amaras-fleet-feat-pill" data-i18n="pill_aisle_adjust">Кресла с регулировкой в проход</span><span class="amaras-fleet-feat-pill" data-i18n="pill_mic">Микрофон гида</span><span class="amaras-fleet-feat-pill" data-i18n="pill_tvdvd_mon">TV/DVD мониторы</span>
         </div>
 
         <!-- Price & Action Footer -->
         <div class="amaras-fleet-card-footer">
           <div class="amaras-fleet-price-box">
-            <span class="amaras-fleet-price-label">Аренда с водителем:</span>
+            <span class="amaras-fleet-price-label" data-i18n="fleet_price_lbl">Аренда с водителем:</span>
             <div class="amaras-fleet-price-val">
               <span class="amaras-price-prefix">от </span>
               <span class="amaras-tour-price" data-base-price="140000">140,000 AMD</span>
@@ -856,9 +839,7 @@
             <button type="button" class="amaras-fleet-book-btn" onclick="openFleetModal('setra_travego', 'Setra TopClass S 515 HD', 140000)">
               Забронировать
             </button>
-            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер">
-              Трансфер ➔
-            </a>
+            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер" data-i18n="fleet_transfer_link">Трансфер ➔</a>
           </div>
         </div>
       </div>
@@ -868,43 +849,43 @@
     <div class="amaras-fleet-card" data-category="bus" data-seats="33">
       <div class="amaras-fleet-img-wrap">
         <img src="assets/fleet/bus.jpg" alt="Isuzu Turquoise Midi Bus" class="amaras-fleet-img" loading="lazy" />
-        <span class="amaras-fleet-badge badge-comfort">Миди-автобус</span>
+        <span class="amaras-fleet-badge badge-comfort" data-i18n="fleet_badge_midibus">Миди-автобус</span>
       </div>
       <div class="amaras-fleet-content">
         <div class="amaras-fleet-header">
           <h3 class="amaras-fleet-title">Isuzu Turquoise Midi Bus</h3>
-          <p class="amaras-fleet-desc">Манёвренный автобус средней вместимости (до 33 человек), идеально приспособленный для горных серпантинов Армении.</p>
+          <p class="amaras-fleet-desc" data-i18n="fleet_desc_bus_33">Манёвренный автобус средней вместимости (до 33 человек), идеально приспособленный для горных серпантинов Армении.</p>
         </div>
         
         <!-- Specs Bar -->
         <div class="amaras-fleet-specs-bar">
           <div class="amaras-fleet-spec-item" title="Вместимость пассажиров">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <span>33 мест</span>
+            <span class="spec-seats" data-seats="33">33 мест</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Вместимость багажа">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-            <span>30 чемоданов</span>
+            <span class="spec-luggage" data-luggage="30">30 чемоданов</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Год выпуска">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            <span>2022 г.</span>
+            <span class="spec-year" data-year="2022">2022 г.</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Коробка передач">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-            <span>Механика</span>
+            <span class="spec-gearbox" data-gearbox="manual">Механика</span>
           </div>
         </div>
 
         <!-- Amenities -->
         <div class="amaras-fleet-features-list">
-          <span class="amaras-fleet-feat-pill">Кондиционер</span><span class="amaras-fleet-feat-pill">Микрофон экскурсовода</span><span class="amaras-fleet-feat-pill">Панорамные окна</span><span class="amaras-fleet-feat-pill">Ремни безопасности</span>
+          <span class="amaras-fleet-feat-pill" data-i18n="pill_ac_simple">Кондиционер</span><span class="amaras-fleet-feat-pill" data-i18n="pill_mic_tour">Микрофон экскурсовода</span><span class="amaras-fleet-feat-pill" data-i18n="pill_panoramic_windows">Панорамные окна</span><span class="amaras-fleet-feat-pill" data-i18n="pill_seatbelts">Ремни безопасности</span>
         </div>
 
         <!-- Price & Action Footer -->
         <div class="amaras-fleet-card-footer">
           <div class="amaras-fleet-price-box">
-            <span class="amaras-fleet-price-label">Аренда с водителем:</span>
+            <span class="amaras-fleet-price-label" data-i18n="fleet_price_lbl">Аренда с водителем:</span>
             <div class="amaras-fleet-price-val">
               <span class="amaras-price-prefix">от </span>
               <span class="amaras-tour-price" data-base-price="95000">95,000 AMD</span>
@@ -915,9 +896,7 @@
             <button type="button" class="amaras-fleet-book-btn" onclick="openFleetModal('isuzu_midi', 'Isuzu Turquoise Midi Bus', 95000)">
               Забронировать
             </button>
-            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер">
-              Трансфер ➔
-            </a>
+            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер" data-i18n="fleet_transfer_link">Трансфер ➔</a>
           </div>
         </div>
       </div>
@@ -927,43 +906,43 @@
     <div class="amaras-fleet-card" data-category="suv" data-seats="4">
       <div class="amaras-fleet-img-wrap">
         <img src="assets/fleet/suv.jpg" alt="Toyota Land Cruiser Prado 4x4" class="amaras-fleet-img" loading="lazy" />
-        <span class="amaras-fleet-badge badge-adventure">Внедорожник 4x4</span>
+        <span class="amaras-fleet-badge badge-adventure" data-i18n="fleet_badge_adventure">Внедорожник 4x4</span>
       </div>
       <div class="amaras-fleet-content">
         <div class="amaras-fleet-header">
           <h3 class="amaras-fleet-title">Toyota Land Cruiser Prado 4x4</h3>
-          <p class="amaras-fleet-desc">Легендарный японский внедорожник с постоянным полным приводом для джип-туров, ущелий и горных перевалов.</p>
+          <p class="amaras-fleet-desc" data-i18n="fleet_desc_landcruiser">Легендарный японский внедорожник с постоянным полным приводом для джип-туров, ущелий и горных перевалов.</p>
         </div>
         
         <!-- Specs Bar -->
         <div class="amaras-fleet-specs-bar">
           <div class="amaras-fleet-spec-item" title="Вместимость пассажиров">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <span>4 мест</span>
+            <span class="spec-seats" data-seats="4">4 мест</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Вместимость багажа">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-            <span>4 чемоданов</span>
+            <span class="spec-luggage" data-luggage="4">4 чемоданов</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Год выпуска">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            <span>2021 г.</span>
+            <span class="spec-year" data-year="2021">2021 г.</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Коробка передач">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-            <span>Автомат 4WD</span>
+            <span class="spec-gearbox" data-gearbox="auto_4wd">Автомат 4WD</span>
           </div>
         </div>
 
         <!-- Amenities -->
         <div class="amaras-fleet-features-list">
-          <span class="amaras-fleet-feat-pill">Полный привод 4WD</span><span class="amaras-fleet-feat-pill">Высокий дорожный просвет</span><span class="amaras-fleet-feat-pill">Кожаный салон</span><span class="amaras-fleet-feat-pill">Климат-контроль</span>
+          <span class="amaras-fleet-feat-pill" data-i18n="fleet_feat_4wd">Полный привод 4WD</span><span class="amaras-fleet-feat-pill" data-i18n="pill_high_clearance">Высокий дорожный просвет</span><span class="amaras-fleet-feat-pill" data-i18n="fleet_feat_leather">Кожаный салон</span><span class="amaras-fleet-feat-pill" data-i18n="pill_ac_climate">Климат-контроль</span>
         </div>
 
         <!-- Price & Action Footer -->
         <div class="amaras-fleet-card-footer">
           <div class="amaras-fleet-price-box">
-            <span class="amaras-fleet-price-label">Аренда с водителем:</span>
+            <span class="amaras-fleet-price-label" data-i18n="fleet_price_lbl">Аренда с водителем:</span>
             <div class="amaras-fleet-price-val">
               <span class="amaras-price-prefix">от </span>
               <span class="amaras-tour-price" data-base-price="45000">45,000 AMD</span>
@@ -974,9 +953,7 @@
             <button type="button" class="amaras-fleet-book-btn" onclick="openFleetModal('toyota_prado', 'Toyota Land Cruiser Prado 4x4', 45000)">
               Забронировать
             </button>
-            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер">
-              Трансфер ➔
-            </a>
+            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер" data-i18n="fleet_transfer_link">Трансфер ➔</a>
           </div>
         </div>
       </div>
@@ -986,43 +963,43 @@
     <div class="amaras-fleet-card" data-category="suv" data-seats="4">
       <div class="amaras-fleet-img-wrap">
         <img src="assets/fleet/lexus.jpg" alt="Lexus GX 460 Luxury 4x4" class="amaras-fleet-img" loading="lazy" />
-        <span class="amaras-fleet-badge badge-vip">Премиум 4x4</span>
+        <span class="amaras-fleet-badge badge-vip" data-i18n="fleet_badge_premium_suv">Премиум 4x4</span>
       </div>
       <div class="amaras-fleet-content">
         <div class="amaras-fleet-header">
           <h3 class="amaras-fleet-title">Lexus GX 460 Luxury 4x4</h3>
-          <p class="amaras-fleet-desc">Премиальный полноприводный внедорожник с регулируемой пневмоподвеской и премиум акустикой Mark Levinson.</p>
+          <p class="amaras-fleet-desc" data-i18n="fleet_desc_lexus_lx">Премиальный полноприводный внедорожник с регулируемой пневмоподвеской и премиум акустикой Mark Levinson.</p>
         </div>
         
         <!-- Specs Bar -->
         <div class="amaras-fleet-specs-bar">
           <div class="amaras-fleet-spec-item" title="Вместимость пассажиров">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <span>4 мест</span>
+            <span class="spec-seats" data-seats="4">4 мест</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Вместимость багажа">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-            <span>4 чемоданов</span>
+            <span class="spec-luggage" data-luggage="4">4 чемоданов</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Год выпуска">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            <span>2022 г.</span>
+            <span class="spec-year" data-year="2022">2022 г.</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Коробка передач">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-            <span>Автомат 4WD</span>
+            <span class="spec-gearbox" data-gearbox="auto_4wd">Автомат 4WD</span>
           </div>
         </div>
 
         <!-- Amenities -->
         <div class="amaras-fleet-features-list">
-          <span class="amaras-fleet-feat-pill">Пневмоподвеска</span><span class="amaras-fleet-feat-pill">Полный привод 4WD</span><span class="amaras-fleet-feat-pill">Mark Levinson звук</span><span class="amaras-fleet-feat-pill">Вентиляция и подогрев сидений</span>
+          <span class="amaras-fleet-feat-pill" data-i18n="pill_air_susp">Пневмоподвеска</span><span class="amaras-fleet-feat-pill" data-i18n="fleet_feat_4wd">Полный привод 4WD</span><span class="amaras-fleet-feat-pill" data-i18n="pill_sound_levinson">Mark Levinson звук</span><span class="amaras-fleet-feat-pill" data-i18n="pill_vent_heat">Вентиляция и подогрев сидений</span>
         </div>
 
         <!-- Price & Action Footer -->
         <div class="amaras-fleet-card-footer">
           <div class="amaras-fleet-price-box">
-            <span class="amaras-fleet-price-label">Аренда с водителем:</span>
+            <span class="amaras-fleet-price-label" data-i18n="fleet_price_lbl">Аренда с водителем:</span>
             <div class="amaras-fleet-price-val">
               <span class="amaras-price-prefix">от </span>
               <span class="amaras-tour-price" data-base-price="55000">55,000 AMD</span>
@@ -1033,9 +1010,7 @@
             <button type="button" class="amaras-fleet-book-btn" onclick="openFleetModal('lexus_gx', 'Lexus GX 460 Luxury 4x4', 55000)">
               Забронировать
             </button>
-            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер">
-              Трансфер ➔
-            </a>
+            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер" data-i18n="fleet_transfer_link">Трансфер ➔</a>
           </div>
         </div>
       </div>
@@ -1045,43 +1020,43 @@
     <div class="amaras-fleet-card" data-category="sedan_premium" data-seats="3">
       <div class="amaras-fleet-img-wrap">
         <img src="assets/fleet/premium.jpg" alt="Mercedes-Benz S-Class" class="amaras-fleet-img" loading="lazy" />
-        <span class="amaras-fleet-badge badge-vip">Представительский VIP</span>
+        <span class="amaras-fleet-badge badge-vip" data-i18n="fleet_badge_exec_vip">Представительский VIP</span>
       </div>
       <div class="amaras-fleet-content">
         <div class="amaras-fleet-header">
           <h3 class="amaras-fleet-title">Mercedes-Benz S-Class</h3>
-          <p class="amaras-fleet-desc">Флагманский седан высшего класса для VIP-гостей, официальных встреч в аэропорту, свадебных кортежей и делегаций.</p>
+          <p class="amaras-fleet-desc" data-i18n="fleet_desc_sclass">Флагманский седан высшего класса для VIP-гостей, официальных встреч в аэропорту, свадебных кортежей и делегаций.</p>
         </div>
         
         <!-- Specs Bar -->
         <div class="amaras-fleet-specs-bar">
           <div class="amaras-fleet-spec-item" title="Вместимость пассажиров">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <span>3 мест</span>
+            <span class="spec-seats" data-seats="3">3 мест</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Вместимость багажа">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-            <span>3 чемоданов</span>
+            <span class="spec-luggage" data-luggage="3">3 чемоданов</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Год выпуска">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            <span>2022 г.</span>
+            <span class="spec-year" data-year="2022">2022 г.</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Коробка передач">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-            <span>Автомат</span>
+            <span class="spec-gearbox" data-gearbox="auto">Автомат</span>
           </div>
         </div>
 
         <!-- Amenities -->
         <div class="amaras-fleet-features-list">
-          <span class="amaras-fleet-feat-pill">Раздельные задние кресла с массажем</span><span class="amaras-fleet-feat-pill">Максимальная шумоизоляция</span><span class="amaras-fleet-feat-pill">4-зонный климат-контроль</span><span class="amaras-fleet-feat-pill">Шторки приватности</span>
+          <span class="amaras-fleet-feat-pill" data-i18n="pill_massage_seats">Раздельные задние кресла с массажем</span><span class="amaras-fleet-feat-pill" data-i18n="pill_soundproof">Максимальная шумоизоляция</span><span class="amaras-fleet-feat-pill" data-i18n="pill_4zone">4-зонный климат-контроль</span><span class="amaras-fleet-feat-pill" data-i18n="pill_privacy_curtains">Шторки приватности</span>
         </div>
 
         <!-- Price & Action Footer -->
         <div class="amaras-fleet-card-footer">
           <div class="amaras-fleet-price-box">
-            <span class="amaras-fleet-price-label">Аренда с водителем:</span>
+            <span class="amaras-fleet-price-label" data-i18n="fleet_price_lbl">Аренда с водителем:</span>
             <div class="amaras-fleet-price-val">
               <span class="amaras-price-prefix">от </span>
               <span class="amaras-tour-price" data-base-price="90000">90,000 AMD</span>
@@ -1092,9 +1067,7 @@
             <button type="button" class="amaras-fleet-book-btn" onclick="openFleetModal('mb_sclass', 'Mercedes-Benz S-Class', 90000)">
               Забронировать
             </button>
-            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер">
-              Трансфер ➔
-            </a>
+            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер" data-i18n="fleet_transfer_link">Трансфер ➔</a>
           </div>
         </div>
       </div>
@@ -1104,43 +1077,43 @@
     <div class="amaras-fleet-card" data-category="sedan_premium" data-seats="4">
       <div class="amaras-fleet-img-wrap">
         <img src="assets/fleet/eclass.jpg" alt="Mercedes-Benz E-Class" class="amaras-fleet-img" loading="lazy" />
-        <span class="amaras-fleet-badge badge-luxe">Бизнес-класс</span>
+        <span class="amaras-fleet-badge badge-luxe" data-i18n="fleet_badge_business">Бизнес-класс</span>
       </div>
       <div class="amaras-fleet-content">
         <div class="amaras-fleet-header">
           <h3 class="amaras-fleet-title">Mercedes-Benz E-Class</h3>
-          <p class="amaras-fleet-desc">Элегантный немецкий бизнес-седан с высоким комфортом, тишиной в поездке и плавным ходом.</p>
+          <p class="amaras-fleet-desc" data-i18n="fleet_desc_eclass_mid">Элегантный немецкий бизнес-седан с высоким комфортом, тишиной в поездке и плавным ходом.</p>
         </div>
         
         <!-- Specs Bar -->
         <div class="amaras-fleet-specs-bar">
           <div class="amaras-fleet-spec-item" title="Вместимость пассажиров">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <span>4 мест</span>
+            <span class="spec-seats" data-seats="4">4 мест</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Вместимость багажа">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-            <span>3 чемоданов</span>
+            <span class="spec-luggage" data-luggage="3">3 чемоданов</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Год выпуска">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            <span>2021 г.</span>
+            <span class="spec-year" data-year="2021">2021 г.</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Коробка передач">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-            <span>Автомат</span>
+            <span class="spec-gearbox" data-gearbox="auto">Автомат</span>
           </div>
         </div>
 
         <!-- Amenities -->
         <div class="amaras-fleet-features-list">
-          <span class="amaras-fleet-feat-pill">Кожаный салон</span><span class="amaras-fleet-feat-pill">2-зонный климат-контроль</span><span class="amaras-fleet-feat-pill">Wi-Fi 4G</span><span class="amaras-fleet-feat-pill">Бутилированная вода</span>
+          <span class="amaras-fleet-feat-pill" data-i18n="fleet_feat_leather">Кожаный салон</span><span class="amaras-fleet-feat-pill" data-i18n="pill_2zone">2-зонный климат-контроль</span><span class="amaras-fleet-feat-pill">Wi-Fi 4G</span><span class="amaras-fleet-feat-pill" data-i18n="pill_water">Бутилированная вода</span>
         </div>
 
         <!-- Price & Action Footer -->
         <div class="amaras-fleet-card-footer">
           <div class="amaras-fleet-price-box">
-            <span class="amaras-fleet-price-label">Аренда с водителем:</span>
+            <span class="amaras-fleet-price-label" data-i18n="fleet_price_lbl">Аренда с водителем:</span>
             <div class="amaras-fleet-price-val">
               <span class="amaras-price-prefix">от </span>
               <span class="amaras-tour-price" data-base-price="45000">45,000 AMD</span>
@@ -1151,9 +1124,7 @@
             <button type="button" class="amaras-fleet-book-btn" onclick="openFleetModal('mb_eclass', 'Mercedes-Benz E-Class', 45000)">
               Забронировать
             </button>
-            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер">
-              Трансфер ➔
-            </a>
+            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер" data-i18n="fleet_transfer_link">Трансфер ➔</a>
           </div>
         </div>
       </div>
@@ -1163,43 +1134,43 @@
     <div class="amaras-fleet-card" data-category="sedan" data-seats="4">
       <div class="amaras-fleet-img-wrap">
         <img src="assets/fleet/sedan.jpg" alt="Toyota Camry 70" class="amaras-fleet-img" loading="lazy" />
-        <span class="amaras-fleet-badge badge-comfort">Комфорт-класс</span>
+        <span class="amaras-fleet-badge badge-comfort" data-i18n="fleet_badge_comfort">Комфорт-класс</span>
       </div>
       <div class="amaras-fleet-content">
         <div class="amaras-fleet-header">
           <h3 class="amaras-fleet-title">Toyota Camry 70</h3>
-          <p class="amaras-fleet-desc">Популярный надежный седан с просторным задним рядом, эффективным кондиционером и большим багажником.</p>
+          <p class="amaras-fleet-desc" data-i18n="fleet_desc_octavia">Популярный надежный седан с просторным задним рядом, эффективным кондиционером и большим багажником.</p>
         </div>
         
         <!-- Specs Bar -->
         <div class="amaras-fleet-specs-bar">
           <div class="amaras-fleet-spec-item" title="Вместимость пассажиров">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <span>4 мест</span>
+            <span class="spec-seats" data-seats="4">4 мест</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Вместимость багажа">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-            <span>3 чемоданов</span>
+            <span class="spec-luggage" data-luggage="3">3 чемоданов</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Год выпуска">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            <span>2022 г.</span>
+            <span class="spec-year" data-year="2022">2022 г.</span>
           </div>
           <div class="amaras-fleet-spec-item" title="Коробка передач">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-            <span>Автомат</span>
+            <span class="spec-gearbox" data-gearbox="auto">Автомат</span>
           </div>
         </div>
 
         <!-- Amenities -->
         <div class="amaras-fleet-features-list">
-          <span class="amaras-fleet-feat-pill">Климат-контроль</span><span class="amaras-fleet-feat-pill">Просторный задний ряд</span><span class="amaras-fleet-feat-pill">Вместительный багажник</span><span class="amaras-fleet-feat-pill">Бутилированная вода</span>
+          <span class="amaras-fleet-feat-pill" data-i18n="pill_ac_climate">Климат-контроль</span><span class="amaras-fleet-feat-pill" data-i18n="pill_spacious_rear">Просторный задний ряд</span><span class="amaras-fleet-feat-pill" data-i18n="pill_trunk">Вместительный багажник</span><span class="amaras-fleet-feat-pill" data-i18n="pill_water">Бутилированная вода</span>
         </div>
 
         <!-- Price & Action Footer -->
         <div class="amaras-fleet-card-footer">
           <div class="amaras-fleet-price-box">
-            <span class="amaras-fleet-price-label">Аренда с водителем:</span>
+            <span class="amaras-fleet-price-label" data-i18n="fleet_price_lbl">Аренда с водителем:</span>
             <div class="amaras-fleet-price-val">
               <span class="amaras-price-prefix">от </span>
               <span class="amaras-tour-price" data-base-price="30000">30,000 AMD</span>
@@ -1210,9 +1181,7 @@
             <button type="button" class="amaras-fleet-book-btn" onclick="openFleetModal('toyota_camry', 'Toyota Camry 70', 30000)">
               Забронировать
             </button>
-            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер">
-              Трансфер ➔
-            </a>
+            <a href="transfers.html" class="amaras-fleet-transfer-link" title="Рассчитать трансфер" data-i18n="fleet_transfer_link">Трансфер ➔</a>
           </div>
         </div>
       </div>
@@ -1222,37 +1191,37 @@
 
     <!-- EMPTY STATE -->
     <div class="amaras-fleet-empty" id="fleetEmptyState" style="display: none;">
-      <div class="amaras-empty-title">Автомобили по выбранным фильтрам не найдены</div>
-      <button type="button" class="amaras-fleet-book-btn" onclick="resetFleetFilters()">Сбросить фильтры</button>
+      <div class="amaras-empty-title" data-i18n="fleet_empty_title">Автомобили по выбранным фильтрам не найдены</div>
+      <button type="button" class="amaras-fleet-book-btn" onclick="resetFleetFilters()" data-i18n="fleet_btn_reset">Сбросить фильтры</button>
     </div>
 
     <!-- FLEET ADVANTAGES BLOCK -->
     <div class="amaras-fleet-advantages">
       <div class="amaras-transfer-calc-head">
-        <h2 class="amaras-transfer-calc-title">Почему выбирают наш транспорт</h2>
+        <h2 class="amaras-transfer-calc-title" data-i18n="fleet_why_title">Почему выбирают наш транспорт</h2>
         <div class="amaras-transfer-accent-bar"></div>
       </div>
 
       <div class="amaras-fleet-adv-grid">
         <div class="amaras-fleet-adv-card">
           <div class="amaras-adv-num">01</div>
-          <h4 class="amaras-adv-title">Собственная станция ТО</h4>
-          <p class="amaras-adv-desc">Каждый автомобиль проходит обязательный технический осмотр и диагностику перед выездом на маршрут.</p>
+          <h4 class="amaras-adv-title" data-i18n="fleet_adv_1_title">Собственная станция ТО</h4>
+          <p class="amaras-adv-desc" data-i18n="fleet_adv_1_desc">Каждый автомобиль проходит обязательный технический осмотр и диагностику перед выездом на маршрут.</p>
         </div>
         <div class="amaras-fleet-adv-card">
           <div class="amaras-adv-num">02</div>
-          <h4 class="amaras-adv-title">Безупречная чистота</h4>
-          <p class="amaras-adv-desc">Комплексная мойка и озонирование салона перед каждой поездкой. В машине всегда свежо, чисто и приятно.</p>
+          <h4 class="amaras-adv-title" data-i18n="fleet_adv_2_title">Безупречная чистота</h4>
+          <p class="amaras-adv-desc" data-i18n="fleet_adv_2_desc">Комплексная мойка и озонирование салона перед каждой поездкой. В машине всегда свежо, чисто и приятно.</p>
         </div>
         <div class="amaras-fleet-adv-card">
           <div class="amaras-adv-num">03</div>
-          <h4 class="amaras-adv-title">Забота о гостях</h4>
-          <p class="amaras-adv-desc">В каждой машине: скоростной Wi-Fi 4G, прохладная бутилированная вода, влажные салфетки, зарядки для всех телефонов.</p>
+          <h4 class="amaras-adv-title" data-i18n="fleet_adv_3_title">Забота о гостях</h4>
+          <p class="amaras-adv-desc" data-i18n="fleet_adv_3_desc">В каждой машине: скоростной Wi-Fi 4G, прохладная бутилированная вода, влажные салфетки, зарядки для всех телефонов.</p>
         </div>
         <div class="amaras-fleet-adv-card">
           <div class="amaras-adv-num">04</div>
-          <h4 class="amaras-adv-title">Водители-профессионалы</h4>
-          <p class="amaras-adv-desc">Вежливые некурящие водители со стажем вождения по горным серпантинам Армении от 8 лет, владеющие русским и английским языками.</p>
+          <h4 class="amaras-adv-title" data-i18n="fleet_adv_4_title">Водители-профессионалы</h4>
+          <p class="amaras-adv-desc" data-i18n="fleet_adv_4_desc">Вежливые некурящие водители со стажем вождения по горным серпантинам Армении от 8 лет, владеющие русским и английским языками.</p>
         </div>
       </div>
     </div>
@@ -1260,12 +1229,10 @@
     <!-- CTA BANNER -->
     <div class="amaras-fleet-cta-banner">
       <div class="amaras-cta-content">
-        <h3 class="amaras-cta-title">Нужен индивидуальный расчет для группы или особого события?</h3>
-        <p class="amaras-cta-desc">Свяжитесь с нашим менеджером в WhatsApp — мы подберем идеальный транспорт под ваш маршрут, количество гостей и бюджет за 5 минут.</p>
+        <h3 class="amaras-cta-title" data-i18n="fleet_cta_box_title">Нужен индивидуальный расчет для группы или особого события?</h3>
+        <p class="amaras-cta-desc" data-i18n="fleet_cta_box_desc">Свяжитесь с нашим менеджером в WhatsApp — мы подберем идеальный транспорт под ваш маршрут, количество гостей и бюджет за 5 минут.</p>
       </div>
-      <a href="https://wa.me/37499250525?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%B4%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D1%8C%20%D1%82%D1%80%D0%B0%D0%BD%D1%81%D0%BF%D0%BE%D1%80%D1%82%20%D0%B2%20Amaras%20Tour." target="_blank" class="amaras-cta-wa-btn">
-        Написать в WhatsApp
-      </a>
+      <a href="https://wa.me/37499250525?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%B4%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D1%8C%20%D1%82%D1%80%D0%B0%D0%BD%D1%81%D0%BF%D0%BE%D1%80%D1%82%20%D0%B2%20Amaras%20Tour." target="_blank" class="amaras-cta-wa-btn" data-i18n="fleet_cta_wa_btn">Написать в WhatsApp</a>
     </div>
 
   </div>
@@ -1276,7 +1243,7 @@
   <div class="amaras-transfer-modal-card">
     <button type="button" class="amaras-modal-close" onclick="closeFleetModal()" aria-label="Закрыть">✕</button>
     <div class="amaras-modal-header">
-      <h3 class="amaras-modal-title">Бронирование транспорта</h3>
+      <h3 class="amaras-modal-title" data-i18n="fleet_modal_trans_title">Бронирование транспорта</h3>
       <p class="amaras-modal-sub" id="fleetModalVehName">Mercedes-Benz V-Class</p>
     </div>
 
@@ -1287,39 +1254,39 @@
 
       <form id="fleetOrderForm" onsubmit="submitFleetBooking(event)">
         <div class="amaras-form-field">
-          <label class="amaras-form-label">Дата и время начала аренды*</label>
+          <label class="amaras-form-label" data-i18n="lbl_rent_datetime">Дата и время начала аренды*</label>
           <input type="datetime-local" class="amaras-form-input" id="fleetModalDate" required />
         </div>
 
         <div class="amaras-form-field">
-          <label class="amaras-form-label">Количество пассажиров*</label>
+          <label class="amaras-form-label" data-i18n="lbl_pax_count">Количество пассажиров*</label>
           <input type="number" class="amaras-form-input" id="fleetModalPax" min="1" max="55" placeholder="Например: 4" required />
         </div>
 
         <div class="amaras-form-field">
-          <label class="amaras-form-label">Цель поездки / Маршрут*</label>
+          <label class="amaras-form-label" data-i18n="lbl_trip_purpose">Цель поездки / Маршрут*</label>
           <input type="text" class="amaras-form-input" id="fleetModalRoute" placeholder="Например: Экскурсия Севан — Дилижан на 1 день" required />
         </div>
 
         <div class="amaras-form-field">
-          <label class="amaras-form-label">Ваше имя и фамилия*</label>
+          <label class="amaras-form-label" data-i18n="lbl_name">Ваше имя и фамилия*</label>
           <input type="text" class="amaras-form-input" id="fleetModalName" placeholder="Артур Арутюнян" required />
         </div>
 
         <div class="amaras-form-field">
-          <label class="amaras-form-label">Телефон для связи (WhatsApp / Telegram)*</label>
+          <label class="amaras-form-label" data-i18n="lbl_phone">Телефон для связи (WhatsApp / Telegram)*</label>
           <input type="tel" class="amaras-form-input" id="fleetModalPhone" placeholder="+374 99 000 000" required />
         </div>
 
         <div class="amaras-form-field">
-          <label class="amaras-form-label">Комментарий / пожелания</label>
+          <label class="amaras-form-label" data-i18n="lbl_notes">Комментарий / пожелания</label>
           <textarea class="amaras-form-input" id="fleetModalNotes" rows="2" placeholder="Укажите особые пожелания или детали рейса"></textarea>
         </div>
 
         <div class="amaras-modal-actions">
           <button type="submit" class="amaras-btn-primary is-wa">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.072-2.18-.545-1.9-1.077-3.125-3.003-3.22-3.13-.095-.126-.774-1.03-.774-1.963 0-.933.49-1.39.664-1.58.174-.189.38-.237.506-.237.127 0 .253.002.364.007.117.005.274-.044.428.327.16.386.544 1.332.593 1.431.049.099.083.215.016.347-.067.132-.1.215-.198.33-.099.115-.208.257-.297.345-.1.099-.204.207-.088.406.116.199.516.852 1.109 1.38.763.68 1.407.89 1.606.989.199.099.315.083.431-.05.116-.133.498-.58.63-.778.133-.199.265-.166.447-.099.182.066 1.159.546 1.358.646.199.099.331.149.38.232.05.083.05.479-.094.884z"/></svg>
-            <span>Забронировать в WhatsApp</span>
+            <span data-i18n="modal_book_wa">Забронировать в WhatsApp</span>
           </button>
           <button type="button" class="amaras-btn-secondary" onclick="addFleetToCart()">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
@@ -1761,7 +1728,7 @@
 <span>WhatsApp</span>
 <svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg>
 </div>
-<div class="amaras-channel-sub">+374 99 250 525 · Быстрый ответ</div>
+<div class="amaras-channel-sub" data-i18n="contact_quick_reply">+374 99 250 525 · Быстрый ответ</div>
 </div>
 </a>
 <!-- Telegram -->
@@ -1777,7 +1744,7 @@
 <span>Telegram</span>
 <svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg>
 </div>
-<div class="amaras-channel-sub">@amarastour · Онлайн</div>
+<div class="amaras-channel-sub" data-i18n="contact_online">@amarastour · Онлайн</div>
 </div>
 </a>
 <!-- Instagram -->
@@ -1794,7 +1761,7 @@
 <span>Instagram</span>
 <svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg>
 </div>
-<div class="amaras-channel-sub">@amarastour · Истории и туры</div>
+<div class="amaras-channel-sub" data-i18n="contact_stories">@amarastour · Истории и туры</div>
 </div>
 </a>
 <!-- Direct Phone -->
@@ -1993,8 +1960,8 @@
 <div class="amaras-rev-modal-user">
 <div class="amaras-rev-avatar" id="amarasModalAvatar">A</div>
 <div class="amaras-rev-modal-meta">
-<div class="amaras-rev-author-name" id="amarasModalAuthor">Автор</div>
-<div class="amaras-rev-meta" id="amarasModalSub">Локация • Дата</div>
+<div class="amaras-rev-author-name" id="amarasModalAuthor" data-i18n="rev_author_default">Автор</div>
+<div class="amaras-rev-meta" id="amarasModalSub" data-i18n="rev_meta_default">Локация • Дата</div>
 </div>
 </div>
 <button aria-label="Закрыть" class="amaras-rev-modal-close" onclick="closeAmarasReviewModal()">✕</button>
