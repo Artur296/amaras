@@ -11621,3 +11621,54 @@ body.amaras-modal-locked {
     text-align: center;
   }
 }
+
+.amaras-fleet-phone-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #4B5563;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.amaras-fleet-phone-link:hover {
+  color: #111827;
+}
+
+.amaras-fleet-phone-link svg {
+  color: #6B7280;
+  flex-shrink: 0;
+}
+
+.amaras-fleet-order-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #1F2937;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 16px;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.amaras-fleet-order-btn:hover {
+  background: #C7FF32;
+  color: #1F2937;
+  box-shadow: 0 4px 14px rgba(199, 255, 50, 0.35);
+}
+
+.amaras-fleet-order-btn svg {
+  color: #25D366;
+  transition: color 0.2s ease;
+}
+
+.amaras-fleet-order-btn:hover svg {
+  color: #1F2937;
+}
