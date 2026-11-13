@@ -411,8 +411,8 @@
     <span class="amaras-breadcrumbs-sep">/</span>
     <span data-i18n="nav_transfers">Трансферы</span>
   </div>
-  <h1 class="amaras-cat-title" data-i18n="transfers_hero_title">Трансферы по Армении</h1>
-  <p class="amaras-cat-subtitle" data-i18n="transfers_hero_sub">Индивидуальные и групповые трансферы из аэропорта Звартноц, Еревана и по всей Армении на комфортабельных автомобилях любого класса с опытными водителями.</p>
+  <h1 class="amaras-cat-title" data-i18n="transfers_hero_title">Трансферы по Армении и в Грузию</h1>
+  <p class="amaras-cat-subtitle" data-i18n="transfers_hero_sub">Индивидуальные и групповые трансферы из аэропорта Звартноц, Еревана, по всей Армении и в Грузию (Тбилиси, Батуми, Кутаиси, Гудаури) на комфортабельных автомобилях любого класса с опытными водителями.</p>
 </div>
 </div>
 
@@ -440,6 +440,15 @@
     <a href="javascript:void(0)" class="amaras-cat-tab-link" onclick="quickSelectRoute('yerevan', 'tbilisi', this)">
       <span data-i18n="tab_tbilisi">Тбилиси (Грузия)</span>
     </a>
+    <a href="javascript:void(0)" class="amaras-cat-tab-link" onclick="quickSelectRoute('yerevan', 'batumi', this)">
+      <span data-i18n="tab_batumi">Батуми (Грузия)</span>
+    </a>
+    <a href="javascript:void(0)" class="amaras-cat-tab-link" onclick="quickSelectRoute('yerevan', 'kutaisi', this)">
+      <span data-i18n="tab_kutaisi">Кутаиси (Грузия)</span>
+    </a>
+    <a href="javascript:void(0)" class="amaras-cat-tab-link" onclick="quickSelectRoute('yerevan', 'gudauri', this)">
+      <span data-i18n="tab_gudauri">Гудаури (Грузия)</span>
+    </a>
   </div>
 </div>
 </div>
@@ -464,18 +473,30 @@
           </label>
           <div class="amaras-transfer-select-wrap">
             <select id="transferFrom" class="amaras-transfer-select" onchange="runTransferCalc()">
-              <option value="yerevan" selected data-i18n="loc_yerevan">Yerevan</option>
-              <option value="airport" data-i18n="loc_airport">Yerevan Airport</option>
-              <option value="aghveran" data-i18n="loc_aghveran">Aghveran</option>
-              <option value="tsaghkadzor" data-i18n="loc_tsaghkadzor">Tsaghkadzor</option>
-              <option value="sevan" data-i18n="loc_sevan">Sevan</option>
-              <option value="dilijan" data-i18n="loc_dilijan">Dilijan</option>
-              <option value="gyumri" data-i18n="loc_gyumri">Gyumri</option>
-              <option value="jermuk" data-i18n="loc_jermuk">Jermuk</option>
-              <option value="goris" data-i18n="loc_goris">Goris / Tatev</option>
-              <option value="garni" data-i18n="loc_garni">Garni / Geghard</option>
-              <option value="khorvirap" data-i18n="loc_khorvirap">Khor Virap</option>
-              <option value="tbilisi" data-i18n="loc_tbilisi">Tbilisi</option>
+              <optgroup label="Армения" data-i18n-label="grp_armenia">
+                <option value="yerevan" selected data-i18n="loc_yerevan">Yerevan</option>
+                <option value="airport" data-i18n="loc_airport">Yerevan Airport (EVN)</option>
+                <option value="aghveran" data-i18n="loc_aghveran">Aghveran</option>
+                <option value="tsaghkadzor" data-i18n="loc_tsaghkadzor">Tsaghkadzor</option>
+                <option value="sevan" data-i18n="loc_sevan">Sevan</option>
+                <option value="dilijan" data-i18n="loc_dilijan">Dilijan</option>
+                <option value="gyumri" data-i18n="loc_gyumri">Gyumri</option>
+                <option value="jermuk" data-i18n="loc_jermuk">Jermuk</option>
+                <option value="goris" data-i18n="loc_goris">Goris / Tatev</option>
+                <option value="garni" data-i18n="loc_garni">Garni / Geghard</option>
+                <option value="khorvirap" data-i18n="loc_khorvirap">Khor Virap</option>
+              </optgroup>
+              <optgroup label="Грузия (Georgia)" data-i18n-label="grp_georgia">
+                <option value="tbilisi" data-i18n="loc_tbilisi">Тбилиси (Грузия)</option>
+                <option value="batumi" data-i18n="loc_batumi">Батуми (Грузия)</option>
+                <option value="kutaisi" data-i18n="loc_kutaisi">Кутаиси (Грузия)</option>
+                <option value="gudauri" data-i18n="loc_gudauri">Гудаури (Грузия)</option>
+                <option value="kazbegi" data-i18n="loc_kazbegi">Степанцминда / Казбеги</option>
+                <option value="borjomi" data-i18n="loc_borjomi">Боржоми (Грузия)</option>
+                <option value="kobuleti" data-i18n="loc_kobuleti">Кобулети (Грузия)</option>
+                <option value="sadakhlo" data-i18n="loc_sadakhlo">Граница Садахло (КПП)</option>
+                <option value="bavra" data-i18n="loc_bavra">Граница Бавра (КПП)</option>
+              </optgroup>
             </select>
             <svg class="amaras-transfer-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </div>
@@ -498,18 +519,30 @@
           </label>
           <div class="amaras-transfer-select-wrap">
             <select id="transferTo" class="amaras-transfer-select" onchange="runTransferCalc()">
-              <option value="aghveran" selected data-i18n="loc_aghveran">Aghveran</option>
-              <option value="yerevan" data-i18n="loc_yerevan">Yerevan</option>
-              <option value="airport" data-i18n="loc_airport">Yerevan Airport</option>
-              <option value="tsaghkadzor" data-i18n="loc_tsaghkadzor">Tsaghkadzor</option>
-              <option value="sevan" data-i18n="loc_sevan">Sevan</option>
-              <option value="dilijan" data-i18n="loc_dilijan">Dilijan</option>
-              <option value="gyumri" data-i18n="loc_gyumri">Gyumri</option>
-              <option value="jermuk" data-i18n="loc_jermuk">Jermuk</option>
-              <option value="goris" data-i18n="loc_goris">Goris / Tatev</option>
-              <option value="garni" data-i18n="loc_garni">Garni / Geghard</option>
-              <option value="khorvirap" data-i18n="loc_khorvirap">Khor Virap</option>
-              <option value="tbilisi" data-i18n="loc_tbilisi">Tbilisi</option>
+              <optgroup label="Армения" data-i18n-label="grp_armenia">
+                <option value="aghveran" selected data-i18n="loc_aghveran">Aghveran</option>
+                <option value="yerevan" data-i18n="loc_yerevan">Yerevan</option>
+                <option value="airport" data-i18n="loc_airport">Yerevan Airport (EVN)</option>
+                <option value="tsaghkadzor" data-i18n="loc_tsaghkadzor">Tsaghkadzor</option>
+                <option value="sevan" data-i18n="loc_sevan">Sevan</option>
+                <option value="dilijan" data-i18n="loc_dilijan">Dilijan</option>
+                <option value="gyumri" data-i18n="loc_gyumri">Gyumri</option>
+                <option value="jermuk" data-i18n="loc_jermuk">Jermuk</option>
+                <option value="goris" data-i18n="loc_goris">Goris / Tatev</option>
+                <option value="garni" data-i18n="loc_garni">Garni / Geghard</option>
+                <option value="khorvirap" data-i18n="loc_khorvirap">Khor Virap</option>
+              </optgroup>
+              <optgroup label="Грузия (Georgia)" data-i18n-label="grp_georgia">
+                <option value="tbilisi" data-i18n="loc_tbilisi">Тбилиси (Грузия)</option>
+                <option value="batumi" data-i18n="loc_batumi">Батуми (Грузия)</option>
+                <option value="kutaisi" data-i18n="loc_kutaisi">Кутаиси (Грузия)</option>
+                <option value="gudauri" data-i18n="loc_gudauri">Гудаури (Грузия)</option>
+                <option value="kazbegi" data-i18n="loc_kazbegi">Степанцминда / Казбеги</option>
+                <option value="borjomi" data-i18n="loc_borjomi">Боржоми (Грузия)</option>
+                <option value="kobuleti" data-i18n="loc_kobuleti">Кобулети (Грузия)</option>
+                <option value="sadakhlo" data-i18n="loc_sadakhlo">Граница Садахло (КПП)</option>
+                <option value="bavra" data-i18n="loc_bavra">Граница Бавра (КПП)</option>
+              </optgroup>
             </select>
             <svg class="amaras-transfer-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </div>
@@ -932,6 +965,54 @@
           </div>
         </div>
 
+        <!-- Col 6 (Georgia: Tbilisi) -->
+        <div class="amaras-pop-route-col">
+          <div class="amaras-pop-route-box is-georgia" onclick="applyPopularRoute('yerevan', 'tbilisi')">
+            <div class="amaras-pop-route-name">Yerevan → Tbilisi</div>
+            <div class="amaras-pop-route-price" data-base-price="85000">85 000 AMD</div>
+          </div>
+          <div class="amaras-pop-route-box is-georgia" onclick="applyPopularRoute('tbilisi', 'yerevan')">
+            <div class="amaras-pop-route-name">Tbilisi → Yerevan</div>
+            <div class="amaras-pop-route-price" data-base-price="85000">85 000 AMD</div>
+          </div>
+        </div>
+
+        <!-- Col 7 (Georgia: Batumi) -->
+        <div class="amaras-pop-route-col">
+          <div class="amaras-pop-route-box is-georgia" onclick="applyPopularRoute('yerevan', 'batumi')">
+            <div class="amaras-pop-route-name">Yerevan → Batumi</div>
+            <div class="amaras-pop-route-price" data-base-price="155000">155 000 AMD</div>
+          </div>
+          <div class="amaras-pop-route-box is-georgia" onclick="applyPopularRoute('batumi', 'yerevan')">
+            <div class="amaras-pop-route-name">Batumi → Yerevan</div>
+            <div class="amaras-pop-route-price" data-base-price="155000">155 000 AMD</div>
+          </div>
+        </div>
+
+        <!-- Col 8 (Georgia: Kutaisi) -->
+        <div class="amaras-pop-route-col">
+          <div class="amaras-pop-route-box is-georgia" onclick="applyPopularRoute('yerevan', 'kutaisi')">
+            <div class="amaras-pop-route-name">Yerevan → Kutaisi</div>
+            <div class="amaras-pop-route-price" data-base-price="125000">125 000 AMD</div>
+          </div>
+          <div class="amaras-pop-route-box is-georgia" onclick="applyPopularRoute('kutaisi', 'yerevan')">
+            <div class="amaras-pop-route-name">Kutaisi → Yerevan</div>
+            <div class="amaras-pop-route-price" data-base-price="125000">125 000 AMD</div>
+          </div>
+        </div>
+
+        <!-- Col 9 (Georgia: Gudauri) -->
+        <div class="amaras-pop-route-col">
+          <div class="amaras-pop-route-box is-georgia" onclick="applyPopularRoute('yerevan', 'gudauri')">
+            <div class="amaras-pop-route-name">Yerevan → Gudauri</div>
+            <div class="amaras-pop-route-price" data-base-price="115000">115 000 AMD</div>
+          </div>
+          <div class="amaras-pop-route-box is-georgia" onclick="applyPopularRoute('gudauri', 'yerevan')">
+            <div class="amaras-pop-route-name">Gudauri → Yerevan</div>
+            <div class="amaras-pop-route-price" data-base-price="115000">115 000 AMD</div>
+          </div>
+        </div>
+
       </div>
 
       <!-- Carousel Arrow Right -->
@@ -940,6 +1021,50 @@
       </button>
     </div>
   </div>
+
+    <!-- 4. GEORGIA TRANSFERS SHOWCASE CARD -->
+    <div class="amaras-georgia-transfers-card">
+      <div class="amaras-georgia-content">
+        <div class="amaras-georgia-badge">Международные трансферы</div>
+        <h3 class="amaras-georgia-title">Индивидуальные и групповые трансферы из Армении в Грузию</h3>
+        <p class="amaras-georgia-desc">
+          Прямые комфортные поездки «от двери до двери»: подача автомобиля к вашему отелю или адресу в Ереване / аэропорту Звартноц и доставка прямо до гостиницы в Тбилиси, Батуми, Кутаиси, Гудаури или Боржоми. Без пересадок и длительных ожиданий на границе.
+        </p>
+        <div class="amaras-georgia-features-grid">
+          <div class="amaras-geo-feat-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <span>Комфортный проезд границы (КПП Садахло / Бавра)</span>
+          </div>
+          <div class="amaras-geo-feat-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span>Опытные водители с международными правами</span>
+          </div>
+          <div class="amaras-geo-feat-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2.2"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path></svg>
+            <span>Кондиционер, Wi-Fi 4G и питьевая вода</span>
+          </div>
+          <div class="amaras-geo-feat-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+            <span>Остановки на отдых и смотровые площадки</span>
+          </div>
+        </div>
+
+        <div class="amaras-georgia-quick-routes">
+          <button type="button" class="amaras-geo-btn" onclick="applyPopularRoute('yerevan', 'tbilisi')">
+            Ереван ⇄ Тбилиси (от 85 000 AMD)
+          </button>
+          <button type="button" class="amaras-geo-btn" onclick="applyPopularRoute('yerevan', 'batumi')">
+            Ереван ⇄ Батуми (от 155 000 AMD)
+          </button>
+          <button type="button" class="amaras-geo-btn" onclick="applyPopularRoute('yerevan', 'kutaisi')">
+            Ереван ⇄ Кутаиси (от 125 000 AMD)
+          </button>
+          <button type="button" class="amaras-geo-btn" onclick="applyPopularRoute('yerevan', 'gudauri')">
+            Ереван ⇄ Гудаури (от 115 000 AMD)
+          </button>
+        </div>
+      </div>
+    </div>
 
 </div>
 </section>

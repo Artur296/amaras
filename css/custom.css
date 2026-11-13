@@ -11498,3 +11498,116 @@ body.amaras-modal-locked {
     text-align: center;
   }
 }
+
+/* Georgia Transfers Styles */
+.amaras-pop-route-box.is-georgia {
+  border-left: 3px solid #3B5BDB;
+}
+
+.amaras-georgia-transfers-card {
+  background: linear-gradient(135deg, #1C1C1E 0%, #26262B 100%);
+  border-radius: 24px;
+  padding: 36px 34px;
+  margin-top: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.amaras-georgia-badge {
+  display: inline-block;
+  background: rgba(199, 255, 50, 0.14);
+  color: #C7FF32;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.amaras-georgia-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 10px 0;
+  line-height: 1.3;
+}
+
+.amaras-georgia-desc {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.55;
+  margin: 0 0 24px 0;
+  max-width: 820px;
+}
+
+.amaras-georgia-features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.amaras-geo-feat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.amaras-geo-feat-item svg {
+  flex-shrink: 0;
+}
+
+.amaras-georgia-quick-routes {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.amaras-geo-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.amaras-geo-btn:hover {
+  background: #C7FF32;
+  color: #1F2937;
+  border-color: #C7FF32;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(199, 255, 50, 0.35);
+}
+
+@media (max-width: 1024px) {
+  .amaras-georgia-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .amaras-georgia-transfers-card {
+    padding: 24px 18px;
+  }
+  .amaras-georgia-features-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .amaras-georgia-quick-routes {
+    flex-direction: column;
+  }
+  .amaras-geo-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
