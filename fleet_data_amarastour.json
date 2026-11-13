@@ -1,0 +1,643 @@
+[
+  {
+    "id": "car_1",
+    "title": "Mercedes-Benz V-Class",
+    "category_name": "Микроавтобусы",
+    "category_slug": "minibus",
+    "image": "assets/fleet/mercedes_benz_v_class.jpg",
+    "seats": 7,
+    "luggage": 7,
+    "gearbox": "auto",
+    "features": [
+      "Кожаный салон",
+      "Климат-контроль",
+      "Капитанские кресла",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_2",
+    "title": "Mercedes-Benz Sprinter — 15",
+    "category_name": "Микроавтобусы",
+    "category_slug": "minibus",
+    "image": "assets/fleet/mercedes_benz_sprinter_15.jpg",
+    "seats": 15,
+    "luggage": 15,
+    "gearbox": "auto",
+    "features": [
+      "Кондиционер салона",
+      "Микрофон гида",
+      "USB на каждом ряду",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_3",
+    "title": "Mercedes-Benz Sprinter — 19",
+    "category_name": "Микроавтобусы",
+    "category_slug": "minibus",
+    "image": "assets/fleet/mercedes_benz_sprinter_19.jpg",
+    "seats": 19,
+    "luggage": 18,
+    "gearbox": "auto",
+    "features": [
+      "Индивидуальный A/C",
+      "Микрофон для гида",
+      "TV/DVD мультимедиа",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_4",
+    "title": "Toyota Alphard",
+    "category_name": "Минивэны",
+    "category_slug": "minivan",
+    "image": "assets/fleet/toyota_alphard.png",
+    "seats": 6,
+    "luggage": 5,
+    "gearbox": "auto",
+    "features": [
+      "Кресла Ottoman",
+      "Панорамный люк",
+      "Электропривод дверей",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_5",
+    "title": "Toyota Sienna",
+    "category_name": "Минивэны",
+    "category_slug": "minivan",
+    "image": "assets/fleet/toyota_sienna.jpg",
+    "seats": 7,
+    "luggage": 6,
+    "gearbox": "auto",
+    "features": [
+      "Просторный салон",
+      "3-зонный климат",
+      "Шторки",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_6",
+    "title": "Nissan Elgrand",
+    "category_name": "Минивэны",
+    "category_slug": "minivan",
+    "image": "assets/fleet/nissan_elgrand.png",
+    "seats": 7,
+    "luggage": 5,
+    "gearbox": "auto",
+    "features": [
+      "Кожаные кресла",
+      "Климат-контроль",
+      "Мягкий ход",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_7",
+    "title": "Honda Odyssey",
+    "category_name": "Минивэны",
+    "category_slug": "minivan",
+    "image": "assets/fleet/honda_odyssey.jpg",
+    "seats": 7,
+    "luggage": 5,
+    "gearbox": "auto",
+    "features": [
+      "Комфортный салон",
+      "Климат-контроль",
+      "USB зарядки",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_8",
+    "title": "BAW M7",
+    "category_name": "Минивэны",
+    "category_slug": "minivan",
+    "image": "assets/fleet/baw_m7.png",
+    "seats": 8,
+    "luggage": 7,
+    "gearbox": "auto",
+    "features": [
+      "Вместительный салон",
+      "Кондиционер",
+      "Большой багажник",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_9",
+    "title": "BAW M8",
+    "category_name": "Минивэны",
+    "category_slug": "minivan",
+    "image": "assets/fleet/baw_m8.jpg",
+    "seats": 8,
+    "luggage": 7,
+    "gearbox": "auto",
+    "features": [
+      "Вместительный салон",
+      "Кондиционер",
+      "Большой багажник",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_10",
+    "title": "Mercedes-Benz S-Class W222",
+    "category_name": "Автомобили премиум-класса",
+    "category_slug": "premium",
+    "image": "assets/fleet/mercedes_benz_s_class_w222.png",
+    "seats": 4,
+    "luggage": 3,
+    "gearbox": "auto",
+    "features": [
+      "Бизнес-класс",
+      "Вентиляция кресел",
+      "Панорамная крыша",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_11",
+    "title": "Mercedes-Benz S-Class W223",
+    "category_name": "Автомобили премиум-класса",
+    "category_slug": "premium",
+    "image": "assets/fleet/mercedes_benz_s_class_w223.jpg",
+    "seats": 4,
+    "luggage": 3,
+    "gearbox": "auto",
+    "features": [
+      "Бизнес-класс",
+      "Вентиляция кресел",
+      "Панорамная крыша",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_12",
+    "title": "BMW 7 Series",
+    "category_name": "Автомобили премиум-класса",
+    "category_slug": "premium",
+    "image": "assets/fleet/bmw_7_series.jpg",
+    "seats": 4,
+    "luggage": 3,
+    "gearbox": "auto",
+    "features": [
+      "Бизнес-класс",
+      "Вентиляция кресел",
+      "Панорамная крыша",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_13",
+    "title": "BMW X5",
+    "category_name": "Автомобили премиум-класса",
+    "category_slug": "premium",
+    "image": "assets/fleet/bmw_x5.jpg",
+    "seats": 5,
+    "luggage": 4,
+    "gearbox": "auto",
+    "features": [
+      "Премиум кроссовер",
+      "Полный привод xDrive/4Matic",
+      "Панорама",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_14",
+    "title": "BMW X6",
+    "category_name": "Автомобили премиум-класса",
+    "category_slug": "premium",
+    "image": "assets/fleet/bmw_x6.png",
+    "seats": 5,
+    "luggage": 4,
+    "gearbox": "auto",
+    "features": [
+      "Премиум кроссовер",
+      "Полный привод xDrive/4Matic",
+      "Панорама",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_15",
+    "title": "LiXiang L7 Ultra",
+    "category_name": "Автомобили премиум-класса",
+    "category_slug": "premium",
+    "image": "assets/fleet/lixiang_l7_ultra.jpg",
+    "seats": 5,
+    "luggage": 4,
+    "gearbox": "auto",
+    "features": [
+      "Премиум гибрид 4WD",
+      "Пневмоподвеска",
+      "Мультимедиа экраны",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_16",
+    "title": "Tesla Model 3",
+    "category_name": "Автомобили премиум-класса",
+    "category_slug": "premium",
+    "image": "assets/fleet/tesla_model_3.png",
+    "seats": 5,
+    "luggage": 3,
+    "gearbox": "auto",
+    "features": [
+      "100% Электро",
+      "Автопилот",
+      "Стеклянная крыша",
+      "Премиум звук"
+    ]
+  },
+  {
+    "id": "car_17",
+    "title": "Tesla Model S",
+    "category_name": "Автомобили премиум-класса",
+    "category_slug": "premium",
+    "image": "assets/fleet/tesla_model_s.jpg",
+    "seats": 5,
+    "luggage": 3,
+    "gearbox": "auto",
+    "features": [
+      "100% Электро",
+      "Автопилот",
+      "Стеклянная крыша",
+      "Премиум звук"
+    ]
+  },
+  {
+    "id": "car_18",
+    "title": "Tesla Model Y",
+    "category_name": "Автомобили премиум-класса",
+    "category_slug": "premium",
+    "image": "assets/fleet/tesla_model_y.jpg",
+    "seats": 5,
+    "luggage": 3,
+    "gearbox": "auto",
+    "features": [
+      "100% Электро",
+      "Автопилот",
+      "Стеклянная крыша",
+      "Премиум звук"
+    ]
+  },
+  {
+    "id": "car_19",
+    "title": "Toyota Camry",
+    "category_name": "Комфорт-класс",
+    "category_slug": "comfort",
+    "image": "assets/fleet/toyota_camry.png",
+    "seats": 4,
+    "luggage": 3,
+    "gearbox": "auto",
+    "features": [
+      "Комфорт-класс",
+      "Климат-контроль",
+      "Мягкая подвеска",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_20",
+    "title": "Nissan Sentra",
+    "category_name": "Комфорт-класс",
+    "category_slug": "comfort",
+    "image": "assets/fleet/nissan_sentra.png",
+    "seats": 4,
+    "luggage": 3,
+    "gearbox": "auto",
+    "features": [
+      "Комфорт-класс",
+      "Климат-контроль",
+      "Мягкая подвеска",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_21",
+    "title": "Nissan Rogue",
+    "category_name": "Комфорт-класс",
+    "category_slug": "comfort",
+    "image": "assets/fleet/nissan_rogue.jpg",
+    "seats": 4,
+    "luggage": 3,
+    "gearbox": "auto",
+    "features": [
+      "Комфорт-класс",
+      "Климат-контроль",
+      "Мягкая подвеска",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_22",
+    "title": "BYD",
+    "category_name": "Комфорт-класс",
+    "category_slug": "comfort",
+    "image": "assets/fleet/byd.png",
+    "seats": 4,
+    "luggage": 3,
+    "gearbox": "auto",
+    "features": [
+      "Комфорт-класс",
+      "Климат-контроль",
+      "Мягкая подвеска",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_23",
+    "title": "Hongqi",
+    "category_name": "Комфорт-класс",
+    "category_slug": "comfort",
+    "image": "assets/fleet/hongqi.jpg",
+    "seats": 4,
+    "luggage": 3,
+    "gearbox": "auto",
+    "features": [
+      "Комфорт-класс",
+      "Климат-контроль",
+      "Мягкая подвеска",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_24",
+    "title": "Toyota 4Runner",
+    "category_name": "Внедорожники и автомобили 4×4",
+    "category_slug": "suv",
+    "image": "assets/fleet/toyota_4runner.jpg",
+    "seats": 6,
+    "luggage": 5,
+    "gearbox": "auto",
+    "features": [
+      "Полный привод 4WD",
+      "Пониженная передача",
+      "Климат-контроль",
+      "Высокий клиренс"
+    ]
+  },
+  {
+    "id": "car_25",
+    "title": "Mitsubishi Pajero",
+    "category_name": "Внедорожники и автомобили 4×4",
+    "category_slug": "suv",
+    "image": "assets/fleet/mitsubishi_pajero.png",
+    "seats": 6,
+    "luggage": 5,
+    "gearbox": "auto",
+    "features": [
+      "Полный привод 4WD",
+      "Пониженная передача",
+      "Климат-контроль",
+      "Высокий клиренс"
+    ]
+  },
+  {
+    "id": "car_26",
+    "title": "Lexus LX 570",
+    "category_name": "Внедорожники и автомобили 4×4",
+    "category_slug": "suv",
+    "image": "assets/fleet/lexus_lx_570.png",
+    "seats": 6,
+    "luggage": 5,
+    "gearbox": "auto",
+    "features": [
+      "Премиум 4x4",
+      "Рамный кузов",
+      "Mark Levinson звук",
+      "Внедорожный пакет"
+    ]
+  },
+  {
+    "id": "car_27",
+    "title": "Lexus LX 470",
+    "category_name": "Внедорожники и автомобили 4×4",
+    "category_slug": "suv",
+    "image": "assets/fleet/lexus_lx_470.png",
+    "seats": 6,
+    "luggage": 5,
+    "gearbox": "auto",
+    "features": [
+      "Премиум 4x4",
+      "Рамный кузов",
+      "Mark Levinson звук",
+      "Внедорожный пакет"
+    ]
+  },
+  {
+    "id": "car_28",
+    "title": "Toyota Land Cruiser Prado",
+    "category_name": "Внедорожники и автомобили 4×4",
+    "category_slug": "suv",
+    "image": "assets/fleet/toyota_land_cruiser_prado.png",
+    "seats": 6,
+    "luggage": 5,
+    "gearbox": "auto",
+    "features": [
+      "Полный привод 4WD",
+      "Пониженная передача",
+      "Климат-контроль",
+      "Высокий клиренс"
+    ]
+  },
+  {
+    "id": "car_29",
+    "title": "Dodge Durango",
+    "category_name": "Внедорожники и автомобили 4×4",
+    "category_slug": "suv",
+    "image": "assets/fleet/dodge_durango.png",
+    "seats": 7,
+    "luggage": 5,
+    "gearbox": "auto",
+    "features": [
+      "Американский SUV",
+      "3 ряда сидений",
+      "Мощный двигатель",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_30",
+    "title": "Mercedes-Benz G-Class",
+    "category_name": "Внедорожники и автомобили 4×4",
+    "category_slug": "suv",
+    "image": "assets/fleet/mercedes_benz_g_class.png",
+    "seats": 5,
+    "luggage": 4,
+    "gearbox": "auto",
+    "features": [
+      "Легендарный Гелендваген",
+      "V8 Biturbo 4WD",
+      "Кожа designo",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_31",
+    "title": "Mercedes-Benz GLE",
+    "category_name": "Внедорожники и автомобили 4×4",
+    "category_slug": "suv",
+    "image": "assets/fleet/mercedes_benz_gle.jpg",
+    "seats": 5,
+    "luggage": 4,
+    "gearbox": "auto",
+    "features": [
+      "Премиум кроссовер",
+      "Полный привод xDrive/4Matic",
+      "Панорама",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_32",
+    "title": "BMW M8",
+    "category_name": "Кабриолеты",
+    "category_slug": "cabrio",
+    "image": "assets/fleet/bmw_m8.jpg",
+    "seats": 4,
+    "luggage": 2,
+    "gearbox": "auto",
+    "features": [
+      "Откидная крыша (Кабриолет)",
+      "Спортивный выхлоп",
+      "Кожаный салон",
+      "Премиум аудио"
+    ]
+  },
+  {
+    "id": "car_33",
+    "title": "Ford Mustang",
+    "category_name": "Кабриолеты",
+    "category_slug": "cabrio",
+    "image": "assets/fleet/ford_mustang.jpg",
+    "seats": 4,
+    "luggage": 2,
+    "gearbox": "auto",
+    "features": [
+      "Откидная крыша (Кабриолет)",
+      "Спортивный выхлоп",
+      "Кожаный салон",
+      "Премиум аудио"
+    ]
+  },
+  {
+    "id": "car_34",
+    "title": "Chevrolet Camaro",
+    "category_name": "Кабриолеты",
+    "category_slug": "cabrio",
+    "image": "assets/fleet/chevrolet_camaro.png",
+    "seats": 4,
+    "luggage": 2,
+    "gearbox": "auto",
+    "features": [
+      "Откидная крыша (Кабриолет)",
+      "Спортивный выхлоп",
+      "Кожаный салон",
+      "Премиум аудио"
+    ]
+  },
+  {
+    "id": "car_35",
+    "title": "Rolls-Royce Phantom",
+    "category_name": "Автомобили класса люкс",
+    "category_slug": "luxe",
+    "image": "assets/fleet/rolls_royce_phantom.jpg",
+    "seats": 4,
+    "luggage": 4,
+    "gearbox": "auto",
+    "features": [
+      "Ультра-люкс",
+      "Звездное небо",
+      "Массаж кресел",
+      "Аудиосистема Bespoke"
+    ]
+  },
+  {
+    "id": "car_36",
+    "title": "Rolls-Royce Cullinan",
+    "category_name": "Автомобили класса люкс",
+    "category_slug": "luxe",
+    "image": "assets/fleet/rolls_royce_cullinan.jpg",
+    "seats": 4,
+    "luggage": 4,
+    "gearbox": "auto",
+    "features": [
+      "Ультра-люкс",
+      "Звездное небо",
+      "Массаж кресел",
+      "Аудиосистема Bespoke"
+    ]
+  },
+  {
+    "id": "car_37",
+    "title": "Mercedes-Maybach",
+    "category_name": "Автомобили класса люкс",
+    "category_slug": "luxe",
+    "image": "assets/fleet/mercedes_maybach.jpg",
+    "seats": 4,
+    "luggage": 4,
+    "gearbox": "auto",
+    "features": [
+      "First Class салон",
+      "Атаманки с массажем",
+      "Акустика Burmester",
+      "Wi-Fi 4G"
+    ]
+  },
+  {
+    "id": "car_38",
+    "title": "Mercedes-Benz V-Class Maybach — 4",
+    "category_name": "Автомобили класса люкс",
+    "category_slug": "luxe",
+    "image": "assets/fleet/mercedes_benz_v_class_maybach_4.png",
+    "seats": 4,
+    "luggage": 6,
+    "gearbox": "auto",
+    "features": [
+      "First Class Maybach",
+      "Капитанские кресла",
+      "Мини-бар",
+      "Перегородка приватности"
+    ]
+  },
+  {
+    "id": "car_39",
+    "title": "Mercedes-Benz Sprinter Maybach — 8",
+    "category_name": "Автомобили класса люкс",
+    "category_slug": "luxe",
+    "image": "assets/fleet/mercedes_benz_sprinter_maybach_8.png",
+    "seats": 8,
+    "luggage": 10,
+    "gearbox": "auto",
+    "features": [
+      "VIP Maybach салон",
+      "Кресла с массажем",
+      "Холодильник",
+      "TV/DVD",
+      "Wi-Fi"
+    ]
+  },
+  {
+    "id": "car_40",
+    "title": "Mercedes-Maybach GLS",
+    "category_name": "Автомобили класса люкс",
+    "category_slug": "luxe",
+    "image": "assets/fleet/mercedes_maybach_gls.png",
+    "seats": 4,
+    "luggage": 4,
+    "gearbox": "auto",
+    "features": [
+      "Executive 4WD",
+      "Пневмоподвеска",
+      "Шампанское / бокалы",
+      "Burmester 3D"
+    ]
+  }
+]
