@@ -4,6 +4,28 @@
  */
 const AMARAS_I18N = {
   RU: {
+    "filter_by_attraction": "Search by attraction",
+    "filter_by_attraction_short": "Локация",
+    "filter_search_placeholder": "Поиск достопримечательности...",
+    "filter_top_attractions": "TOP 10 attractions",
+    "filter_all_attractions": "Все достопримечательности",
+    "filter_no_results": "По выбранной достопримечательности маршрутов не найдено",
+    "filter_reset_btn": "Показать все туры",
+    "attr_dilijan": "Дилижан",
+    "attr_etchmiadzin": "Эчмиадзинский кафедральный собор",
+    "attr_garni": "Храм Гарни",
+    "attr_geghard": "Монастырь Гегард",
+    "attr_khor_virap": "Монастырь Хор Вирап",
+    "attr_sevan": "Озеро Севан",
+    "attr_noravank": "Монастырь Нораванк",
+    "attr_tatev": "Монастырь Татев (Крылья Татева)",
+    "attr_symphony": "Симфония камней",
+    "attr_areni": "Винный завод Арени",
+    "attr_aragats": "Гора Арагац и озеро Кари",
+    "attr_khndzoresk": "Пещерный город Хндзореск",
+    "attr_amberd": "Крепость Амберд",
+    "attr_angel_canyon": "Ущелье Ангелов",
+    "attr_azhdahak": "Вулкан Аждаак",
     "breadcrumb_tours": "Туры",
     "cat_grid_available_routes": "Доступные маршруты",
     "cat_grid_count_5": "Найдено 5 предложений",
@@ -700,6 +722,28 @@ const AMARAS_I18N = {
     "trad_c6_feat": "Строгая иерархия тостов, глубокий философский смысл, уважение к старшим",
   },
   ENG: {
+    "filter_by_attraction": "Search by attraction",
+    "filter_by_attraction_short": "Location",
+    "filter_search_placeholder": "Search attraction...",
+    "filter_top_attractions": "TOP 10 attractions",
+    "filter_all_attractions": "All attractions",
+    "filter_no_results": "No tours found for this attraction",
+    "filter_reset_btn": "Show all tours",
+    "attr_dilijan": "Dilijan",
+    "attr_etchmiadzin": "Etchmiadzin Mother Cathedral",
+    "attr_garni": "Garni Temple",
+    "attr_geghard": "Geghard Monastery",
+    "attr_khor_virap": "Khor Virap Monastery",
+    "attr_sevan": "Lake Sevan",
+    "attr_noravank": "Noravank Monastery",
+    "attr_tatev": "Tatev Monastery",
+    "attr_symphony": "Symphony of Stones",
+    "attr_areni": "Areni Winery",
+    "attr_aragats": "Mount Aragats & Kari Lake",
+    "attr_khndzoresk": "Khndzoresk Cave Town",
+    "attr_amberd": "Amberd Fortress",
+    "attr_angel_canyon": "Angel Canyon",
+    "attr_azhdahak": "Azhdahak Volcano",
     "breadcrumb_tours": "Tours",
     "cat_grid_available_routes": "Available Itineraries",
     "cat_grid_count_5": "5 tours found",
@@ -1396,6 +1440,28 @@ const AMARAS_I18N = {
     "trad_c6_feat": "Ceremonial hierarchy of toasts, poetic storytelling, respect for elders",
   },
   HY: {
+    "filter_by_attraction": "Search by attraction",
+    "filter_by_attraction_short": "Վայր",
+    "filter_search_placeholder": "Որոնել տեսարժան վայր...",
+    "filter_top_attractions": "TOP 10 attractions",
+    "filter_all_attractions": "Բոլոր տեսարժան վայրերը",
+    "filter_no_results": "Ընտրված վայրով տուրեր չեն գտնվել",
+    "filter_reset_btn": "Ցույց տալ բոլոր տուրերը",
+    "attr_dilijan": "Դիլիջան",
+    "attr_etchmiadzin": "Էջմիածնի Մայր Տաճար",
+    "attr_garni": "Գառնիի տաճար",
+    "attr_geghard": "Գեղարդավանք",
+    "attr_khor_virap": "Խոր Վիրապի վանք",
+    "attr_sevan": "Սևանա լիճ",
+    "attr_noravank": "Նորավանք",
+    "attr_tatev": "Տաթևի վանք (Տաթևեր)",
+    "attr_symphony": "Քարերի սիմֆոնիա",
+    "attr_areni": "Արենի գինեգործարան",
+    "attr_aragats": "Արագած լեռ և Քարի լիճ",
+    "attr_khndzoresk": "Խնձորեսկի քարանձավներ",
+    "attr_amberd": "Ամբերդ ամրոց",
+    "attr_angel_canyon": "Հրեշտակների ձոր",
+    "attr_azhdahak": "Աժդահակ հրաբուխ",
     "breadcrumb_tours": "Տուրեր",
     "cat_grid_available_routes": "Հասանելի երթուղիներ",
     "cat_grid_count_5": "Գտնվել է 5 առաջարկ",
@@ -2647,3 +2713,210 @@ function toggleCatAccordion(headerEl) {
     headerEl.setAttribute('aria-expanded', 'true');
   }
 }
+
+
+// ================= ATTRACTION FILTER CONTROLLER =================
+function toggleAttractionDropdown() {
+  const widget = document.getElementById('amarasAttrFilterWidget');
+  if (!widget) return;
+  const isOpen = widget.classList.contains('is-open');
+  if (isOpen) {
+    closeAttractionDropdown();
+  } else {
+    openAttractionDropdown();
+  }
+}
+
+function openAttractionDropdown() {
+  const widget = document.getElementById('amarasAttrFilterWidget');
+  if (!widget) return;
+  widget.classList.add('is-open');
+  const toggle = document.getElementById('amarasAttrToggle');
+  if (toggle) toggle.setAttribute('aria-expanded', 'true');
+  const input = document.getElementById('amarasAttrSearchInput');
+  if (input) setTimeout(() => input.focus(), 60);
+}
+
+function closeAttractionDropdown() {
+  const widget = document.getElementById('amarasAttrFilterWidget');
+  if (!widget) return;
+  widget.classList.remove('is-open');
+  const toggle = document.getElementById('amarasAttrToggle');
+  if (toggle) toggle.setAttribute('aria-expanded', 'false');
+}
+
+function selectAttractionFilter(slug, el) {
+  window.currentAttractionFilter = slug;
+  
+  // Highlight active item
+  document.querySelectorAll('.amaras-attr-item').forEach(item => {
+    item.classList.toggle('is-active', item.getAttribute('data-attr-slug') === slug);
+  });
+  
+  // Update header label and pill
+  const pill = document.getElementById('amarasAttrActivePill');
+  const label = document.querySelector('.amaras-attr-toggle-label');
+  const curLang = window.currentLang || localStorage.getItem('amaras_preferred_lang') || 'RU';
+  const dict = (typeof AMARAS_I18N !== 'undefined' && AMARAS_I18N[curLang]) ? AMARAS_I18N[curLang] : {};
+  
+  if (slug === 'all') {
+    if (pill) {
+      pill.style.display = 'none';
+      pill.textContent = '';
+    }
+    if (label) label.textContent = dict.filter_by_attraction || 'Search by attraction';
+  } else {
+    const itemNameEl = el ? el.querySelector('.amaras-attr-item-name') : null;
+    const name = itemNameEl ? itemNameEl.textContent.trim() : slug;
+    if (pill) {
+      pill.textContent = name;
+      pill.style.display = 'inline-flex';
+    }
+    if (label) label.textContent = (dict.filter_by_attraction_short || 'Локация') + ':';
+  }
+  
+  // Filter cards in grid
+  const grid = document.querySelector('.amaras-cat-tours-grid');
+  if (!grid) {
+    closeAttractionDropdown();
+    return;
+  }
+  
+  const cards = grid.querySelectorAll('.amaras-cat-tour-card');
+  let visibleCount = 0;
+  
+  cards.forEach(card => {
+    const cardAttrs = (card.getAttribute('data-attractions') || '').toLowerCase();
+    const cardText = (card.textContent || '').toLowerCase();
+    
+    let matches = false;
+    if (slug === 'all') {
+      matches = true;
+    } else {
+      const slugKey = slug.toLowerCase();
+      matches = cardAttrs.includes(slugKey) || cardText.includes(slugKey.replace(/-/g, ' '));
+    }
+    
+    if (matches) {
+      card.style.display = '';
+      visibleCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  
+  // Update counter
+  const counter = document.querySelector('.amaras-cat-grid-count');
+  if (counter) {
+    if (curLang === 'RU') {
+      const word = (visibleCount === 1) ? 'предложение' : (visibleCount >= 2 && visibleCount <= 4 ? 'предложения' : 'предложений');
+      counter.textContent = `Найдено ${visibleCount} ${word}`;
+    } else if (curLang === 'ENG') {
+      counter.textContent = `Found ${visibleCount} tour${visibleCount === 1 ? '' : 's'}`;
+    } else if (curLang === 'HY') {
+      counter.textContent = `Գտնվել է ${visibleCount} առաջարկ`;
+    }
+  }
+  
+  // Handle empty state
+  let emptyState = grid.querySelector('.amaras-attr-empty-state');
+  if (visibleCount === 0) {
+    if (!emptyState) {
+      emptyState = document.createElement('div');
+      emptyState.className = 'amaras-attr-empty-state';
+      grid.appendChild(emptyState);
+    }
+    const noResText = dict.filter_no_results || 'По выбранной достопримечательности маршрутов не найдено';
+    const resetText = dict.filter_reset_btn || 'Показать все туры';
+    emptyState.innerHTML = `
+      <div class="amaras-attr-empty-card">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 12px auto; display: block;">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <p class="amaras-attr-empty-p">${noResText}</p>
+        <button type="button" class="amaras-attr-reset-btn" onclick="selectAttractionFilter('all')">${resetText}</button>
+      </div>
+    `;
+    emptyState.style.display = 'block';
+  } else if (emptyState) {
+    emptyState.style.display = 'none';
+  }
+  
+  closeAttractionDropdown();
+}
+
+function filterAttractionList(query) {
+  const q = (query || '').toLowerCase().trim();
+  const clearBtn = document.getElementById('amarasAttrSearchClear');
+  if (clearBtn) clearBtn.style.display = q ? 'block' : 'none';
+  
+  const items = document.querySelectorAll('.amaras-attr-item');
+  items.forEach(item => {
+    if (item.classList.contains('is-all')) {
+      item.style.display = q ? 'none' : '';
+      return;
+    }
+    const text = item.textContent.toLowerCase();
+    const slug = (item.getAttribute('data-attr-slug') || '').toLowerCase();
+    if (!q || text.includes(q) || slug.includes(q)) {
+      item.style.display = '';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+function clearAttractionSearch() {
+  const input = document.getElementById('amarasAttrSearchInput');
+  if (input) {
+    input.value = '';
+    input.focus();
+  }
+  filterAttractionList('');
+}
+
+// Global setup for attraction filter
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('amarasAttrToggle');
+  if (toggle) {
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleAttractionDropdown();
+    });
+  }
+  
+  const searchInput = document.getElementById('amarasAttrSearchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      filterAttractionList(e.target.value);
+    });
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const firstVisible = document.querySelector('.amaras-attr-item:not([style*="display: none"]):not(.is-all)');
+        if (firstVisible) {
+          const slug = firstVisible.getAttribute('data-attr-slug');
+          selectAttractionFilter(slug, firstVisible);
+        }
+      }
+    });
+  }
+  
+  const clearBtn = document.getElementById('amarasAttrSearchClear');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      clearAttractionSearch();
+    });
+  }
+  
+  document.addEventListener('click', (e) => {
+    const widget = document.getElementById('amarasAttrFilterWidget');
+    if (widget && widget.classList.contains('is-open')) {
+      if (!widget.contains(e.target)) {
+        closeAttractionDropdown();
+      }
+    }
+  });
+});

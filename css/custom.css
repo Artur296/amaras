@@ -10054,3 +10054,298 @@ body.amaras-modal-locked {
   }
 }
 
+
+
+/* ==========================================================================
+   ATTRACTION FILTER (SEARCH BY ATTRACTION DROPDOWN)
+   Matches screenshot: yellow/amber border, search input, TOP 10 header, list
+   ========================================================================== */
+
+.amaras-attr-filter-widget {
+  position: relative;
+  width: 320px;
+  max-width: 100%;
+  font-family: inherit;
+  z-index: 40;
+}
+
+.amaras-attr-filter-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 16px;
+  background: #FFFFFF;
+  border: 1.5px solid #F59E0B;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+  user-select: none;
+}
+
+.amaras-attr-filter-toggle:hover {
+  border-color: #D97706;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15);
+}
+
+.amaras-attr-filter-widget.is-open .amaras-attr-filter-toggle {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-color: transparent;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.amaras-attr-toggle-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+
+.amaras-attr-toggle-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1F2937;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.amaras-attr-active-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #586EFF;
+  background: rgba(88, 110, 255, 0.1);
+  padding: 2px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.amaras-attr-chevron {
+  color: #1F2937;
+  flex-shrink: 0;
+  margin-left: 10px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.amaras-attr-filter-widget.is-open .amaras-attr-chevron {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Panel */
+.amaras-attr-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #FFFFFF;
+  border: 1.5px solid #F59E0B;
+  border-top: none;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+  z-index: 50;
+  overflow: hidden;
+  animation: amarasAttrFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.amaras-attr-filter-widget.is-open .amaras-attr-dropdown {
+  display: block;
+}
+
+@keyframes amarasAttrFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Search Box inside dropdown */
+.amaras-attr-search-wrap {
+  padding: 10px 14px 10px 14px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  margin: 10px 12px 8px 12px;
+  background: #FFFFFF;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.amaras-attr-search-wrap:focus-within {
+  border-color: #586EFF;
+  box-shadow: 0 0 0 3px rgba(88, 110, 255, 0.12);
+}
+
+.amaras-attr-search-icon {
+  color: #4B5563;
+  flex-shrink: 0;
+}
+
+.amaras-attr-search-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #1F2937;
+  background: transparent;
+  font-family: inherit;
+  padding: 0;
+}
+
+.amaras-attr-search-input::placeholder {
+  color: #9CA3AF;
+}
+
+.amaras-attr-search-clear {
+  border: none;
+  background: transparent;
+  color: #9CA3AF;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0 4px;
+  line-height: 1;
+  border-radius: 4px;
+  transition: color 0.15s ease;
+}
+
+.amaras-attr-search-clear:hover {
+  color: #312F2F;
+}
+
+/* TOP 10 Section Header */
+.amaras-attr-section-header {
+  background: #F9FAFB;
+  border-top: 1px solid #E5E7EB;
+  border-bottom: 1px solid #E5E7EB;
+  padding: 6px 14px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1F2937;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+/* Attraction list items */
+.amaras-attr-list {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  max-height: 240px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #D1D5DB transparent;
+}
+
+.amaras-attr-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.amaras-attr-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.amaras-attr-list::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 3px;
+}
+
+.amaras-attr-item {
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1F2937;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.15s ease, color 0.15s ease;
+  border-left: 3px solid transparent;
+}
+
+.amaras-attr-item:hover {
+  background: rgba(88, 110, 255, 0.06);
+  color: #586EFF;
+}
+
+.amaras-attr-item.is-active {
+  background: rgba(88, 110, 255, 0.1);
+  color: #586EFF;
+  font-weight: 700;
+  border-left-color: #586EFF;
+}
+
+.amaras-attr-item.is-all {
+  font-weight: 600;
+  color: #4B5563;
+  border-bottom: 1px dashed #E5E7EB;
+}
+
+.amaras-attr-item.is-all:hover,
+.amaras-attr-item.is-all.is-active {
+  color: #586EFF;
+}
+
+/* Empty State */
+.amaras-attr-empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 24px;
+  background: #FFFFFF;
+  border: 1px dashed #D1D5DB;
+  border-radius: 18px;
+  margin: 20px 0;
+}
+
+.amaras-attr-empty-card svg {
+  margin-bottom: 12px;
+}
+
+.amaras-attr-empty-p {
+  font-size: 16px;
+  color: #4B5563;
+  margin: 0 0 16px 0;
+}
+
+.amaras-attr-reset-btn {
+  display: inline-block;
+  padding: 10px 22px;
+  background: #586EFF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.amaras-attr-reset-btn:hover {
+  background: #4758d6;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(88, 110, 255, 0.25);
+}
+
+@media (max-width: 767px) {
+  .amaras-attr-filter-widget {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
