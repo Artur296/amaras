@@ -4,6 +4,46 @@
  */
 const AMARAS_I18N = {
   RU: {
+    "nav_transfers": "Трансферы",
+    "transfers_page_title": "Трансферы по Армении — Amaras Tour",
+    "transfers_hero_title": "Трансферы по Армении",
+    "transfers_hero_sub": "Индивидуальные и групповые трансферы из аэропорта Звартноц, Еревана и по всей Армении на комфортабельных автомобилях любого класса с опытными водителями.",
+    "tab_all_transfers": "Все трансферы",
+    "tab_airport": "Аэропорт Звартноц",
+    "tab_tsaghkadzor": "Цахкадзор",
+    "tab_sevan": "Озеро Севан",
+    "tab_dilijan": "Дилижан",
+    "tab_tbilisi": "Тбилиси (Грузия)",
+    "calc_title": "Transfer calculator",
+    "calc_from": "From",
+    "calc_to": "To",
+    "calc_btn": "Calculate",
+    "calc_subtext": "Select places to see different transfer options & complete booking just in one step.",
+    "calc_results_label": "Results:",
+    "calc_popular_title": "Popular transfers",
+    "btn_select": "Select",
+    "meta_dist": "Distance:",
+    "meta_dur": "Duration:",
+    "veh_comfort_sedan": "Comfort Sedan",
+    "veh_elegant_sedan": "Elegant Sedan",
+    "veh_premium_sedan": "Premium Sedan",
+    "veh_suv": "SUV",
+    "veh_minivan": "Minivan",
+    "veh_minibus": "Minibus",
+    "veh_bus": "Bus",
+    "veh_coach_bus": "Coach Bus",
+    "loc_yerevan": "Yerevan",
+    "loc_airport": "Yerevan Airport (EVN)",
+    "loc_aghveran": "Aghveran",
+    "loc_tsaghkadzor": "Tsaghkadzor",
+    "loc_sevan": "Sevan",
+    "loc_dilijan": "Dilijan",
+    "loc_gyumri": "Gyumri",
+    "loc_jermuk": "Jermuk",
+    "loc_goris": "Goris / Tatev",
+    "loc_garni": "Garni / Geghard",
+    "loc_khorvirap": "Khor Virap",
+    "loc_tbilisi": "Tbilisi",
     "filter_by_attraction": "Search by attraction",
     "filter_by_attraction_short": "Локация",
     "filter_search_placeholder": "Поиск достопримечательности...",
@@ -722,6 +762,46 @@ const AMARAS_I18N = {
     "trad_c6_feat": "Строгая иерархия тостов, глубокий философский смысл, уважение к старшим",
   },
   ENG: {
+    "nav_transfers": "Transfers",
+    "transfers_page_title": "Transfers in Armenia — Amaras Tour",
+    "transfers_hero_title": "Transfers across Armenia",
+    "transfers_hero_sub": "Individual and group transfers from Zvartnots Airport, Yerevan, and across Armenia in comfortable modern vehicles with professional drivers.",
+    "tab_all_transfers": "All transfers",
+    "tab_airport": "Zvartnots Airport",
+    "tab_tsaghkadzor": "Tsaghkadzor",
+    "tab_sevan": "Lake Sevan",
+    "tab_dilijan": "Dilijan",
+    "tab_tbilisi": "Tbilisi (Georgia)",
+    "calc_title": "Transfer calculator",
+    "calc_from": "From",
+    "calc_to": "To",
+    "calc_btn": "Calculate",
+    "calc_subtext": "Select places to see different transfer options & complete booking just in one step.",
+    "calc_results_label": "Results:",
+    "calc_popular_title": "Popular transfers",
+    "btn_select": "Select",
+    "meta_dist": "Distance:",
+    "meta_dur": "Duration:",
+    "veh_comfort_sedan": "Comfort Sedan",
+    "veh_elegant_sedan": "Elegant Sedan",
+    "veh_premium_sedan": "Premium Sedan",
+    "veh_suv": "SUV",
+    "veh_minivan": "Minivan",
+    "veh_minibus": "Minibus",
+    "veh_bus": "Bus",
+    "veh_coach_bus": "Coach Bus",
+    "loc_yerevan": "Yerevan",
+    "loc_airport": "Yerevan Airport (EVN)",
+    "loc_aghveran": "Aghveran",
+    "loc_tsaghkadzor": "Tsaghkadzor",
+    "loc_sevan": "Sevan",
+    "loc_dilijan": "Dilijan",
+    "loc_gyumri": "Gyumri",
+    "loc_jermuk": "Jermuk",
+    "loc_goris": "Goris / Tatev",
+    "loc_garni": "Garni / Geghard",
+    "loc_khorvirap": "Khor Virap",
+    "loc_tbilisi": "Tbilisi",
     "filter_by_attraction": "Search by attraction",
     "filter_by_attraction_short": "Location",
     "filter_search_placeholder": "Search attraction...",
@@ -1440,6 +1520,46 @@ const AMARAS_I18N = {
     "trad_c6_feat": "Ceremonial hierarchy of toasts, poetic storytelling, respect for elders",
   },
   HY: {
+    "nav_transfers": "Տրանսֆերներ",
+    "transfers_page_title": "Տրանսֆերներ Հայաստանում — Amaras Tour",
+    "transfers_hero_title": "Տրանսֆերներ Հայաստանում",
+    "transfers_hero_sub": "Անհատական և խմբային տրանսֆերներ Զվարթնոց օդանավակայանից, Երևանից և ողջ Հայաստանով բարձրակարգ մեքենաներով փորձառու վարորդներով:",
+    "tab_all_transfers": "Բոլոր տրանսֆերները",
+    "tab_airport": "Զվարթնոց օդանավակայան",
+    "tab_tsaghkadzor": "Ծաղկաձոր",
+    "tab_sevan": "Սևանա լիճ",
+    "tab_dilijan": "Դիլիջան",
+    "tab_tbilisi": "Թբիլիսի (Վրաստան)",
+    "calc_title": "Transfer calculator",
+    "calc_from": "From",
+    "calc_to": "To",
+    "calc_btn": "Calculate",
+    "calc_subtext": "Select places to see different transfer options & complete booking just in one step.",
+    "calc_results_label": "Results:",
+    "calc_popular_title": "Popular transfers",
+    "btn_select": "Select",
+    "meta_dist": "Distance:",
+    "meta_dur": "Duration:",
+    "veh_comfort_sedan": "Comfort Sedan",
+    "veh_elegant_sedan": "Elegant Sedan",
+    "veh_premium_sedan": "Premium Sedan",
+    "veh_suv": "SUV",
+    "veh_minivan": "Minivan",
+    "veh_minibus": "Minibus",
+    "veh_bus": "Bus",
+    "veh_coach_bus": "Coach Bus",
+    "loc_yerevan": "Երևան",
+    "loc_airport": "Զվարթնոց օդանավակայան",
+    "loc_aghveran": "Աղվերան",
+    "loc_tsaghkadzor": "Ծաղկաձոր",
+    "loc_sevan": "Սևան",
+    "loc_dilijan": "Դիլիջան",
+    "loc_gyumri": "Գյումրի",
+    "loc_jermuk": "Ջերմուկ",
+    "loc_goris": "Գորիս / Տաթև",
+    "loc_garni": "Գառնի / Գեղարդ",
+    "loc_khorvirap": "Խոր Վիրապ",
+    "loc_tbilisi": "Թբիլիսի",
     "filter_by_attraction": "Search by attraction",
     "filter_by_attraction_short": "Վայր",
     "filter_search_placeholder": "Որոնել տեսարժան վայր...",
@@ -2919,4 +3039,241 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+});
+
+
+// ==========================================================================
+// AMARAS TRANSFER CALCULATOR RUNTIME
+// ==========================================================================
+
+const AMARAS_TRANSFER_ROUTES = {
+  'yerevan_aghveran': { dist: '50 km', dur: '54 min', comfort: 23700, elegant: 29100, premium: 85400, suv: 32300, minivan: 34700, minibus: 55200, bus: 110000, coach_bus: 143300 },
+  'yerevan_airport': { dist: '14 km', dur: '20 min', comfort: 8000, elegant: 10500, premium: 28000, suv: 12000, minivan: 14000, minibus: 20000, bus: 40000, coach_bus: 55000 },
+  'yerevan_tsaghkadzor': { dist: '58 km', dur: '1 hour', comfort: 25600, elegant: 31000, premium: 90000, suv: 35000, minivan: 38000, minibus: 60000, bus: 120000, coach_bus: 155000 },
+  'yerevan_sevan': { dist: '65 km', dur: '1 hour', comfort: 26500, elegant: 33000, premium: 95000, suv: 37000, minivan: 40000, minibus: 65000, bus: 130000, coach_bus: 165000 },
+  'yerevan_dilijan': { dist: '98 km', dur: '1 h 35 min', comfort: 32000, elegant: 39000, premium: 115000, suv: 44000, minivan: 48000, minibus: 78000, bus: 155000, coach_bus: 198000 },
+  'yerevan_gyumri': { dist: '122 km', dur: '2 hours', comfort: 35000, elegant: 43000, premium: 125000, suv: 48000, minivan: 54000, minibus: 85000, bus: 170000, coach_bus: 220000 },
+  'yerevan_jermuk': { dist: '170 km', dur: '2 h 45 min', comfort: 45000, elegant: 54000, premium: 150000, suv: 60000, minivan: 68000, minibus: 110000, bus: 210000, coach_bus: 270000 },
+  'yerevan_goris': { dist: '240 km', dur: '4 hours', comfort: 68000, elegant: 80000, premium: 210000, suv: 88000, minivan: 98000, minibus: 155000, bus: 290000, coach_bus: 380000 },
+  'yerevan_garni': { dist: '38 km', dur: '45 min', comfort: 18000, elegant: 22000, premium: 65000, suv: 25000, minivan: 28000, minibus: 45000, bus: 90000, coach_bus: 120000 },
+  'yerevan_khorvirap': { dist: '45 km', dur: '50 min', comfort: 20000, elegant: 24000, premium: 70000, suv: 27000, minivan: 30000, minibus: 50000, bus: 100000, coach_bus: 130000 },
+  'yerevan_tbilisi': { dist: '280 km', dur: '5 hours', comfort: 85000, elegant: 105000, premium: 260000, suv: 115000, minivan: 130000, minibus: 195000, bus: 360000, coach_bus: 470000 }
+};
+
+let activeBookingTransfer = null;
+
+function getTransferRouteData(from, to) {
+  if (from === to) {
+    return { dist: '10 km', dur: '20 min', comfort: 6000, elegant: 8000, premium: 22000, suv: 10000, minivan: 12000, minibus: 18000, bus: 35000, coach_bus: 48000 };
+  }
+  const key1 = `${from}_${to}`;
+  const key2 = `${to}_${from}`;
+  if (AMARAS_TRANSFER_ROUTES[key1]) return AMARAS_TRANSFER_ROUTES[key1];
+  if (AMARAS_TRANSFER_ROUTES[key2]) return AMARAS_TRANSFER_ROUTES[key2];
+
+  // Dynamic estimate for any cross-country route
+  return { dist: '75 km', dur: '1 h 15 min', comfort: 28000, elegant: 34000, premium: 98000, suv: 39000, minivan: 42000, minibus: 68000, bus: 135000, coach_bus: 175000 };
+}
+
+function runTransferCalc() {
+  const fromSel = document.getElementById('transferFrom');
+  const toSel = document.getElementById('transferTo');
+  if (!fromSel || !toSel) return;
+
+  const from = fromSel.value;
+  const to = toSel.value;
+  const data = getTransferRouteData(from, to);
+
+  const grid = document.getElementById('transferCardsGrid');
+  if (!grid) return;
+
+  // Format number with spaces (e.g. 23 700)
+  const formatNum = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+  const vehicles = [
+    { key: 'comfort_sedan', name: 'Comfort Sedan', price: data.comfort },
+    { key: 'elegant_sedan', name: 'Elegant Sedan', price: data.elegant },
+    { key: 'premium_sedan', name: 'Premium Sedan', price: data.premium },
+    { key: 'suv', name: 'SUV', price: data.suv },
+    { key: 'minivan', name: 'Minivan', price: data.minivan },
+    { key: 'minibus', name: 'Minibus', price: data.minibus },
+    { key: 'bus', name: 'Bus', price: data.bus },
+    { key: 'coach_bus', name: 'Coach Bus', price: data.coach_bus }
+  ];
+
+  vehicles.forEach(veh => {
+    const card = grid.querySelector(`[data-vehicle-key="${veh.key}"]`);
+    if (card) {
+      const distEl = card.querySelector('.val-dist');
+      const durEl = card.querySelector('.val-dur');
+      const priceEl = card.querySelector('.val-price');
+      const btn = card.querySelector('.amaras-transfer-select-btn');
+
+      if (distEl) distEl.textContent = data.dist;
+      if (durEl) durEl.textContent = data.dur;
+      if (priceEl) {
+        priceEl.setAttribute('data-base-price', veh.price);
+        priceEl.textContent = `${formatNum(veh.price)} AMD`;
+      }
+      if (btn) {
+        btn.setAttribute('onclick', `openTransferBookingModal('${veh.key}', '${veh.name}', ${veh.price})`);
+      }
+    }
+  });
+
+  // Re-run currency conversion if currency.js is loaded
+  if (typeof updatePageCurrencyDisplay === 'function') {
+    updatePageCurrencyDisplay();
+  }
+}
+
+function swapTransferPoints() {
+  const fromSel = document.getElementById('transferFrom');
+  const toSel = document.getElementById('transferTo');
+  if (!fromSel || !toSel) return;
+
+  const temp = fromSel.value;
+  fromSel.value = toSel.value;
+  toSel.value = temp;
+  runTransferCalc();
+}
+
+function handleCalculateSubmit(e) {
+  if (e) e.preventDefault();
+  runTransferCalc();
+  const res = document.getElementById('resultsBlock');
+  if (res) res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function quickSelectRoute(from, to, tabEl) {
+  const fromSel = document.getElementById('transferFrom');
+  const toSel = document.getElementById('transferTo');
+  if (fromSel && toSel) {
+    fromSel.value = from;
+    toSel.value = to;
+    runTransferCalc();
+  }
+  document.querySelectorAll('.amaras-cat-tab-link').forEach(t => t.classList.remove('is-active'));
+  if (tabEl) tabEl.classList.add('is-active');
+  const res = document.getElementById('resultsBlock');
+  if (res) res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function applyPopularRoute(from, to) {
+  const fromSel = document.getElementById('transferFrom');
+  const toSel = document.getElementById('transferTo');
+  if (fromSel && toSel) {
+    fromSel.value = from;
+    toSel.value = to;
+    runTransferCalc();
+  }
+  const res = document.getElementById('resultsBlock');
+  if (res) res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function scrollPopRoutes(dir) {
+  const track = document.getElementById('popRoutesTrack');
+  if (track) {
+    track.scrollBy({ left: dir * 260, behavior: 'smooth' });
+  }
+}
+
+function openTransferBookingModal(key, name, price) {
+  const fromSel = document.getElementById('transferFrom');
+  const toSel = document.getElementById('transferTo');
+  const fromName = fromSel ? fromSel.options[fromSel.selectedIndex].text : 'Yerevan';
+  const toName = toSel ? toSel.options[toSel.selectedIndex].text : 'Aghveran';
+
+  const routeData = getTransferRouteData(fromSel ? fromSel.value : 'yerevan', toSel ? toSel.value : 'aghveran');
+
+  activeBookingTransfer = {
+    key,
+    name,
+    from: fromName,
+    to: toName,
+    dist: routeData.dist,
+    dur: routeData.dur,
+    price: price
+  };
+
+  const modal = document.getElementById('transferBookingModal');
+  const sumEl = document.getElementById('modalTransferSummary');
+  const bDist = document.getElementById('modalBadgeDist');
+  const bDur = document.getElementById('modalBadgeDur');
+  const bPrice = document.getElementById('modalBadgePrice');
+
+  if (sumEl) sumEl.textContent = `${fromName} → ${toName} • ${name}`;
+  if (bDist) bDist.textContent = routeData.dist;
+  if (bDur) bDur.textContent = routeData.dur;
+  if (bPrice) bPrice.textContent = `${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} AMD`;
+
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeTransferBookingModal() {
+  const modal = document.getElementById('transferBookingModal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+}
+
+function submitTransferBooking(e) {
+  if (e) e.preventDefault();
+  if (!activeBookingTransfer) return;
+
+  const dt = document.getElementById('transferDateTime').value;
+  const addr = document.getElementById('transferAddress').value;
+  const name = document.getElementById('transferClientName').value;
+  const phone = document.getElementById('transferClientPhone').value;
+  const notes = document.getElementById('transferNotes').value;
+
+  const msg = `Здравствуйте! Хочу заказать трансфер в Amaras Tour:\n` +
+    `Маршрут: ${activeBookingTransfer.from} → ${activeBookingTransfer.to}\n` +
+    `Автомобиль: ${activeBookingTransfer.name}\n` +
+    `Дистанция / время: ${activeBookingTransfer.dist} (${activeBookingTransfer.dur})\n` +
+    `Стоимость: ${activeBookingTransfer.price.toLocaleString()} AMD\n` +
+    `Дата и время: ${dt}\n` +
+    `Адрес подачи / рейс: ${addr}\n` +
+    `Имя: ${name}\n` +
+    `Телефон: ${phone}` +
+    (notes ? `\nПожелания: ${notes}` : '');
+
+  const waUrl = `https://wa.me/37499250525?text=${encodeURIComponent(msg)}`;
+  window.open(waUrl, '_blank');
+  closeTransferBookingModal();
+}
+
+function addTransferToCart() {
+  if (!activeBookingTransfer) return;
+
+  let cart = [];
+  try {
+    cart = JSON.parse(localStorage.getItem('amaras_cart')) || [];
+  } catch (err) { cart = []; }
+
+  const item = {
+    id: `transfer_${Date.now()}`,
+    title: `Трансфер: ${activeBookingTransfer.from} → ${activeBookingTransfer.to} (${activeBookingTransfer.name})`,
+    price: activeBookingTransfer.price,
+    date: document.getElementById('transferDateTime') ? document.getElementById('transferDateTime').value : '',
+    count: 1
+  };
+
+  cart.push(item);
+  localStorage.setItem('amaras_cart', JSON.stringify(cart));
+
+  if (typeof updateCartBadges === 'function') updateCartBadges();
+  alert('Трансфер успешно добавлен в корзину!');
+  closeTransferBookingModal();
+}
+
+// Auto-run transfer calc on page load
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.getElementById('transferCalculatorForm')) {
+    runTransferCalc();
+  }
 });

@@ -10349,3 +10349,530 @@ body.amaras-modal-locked {
     margin-top: 10px;
   }
 }
+
+
+/* ==========================================================================
+   AMARAS TRANSFERS CATEGORY & CALCULATOR
+   Matching user uploaded screenshot:
+   1. Transfer calculator card
+   2. Results: 8 vehicles grid
+   3. Popular transfers slider
+   ========================================================================== */
+
+.amaras-transfer-main-section {
+  padding: 36px 0 70px 0;
+  background: #F9FAFB;
+}
+
+.amaras-transfer-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 1. Transfer Calculator Card */
+.amaras-transfer-calc-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 36px 36px 28px 36px;
+  max-width: 860px;
+  margin: 0 auto 44px auto;
+}
+
+.amaras-transfer-calc-head {
+  text-align: center;
+}
+
+.amaras-transfer-calc-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1F2937;
+  margin: 0 0 6px 0;
+}
+
+.amaras-transfer-accent-bar {
+  width: 50px;
+  height: 3px;
+  background: #F5B838;
+  margin: 0 auto 24px auto;
+  border-radius: 2px;
+}
+
+.amaras-transfer-calc-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.amaras-transfer-field-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+.amaras-transfer-field-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4B5563;
+  margin-bottom: 6px;
+}
+
+.amaras-calc-req {
+  color: #EF4444;
+  margin-left: 2px;
+}
+
+.amaras-transfer-select-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.amaras-transfer-select {
+  width: 100%;
+  padding: 11px 36px 11px 14px;
+  border: 1.5px solid #D1D5DB;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1F2937;
+  background: #FFFFFF;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.amaras-transfer-select:focus {
+  border-color: #F59E0B;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+}
+
+.amaras-transfer-chevron {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #6B7280;
+}
+
+.amaras-transfer-swap-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid #E5E7EB;
+  background: #F9FAFB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4B5563;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  margin-bottom: 1px;
+}
+
+.amaras-transfer-swap-btn:hover {
+  background: #FEF3C7;
+  color: #D97706;
+  border-color: #F59E0B;
+  transform: rotate(180deg);
+}
+
+.amaras-transfer-calc-submit {
+  padding: 12px 28px;
+  background: #F5B838;
+  color: #1F2937;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 1px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(245, 184, 56, 0.25);
+  font-family: inherit;
+}
+
+.amaras-transfer-calc-submit:hover {
+  background: #EAB308;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(245, 184, 56, 0.35);
+}
+
+.amaras-transfer-calc-hint {
+  text-align: center;
+  font-size: 15px;
+  color: #4B5563;
+  margin: 20px 0 0 0;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* 2. Results Section (8 vehicles grid) */
+.amaras-transfer-results-section {
+  max-width: 1080px;
+  margin: 0 auto 56px auto;
+}
+
+.amaras-transfer-results-head {
+  margin-bottom: 16px;
+}
+
+.amaras-transfer-results-count {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1F2937;
+}
+
+.amaras-transfer-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.amaras-transfer-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.amaras-transfer-card:hover {
+  border-color: #F59E0B;
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.12);
+  transform: translateY(-2px);
+}
+
+.amaras-transfer-card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 150px;
+  flex: 1.2;
+}
+
+.amaras-transfer-card-icon {
+  flex-shrink: 0;
+}
+
+.amaras-transfer-card-info {
+  min-width: 0;
+}
+
+.amaras-transfer-veh-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1F2937;
+  margin: 0 0 4px 0;
+  line-height: 1.2;
+}
+
+.amaras-transfer-capacity {
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4B5563;
+}
+
+.amaras-transfer-card-mid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 120px;
+  flex: 1;
+}
+
+.amaras-meta-row {
+  font-size: 12.5px;
+  color: #6B7280;
+  display: flex;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.amaras-meta-val {
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.amaras-transfer-card-right {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  min-width: 100px;
+}
+
+.amaras-transfer-price {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1F2937;
+  white-space: nowrap;
+}
+
+.amaras-transfer-select-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #2563EB;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.15s ease;
+  font-family: inherit;
+}
+
+.amaras-transfer-select-btn:hover {
+  color: #1D4ED8;
+}
+
+/* 3. Popular Transfers Section */
+.amaras-popular-transfers-card {
+  max-width: 1080px;
+  margin: 0 auto;
+  background: transparent;
+}
+
+.amaras-pop-carousel-wrapper {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+.amaras-pop-veh-feature-card {
+  width: 200px;
+  flex-shrink: 0;
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.amaras-pop-veh-header {
+  background: #F5B838;
+  padding: 12px 14px;
+  color: #1F2937;
+}
+
+.amaras-pop-veh-name {
+  font-size: 15px;
+  font-weight: 800;
+  margin: 0 0 4px 0;
+}
+
+.amaras-pop-veh-cap {
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  gap: 8px;
+}
+
+.amaras-pop-veh-img-wrap {
+  padding: 16px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  background: #FFFBEB;
+}
+
+.amaras-pop-carousel-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #E5E7EB;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4B5563;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  align-self: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.amaras-pop-carousel-arrow:hover {
+  background: #FEF3C7;
+  color: #D97706;
+  border-color: #F59E0B;
+}
+
+.amaras-pop-routes-track {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  flex: 1;
+  scrollbar-width: none;
+  padding: 2px 0;
+}
+
+.amaras-pop-routes-track::-webkit-scrollbar {
+  display: none;
+}
+
+.amaras-pop-route-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 210px;
+  flex-shrink: 0;
+}
+
+.amaras-pop-route-box {
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.amaras-pop-route-box:hover {
+  background: #FFFFFF;
+  border-color: #F59E0B;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+  transform: translateY(-2px);
+}
+
+.amaras-pop-route-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.amaras-pop-route-price {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1F2937;
+}
+
+/* Transfer Booking Modal */
+.amaras-transfer-modal-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  max-width: 480px;
+  width: 100%;
+  padding: 28px 24px;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.amaras-modal-badge-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.amaras-modal-badge {
+  background: #F3F4F6;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.amaras-modal-badge.is-price {
+  background: rgba(88, 110, 255, 0.1);
+  color: #586EFF;
+  font-weight: 800;
+}
+
+.amaras-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 900px) {
+  .amaras-transfer-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .amaras-pop-carousel-wrapper {
+    flex-direction: column;
+  }
+  .amaras-pop-veh-feature-card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .amaras-transfer-calc-card {
+    padding: 24px 16px;
+  }
+  .amaras-transfer-calc-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .amaras-transfer-swap-btn {
+    align-self: center;
+    margin: 4px 0;
+  }
+  .amaras-transfer-calc-submit {
+    width: 100%;
+    margin-top: 8px;
+  }
+  .amaras-transfer-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 14px;
+  }
+  .amaras-transfer-card-left {
+    width: 100%;
+  }
+  .amaras-transfer-card-mid {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 18px;
+    background: #F9FAFB;
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+  .amaras-transfer-card-right {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #F3F4F6;
+    padding-top: 10px;
+    margin-top: 2px;
+  }
+}
