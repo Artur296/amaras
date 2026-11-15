@@ -11444,6 +11444,11 @@ body.amaras-modal-locked {
    Folds and unfolds in 3D perspective, seamlessly transitioning tour photos.
    ========================================================================== */
 
+/* ==========================================================================
+   ARMENIA MAP 3D FLIP SHOWCASE (HERO SECTION)
+   Seamless single-piece 3D card/coin flip with authentic Armenia SVG geometry
+   ========================================================================== */
+
 .amaras-hero-map-right {
   display: flex !important;
   align-items: center !important;
@@ -11456,112 +11461,88 @@ body.amaras-modal-locked {
 
 .amaras-armenia-map-stage {
   position: relative;
-  width: 480px;
-  height: 485px;
-  perspective: 1200px;
+  width: 490px;
+  height: 495px;
+  perspective: 1400px;
+  -webkit-perspective: 1400px;
   cursor: pointer;
   user-select: none;
-  transition: transform 0.3s ease;
 }
 
-.amaras-armenia-map-wrapper {
+.amaras-map-float-wrapper {
   position: relative;
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  will-change: transform;
-  filter: drop-shadow(0 22px 50px rgba(0, 0, 0, 0.55));
-  transition: transform 0.15s ease-out;
+  -webkit-transform-style: preserve-3d;
+  transition: transform 0.25s ease-out;
+  animation: amarasMapGentleFloat 6s ease-in-out infinite alternate;
 }
 
-.amaras-map-panel {
-  position: absolute;
-  top: 0;
+@keyframes amarasMapGentleFloat {
+  0% {
+    transform: translateY(0px) rotateZ(0deg);
+  }
+  100% {
+    transform: translateY(-9px) rotateZ(-0.5deg);
+  }
+}
+
+.amaras-map-flip-card {
+  position: relative;
+  width: 100%;
   height: 100%;
-  overflow: hidden;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   will-change: transform;
-  transition: transform 0.85s cubic-bezier(0.34, 1.35, 0.64, 1);
-  backface-visibility: hidden;
+  transition: transform 1.15s cubic-bezier(0.35, 0, 0.25, 1);
 }
 
-.amaras-map-panel.is-left {
-  left: 0;
-  width: 33.5%;
-  transform-origin: right center;
-  z-index: 2;
-}
-
-.amaras-map-panel.is-center {
-  left: 33.3%;
-  width: 33.5%;
-  transform-origin: center center;
-  z-index: 1;
-  transition: transform 0.85s cubic-bezier(0.34, 1.35, 0.64, 1);
-}
-
-.amaras-map-panel.is-right {
-  left: 66.6%;
-  width: 33.5%;
-  transform-origin: left center;
-  z-index: 2;
-}
-
-.amaras-map-panel-inner {
+.amaras-map-face {
   position: absolute;
-  top: 0;
-  width: 300%;
+  inset: 0;
+  width: 100%;
   height: 100%;
-  pointer-events: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
 }
 
-.amaras-map-panel.is-left .amaras-map-panel-inner {
-  left: 0;
+.amaras-map-face.is-front {
+  transform: rotateY(0deg);
 }
-.amaras-map-panel.is-center .amaras-map-panel-inner {
-  left: -100%;
+
+.amaras-map-face.is-back {
+  transform: rotateY(180deg);
 }
-.amaras-map-panel.is-right .amaras-map-panel-inner {
-  left: -200%;
+
+.amaras-map-back-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(-1);
+  transform-origin: center center;
 }
 
 .amaras-map-svg {
   width: 100%;
   height: 100%;
   display: block;
+  filter: drop-shadow(0 24px 50px rgba(0, 0, 0, 0.68)) drop-shadow(0 0 28px rgba(88, 110, 255, 0.3));
+  transition: filter 0.4s ease;
 }
 
-/* Crease shading on folds */
-.amaras-map-crease-shadow {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.85s ease;
+.amaras-armenia-map-stage:hover .amaras-map-svg {
+  filter: drop-shadow(0 28px 56px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 35px rgba(88, 110, 255, 0.5));
 }
 
-.amaras-map-panel.is-left .amaras-map-crease-shadow {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(10, 10, 15, 0.8) 100%);
-}
-.amaras-map-panel.is-center .amaras-map-crease-shadow {
-  background: linear-gradient(to right, rgba(10, 10, 15, 0.8) 0%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(10, 10, 15, 0.8) 100%);
-}
-.amaras-map-panel.is-right .amaras-map-crease-shadow {
-  background: linear-gradient(to left, rgba(0, 0, 0, 0) 50%, rgba(10, 10, 15, 0.8) 100%);
+.amaras-map-contour-glow {
+  transition: stroke 0.3s ease, filter 0.3s ease;
 }
 
-/* FOLDING / UNFOLDING 3D ANIMATION STATES */
-.amaras-armenia-map-wrapper.is-folding .amaras-map-panel.is-left {
-  transform: rotateY(-82deg);
-}
-.amaras-armenia-map-wrapper.is-folding .amaras-map-panel.is-center {
-  transform: translateZ(-65px) scale(0.88);
-}
-.amaras-armenia-map-wrapper.is-folding .amaras-map-panel.is-right {
-  transform: rotateY(82deg);
-}
-.amaras-armenia-map-wrapper.is-folding .amaras-map-crease-shadow {
-  opacity: 1;
+.amaras-armenia-map-stage:hover .amaras-map-contour-glow {
+  stroke: #6E82FF;
 }
 
 /* Location Pin on Map */
@@ -11597,81 +11578,6 @@ body.amaras-modal-locked {
   100% { transform: scale(2.6); opacity: 0; }
 }
 
-/* Floating Destination Badge */
-.amaras-map-dest-badge {
-  position: absolute;
-  bottom: -16px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(28, 28, 30, 0.94);
-  border: 1.5px solid rgba(199, 255, 50, 0.4);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  padding: 10px 22px;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(199, 255, 50, 0.15);
-  z-index: 12;
-  transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.34, 1.35, 0.64, 1);
-  white-space: nowrap;
-}
-
-.amaras-map-dest-stars {
-  color: #C7FF32;
-  font-size: 13px;
-  letter-spacing: 2px;
-  display: flex;
-  align-items: center;
-}
-
-.amaras-map-dest-text {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-}
-
-.amaras-map-dest-name {
-  font-size: 14.5px;
-  font-weight: 800;
-  color: #FFFFFF;
-  letter-spacing: 0.2px;
-}
-
-.amaras-map-dest-sub {
-  font-size: 11.5px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.65);
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
-  padding-left: 10px;
-}
-
-/* Hint Pill */
-.amaras-map-hint {
-  position: absolute;
-  top: -14px;
-  right: 10px;
-  font-size: 11px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.55);
-  background: rgba(28, 28, 30, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(8px);
-  padding: 4px 12px;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.amaras-armenia-map-stage:hover .amaras-map-hint {
-  color: #C7FF32;
-  border-color: rgba(199, 255, 50, 0.4);
-}
-
 /* Responsive Scaling for Tablets and Mobile */
 @media (max-width: 991px) {
   .amaras-hero-map-right {
@@ -11681,26 +11587,8 @@ body.amaras-modal-locked {
   }
 
   .amaras-armenia-map-stage {
-    width: min(88vw, 390px);
-    height: min(88vw, 390px);
-  }
-
-  .amaras-map-dest-badge {
-    bottom: -12px;
-    padding: 8px 16px;
-    max-width: 90%;
-  }
-
-  .amaras-map-dest-text {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2px;
-  }
-
-  .amaras-map-dest-sub {
-    border-left: none;
-    padding-left: 0;
-    font-size: 10.5px;
+    width: min(88vw, 400px);
+    height: min(88vw, 400px);
   }
 }
 
@@ -11709,9 +11597,7 @@ body.amaras-modal-locked {
     width: min(92vw, 330px);
     height: min(92vw, 330px);
   }
-  .amaras-map-dest-name {
-    font-size: 13px;
-  }
+}
   .amaras-map-hint {
     display: none;
   }
