@@ -209,13 +209,17 @@
           <div class="amaras-admin-metrics-grid">
             <div class="amaras-admin-metric-card">
               <div class="amaras-admin-metric-card-top">
-                <span class="amaras-admin-metric-label" data-i18n="admin_metric_revenue">Общая выручка</span>
-                <div class="amaras-admin-metric-icon is-lime">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                </div>
+                <span class="amaras-admin-metric-label" data-i18n="admin_metric_revenue">Выручка</span>
+                <select id="revenueMonthSelect" class="amaras-admin-select" style="padding: 2px 24px 2px 8px; font-size: 11px; height: 26px; border-radius: 6px; min-width: 120px;" onchange="renderOverview()">
+                  <option value="current">За текущий месяц</option>
+                  <option value="2026-11">Ноябрь 2026</option>
+                  <option value="2026-10">Октябрь 2026</option>
+                  <option value="2026-09">Сентябрь 2026</option>
+                  <option value="all">За всё время</option>
+                </select>
               </div>
               <div class="amaras-admin-metric-value is-accent" id="metricTotalRevenue">0 ֏</div>
-              <div class="amaras-admin-metric-sub" data-i18n="admin_metric_period_month">За последние 30 дней</div>
+              <div class="amaras-admin-metric-sub" id="metricRevenuePeriod">За ноябрь 2026</div>
             </div>
 
             <div class="amaras-admin-metric-card">
@@ -782,6 +786,111 @@
         status: "completed",
         notes: "Трансфер на Mercedes V-Class выполнен вовремя",
         source: "WhatsApp"
+      },
+      {
+        id: "AMR-1078",
+        clientName: "Артур Варданян",
+        clientPhone: "+374 93 40-11-22",
+        clientEmail: "artur.v@mail.am",
+        serviceName: "Пакетный тур «Золотая осень в Армении»",
+        category: "Пакетные туры",
+        date: "2026-10-24",
+        createdAt: "2026-10-18",
+        guests: 4,
+        totalAmd: 380000,
+        status: "completed",
+        notes: "Проживание в Дилижане 4*, полный трансфер",
+        source: "Direct Call"
+      },
+      {
+        id: "AMR-1077",
+        clientName: "Sven Lindholm",
+        clientPhone: "+46 70 123 4567",
+        clientEmail: "sven.l@stockholm.se",
+        serviceName: "Джип-тур по каньонам Вайоц Дзора",
+        category: "Джип-туры",
+        date: "2026-10-18",
+        createdAt: "2026-10-12",
+        guests: 2,
+        totalAmd: 170000,
+        status: "completed",
+        notes: "Toyota Land Cruiser 300, English speaking driver",
+        source: "Website Cart"
+      },
+      {
+        id: "AMR-1076",
+        clientName: "Марина Ковалева",
+        clientPhone: "+7 (918) 555-43-21",
+        clientEmail: "kovaleva.m@bk.ru",
+        serviceName: "Винный фестиваль в Арени и Нораванк",
+        category: "Гастрономические туры",
+        date: "2026-10-12",
+        createdAt: "2026-10-06",
+        guests: 2,
+        totalAmd: 96000,
+        status: "completed",
+        notes: "Дегустация марочных вин",
+        source: "WhatsApp"
+      },
+      {
+        id: "AMR-1075",
+        clientName: "Александр Белов",
+        clientPhone: "+7 (495) 777-88-99",
+        clientEmail: "belov@corp.ru",
+        serviceName: "VIP трансфер Звартноц — Дилижан",
+        category: "Трансферы",
+        date: "2026-10-05",
+        createdAt: "2026-10-01",
+        guests: 3,
+        totalAmd: 45000,
+        status: "completed",
+        notes: "Встреча с табличкой в зале прилета",
+        source: "Telegram"
+      },
+      {
+        id: "AMR-1070",
+        clientName: "Claire & Pierre Dubois",
+        clientPhone: "+33 6 12 34 56 78",
+        clientEmail: "pierre.dubois@paris.fr",
+        serviceName: "Гранд-тур «Вся Армения» (7 дней)",
+        category: "Пакетные туры",
+        date: "2026-09-28",
+        createdAt: "2026-09-20",
+        guests: 2,
+        totalAmd: 290000,
+        status: "completed",
+        notes: "Французский гид",
+        source: "Website Cart"
+      },
+      {
+        id: "AMR-1069",
+        clientName: "Геворг Багдасарян",
+        clientPhone: "+374 77 99-88-77",
+        clientEmail: "gevorg.b@armenia.com",
+        serviceName: "Севан, Дилижан и Агарцин",
+        category: "Групповые мини-туры",
+        date: "2026-09-19",
+        createdAt: "2026-09-14",
+        guests: 5,
+        totalAmd: 120000,
+        status: "completed",
+        notes: "Обед на озере Севан включен",
+        source: "WhatsApp"
+      },
+      {
+        id: "AMR-1068",
+        clientName: "Игорь Кузнецов",
+        clientPhone: "+7 (905) 333-22-11",
+        clientEmail: "kuznetsov.i@yandex.ru",
+        serviceName: "Джип-экспедиция на вулкан Аждаак",
+        category: "Джип-туры",
+        date: "2026-09-10",
+        createdAt: "2026-09-03",
+        guests: 1,
+        totalAmd: 85000,
+        status: "completed",
+        notes: "Индивидуальный подъем с гидом",
+        source: "Website Cart"
       }
     ];
 
@@ -827,7 +936,14 @@
     function getAdminOrders() {
       try {
         const raw = localStorage.getItem('amaras_admin_orders');
-        return raw ? JSON.parse(raw) : DEFAULT_ADMIN_ORDERS;
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return parsed;
+          }
+        }
+        localStorage.setItem('amaras_admin_orders', JSON.stringify(DEFAULT_ADMIN_ORDERS));
+        return DEFAULT_ADMIN_ORDERS;
       } catch (e) {
         return DEFAULT_ADMIN_ORDERS;
       }
@@ -979,17 +1095,71 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // Helper: Dynamic Month Formatting for RU, ENG, HY
+    function getMonthNameByCode(yearMonth, lang) {
+      const [year, monthStr] = yearMonth.split('-');
+      const monthIndex = parseInt(monthStr, 10) - 1;
+
+      const monthsRU = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
+      const monthsEN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      const monthsHY = ['հունվար', 'փետրվար', 'մարտ', 'ապրիլ', 'մայիս', 'հունիս', 'հուլիս', 'օգոստոս', 'սեպտեմբեր', 'հոկտեմբեր', 'նոյեմբեր', 'դեկտեմբեր'];
+
+      if (lang === 'ENG') return `${monthsEN[monthIndex]} ${year}`;
+      if (lang === 'HY') return `${monthsHY[monthIndex]} ${year}`;
+      return `${monthsRU[monthIndex]} ${year}`;
+    }
+
+    function getPeriodLabel(periodKey, lang) {
+      if (periodKey === 'all') {
+        if (lang === 'ENG') return 'All-time total';
+        if (lang === 'HY') return 'Ամբողջ ընթացքում';
+        return 'За всё время работы';
+      }
+
+      const [year, monthStr] = periodKey.split('-');
+      const monthIndex = parseInt(monthStr, 10) - 1;
+
+      const monthsRU = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
+      const monthsEN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      const monthsHY = ['հունվար', 'փետրվար', 'մարտ', 'ապրիլ', 'մայիս', 'հունիս', 'հուլիս', 'օգոստոս', 'սեպտեմբեր', 'հոկտեմբեր', 'նոյեմբեր', 'դեկտեմբեր'];
+
+      if (lang === 'ENG') return `For ${monthsEN[monthIndex]} ${year}`;
+      if (lang === 'HY') return `${monthsHY[monthIndex]} ${year}-ի համար`;
+      return `За ${monthsRU[monthIndex]} ${year}`;
+    }
+
     // 4. Render Dashboard Overview
     function renderOverview() {
       const orders = getAdminOrders();
-      const totalRevenueAmd = orders
-        .filter(o => o.status !== 'cancelled')
-        .reduce((sum, o) => sum + (o.totalAmd || 0), 0);
+      const curLang = window.currentLang || 'RU';
 
+      // Determine selected month filter (default to current month: November 2026)
+      const monthSelect = document.getElementById('revenueMonthSelect');
+      let selectedMonth = monthSelect ? monthSelect.value : '2026-11';
+      if (selectedMonth === 'current') {
+        const now = new Date();
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        selectedMonth = `${now.getFullYear()}-${mm}`;
+      }
+
+      // Filter non-cancelled orders by selected month
+      let periodOrders = orders.filter(o => o.status !== 'cancelled');
+      if (selectedMonth !== 'all') {
+        const monthFiltered = periodOrders.filter(o => o.date && o.date.startsWith(selectedMonth));
+        // If specific month has orders, use them; if not yet recorded, show 0 or period sum
+        periodOrders = monthFiltered;
+      }
+
+      const periodRevenueAmd = periodOrders.reduce((sum, o) => sum + (o.totalAmd || 0), 0);
       const newOrdersCount = orders.filter(o => o.status === 'new').length;
 
       const revEl = document.getElementById('metricTotalRevenue');
-      if (revEl) revEl.textContent = formatPrice(totalRevenueAmd);
+      if (revEl) revEl.textContent = formatPrice(periodRevenueAmd);
+
+      const periodSubEl = document.getElementById('metricRevenuePeriod');
+      if (periodSubEl) {
+        periodSubEl.textContent = getPeriodLabel(selectedMonth, curLang);
+      }
 
       const ordEl = document.getElementById('metricTotalOrders');
       if (ordEl) ordEl.textContent = orders.length;
@@ -1561,6 +1731,24 @@
         btn.classList.toggle('is-active', btn.getAttribute('data-lang') === curLang);
         btn.style.color = (btn.getAttribute('data-lang') === curLang) ? '#FFF' : '#A39F9F';
       });
+
+      // Update month select option labels
+      const mSel = document.getElementById('revenueMonthSelect');
+      if (mSel) {
+        const curVal = mSel.value;
+        const nov = getMonthNameByCode('2026-11', curLang);
+        const oct = getMonthNameByCode('2026-10', curLang);
+        const sep = getMonthNameByCode('2026-09', curLang);
+        const allTxt = (curLang === 'ENG') ? 'All time' : (curLang === 'HY' ? 'Ամբողջ ընթացքում' : 'За всё время');
+
+        mSel.innerHTML = `
+          <option value="2026-11" ${curVal === '2026-11' ? 'selected' : ''}>${nov}</option>
+          <option value="2026-10" ${curVal === '2026-10' ? 'selected' : ''}>${oct}</option>
+          <option value="2026-09" ${curVal === '2026-09' ? 'selected' : ''}>${sep}</option>
+          <option value="all" ${curVal === 'all' ? 'selected' : ''}>${allTxt}</option>
+        `;
+      }
+
       renderOverview();
       renderOrders();
       renderTours();
@@ -1580,8 +1768,13 @@
 
     // Initialize on load
     document.addEventListener('DOMContentLoaded', () => {
-      // Auto-initialize demo data in localStorage if empty
-      if (!localStorage.getItem('amaras_admin_orders')) {
+      // Auto-initialize demo data in localStorage if empty or invalid
+      try {
+        const existingOrders = JSON.parse(localStorage.getItem('amaras_admin_orders') || '[]');
+        if (!Array.isArray(existingOrders) || existingOrders.length === 0) {
+          localStorage.setItem('amaras_admin_orders', JSON.stringify(DEFAULT_ADMIN_ORDERS));
+        }
+      } catch (e) {
         localStorage.setItem('amaras_admin_orders', JSON.stringify(DEFAULT_ADMIN_ORDERS));
       }
       if (!localStorage.getItem('amaras_admin_tours')) {
