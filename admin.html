@@ -438,6 +438,10 @@
               <h2 class="amaras-admin-pane-title" data-i18n="admin_transfers_title">Тарифы на трансферы</h2>
               <p class="amaras-admin-pane-subtitle" data-i18n="admin_transfers_subtitle">Базовые маршруты и класс авто</p>
             </div>
+            <button type="button" class="amaras-admin-btn-lime" onclick="openAddTransferModal()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>+ Добавить маршрут</span>
+            </button>
           </div>
 
           <div class="amaras-admin-table-card">
@@ -762,6 +766,53 @@
     </div>
   </div>
 
+    <!-- Modal: Add / Edit Transfer Route -->
+  <div id="modalTransfer" class="amaras-admin-modal-overlay">
+    <div class="amaras-admin-modal">
+      <div class="amaras-admin-modal-header">
+        <h3 class="amaras-admin-modal-title" id="modalTransferTitle">Добавить маршрут трансфера</h3>
+        <button type="button" class="amaras-admin-modal-close" onclick="closeModal('modalTransfer')" aria-label="Закрыть">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <form id="formTransfer" onsubmit="handleTransferSubmit(event)">
+        <input type="hidden" id="transferEditId" value="" />
+        <div class="amaras-admin-modal-body">
+          <div class="amaras-admin-form-group">
+            <label class="amaras-admin-form-label">Название маршрута</label>
+            <input type="text" id="transferRouteName" class="amaras-admin-form-input" required placeholder="Например: Ереван ↔ Джермук" />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="amaras-admin-form-group">
+              <label class="amaras-admin-form-label">Седан (1-3 чел, AMD)</label>
+              <input type="number" id="transferPriceSedan" class="amaras-admin-form-input" required placeholder="10000" />
+            </div>
+            <div class="amaras-admin-form-group">
+              <label class="amaras-admin-form-label">Минивэн V-Class (4-6 чел, AMD)</label>
+              <input type="number" id="transferPriceMinivan" class="amaras-admin-form-input" required placeholder="25000" />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="amaras-admin-form-group">
+              <label class="amaras-admin-form-label">Спринтер (7-19 чел, AMD)</label>
+              <input type="number" id="transferPriceMinibus" class="amaras-admin-form-input" required placeholder="35000" />
+            </div>
+            <div class="amaras-admin-form-group">
+              <label class="amaras-admin-form-label">VIP Maybach (1-3 чел, AMD)</label>
+              <input type="number" id="transferPriceVip" class="amaras-admin-form-input" required placeholder="50000" />
+            </div>
+          </div>
+        </div>
+        <div class="amaras-admin-modal-footer">
+          <button type="button" class="amaras-admin-btn-outline" onclick="closeModal('modalTransfer')" data-i18n="admin_cancel">Отмена</button>
+          <button type="submit" class="amaras-admin-btn-lime" data-i18n="admin_save">Сохранить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="js/currency.js"></script>
   <script src="js/translations.js"></script>
@@ -1079,6 +1130,27 @@
       populateTourSelect();
     }
 
+    function getAdminTransfers() {
+      try {
+        const raw = localStorage.getItem('amaras_admin_transfers');
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return parsed;
+          }
+        }
+        localStorage.setItem('amaras_admin_transfers', JSON.stringify(DEFAULT_ADMIN_TRANSFERS));
+        return DEFAULT_ADMIN_TRANSFERS;
+      } catch (e) {
+        return DEFAULT_ADMIN_TRANSFERS;
+      }
+    }
+
+    function saveAdminTransfers(transfers) {
+      localStorage.setItem('amaras_admin_transfers', JSON.stringify(transfers));
+      renderTransfers();
+    }
+
     function getAdminFleet() {
       try {
         const raw = localStorage.getItem('amaras_admin_fleet');
@@ -1107,6 +1179,7 @@
           }
         }
         localStorage.setItem('amaras_admin_fleet', JSON.stringify(DEFAULT_ADMIN_FLEET));
+        localStorage.setItem('amaras_admin_transfers', JSON.stringify(DEFAULT_ADMIN_TRANSFERS));
         return DEFAULT_ADMIN_FLEET;
       } catch (e) {
         return DEFAULT_ADMIN_FLEET;
@@ -1906,12 +1979,19 @@
       }
     }
 
-    // 9. Render Transfers Table
+    // 9. Render Transfers Table (with Edit, Delete & Add)
     function renderTransfers() {
       const tbody = document.getElementById('transfersTableBody');
       if (!tbody) return;
 
-      tbody.innerHTML = DEFAULT_ADMIN_TRANSFERS.map(t => `
+      const transfers = getAdminTransfers();
+
+      if (transfers.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:30px; color:#A39F9F;">Маршруты трансферов не найдены</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = transfers.map(t => `
         <tr>
           <td><strong>${t.route}</strong></td>
           <td style="color:#C7FF32; font-weight:700;">${formatPrice(t.sedan)}</td>
@@ -1919,12 +1999,94 @@
           <td style="color:#C7FF32; font-weight:700;">${formatPrice(t.minibus)}</td>
           <td style="color:#C7FF32; font-weight:700;">${formatPrice(t.vip)}</td>
           <td>
-            <a href="transfers.html" target="_blank" class="amaras-admin-btn-outline" style="font-size:11.5px;">
-              Калькулятор
-            </a>
+            <div class="amaras-admin-actions-cell">
+              <button type="button" class="amaras-admin-icon-btn" onclick="openEditTransferModal('${t.id}')" title="Изменить тариф">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+              </button>
+              <button type="button" class="amaras-admin-icon-btn is-danger" onclick="deleteTransfer('${t.id}')" title="Удалить маршрут">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              </button>
+              <a href="transfers.html" target="_blank" class="amaras-admin-btn-outline" style="font-size:11.5px; padding: 4px 8px;">
+                Калькулятор
+              </a>
+            </div>
           </td>
         </tr>
       `).join('');
+    }
+
+    function deleteTransfer(transferId) {
+      const list = getAdminTransfers();
+      const target = list.find(t => t.id === transferId);
+      const name = target ? target.route : 'этот маршрут';
+
+      if (confirm(`Вы уверены, что хотите удалить маршрут «${name}»?`)) {
+        const updated = list.filter(t => t.id !== transferId);
+        saveAdminTransfers(updated);
+        showAdminToast('Маршрут успешно удален', 'info');
+      }
+    }
+
+    function openAddTransferModal() {
+      document.getElementById('modalTransferTitle').textContent = 'Добавить маршрут трансфера';
+      document.getElementById('transferEditId').value = '';
+      document.getElementById('transferRouteName').value = '';
+      document.getElementById('transferPriceSedan').value = '10000';
+      document.getElementById('transferPriceMinivan').value = '25000';
+      document.getElementById('transferPriceMinibus').value = '35000';
+      document.getElementById('transferPriceVip').value = '50000';
+      openModal('modalTransfer');
+    }
+
+    function openEditTransferModal(transferId) {
+      const list = getAdminTransfers();
+      const target = list.find(t => t.id === transferId);
+      if (!target) return;
+
+      document.getElementById('modalTransferTitle').textContent = 'Редактировать тарифы маршрута';
+      document.getElementById('transferEditId').value = target.id;
+      document.getElementById('transferRouteName').value = target.route || '';
+      document.getElementById('transferPriceSedan').value = target.sedan || 0;
+      document.getElementById('transferPriceMinivan').value = target.minivan || 0;
+      document.getElementById('transferPriceMinibus').value = target.minibus || 0;
+      document.getElementById('transferPriceVip').value = target.vip || 0;
+
+      openModal('modalTransfer');
+    }
+
+    function handleTransferSubmit(e) {
+      e.preventDefault();
+      const list = getAdminTransfers();
+      const editId = document.getElementById('transferEditId').value;
+
+      if (editId) {
+        // Edit
+        const target = list.find(t => t.id === editId);
+        if (target) {
+          target.route = document.getElementById('transferRouteName').value.trim();
+          target.sedan = parseInt(document.getElementById('transferPriceSedan').value || '0', 10);
+          target.minivan = parseInt(document.getElementById('transferPriceMinivan').value || '0', 10);
+          target.minibus = parseInt(document.getElementById('transferPriceMinibus').value || '0', 10);
+          target.vip = parseInt(document.getElementById('transferPriceVip').value || '0', 10);
+          saveAdminTransfers(list);
+          closeModal('modalTransfer');
+          showAdminToast('Тарифы маршрута обновлены', 'success');
+        }
+      } else {
+        // Add
+        const newTransfer = {
+          id: 'tr-' + Date.now(),
+          route: document.getElementById('transferRouteName').value.trim(),
+          sedan: parseInt(document.getElementById('transferPriceSedan').value || '0', 10),
+          minivan: parseInt(document.getElementById('transferPriceMinivan').value || '0', 10),
+          minibus: parseInt(document.getElementById('transferPriceMinibus').value || '0', 10),
+          vip: parseInt(document.getElementById('transferPriceVip').value || '0', 10)
+        };
+        list.push(newTransfer);
+        saveAdminTransfers(list);
+        closeModal('modalTransfer');
+        showAdminToast('Маршрут успешно добавлен', 'success');
+      }
     }
 
     // 10. Render Clients
