@@ -583,10 +583,7 @@
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                   <span data-i18n="admin_settings_export">Экспорт заказов (JSON)</span>
                 </button>
-                <button type="button" class="amaras-admin-btn-outline" onclick="openResetAllModal()" style="justify-content: center; padding: 11px; color: #FF5C5C; border-color: rgba(255,92,92,0.4); background: rgba(255,92,92,0.06); gap: 8px;">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                  <span data-i18n="admin_settings_reset_zero">Сбросить всё к 0</span>
-                </button>
+
               </div>
             </div>
           </div>
@@ -1102,38 +1099,7 @@
     </div>
   </div>
 
-    <!-- Modal: Reset All to 0 (Password Protected) -->
-  <div id="modalResetAll" class="amaras-admin-modal-overlay">
-    <div class="amaras-admin-modal" style="max-width: 480px;">
-      <div class="amaras-admin-modal-header" style="border-bottom: 1px solid rgba(255, 92, 92, 0.2);">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF5C5C" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-          <h3 class="amaras-admin-modal-title" style="color: #FF5C5C;" data-i18n="admin_settings_reset_zero">Сбросить всё к 0</h3>
-        </div>
-        <button type="button" class="amaras-admin-modal-close" onclick="closeModal('modalResetAll')" aria-label="Закрыть">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-      </div>
-      <form id="formResetAll" onsubmit="handleResetAllSubmit(event)">
-        <div class="amaras-admin-modal-body">
-          <p style="margin: 0; font-size: 13.5px; color: #D1D5DB; line-height: 1.5;">
-            Вы собираетесь <strong>сбросить все заказы и выручку к 0</strong>. Для подтверждения операции введите пароль администратора:
-          </p>
-          <div class="amaras-admin-form-group" style="margin-top: 10px;">
-            <label class="amaras-admin-form-label">Пароль администратора</label>
-            <input type="password" id="resetAdminPassword" class="amaras-admin-form-input" placeholder="••••••••" required autocomplete="current-password" />
-            <div id="resetPasswordError" style="display: none; color: #FF5C5C; font-size: 13px; margin-top: 6px;">
-              Неверный пароль администратора
-            </div>
-          </div>
-        </div>
-        <div class="amaras-admin-modal-footer">
-          <button type="button" class="amaras-admin-btn-outline" onclick="closeModal('modalResetAll')" data-i18n="admin_cancel">Отмена</button>
-          <button type="submit" class="amaras-admin-btn-primary" style="background: #FF5C5C; border-color: #FF5C5C;">Подтвердить сброс к 0</button>
-        </div>
-      </form>
-    </div>
-  </div>
+    
 
   <!-- Scripts -->
   <script src="js/currency.js"></script>
