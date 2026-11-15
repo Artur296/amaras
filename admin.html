@@ -529,9 +529,9 @@
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                   <span data-i18n="admin_settings_export">Экспорт заказов (JSON)</span>
                 </button>
-                <button type="button" class="amaras-admin-btn-outline" onclick="resetToDemoData()" style="justify-content: center; padding: 10px; color: #C7FF32; border-color: rgba(199,255,50,0.3);">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
-                  <span data-i18n="admin_settings_reset">Сбросить к демо-данным</span>
+                <button type="button" class="amaras-admin-btn-outline" onclick="openResetAllModal()" style="justify-content: center; padding: 11px; color: #FF5C5C; border-color: rgba(255,92,92,0.4); background: rgba(255,92,92,0.06); gap: 8px;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                  <span data-i18n="admin_settings_reset_zero">Сбросить всё к 0</span>
                 </button>
               </div>
             </div>
@@ -808,6 +808,39 @@
         <div class="amaras-admin-modal-footer">
           <button type="button" class="amaras-admin-btn-outline" onclick="closeModal('modalTransfer')" data-i18n="admin_cancel">Отмена</button>
           <button type="submit" class="amaras-admin-btn-lime" data-i18n="admin_save">Сохранить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+    <!-- Modal: Reset All to 0 (Password Protected) -->
+  <div id="modalResetAll" class="amaras-admin-modal-overlay">
+    <div class="amaras-admin-modal" style="max-width: 480px;">
+      <div class="amaras-admin-modal-header" style="border-bottom: 1px solid rgba(255, 92, 92, 0.2);">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF5C5C" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <h3 class="amaras-admin-modal-title" style="color: #FF5C5C;" data-i18n="admin_settings_reset_zero">Сбросить всё к 0</h3>
+        </div>
+        <button type="button" class="amaras-admin-modal-close" onclick="closeModal('modalResetAll')" aria-label="Закрыть">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <form id="formResetAll" onsubmit="handleResetAllSubmit(event)">
+        <div class="amaras-admin-modal-body">
+          <p style="margin: 0; font-size: 13.5px; color: #D1D5DB; line-height: 1.5;">
+            Вы собираетесь <strong>сбросить все заказы и выручку к 0</strong>. Для подтверждения операции введите пароль администратора:
+          </p>
+          <div class="amaras-admin-form-group" style="margin-top: 10px;">
+            <label class="amaras-admin-form-label">Пароль администратора</label>
+            <input type="password" id="resetAdminPassword" class="amaras-admin-form-input" placeholder="••••••••" required autocomplete="current-password" />
+            <div id="resetPasswordError" style="display: none; color: #FF5C5C; font-size: 13px; margin-top: 6px;">
+              Неверный пароль администратора
+            </div>
+          </div>
+        </div>
+        <div class="amaras-admin-modal-footer">
+          <button type="button" class="amaras-admin-btn-outline" onclick="closeModal('modalResetAll')" data-i18n="admin_cancel">Отмена</button>
+          <button type="submit" class="amaras-admin-btn-primary" style="background: #FF5C5C; border-color: #FF5C5C;">Подтвердить сброс к 0</button>
         </div>
       </form>
     </div>
@@ -1096,16 +1129,16 @@
     function getAdminOrders() {
       try {
         const raw = localStorage.getItem('amaras_admin_orders');
-        if (raw) {
+        if (raw !== null) {
           const parsed = JSON.parse(raw);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            return parsed;
+          if (Array.isArray(parsed)) {
+            return parsed; // Can be empty [] if reset to 0
           }
         }
         localStorage.setItem('amaras_admin_orders', JSON.stringify(DEFAULT_ADMIN_ORDERS));
         return DEFAULT_ADMIN_ORDERS;
       } catch (e) {
-        return DEFAULT_ADMIN_ORDERS;
+        return [];
       }
     }
 
@@ -1396,23 +1429,27 @@
               </thead>
               <tbody>
         `;
-        recent.forEach(o => {
-          html += `
-            <tr onclick="viewOrderDetails('${o.id}')" style="cursor: pointer;">
-              <td><span class="amaras-admin-id-pill">${o.id}</span></td>
-              <td>
-                <div class="amaras-admin-client-info">
-                  <span class="amaras-admin-client-name">${o.clientName}</span>
-                  <span class="amaras-admin-client-phone">${o.clientPhone}</span>
-                </div>
-              </td>
-              <td>${o.serviceName}</td>
-              <td>${o.date}</td>
-              <td style="font-weight: 700; color: #C7FF32;">${formatPrice(o.totalAmd)}</td>
-              <td>${getStatusBadge(o.status)}</td>
-            </tr>
-          `;
-        });
+        if (recent.length === 0) {
+          html += `<tr><td colspan="6" style="text-align: center; padding: 24px; color: #A39F9F;">Нет активных заказов</td></tr>`;
+        } else {
+          recent.forEach(o => {
+            html += `
+              <tr onclick="viewOrderDetails('${o.id}')" style="cursor: pointer;">
+                <td><span class="amaras-admin-id-pill">${o.id}</span></td>
+                <td>
+                  <div class="amaras-admin-client-info">
+                    <span class="amaras-admin-client-name">${o.clientName}</span>
+                    <span class="amaras-admin-client-phone">${o.clientPhone}</span>
+                  </div>
+                </td>
+                <td>${o.serviceName}</td>
+                <td>${o.date}</td>
+                <td style="font-weight: 700; color: #C7FF32;">${formatPrice(o.totalAmd)}</td>
+                <td>${getStatusBadge(o.status)}</td>
+              </tr>
+            `;
+          });
+        }
         html += `
               </tbody>
             </table>
@@ -2118,6 +2155,11 @@
         clients = clients.filter(c => c.name.toLowerCase().includes(q) || c.phone.toLowerCase().includes(q));
       }
 
+      if (clients.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 24px; color: #A39F9F;">База клиентов пуста</td></tr>';
+        return;
+      }
+
       tbody.innerHTML = clients.map(c => `
         <tr>
           <td><strong>${c.name}</strong></td>
@@ -2162,13 +2204,42 @@
       downloadAnchor.remove();
     }
 
-    function resetToDemoData() {
-      if (confirm('Сбросить все заказы и туры к исходным демонстрационным данным?')) {
-        localStorage.setItem('amaras_admin_orders', JSON.stringify(DEFAULT_ADMIN_ORDERS));
-        localStorage.setItem('amaras_admin_tours', JSON.stringify(DEFAULT_ADMIN_TOURS));
-        localStorage.setItem('amaras_admin_fleet', JSON.stringify(DEFAULT_ADMIN_FLEET));
-        initAdminDashboard();
-        showAdminToast('Демонстрационные данные успешно восстановлены', 'success');
+    function openResetAllModal() {
+      document.getElementById('resetAdminPassword').value = '';
+      document.getElementById('resetPasswordError').style.display = 'none';
+      openModal('modalResetAll');
+      setTimeout(() => {
+        const inp = document.getElementById('resetAdminPassword');
+        if (inp) inp.focus();
+      }, 100);
+    }
+
+    async function handleResetAllSubmit(e) {
+      e.preventDefault();
+      const enteredPass = document.getElementById('resetAdminPassword').value;
+      const errEl = document.getElementById('resetPasswordError');
+
+      // Secure SHA-256 password verification
+      const ADMIN_HASH = 'c4a764736627f9d3db338b054ccf216724e11ee05455eb3dc467b55413c3182a';
+      const inputHash = await hashAdminSecret(enteredPass);
+
+      if (inputHash === ADMIN_HASH) {
+        // Zero all orders and revenue
+        localStorage.setItem('amaras_admin_orders', JSON.stringify([]));
+        closeModal('modalResetAll');
+        document.getElementById('resetAdminPassword').value = '';
+        errEl.style.display = 'none';
+
+        renderOverview();
+        renderOrders();
+        renderClients();
+
+        showAdminToast('Все заказы и выручка успешно сброшены к 0', 'success');
+      } else {
+        errEl.style.display = 'block';
+        const passInp = document.getElementById('resetAdminPassword');
+        passInp.classList.add('is-invalid');
+        passInp.focus();
       }
     }
 
@@ -2239,13 +2310,8 @@
 
     // Initialize on load
     document.addEventListener('DOMContentLoaded', () => {
-      // Auto-initialize demo data in localStorage if empty or invalid
-      try {
-        const existingOrders = JSON.parse(localStorage.getItem('amaras_admin_orders') || '[]');
-        if (!Array.isArray(existingOrders) || existingOrders.length === 0) {
-          localStorage.setItem('amaras_admin_orders', JSON.stringify(DEFAULT_ADMIN_ORDERS));
-        }
-      } catch (e) {
+      // Auto-initialize demo data in localStorage only on first visit (when null)
+      if (localStorage.getItem('amaras_admin_orders') === null) {
         localStorage.setItem('amaras_admin_orders', JSON.stringify(DEFAULT_ADMIN_ORDERS));
       }
       if (!localStorage.getItem('amaras_admin_tours')) {
@@ -2260,6 +2326,24 @@
       if (typeof setLang === 'function') {
         setLang(savedLang);
       }
+
+      // Close modals on clicking overlay backdrop
+      document.querySelectorAll('.amaras-admin-modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', (e) => {
+          if (e.target === overlay) {
+            overlay.classList.remove('is-open');
+          }
+        });
+      });
+
+      // Close modals on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          document.querySelectorAll('.amaras-admin-modal-overlay.is-open').forEach(modal => {
+            modal.classList.remove('is-open');
+          });
+        }
+      });
 
       checkAdminAuth();
     });
