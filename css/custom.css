@@ -11536,24 +11536,50 @@ body.amaras-modal-locked {
   font-size: 32px !important;
 }
 
-/* Tablet and mobile scaling */
+/* Tablet and mobile scaling for the hero showcase card */
 @media (max-width: 991px) {
   .rebrand-section-hero-right {
-    margin: 8px auto 26px !important;
+    order: -1 !important;
+    width: 100% !important;
+    margin: 8px auto 20px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  [data-gsap="section-hero-tilt-container"] {
+    transform: none !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
     width: 100% !important;
   }
+
   .rebrand-section-hero-frame-container {
-    transform: rotate(4deg) scale(0.85);
+    transform: rotate(4deg) scale(0.88);
     transform-origin: center center !important;
+    margin: -30px auto -24px !important;
   }
 }
 
 @media (max-width: 480px) {
+  .rebrand-section-hero-right {
+    margin: 4px auto 16px !important;
+  }
+
   .rebrand-section-hero-frame-container {
-    transform: rotate(3deg) scale(0.72);
+    transform: rotate(3deg) scale(0.80);
     transform-origin: center center !important;
+    margin: -48px auto -38px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .rebrand-section-hero-frame-container {
+    transform: rotate(2.5deg) scale(0.72);
+    transform-origin: center center !important;
+    margin: -60px auto -50px !important;
   }
 }

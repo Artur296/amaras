@@ -517,7 +517,7 @@
 
                   const applyVwScale = () => {
                     const w = window.innerWidth;
-                    const vw = w > RESIZE_SCALE_WIDTH_REF ? 1 : Math.max(RESIZE_SCALE_MIN, Math.min(1, range * w));
+                    const vw = w > RESIZE_SCALE_WIDTH_REF ? 1 : (w < 992 ? 1 : Math.max(RESIZE_SCALE_MIN, Math.min(1, range * w)));
                     document.documentElement.style.setProperty('--vw-scale', `${vw}`);
                   };
 
