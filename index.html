@@ -581,8 +581,9 @@
                     pinYTo?.(0);
                   }
 
-                  document.body.addEventListener('pointermove', (e) => pointerToTilt(e.clientX, e.clientY));
-                  document.body.addEventListener('pointerleave', resetTilt);
+                  window.addEventListener('pointermove', (e) => pointerToTilt(e.clientX, e.clientY), { passive: true });
+                  document.addEventListener('pointerleave', resetTilt);
+                  window.addEventListener('blur', resetTilt);
 
                   // On resize: snap tilt back to neutral so there's no stale rotation
                   // while the pointer position is unknown relative to the new viewport
