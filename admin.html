@@ -118,6 +118,10 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
         <span data-i18n="admin_nav_tours">Туры</span>
       </button>
+      <button type="button" class="amaras-admin-mobile-tab" data-tab="locations" onclick="switchAdminTab('locations')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        <span data-i18n="admin_nav_locations">Локации</span>
+      </button>
       <button type="button" class="amaras-admin-mobile-tab" data-tab="fleet" onclick="switchAdminTab('fleet')">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
         <span data-i18n="admin_nav_fleet">Автопарк</span>
@@ -155,6 +159,12 @@
         <button type="button" class="amaras-admin-nav-item" data-tab="tours" onclick="switchAdminTab('tours')">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
           <span data-i18n="admin_nav_tours">Туры</span>
+        </button>
+
+        <button type="button" class="amaras-admin-nav-item" data-tab="locations" onclick="switchAdminTab('locations')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <span data-i18n="admin_nav_locations">Локации и фото</span>
+          <span class="amaras-admin-nav-badge" id="sidebarLocationsBadge">0</span>
         </button>
 
         <button type="button" class="amaras-admin-nav-item" data-tab="fleet" onclick="switchAdminTab('fleet')">
@@ -378,6 +388,50 @@
 
           <!-- Tours Grid -->
           <div id="toursCardsGrid" class="amaras-admin-cards-grid">
+            <!-- Dynamically rendered -->
+          </div>
+        </section>
+
+                <!-- ===============================================================
+             TAB: LOCATIONS & ATTRACTIONS MANAGEMENT
+             =============================================================== -->
+        <section id="tab-locations" class="amaras-admin-tab-pane">
+          <div class="amaras-admin-pane-header">
+            <div>
+              <h2 class="amaras-admin-pane-title" data-i18n="admin_locations_title">База локаций и достопримечательностей</h2>
+              <p class="amaras-admin-pane-subtitle" data-i18n="admin_locations_subtitle">Фотографии, регионы и ключевые слова для авто-подбора фото в турах</p>
+            </div>
+            <button type="button" class="amaras-admin-btn-lime" onclick="openAddLocationModal()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span data-i18n="admin_btn_add_location">Добавить локацию</span>
+            </button>
+          </div>
+
+          <div class="amaras-admin-toolbar">
+            <div class="amaras-admin-search-wrapper">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="locationSearchInput" class="amaras-admin-search-input" placeholder="Поиск локации по названию или региону..." oninput="filterLocations()" />
+            </div>
+
+            <div class="amaras-admin-filter-group">
+              <select id="locationRegionFilter" class="amaras-admin-select" onchange="filterLocations()">
+                <option value="all">Все регионы</option>
+                <option value="Котайк">Котайк</option>
+                <option value="Гегаркуник">Гегаркуник</option>
+                <option value="Вайоц Дзор">Вайоц Дзор</option>
+                <option value="Сюник">Сюник</option>
+                <option value="Арарат">Арарат</option>
+                <option value="Арагацотн">Арагацотн</option>
+                <option value="Тавуш">Тавуш</option>
+                <option value="Ереван">Ереван</option>
+                <option value="Ширак">Ширак</option>
+                <option value="Гегамский хребет">Гегамский хребет</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Locations Grid -->
+          <div id="locationsCardsGrid" class="amaras-admin-cards-grid">
             <!-- Dynamically rendered -->
           </div>
         </section>
@@ -631,6 +685,91 @@
   </div>
 
   <!-- Modal: Add Tour -->
+    <!-- Modal: Add / Edit Location -->
+  <div id="modalLocation" class="amaras-admin-modal-overlay">
+    <div class="amaras-admin-modal" style="max-width: 620px;">
+      <div class="amaras-admin-modal-header">
+        <h3 class="amaras-admin-modal-title" id="modalLocationTitle">Добавить локацию</h3>
+        <button type="button" class="amaras-admin-modal-close" onclick="closeModal('modalLocation')" aria-label="Закрыть">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <form id="formLocation" onsubmit="handleLocationFormSubmit(event)">
+        <input type="hidden" id="locationFormId" value="">
+
+        <div class="amaras-admin-modal-body" style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="amaras-admin-form-group" style="margin: 0;">
+            <label class="amaras-admin-form-label">Название локации / достопримечательности *</label>
+            <input type="text" id="locationName" class="amaras-admin-form-input" required placeholder="Храм Гарни" />
+          </div>
+
+          <div class="amaras-admin-form-group" style="margin: 0;">
+            <label class="amaras-admin-form-label">Регион / Категория *</label>
+            <input type="text" id="locationRegion" class="amaras-admin-form-input" required placeholder="Котайк" list="regionsList" />
+            <datalist id="regionsList">
+              <option value="Котайк"></option>
+              <option value="Гегаркуник"></option>
+              <option value="Вайоц Дзор"></option>
+              <option value="Сюник"></option>
+              <option value="Арарат"></option>
+              <option value="Арагацотн"></option>
+              <option value="Тавуш"></option>
+              <option value="Ереван"></option>
+              <option value="Ширак"></option>
+              <option value="Гегамский хребет"></option>
+            </datalist>
+          </div>
+
+          <div class="amaras-admin-form-group" style="margin: 0;">
+            <label class="amaras-admin-form-label">Ключевые слова для авто-поиска (через запятую)</label>
+            <input type="text" id="locationKeywords" class="amaras-admin-form-input" placeholder="гарни, garni, храм гарни, языческий храм" />
+            <div style="font-size: 11.5px; color: #8E8A8A; margin-top: 4px;">
+              Когда в маршруте тура встречается любое из этих слов, фото этой локации будут автоматически подставлены.
+            </div>
+          </div>
+
+          <!-- Location Photos -->
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <label class="amaras-admin-form-label" style="margin: 0;">Фотографии локации</label>
+              <span id="locationPhotosCount" style="color: #C7FF32; font-weight: 700; font-size: 12px;">0 фото</span>
+            </div>
+
+            <div id="locationPhotosList" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; min-height: 45px;">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+              <input type="text" id="newLocPhotoUrl" class="amaras-admin-form-input" placeholder="URL фото или assets/..." style="flex: 1; min-width: 180px;">
+              <button type="button" class="amaras-admin-btn-outline" onclick="addLocationPhotoFromUrl()" style="padding: 7px 12px;">
+                + Добавить URL
+              </button>
+              <label class="amaras-admin-btn-outline" style="cursor: pointer; padding: 7px 12px; margin: 0; display: inline-flex; align-items: center; gap: 6px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                <span>Загрузить фото</span>
+                <input type="file" id="locPhotoFileInput" accept="image/*" multiple onchange="handleLocPhotoUpload(event)" style="display: none;">
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="amaras-admin-modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <button type="button" id="btnDeleteLocation" class="amaras-admin-btn-outline" onclick="handleDeleteCurrentLocation()" style="display: none; color: #FF5C5C; border-color: rgba(255, 92, 92, 0.4); background: rgba(255, 92, 92, 0.08); gap: 6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              <span>Удалить локацию</span>
+            </button>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" class="amaras-admin-btn-outline" onclick="closeModal('modalLocation')" data-i18n="admin_cancel">Отмена</button>
+            <button type="submit" class="amaras-admin-btn-lime" data-i18n="admin_save">Сохранить</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Modal: Tour Management (Add & Edit Full Info) -->
   <div id="modalTour" class="amaras-admin-modal-overlay">
     <div class="amaras-admin-modal" style="max-width: 760px; max-height: 92vh; display: flex; flex-direction: column;">
@@ -734,8 +873,17 @@
 
           <!-- Row 6: Locations / Route -->
           <div class="amaras-admin-form-group" style="margin: 0;">
-            <label class="amaras-admin-form-label" data-i18n="admin_field_tour_locations">Локации / Маршрут *</label>
-            <input type="text" id="tourLocations" class="amaras-admin-form-input" required placeholder="Ереван → Гегамские горы → Озеро Ванк → Вулкан Аждаак">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <label class="amaras-admin-form-label" style="margin: 0;" data-i18n="admin_field_tour_locations">Локации / Маршрут *</label>
+              <button type="button" class="amaras-admin-btn-outline" onclick="autoMatchLocationPhotos(true)" style="padding: 4px 10px; font-size: 11.5px; color: #C7FF32; border-color: rgba(199,255,50,0.45); background: rgba(199,255,50,0.08); gap: 5px;" title="Автоматически подобрать фото по названиям локаций в маршруте">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>Авто-подбор фото по маршруту</span>
+              </button>
+            </div>
+            <input type="text" id="tourLocations" class="amaras-admin-form-input" required placeholder="Ереван → Гегамские горы → Озеро Ванк → Вулкан Аждаак" onblur="autoMatchLocationPhotos(false)">
+            <div style="font-size: 11px; color: #8E8A8A; margin-top: 3px;">
+              Введите названия локаций — система автоматически найдет фото в базе и добавит их в галерею тура.
+            </div>
           </div>
 
           <!-- Row 7: Short Description -->
@@ -787,16 +935,15 @@
               </label>
             </div>
 
-            <!-- Quick presets from assets -->
-            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 10px;">
-              <span style="font-size: 11px; color: #8E8A8A;">Быстрые фото:</span>
-              <button type="button" class="amaras-chip-btn" onclick="addPhotoPreset('assets/hero/tour-3-jeep.jpg')">+ Джип</button>
-              <button type="button" class="amaras-chip-btn" onclick="addPhotoPreset('assets/armenia/attr-garni.jpg')">+ Гарни</button>
-              <button type="button" class="amaras-chip-btn" onclick="addPhotoPreset('assets/armenia/attr-geghard.jpg')">+ Гегард</button>
-              <button type="button" class="amaras-chip-btn" onclick="addPhotoPreset('assets/hero/tour-2-sevan.jpg')">+ Севан</button>
-              <button type="button" class="amaras-chip-btn" onclick="addPhotoPreset('assets/hero/tour-1-khorvirap.jpg')">+ Хор Вирап</button>
-              <button type="button" class="amaras-chip-btn" onclick="addPhotoPreset('assets/armenia/attr-tatev.jpg')">+ Татев</button>
-              <button type="button" class="amaras-chip-btn" onclick="addPhotoPreset('assets/hero/tour-4-gastro.jpg')">+ Гастро</button>
+            <!-- Searchable Location Chips -->
+            <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.06);">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="locationChipsSearchInput" class="amaras-admin-form-input" placeholder="Поиск локации для добавления фото (Гарни, Севан, Татев, Арагац...)" style="font-size: 12px; padding: 6px 10px;" oninput="renderQuickLocationChips(this.value)">
+              </div>
+              <div id="quickLocationChipsContainer" style="display: flex; flex-wrap: wrap; gap: 6px; max-height: 120px; overflow-y: auto; padding: 2px;">
+                <!-- Rendered dynamically -->
+              </div>
             </div>
           </div>
 
@@ -1505,6 +1652,121 @@
       }
     ];
 
+        const DEFAULT_ADMIN_LOCATIONS = [
+      {
+        id: "loc-garni",
+        name: "Языческий храм Гарни",
+        region: "Котайк",
+        keywords: ["гарни", "garni", "храм гарни", "языческий храм"],
+        images: ["assets/armenia/attr-garni.jpg"]
+      },
+      {
+        id: "loc-geghard",
+        name: "Монастырь Гегард",
+        region: "Котайк",
+        keywords: ["гегард", "geghard", "гехард", "монастырь гегард"],
+        images: ["assets/armenia/attr-geghard.jpg"]
+      },
+      {
+        id: "loc-basalt",
+        name: "Симфония камней",
+        region: "Котайк",
+        keywords: ["симфония камней", "базальт", "симфония", "ущелье гарни"],
+        images: ["assets/armenia/attr-geghard.jpg"]
+      },
+      {
+        id: "loc-sevan",
+        name: "Озеро Севан и Севанаванк",
+        region: "Гегаркуник",
+        keywords: ["севан", "sevan", "севанаванк", "озеро севан"],
+        images: ["assets/hero/tour-2-sevan.jpg", "assets/armenia/cafe-sevan.jpg"]
+      },
+      {
+        id: "loc-dilijan",
+        name: "Дилижан и Монастырь Агарцин",
+        region: "Тавуш",
+        keywords: ["дилижан", "dilijan", "агарцин", "гошаванк", "parz"],
+        images: ["assets/armenia/cafe-panoramic.jpg", "assets/hero/tour-2-sevan.jpg"]
+      },
+      {
+        id: "loc-khorvirap",
+        name: "Монастырь Хор Вирап",
+        region: "Арарат",
+        keywords: ["хор вирап", "khor virap", "арарат", "вирап"],
+        images: ["assets/hero/tour-1-khorvirap.jpg"]
+      },
+      {
+        id: "loc-noravank",
+        name: "Монастырь Нораванк",
+        region: "Вайоц Дзор",
+        keywords: ["нораванк", "noravank", "ущелье нораванк"],
+        images: ["assets/hero/tour-1-khorvirap.jpg", "assets/armenia/attr-tatev.jpg"]
+      },
+      {
+        id: "loc-areni",
+        name: "Село и пещера Арени",
+        region: "Вайоц Дзор",
+        keywords: ["арени", "areni", "пещера птиц", "винодельни"],
+        images: ["assets/armenia/fest-winedays.jpg", "assets/hero/tour-4-gastro.jpg"]
+      },
+      {
+        id: "loc-tatev",
+        name: "Монастырь Татев и Крылья Татева",
+        region: "Сюник",
+        keywords: ["татев", "tatev", "крылья татева", "воротан"],
+        images: ["assets/armenia/attr-tatev.jpg"]
+      },
+      {
+        id: "loc-shaki",
+        name: "Водопад Шаки",
+        region: "Сюник",
+        keywords: ["шаки", "shaki", "водопад шаки"],
+        images: ["assets/armenia/attr-tatev.jpg"]
+      },
+      {
+        id: "loc-aragats",
+        name: "Гора Арагац и оз. Кари",
+        region: "Арагацотн",
+        keywords: ["арагац", "aragats", "озеро кари", "кари", "амберд", "гехарот"],
+        images: ["assets/fleet/toyota_4runner.jpg"]
+      },
+      {
+        id: "loc-azhdahak",
+        name: "Вулкан Аждаак",
+        region: "Гегамский хребет",
+        keywords: ["аждаак", "ajdahak", "гегамские горы", "озеро ванк"],
+        images: ["assets/hero/tour-3-jeep.jpg"]
+      },
+      {
+        id: "loc-angels",
+        name: "Марсианское Ущелье Ангелов",
+        region: "Арарат",
+        keywords: ["ущелье ангелов", "ангелов", "веди", "angels canyon"],
+        images: ["assets/armenia/attr-geghard.jpg"]
+      },
+      {
+        id: "loc-jermuk",
+        name: "Джермук (Водопад и СПА)",
+        region: "Вайоц Дзор",
+        keywords: ["джермук", "jermuk", "водопад джермук"],
+        images: ["assets/armenia/cafe-panoramic.jpg"]
+      },
+      {
+        id: "loc-gyumri",
+        name: "Город Гюмри",
+        region: "Ширак",
+        keywords: ["гюмри", "gyumri", "кумайри", "черная крепость"],
+        images: ["assets/armenia/cafe-tavern.jpg"]
+      },
+      {
+        id: "loc-yerevan",
+        name: "Ереван (Каскад и Центр)",
+        region: "Ереван",
+        keywords: ["ереван", "yerevan", "каскад", "северный проспект"],
+        images: ["assets/armenia/cafe-saryan.jpg", "assets/hero/poppies-panorama.webp"]
+      }
+    ];
+
     const DEFAULT_ADMIN_FLEET = [
       { id: "fl-1", name: "Mercedes-Benz V-Class 250d VIP", category: "VIP Минивэны", plate: "01 AM 777", capacity: "6 мест", status: "available", driver: "Армен Саргсян", phone: "+374 91 112233", image: "assets/fleet/mercedes_benz_v_class.jpg" },
       { id: "fl-2", name: "Mercedes-Benz V-Class Extra Long", category: "VIP Минивэны", plate: "02 AM 777", capacity: "7 мест", status: "route", driver: "Григор Манукян", phone: "+374 93 223344", image: "assets/fleet/mercedes_benz_v_class_maybach_4.png" },
@@ -1618,6 +1880,28 @@
     function saveAdminTransfers(transfers) {
       localStorage.setItem('amaras_admin_transfers', JSON.stringify(transfers));
       renderTransfers();
+    }
+
+        function getAdminLocations() {
+      try {
+        const raw = localStorage.getItem('amaras_admin_locations');
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return parsed;
+          }
+        }
+        localStorage.setItem('amaras_admin_locations', JSON.stringify(DEFAULT_ADMIN_LOCATIONS));
+        return DEFAULT_ADMIN_LOCATIONS;
+      } catch (e) {
+        return DEFAULT_ADMIN_LOCATIONS;
+      }
+    }
+
+    function saveAdminLocations(locations) {
+      localStorage.setItem('amaras_admin_locations', JSON.stringify(locations));
+      renderLocations();
+      renderQuickLocationChips();
     }
 
     function getAdminFleet() {
@@ -2373,6 +2657,7 @@
       renderTourPhotosList();
       const delBtn = document.getElementById('btnModalDeleteTour');
       if (delBtn) delBtn.style.display = 'none';
+      renderQuickLocationChips();
       openModal('modalTour');
     }
 
@@ -2407,6 +2692,7 @@
       updateTourDiscountPreview();
       const delBtn = document.getElementById('btnModalDeleteTour');
       if (delBtn) delBtn.style.display = 'inline-flex';
+      renderQuickLocationChips();
       openModal('modalTour');
     }
 
@@ -2497,6 +2783,327 @@
       });
 
       renderTours(filtered);
+    }
+
+        // =========================================================================
+    // LOCATIONS & AUTO-MATCHING CONTROLLER
+    // =========================================================================
+    let currentLocationPhotos = [];
+
+    function autoMatchLocationPhotos(isManual = false) {
+      const locationsInput = document.getElementById('tourLocations');
+      if (!locationsInput) return;
+      const routeText = locationsInput.value.toLowerCase().trim();
+      if (!routeText) {
+        if (isManual) showAdminToast('Сначала введите маршрут тура в поле «Локации / Маршрут»', 'info');
+        return;
+      }
+
+      const allLocations = getAdminLocations();
+      const matchedNames = [];
+      let addedCount = 0;
+
+      allLocations.forEach(loc => {
+        const nameMatch = routeText.includes(loc.name.toLowerCase());
+        const kwMatch = loc.keywords && loc.keywords.some(kw => routeText.includes(kw.toLowerCase().trim()));
+
+        if (nameMatch || kwMatch) {
+          matchedNames.push(loc.name);
+          if (Array.isArray(loc.images)) {
+            loc.images.forEach(img => {
+              if (img && !currentTourPhotos.includes(img)) {
+                currentTourPhotos.push(img);
+                addedCount++;
+              }
+            });
+          }
+        }
+      });
+
+      if (addedCount > 0) {
+        renderTourPhotosList();
+        if (isManual) {
+          showAdminToast(`Авто-подбор: добавлено ${addedCount} фото по локациям: ${matchedNames.join(', ')}`, 'success');
+        }
+      } else if (isManual) {
+        if (matchedNames.length > 0) {
+          showAdminToast(`Все фото для найденных локаций (${matchedNames.join(', ')}) уже есть в галерее`, 'info');
+        } else {
+          showAdminToast('Совпадений с базой локаций не найдено. Вы можете добавить фото вручную или создать локацию во вкладке «Локации».', 'info');
+        }
+      }
+    }
+
+    function renderQuickLocationChips(searchQuery = '') {
+      const container = document.getElementById('quickLocationChipsContainer');
+      if (!container) return;
+
+      const allLocs = getAdminLocations();
+      const q = (searchQuery || '').toLowerCase().trim();
+
+      const filtered = allLocs.filter(loc => {
+        if (!q) return true;
+        return loc.name.toLowerCase().includes(q) ||
+          loc.region.toLowerCase().includes(q) ||
+          (loc.keywords && loc.keywords.some(k => k.toLowerCase().includes(q)));
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<span style="font-size: 11.5px; color: #8E8A8A; padding: 4px;">Локации по запросу не найдены</span>';
+        return;
+      }
+
+      container.innerHTML = filtered.map(loc => `
+        <button type="button" class="amaras-chip-btn" onclick="addPhotosFromLocation('${loc.id}')" title="Добавить фото: ${loc.name} (${loc.region})">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>${loc.name}</span>
+        </button>
+      `).join('');
+    }
+
+    function addPhotosFromLocation(locId) {
+      const loc = getAdminLocations().find(l => l.id === locId);
+      if (!loc || !Array.isArray(loc.images) || loc.images.length === 0) {
+        showAdminToast(`У локации «${loc ? loc.name : ''}» нет сохраненных фотографий`, 'info');
+        return;
+      }
+      let added = 0;
+      loc.images.forEach(img => {
+        if (img && !currentTourPhotos.includes(img)) {
+          currentTourPhotos.push(img);
+          added++;
+        }
+      });
+      if (added > 0) {
+        renderTourPhotosList();
+        showAdminToast(`Добавлено ${added} фото локации «${loc.name}»`, 'success');
+      } else {
+        showAdminToast(`Фотографии локации «${loc.name}» уже в галерее тура`, 'info');
+      }
+    }
+
+    // =========================================================================
+    // LOCATIONS TAB MANAGEMENT (CRUD)
+    // =========================================================================
+    function renderLocations(filteredLocations) {
+      const locations = filteredLocations || getAdminLocations();
+      const grid = document.getElementById('locationsCardsGrid');
+      const badge = document.getElementById('sidebarLocationsBadge');
+
+      const all = getAdminLocations();
+      if (badge) badge.textContent = all.length;
+
+      if (!grid) return;
+
+      if (locations.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; padding: 40px; text-align: center; color: #A39F9F;">Локации не найдены</div>';
+        return;
+      }
+
+      grid.innerHTML = locations.map(loc => {
+        const cover = (loc.images && loc.images.length > 0) ? loc.images[0] : '';
+        const kwList = Array.isArray(loc.keywords) ? loc.keywords.join(', ') : (loc.keywords || '-');
+
+        return `
+          <div class="amaras-admin-entity-card" style="padding: 14px; position: relative;">
+            <div style="position: relative; width: 100%; height: 140px; border-radius: 10px; overflow: hidden; background: #1C1A1A; margin-bottom: 12px;">
+              ${cover
+                ? `<img src="${cover}" alt="${loc.name}" style="width: 100%; height: 100%; object-fit: cover;">`
+                : `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #586EFF; font-weight: 700; font-size: 14px; background: rgba(88,110,255,0.08);">ЛОКАЦИЯ</div>`
+              }
+              <div style="position: absolute; top: 8px; left: 8px;">
+                <span style="background: rgba(18,17,17,0.85); backdrop-filter: blur(4px); color: #C7FF32; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(199,255,50,0.3);">
+                  ${loc.region}
+                </span>
+              </div>
+              <div style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.75); color: #FFF; font-size: 10.5px; padding: 2px 7px; border-radius: 6px; display: flex; align-items: center; gap: 4px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                <span>${(loc.images && loc.images.length) || 0} фото</span>
+              </div>
+            </div>
+
+            <h3 class="amaras-admin-entity-title" style="margin: 0 0 6px 0; font-size: 16px;">
+              ${loc.name}
+            </h3>
+
+            <div style="font-size: 11.5px; color: #8E8A8A; line-height: 1.4; margin-bottom: 12px; min-height: 32px;">
+              <strong style="color: #D1D5DB;">Ключевые слова:</strong> ${kwList}
+            </div>
+
+            <div class="amaras-admin-entity-bottom" style="margin-top: auto; padding-top: 10px;">
+              <span style="font-size: 12px; color: #C7FF32; font-weight: 600;">
+                ID: ${loc.id}
+              </span>
+              <div style="display: flex; gap: 6px; align-items: center;">
+                <button type="button" class="amaras-admin-btn-outline" onclick="openEditLocationModal('${loc.id}')" style="padding: 7px 11px; font-size: 12px; gap: 5px;" title="Редактировать локацию">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                  <span>Изменить</span>
+                </button>
+                <button type="button" class="amaras-admin-btn-outline" onclick="deleteLocation('${loc.id}')" style="padding: 7px 11px; font-size: 12px; color: #FF5C5C; border-color: rgba(255, 92, 92, 0.4); background: rgba(255, 92, 92, 0.08); gap: 5px;" title="Удалить локацию">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                  <span>Удалить</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterLocations() {
+      const q = (document.getElementById('locationSearchInput') ? document.getElementById('locationSearchInput').value : '').toLowerCase().trim();
+      const reg = document.getElementById('locationRegionFilter') ? document.getElementById('locationRegionFilter').value : 'all';
+      const all = getAdminLocations();
+
+      const filtered = all.filter(l => {
+        const matchesQ = !q ||
+          l.name.toLowerCase().includes(q) ||
+          l.region.toLowerCase().includes(q) ||
+          (l.keywords && l.keywords.some(k => k.toLowerCase().includes(q)));
+        const matchesReg = (reg === 'all') || (l.region === reg);
+        return matchesQ && matchesReg;
+      });
+
+      renderLocations(filtered);
+    }
+
+    function renderLocationPhotosList() {
+      const container = document.getElementById('locationPhotosList');
+      const countEl = document.getElementById('locationPhotosCount');
+      if (!container) return;
+      if (countEl) countEl.textContent = `${currentLocationPhotos.length} фото`;
+
+      if (currentLocationPhotos.length === 0) {
+        container.innerHTML = '<div style="font-size: 12px; color: #8E8A8A; padding: 6px 0;">Фотографии пока не добавлены</div>';
+        return;
+      }
+
+      container.innerHTML = currentLocationPhotos.map((url, idx) => `
+        <div style="position: relative; width: 70px; height: 70px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.15); background: #1C1A1A;">
+          <img src="${url}" alt="Фото ${idx + 1}" style="width: 100%; height: 100%; object-fit: cover;">
+          <button type="button" onclick="removeLocationPhoto(${idx})" title="Удалить фото" style="position: absolute; top: 2px; right: 2px; width: 18px; height: 18px; border-radius: 50%; background: rgba(0,0,0,0.85); color: #FF5C5C; border: 1px solid #FF5C5C; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 11px; line-height: 1; padding: 0;">
+            &times;
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function addLocationPhotoFromUrl() {
+      const inp = document.getElementById('newLocPhotoUrl');
+      if (!inp) return;
+      const url = inp.value.trim();
+      if (!url) return;
+      currentLocationPhotos.push(url);
+      inp.value = '';
+      renderLocationPhotosList();
+    }
+
+    function handleLocPhotoUpload(e) {
+      const files = Array.from(e.target.files || []);
+      if (files.length === 0) return;
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          if (evt.target.result) {
+            currentLocationPhotos.push(evt.target.result);
+            renderLocationPhotosList();
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+      e.target.value = '';
+    }
+
+    function removeLocationPhoto(idx) {
+      currentLocationPhotos.splice(idx, 1);
+      renderLocationPhotosList();
+    }
+
+    function openAddLocationModal() {
+      const form = document.getElementById('formLocation');
+      if (form) form.reset();
+      document.getElementById('locationFormId').value = '';
+      document.getElementById('modalLocationTitle').textContent = 'Добавить новую локацию';
+      const delBtn = document.getElementById('btnDeleteLocation');
+      if (delBtn) delBtn.style.display = 'none';
+
+      currentLocationPhotos = [];
+      renderLocationPhotosList();
+      openModal('modalLocation');
+    }
+
+    function openEditLocationModal(locId) {
+      const loc = getAdminLocations().find(l => l.id === locId);
+      if (!loc) return;
+
+      document.getElementById('locationFormId').value = loc.id;
+      document.getElementById('modalLocationTitle').textContent = `Редактировать локацию: ${loc.name}`;
+      document.getElementById('locationName').value = loc.name;
+      document.getElementById('locationRegion').value = loc.region;
+      document.getElementById('locationKeywords').value = Array.isArray(loc.keywords) ? loc.keywords.join(', ') : (loc.keywords || '');
+
+      const delBtn = document.getElementById('btnDeleteLocation');
+      if (delBtn) delBtn.style.display = 'inline-flex';
+
+      currentLocationPhotos = (loc.images && Array.isArray(loc.images)) ? [...loc.images] : [];
+      renderLocationPhotosList();
+      openModal('modalLocation');
+    }
+
+    function handleLocationFormSubmit(e) {
+      e.preventDefault();
+      const locations = getAdminLocations();
+      const locId = document.getElementById('locationFormId').value;
+
+      const rawKw = document.getElementById('locationKeywords').value;
+      const keywords = rawKw ? rawKw.split(',').map(s => s.trim().toLowerCase()).filter(Boolean) : [];
+
+      const locData = {
+        name: document.getElementById('locationName').value.trim(),
+        region: document.getElementById('locationRegion').value.trim(),
+        keywords: keywords,
+        images: [...currentLocationPhotos]
+      };
+
+      if (locId) {
+        // Edit
+        const idx = locations.findIndex(l => l.id === locId);
+        if (idx !== -1) {
+          locations[idx] = { ...locations[idx], ...locData };
+          saveAdminLocations(locations);
+          showAdminToast('Локация успешно обновлена', 'success');
+        }
+      } else {
+        // Add
+        const newLoc = {
+          id: 'loc-' + Date.now(),
+          ...locData
+        };
+        locations.push(newLoc);
+        saveAdminLocations(locations);
+        showAdminToast('Новая локация успешно добавлена', 'success');
+      }
+
+      closeModal('modalLocation');
+    }
+
+    function deleteLocation(locId) {
+      const locations = getAdminLocations();
+      const target = locations.find(l => l.id === locId);
+      if (!target) return;
+
+      if (confirm(`Вы уверены, что хотите удалить локацию «${target.name}»?`)) {
+        const updated = locations.filter(l => l.id !== locId);
+        saveAdminLocations(updated);
+        showAdminToast('Локация успешно удалена', 'info');
+      }
+    }
+
+    function handleDeleteCurrentLocation() {
+      const locId = document.getElementById('locationFormId').value;
+      if (!locId) return;
+      deleteLocation(locId);
+      closeModal('modalLocation');
     }
 
     // 8. Render Fleet (with Photo, 1-Click Status Switcher, Edit & Delete)
@@ -3003,6 +3610,7 @@
       renderOverview();
       renderOrders();
       renderTours();
+      renderLocations();
       renderFleet();
       renderTransfers();
       renderClients();
@@ -3012,6 +3620,7 @@
       renderOverview();
       renderOrders();
       renderTours();
+      renderLocations();
       renderFleet();
       renderTransfers();
       renderClients();
@@ -3046,6 +3655,9 @@
             }
           }
         } catch (e) {}
+      }
+      if (!localStorage.getItem('amaras_admin_locations')) {
+        localStorage.setItem('amaras_admin_locations', JSON.stringify(DEFAULT_ADMIN_LOCATIONS));
       }
       if (!localStorage.getItem('amaras_admin_fleet')) {
         localStorage.setItem('amaras_admin_fleet', JSON.stringify(DEFAULT_ADMIN_FLEET));
