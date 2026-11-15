@@ -11436,3 +11436,129 @@ body.amaras-modal-locked {
 .amaras-fleet-order-btn:hover svg {
   color: #1F2937;
 }
+
+
+/* ==========================================================================
+   AMARAS HERO SHOWCASE CARD (UPRIGHT 90 DEG, BIGGER IMAGE, RADIUS 0)
+   ========================================================================== */
+
+.rebrand-section-hero-frame-container.amaras-hero-card-rect {
+  width: 480px !important;
+  max-width: 100% !important;
+  height: auto !important;
+  transform: rotate(0deg) !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+  background: #586EFF !important;
+  border: 2px solid rgba(199, 255, 50, 0.4) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(88, 110, 255, 0.25) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+}
+
+[data-gsap="section-hero-tilt-box"] {
+  transform: rotate(0deg) !important;
+}
+
+.amaras-hero-card-rect .rebrand-section-hero-image-container {
+  position: relative !important;
+  width: 100% !important;
+  height: 470px !important;
+  overflow: hidden !important;
+  border-radius: 0 !important;
+  background: #1C1C1E !important;
+  flex: 0 0 470px !important;
+  inset: auto !important;
+}
+
+.amaras-hero-card-rect .rebrand-section-hero-image {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 0 !important;
+}
+
+.amaras-hero-card-rect .amaras-hero-card-footer {
+  position: relative !important;
+  background: #586EFF !important;
+  padding: 24px 28px 26px !important;
+  border-radius: 0 !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+.amaras-hero-card-rect .rebrand-section-hero-frame-stars {
+  position: relative !important;
+  width: 134px !important;
+  height: 22px !important;
+  margin-bottom: 12px !important;
+  color: #C7FF32 !important;
+  fill: #C7FF32 !important;
+  display: block !important;
+  inset: auto !important;
+}
+
+.amaras-hero-card-rect .rebrand-section-hero-frame-title {
+  position: relative !important;
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  color: #FFFFFF !important;
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  inset: auto !important;
+}
+
+.amaras-hero-card-rect .rebrand-section-hero-title-fixed,
+.amaras-hero-card-rect .rebrand-section-hero-title-dynamic {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  font-size: 32px !important;
+}
+
+/* Optional ticket notch hooks (default hidden for strict 0-radius) */
+.amaras-hero-card-notch {
+  display: none;
+}
+
+/* Responsive scaling for mobile & tablets */
+@media (max-width: 991px) {
+  .rebrand-section-hero-frame-container.amaras-hero-card-rect {
+    width: min(92vw, 420px) !important;
+    margin: 0 auto !important;
+  }
+  .amaras-hero-card-rect .rebrand-section-hero-image-container {
+    height: min(85vw, 360px) !important;
+    flex: 0 0 min(85vw, 360px) !important;
+  }
+  .amaras-hero-card-rect .rebrand-section-hero-frame-title,
+  .amaras-hero-card-rect .rebrand-section-hero-title-fixed,
+  .amaras-hero-card-rect .rebrand-section-hero-title-dynamic {
+    font-size: 26px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .rebrand-section-hero-frame-container.amaras-hero-card-rect {
+    width: min(92vw, 340px) !important;
+  }
+  .amaras-hero-card-rect .rebrand-section-hero-image-container {
+    height: 290px !important;
+    flex: 0 0 290px !important;
+  }
+  .amaras-hero-card-rect .amaras-hero-card-footer {
+    padding: 16px 20px 20px !important;
+  }
+  .amaras-hero-card-rect .rebrand-section-hero-frame-title,
+  .amaras-hero-card-rect .rebrand-section-hero-title-fixed,
+  .amaras-hero-card-rect .rebrand-section-hero-title-dynamic {
+    font-size: 22px !important;
+  }
+}
