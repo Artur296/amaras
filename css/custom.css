@@ -5108,316 +5108,80 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   box-shadow: 0 8px 22px rgba(199, 255, 50, 0.45);
 }
 
-/* ==========================================================================
-   Amaras Iris Orbit Carousel (Continuous 3D Revolving Ring)
-   Inspired by ellioteriksson.com
-   ========================================================================== */
-
-.rebrand-section-hero {
-  background-color: #312F2F !important;
-  position: relative !important;
-  overflow: hidden !important;
-  width: 100% !important;
-  min-height: 100vh !important;
-  height: 100vh !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-.amaras-hero-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-/* Continuous 3D Iris Container */
-.amaras-iris-container {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: auto;
-  overflow: hidden;
-  z-index: 2;
-  cursor: grab;
-}
-
-.amaras-iris-container:active {
-  cursor: grabbing;
-}
-
-.amaras-iris-track {
-  position: relative;
-  width: 0;
-  height: 0;
-  pointer-events: none;
-}
-
-.amaras-iris-card {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: var(--card-w, 120px);
-  height: var(--card-h, 154px);
-  border-radius: 12px;
-  pointer-events: auto;
-  cursor: pointer;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  will-change: transform, opacity;
-  transition: filter 0.25s ease;
-}
-
-.amaras-iris-card-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  display: block;
-  background: #1E1D1D;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.25);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.amaras-iris-card-inner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  pointer-events: none;
-  -webkit-user-drag: none;
-  transition: transform 0.4s ease;
-}
-
-.amaras-iris-card:hover .amaras-iris-card-inner {
-  border-color: rgba(199, 255, 50, 0.85);
-  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.7), 0 0 24px rgba(199, 255, 50, 0.45);
-  transform: scale(1.06);
-}
-
-.amaras-iris-card:hover .amaras-iris-card-inner img {
-  transform: scale(1.08);
-}
-
-.amaras-iris-badge {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  right: 8px;
-  background: rgba(18, 18, 18, 0.88);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: #FFFFFF;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 5px 8px;
-  border-radius: 6px;
-  text-align: center;
-  border: 1px solid rgba(199, 255, 50, 0.35);
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  pointer-events: none;
-  letter-spacing: 0.02em;
-}
-
-.amaras-iris-card:hover .amaras-iris-badge {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Center Content */
-.amaras-hero-center-content {
-  position: relative;
-  z-index: 10;
-  max-width: 680px;
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 24px 20px;
-  box-sizing: border-box;
-  pointer-events: auto;
-}
-
-.amaras-hero-eyebrow {
-  font-size: 12px !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.16em !important;
-  text-transform: uppercase !important;
-  color: var(--amaras-lime) !important;
-  margin-bottom: 16px !important;
-  padding: 6px 16px !important;
-  background: rgba(199, 255, 50, 0.08) !important;
-  border: 1px solid rgba(199, 255, 50, 0.28) !important;
-  border-radius: 100px !important;
-  display: inline-block !important;
-}
-
-.amaras-hero-title {
-  margin: 0 0 14px !important;
-  text-align: center !important;
-}
-
-.amaras-hero-title h1 {
-  font-size: clamp(34px, 4.4vw, 54px) !important;
-  line-height: 1.15 !important;
-  font-weight: 800 !important;
-  color: #FFFFFF !important;
-  margin: 0 !important;
-  letter-spacing: -0.025em !important;
-  text-wrap: balance !important;
-}
-
-.amaras-hero-desc {
-  font-size: clamp(14px, 1.2vw, 16px) !important;
-  line-height: 1.6 !important;
-  color: rgba(255, 255, 255, 0.72) !important;
-  max-width: 580px !important;
-  margin: 0 auto 24px !important;
-  text-align: center !important;
-}
-
-.amaras-hero-actions-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 22px;
-}
-
-.amaras-hero-cta-btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-  padding: 14px 28px !important;
-  border-radius: 50px !important;
-  background: var(--amaras-lime) !important;
-  color: #312F2F !important;
-  font-weight: 700 !important;
-  font-size: 15px !important;
-  text-decoration: none !important;
-  box-shadow: 0 8px 24px rgba(199, 255, 50, 0.4) !important;
-  border: none !important;
-  cursor: pointer !important;
-  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, background-color 0.2s ease !important;
-}
-
-.amaras-hero-cta-btn:hover {
-  transform: translateY(-2px) scale(1.03) !important;
-  box-shadow: 0 12px 32px rgba(199, 255, 50, 0.55) !important;
-  background: var(--amaras-lime-hover) !important;
-}
-
-.amaras-hero-scroll-down {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  color: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  transition: color 0.2s ease, transform 0.25s ease;
-  animation: amarasScrollBounce 2.2s ease-in-out infinite;
-  text-decoration: none;
-  margin-top: 4px;
-}
-
-.amaras-hero-scroll-down:hover {
-  color: var(--amaras-lime);
-  transform: translateY(4px);
-}
-
-@keyframes amarasScrollBounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(6px); }
-  60% { transform: translateY(3px); }
-}
-
-/* --- Mobile Viewport (Exact match to Elliot Eriksson mobile screenshot) --- */
-@media (max-width: 767px) {
-  .rebrand-section-hero {
-    height: 100vh !important;
-    min-height: 100vh !important;
-    max-height: 100vh !important;
-  }
-
-  .amaras-hero-wrapper {
-    height: 100% !important;
-    padding: 0 !important;
-  }
-
-  .amaras-hero-center-content {
-    padding: 0 20px !important;
-    max-width: 360px !important;
-  }
-
-  .amaras-hero-eyebrow {
-    font-size: 10.5px !important;
-    letter-spacing: 0.12em !important;
-    margin-bottom: 10px !important;
-    padding: 4px 12px !important;
-  }
-
-  .amaras-hero-title {
-    margin-bottom: 14px !important;
-  }
-
-  .amaras-hero-title h1 {
-    font-size: clamp(24px, 6.8vw, 32px) !important;
-    line-height: 1.16 !important;
-  }
-
-  /* Critical for mobile: hide long description so top and bottom card arcs fit on screen simultaneously */
-  .amaras-hero-desc {
-    display: none !important;
-  }
-
-  .amaras-hero-actions-container {
-    gap: 12px !important;
-    margin-bottom: 12px !important;
+/* Tablet & Mobile Hero Action Centering (Matches centered heading & description) */
+@media (max-width: 991px) {
+  .rebrand-section-hero-inner {
+    display: flex !important;
     flex-direction: column !important;
+    height: auto !important;
+    min-height: auto !important;
+    padding: 24px 20px 48px !important;
   }
 
-  .amaras-hero-cta-btn {
-    padding: 11px 22px !important;
-    font-size: 13.5px !important;
+  /* Interactive Ticket Card is the FIRST element at the very top of the page on mobile */
+  .rebrand-section-hero-right {
+    order: -1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 8px auto 26px !important;
+  }
+
+  .rebrand-section-hero-left {
+    order: 2 !important;
+    align-items: center !important;
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .rebrand-section-hero-button.amaras-hero-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    align-self: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 16px auto 0 !important;
+    gap: 16px !important;
+  }
+
+  .amaras-hero-actions .rebrand-button {
+    display: inline-flex !important;
+    align-self: center !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+    text-align: center !important;
   }
 
   .amaras-hero-social-buttons {
-    gap: 8px !important;
-  }
-
-  .amaras-hero-circle-btn {
-    width: 42px !important;
-    height: 42px !important;
-  }
-
-  .amaras-hero-scroll-down {
-    width: 32px !important;
-    height: 32px !important;
-    margin-top: 0 !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    align-self: center !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    gap: 12px !important;
   }
 }
 
+@media (max-width: 600px) {
+  .rebrand-section-hero-button.amaras-hero-actions {
+    gap: 14px !important;
+    margin-top: 14px !important;
+  }
+  .amaras-hero-circle-btn {
+    width: 46px;
+    height: 46px;
+  }
+  .amaras-hero-social-buttons {
+    gap: 10px !important;
+  }
+}
 
 /* ==========================================================================
    Armenia Guide & 4 Feature Cards Section (Touch Scroll & Layout)
