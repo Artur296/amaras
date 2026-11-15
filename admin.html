@@ -631,46 +631,180 @@
   </div>
 
   <!-- Modal: Add Tour -->
-  <div id="modalAddTour" class="amaras-admin-modal-overlay">
-    <div class="amaras-admin-modal">
-      <div class="amaras-admin-modal-header">
-        <h3 class="amaras-admin-modal-title" data-i18n="admin_modal_tour_title">Добавить новый тур</h3>
-        <button type="button" class="amaras-admin-modal-close" onclick="closeModal('modalAddTour')" aria-label="Закрыть">
+  <!-- Modal: Tour Management (Add & Edit Full Info) -->
+  <div id="modalTour" class="amaras-admin-modal-overlay">
+    <div class="amaras-admin-modal" style="max-width: 760px; max-height: 92vh; display: flex; flex-direction: column;">
+      <div class="amaras-admin-modal-header" style="flex-shrink: 0;">
+        <h3 class="amaras-admin-modal-title" id="modalTourTitle" data-i18n="admin_modal_tour_title">Добавить новый тур</h3>
+        <button type="button" class="amaras-admin-modal-close" onclick="closeModal('modalTour')" aria-label="Закрыть">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       </div>
-      <form id="formAddTour" onsubmit="handleAddTourSubmit(event)">
-        <div class="amaras-admin-modal-body">
-          <div class="amaras-admin-form-group">
-            <label class="amaras-admin-form-label" data-i18n="admin_field_tour_title">Название тура</label>
-            <input type="text" id="newTourTitle" class="amaras-admin-form-input" required placeholder="Экспедиция на гору Арагац" />
+
+      <form id="formTour" onsubmit="handleTourFormSubmit(event)" style="display: flex; flex-direction: column; overflow: hidden; flex: 1;">
+        <input type="hidden" id="tourFormId" value="">
+
+        <div class="amaras-admin-modal-body" style="overflow-y: auto; padding-right: 14px; flex: 1; display: flex; flex-direction: column; gap: 16px;">
+
+          <!-- Row 1: Code & Title -->
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 12px;">
+            <div class="amaras-admin-form-group" style="margin: 0;">
+              <label class="amaras-admin-form-label" data-i18n="admin_field_tour_code">Код тура *</label>
+              <input type="text" id="tourCode" class="amaras-admin-form-input" required placeholder="AM-JP01" style="text-transform: uppercase; font-weight: 700; color: #C7FF32;">
+            </div>
+            <div class="amaras-admin-form-group" style="margin: 0;">
+              <label class="amaras-admin-form-label" data-i18n="admin_field_tour_title">Название тура *</label>
+              <input type="text" id="tourTitle" class="amaras-admin-form-input" required placeholder="Подъем на вулкан Аждаак">
+            </div>
           </div>
 
-          <div class="amaras-admin-form-group">
-            <label class="amaras-admin-form-label" data-i18n="admin_field_tour_category">Категория</label>
-            <select id="newTourCategory" class="amaras-admin-form-select">
-              <option value="Джип-туры">Джип-туры</option>
-              <option value="Гастрономические туры">Гастрономические туры</option>
-              <option value="Пакетные туры">Пакетные туры</option>
-              <option value="Групповые мини-туры">Групповые мини-туры</option>
-              <option value="Групповые стандарт">Групповые стандарт</option>
-              <option value="Индивидуальные туры">Индивидуальные туры</option>
-            </select>
+          <!-- Row 2: Prices, Old Price & Discount Preview -->
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 14px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div class="amaras-admin-form-group" style="margin: 0;">
+                <label class="amaras-admin-form-label" data-i18n="admin_field_tour_price">Текущая цена (AMD на чел.) *</label>
+                <input type="number" id="tourPriceAmd" class="amaras-admin-form-input" required placeholder="85000" min="0" oninput="updateTourDiscountPreview()">
+              </div>
+              <div class="amaras-admin-form-group" style="margin: 0;">
+                <label class="amaras-admin-form-label" data-i18n="admin_field_tour_old_price">Старая цена (AMD, зачеркнутая)</label>
+                <input type="number" id="tourOldPriceAmd" class="amaras-admin-form-input" placeholder="100000" min="0" oninput="updateTourDiscountPreview()">
+              </div>
+            </div>
+            <div id="tourDiscountPreview" style="margin-top: 8px; font-size: 13px; font-weight: 600; min-height: 18px;"></div>
           </div>
 
-          <div class="amaras-admin-form-group">
-            <label class="amaras-admin-form-label" data-i18n="admin_field_tour_price">Стоимость на человека (AMD)</label>
-            <input type="number" id="newTourPriceAmd" class="amaras-admin-form-input" required placeholder="32000" />
+          <!-- Row 3: Categories Selection (Multi-select) -->
+          <div class="amaras-admin-form-group" style="margin: 0;">
+            <label class="amaras-admin-form-label" data-i18n="admin_field_tour_category">Выбор категорий (тур отобразится во всех выбранных) *</label>
+            <div id="tourCategoriesContainer" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; margin-top: 6px;">
+              <label class="amaras-admin-checkbox-card" style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 8px 12px; border-radius: 8px; cursor: pointer;">
+                <input type="checkbox" name="tourCategories" value="Джип-туры" class="amaras-checkbox">
+                <span style="font-size: 13px; color: #E5E7EB;">Джип-туры</span>
+              </label>
+              <label class="amaras-admin-checkbox-card" style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 8px 12px; border-radius: 8px; cursor: pointer;">
+                <input type="checkbox" name="tourCategories" value="Гастрономические туры" class="amaras-checkbox">
+                <span style="font-size: 13px; color: #E5E7EB;">Гастрономические туры</span>
+              </label>
+              <label class="amaras-admin-checkbox-card" style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 8px 12px; border-radius: 8px; cursor: pointer;">
+                <input type="checkbox" name="tourCategories" value="Пакетные туры" class="amaras-checkbox">
+                <span style="font-size: 13px; color: #E5E7EB;">Пакетные туры</span>
+              </label>
+              <label class="amaras-admin-checkbox-card" style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 8px 12px; border-radius: 8px; cursor: pointer;">
+                <input type="checkbox" name="tourCategories" value="Групповые мини-туры" class="amaras-checkbox">
+                <span style="font-size: 13px; color: #E5E7EB;">Групповые мини-туры</span>
+              </label>
+              <label class="amaras-admin-checkbox-card" style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 8px 12px; border-radius: 8px; cursor: pointer;">
+                <input type="checkbox" name="tourCategories" value="Групповые стандарт" class="amaras-checkbox">
+                <span style="font-size: 13px; color: #E5E7EB;">Групповые стандарт</span>
+              </label>
+              <label class="amaras-admin-checkbox-card" style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 8px 12px; border-radius: 8px; cursor: pointer;">
+                <input type="checkbox" name="tourCategories" value="Индивидуальные туры" class="amaras-checkbox">
+                <span style="font-size: 13px; color: #E5E7EB;">Индивидуальные туры</span>
+              </label>
+            </div>
           </div>
 
-          <div class="amaras-admin-form-group">
-            <label class="amaras-admin-form-label" data-i18n="admin_field_tour_route">Маршрут</label>
-            <input type="text" id="newTourRoute" class="amaras-admin-form-input" required placeholder="Ереван → Арагац → оз. Кари" />
+          <!-- Row 4: Top-5 Toggle on Home Page -->
+          <div style="background: rgba(199,255,50,0.04); border: 1px solid rgba(199,255,50,0.25); border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+            <div>
+              <div style="font-weight: 700; color: #C7FF32; font-size: 13.5px;" data-i18n="admin_field_tour_top5">Показать в ТОП-5 туров на главной странице</div>
+              <div style="font-size: 12px; color: #A39F9F; margin-top: 2px;">Тур будет выделен специальным маркером и показан в приоритетном блоке ТОП-5 на главной</div>
+            </div>
+            <label class="amaras-switch">
+              <input type="checkbox" id="tourIsTop5">
+              <span class="amaras-switch-slider"></span>
+            </label>
           </div>
+
+          <!-- Row 5: Departure Time, Duration, Group Size -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+            <div class="amaras-admin-form-group" style="margin: 0;">
+              <label class="amaras-admin-form-label" data-i18n="admin_field_tour_departure">Время выезда (Departure Time)</label>
+              <input type="text" id="tourDepartureTime" class="amaras-admin-form-input" placeholder="08:30" value="09:00">
+            </div>
+            <div class="amaras-admin-form-group" style="margin: 0;">
+              <label class="amaras-admin-form-label" data-i18n="admin_field_tour_duration">Сколько будет длиться</label>
+              <input type="text" id="tourDuration" class="amaras-admin-form-input" placeholder="8-9 часов" value="8 часов">
+            </div>
+            <div class="amaras-admin-form-group" style="margin: 0;">
+              <label class="amaras-admin-form-label" data-i18n="admin_field_tour_capacity">Сколько человек (вместимость)</label>
+              <input type="text" id="tourGroupSize" class="amaras-admin-form-input" placeholder="до 6 чел." value="до 6 чел.">
+            </div>
+          </div>
+
+          <!-- Row 6: Locations / Route -->
+          <div class="amaras-admin-form-group" style="margin: 0;">
+            <label class="amaras-admin-form-label" data-i18n="admin_field_tour_locations">Локации / Маршрут *</label>
+            <input type="text" id="tourLocations" class="amaras-admin-form-input" required placeholder="Ереван → Гегамские горы → Озеро Ванк → Вулкан Аждаак">
+          </div>
+
+          <!-- Row 7: Short Description -->
+          <div class="amaras-admin-form-group" style="margin: 0;">
+            <label class="amaras-admin-form-label" data-i18n="admin_field_tour_short_desc">Краткое описание (Short description)</label>
+            <textarea id="tourShortDescription" class="amaras-admin-form-input" rows="2" placeholder="Краткое описание для карточек каталога (1-2 предложения)" style="resize: vertical;"></textarea>
+          </div>
+
+          <!-- Row 8: Full Description -->
+          <div class="amaras-admin-form-group" style="margin: 0;">
+            <label class="amaras-admin-form-label" data-i18n="admin_field_tour_full_desc">Полное описание (Full description)</label>
+            <textarea id="tourFullDescription" class="amaras-admin-form-input" rows="4" placeholder="Подробная программа тура, достопримечательности, остановки, питание и детали маршрута..." style="resize: vertical;"></textarea>
+          </div>
+
+          <!-- Row 9: What to Bring & What to Wear -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="amaras-admin-form-group" style="margin: 0;">
+              <label class="amaras-admin-form-label" data-i18n="admin_field_tour_bring">Что взять с собой</label>
+              <textarea id="tourWhatToBring" class="amaras-admin-form-input" rows="2" placeholder="Паспорт, солнцезащитный крем, очки, наличные драмы, вода" style="resize: vertical;"></textarea>
+            </div>
+            <div class="amaras-admin-form-group" style="margin: 0;">
+              <label class="amaras-admin-form-label" data-i18n="admin_field_tour_wear">Что одеть</label>
+              <textarea id="tourWhatToWear" class="amaras-admin-form-input" rows="2" placeholder="Удобная треккинговая обувь, теплая ветровка, головной убор" style="resize: vertical;"></textarea>
+            </div>
+          </div>
+
+          <!-- Row 10: Multi-Photos Management -->
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <label class="amaras-admin-form-label" style="margin: 0;" data-i18n="admin_field_tour_photos">Фотографии всех локаций (столько, сколько нужно)</label>
+              <span id="tourPhotosCount" style="color: #C7FF32; font-weight: 700; font-size: 12px;">0 фото</span>
+            </div>
+
+            <!-- Photos List Grid -->
+            <div id="tourPhotosList" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; min-height: 50px;">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <!-- Controls to add photo -->
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;">
+              <input type="text" id="newPhotoUrlInput" class="amaras-admin-form-input" placeholder="Ссылка на фото или assets/..." style="flex: 1; min-width: 200px;">
+              <button type="button" class="amaras-admin-btn-outline" onclick="addPhotoFromUrl()" style="padding: 8px 14px;">
+                + Добавить URL
+              </button>
+              <label class="amaras-admin-btn-outline" style="cursor: pointer; padding: 8px 14px; margin: 0; display: inline-flex; align-items: center; gap: 6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                <span>Загрузить фото</span>
+                <input type="file" id="tourPhotoFileInput" accept="image/*" multiple onchange="handleTourPhotoUpload(event)" style="display: none;">
+              </label>
+            </div>
+
+            <!-- Quick presets from assets -->
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 10px;">
+              <span style="font-size: 11px; color: #8E8A8A;">Быстрые фото:</span>
+              <button type="button" class="amaras-chip-btn" onclick="addPhotoPreset('assets/hero/tour-3-jeep.jpg')">+ Джип</button>
+              <button type="button" class="amaras-chip-btn" onclick="addPhotoPreset('assets/armenia/attr-garni.jpg')">+ Гарни</button>
+              <button type="button" class="amaras-chip-btn" onclick="addPhotoPreset('assets/armenia/attr-geghard.jpg')">+ Гегард</button>
+              <button type="button" class="amaras-chip-btn" onclick="addPhotoPreset('assets/hero/tour-2-sevan.jpg')">+ Севан</button>
+              <button type="button" class="amaras-chip-btn" onclick="addPhotoPreset('assets/hero/tour-1-khorvirap.jpg')">+ Хор Вирап</button>
+              <button type="button" class="amaras-chip-btn" onclick="addPhotoPreset('assets/armenia/attr-tatev.jpg')">+ Татев</button>
+              <button type="button" class="amaras-chip-btn" onclick="addPhotoPreset('assets/hero/tour-4-gastro.jpg')">+ Гастро</button>
+            </div>
+          </div>
+
         </div>
-        <div class="amaras-admin-modal-footer">
-          <button type="button" class="amaras-admin-btn-outline" onclick="closeModal('modalAddTour')" data-i18n="admin_cancel">Отмена</button>
-          <button type="submit" class="amaras-admin-btn-lime" data-i18n="admin_save">Сохранить</button>
+
+        <div class="amaras-admin-modal-footer" style="flex-shrink: 0;">
+          <button type="button" class="amaras-admin-btn-outline" onclick="closeModal('modalTour')" data-i18n="admin_cancel">Отмена</button>
+          <button type="submit" class="amaras-admin-btn-lime" data-i18n="admin_save">Сохранить тур</button>
         </div>
       </form>
     </div>
@@ -1088,19 +1222,279 @@
     ];
 
     const DEFAULT_ADMIN_TOURS = [
-      { id: "tour-j1", title: "Подъем на вулкан Аждаак", category: "Джип-туры", priceAmd: 85000, route: "Ереван → Гегамские горы → Аждаак", active: true },
-      { id: "tour-j2", title: "Экспедиция на гору Арагац", category: "Джип-туры", priceAmd: 75000, route: "Ереван → оз. Кари → Гехарот", active: true },
-      { id: "tour-j3", title: "Марсианские пейзажи Ущелья Ангелов", category: "Джип-туры", priceAmd: 65000, route: "Ереван → Ущелье Ангелов → Веди", active: true },
-      { id: "tour-g1", title: "Колыбель виноделия Арени", category: "Гастрономические туры", priceAmd: 48000, route: "Ереван → Арени → Пещера Птиц", active: true },
-      { id: "tour-g2", title: "Мастер-класс выпечки лаваша в Гарни", category: "Гастрономические туры", priceAmd: 38000, route: "Ереван → Гарни → Тонир → Сыроварня", active: true },
-      { id: "tour-g3", title: "Севанский ишхан и раковые шейки", category: "Гастрономические туры", priceAmd: 42000, route: "Ереван → Севанаванк → Ресторан", active: true },
-      { id: "tour-p1", title: "Уикенд в Армении (3 дня / 2 ночи)", category: "Пакетные туры", priceAmd: 145000, route: "Ереван • Гарни • Севан • Отель 4*", active: true },
-      { id: "tour-p2", title: "Гранд-тур «Вся Армения» (7 дней)", category: "Пакетные туры", priceAmd: 290000, route: "Все главные святыни • Полный пансион", active: true },
-      { id: "tour-m1", title: "Гарни, Гегард и Симфония камней", category: "Групповые мини-туры", priceAmd: 22000, route: "Ереван → Гарни → Гегард → Базальт", active: true },
-      { id: "tour-m2", title: "Хор Вирап, Арени и Нораванк", category: "Групповые мини-туры", priceAmd: 26000, route: "Ереван → Хор Вирап → Арени → Нораванк", active: true },
-      { id: "tour-m3", title: "Севан, Дилижан и Агарцин", category: "Групповые мини-туры", priceAmd: 24000, route: "Ереван → Севан → Дилижан → Агарцин", active: true },
-      { id: "tour-s1", title: "Классический Севан и Дилижан", category: "Групповые стандарт", priceAmd: 19000, route: "Большой автобус комфорт-класса", active: true },
-      { id: "tour-i1", title: "Индивидуальный VIP тур в Татев", category: "Индивидуальные туры", priceAmd: 95000, route: "Mercedes V-Class • Персональный гид", active: true }
+      {
+        id: "tour-j1",
+        code: "AM-JP01",
+        title: "Подъем на вулкан Аждаак",
+        category: "Джип-туры",
+        categories: ["Джип-туры"],
+        priceAmd: 85000,
+        oldPriceAmd: 100000,
+        isTop5: true,
+        departureTime: "08:00",
+        duration: "9-10 часов",
+        groupSize: "до 6 чел.",
+        locations: "Ереван → Гегамские горы → Озеро Ванк → Вулкан Аждаак (3597 м)",
+        route: "Ереван → Гегамские горы → Аждаак",
+        shortDescription: "Экспедиция на подготовленных внедорожниках к кратерному озеру вулкана Аждаак.",
+        fullDescription: "Захватывающий джип-тур по высокогорью Гегамского хребта. Мы преодолеем бездорожье, увидим древние наскальные петроглифы, вишапакары (каменные идолы) и поднимемся к кратерному озеру с бирюзовой ледниковой водой на высоте 3597 м.",
+        whatToBring: "Паспорт, солнцезащитный крем, солнцезащитные очки, ветровка, наличные драмы, аптечка, вода",
+        whatToWear: "Треккинговая обувь, теплая многослойная одежда, ветровка, головной убор",
+        images: ["assets/hero/tour-3-jeep.jpg", "assets/fleet/toyota_4runner.jpg"],
+        active: true
+      },
+      {
+        id: "tour-j2",
+        code: "AM-JP02",
+        title: "Экспедиция на гору Арагац",
+        category: "Джип-туры",
+        categories: ["Джип-туры"],
+        priceAmd: 75000,
+        oldPriceAmd: 90000,
+        isTop5: true,
+        departureTime: "08:30",
+        duration: "8-9 часов",
+        groupSize: "до 6 чел.",
+        locations: "Ереван → Бюракан → Крепость Амберд → Озеро Кари → Водопад Гехарот",
+        route: "Ереван → оз. Кари → Гехарот",
+        shortDescription: "Высокогорное приключение к озеру Кари и мощному водопаду Гехарот.",
+        fullDescription: "Подъем на склоны высочайшей горы Армении. Вас ждут панорамы Араратской долины, высокогорное озеро Кари на высоте 3200 м, средневековая крепость Амберд и скрытый водопад Гехарот.",
+        whatToBring: "Паспорт, фотоаппарат, солнцезащитные очки, ветровка",
+        whatToWear: "Удобная обувь, теплая куртка, головной убор",
+        images: ["assets/fleet/toyota_4runner.jpg", "assets/hero/tour-3-jeep.jpg"],
+        active: true
+      },
+      {
+        id: "tour-j3",
+        code: "AM-JP03",
+        title: "Марсианские пейзажи Ущелья Ангелов",
+        category: "Джип-туры",
+        categories: ["Джип-туры"],
+        priceAmd: 65000,
+        oldPriceAmd: null,
+        isTop5: false,
+        departureTime: "09:00",
+        duration: "7 часов",
+        groupSize: "до 6 чел.",
+        locations: "Ереван → Ущелье Ангелов → Веди → Песчаные лабиринты",
+        route: "Ереван → Ущелье Ангелов → Веди",
+        shortDescription: "Красные скалы и неземные каньоны Араратской долины.",
+        fullDescription: "Прогулка по уникальному узкому каньону с марсианскими красными скалистыми стенами и минеральными источниками.",
+        whatToBring: "Вода, легкий перекус, солнцезащитный крем, головной убор",
+        whatToWear: "Удобные кроссовки, легкая закрытая одежда от солнца",
+        images: ["assets/armenia/attr-geghard.jpg"],
+        active: true
+      },
+      {
+        id: "tour-g1",
+        code: "AM-GT01",
+        title: "Колыбель виноделия Арени",
+        category: "Гастрономические туры",
+        categories: ["Гастрономические туры"],
+        priceAmd: 48000,
+        oldPriceAmd: 55000,
+        isTop5: false,
+        departureTime: "09:30",
+        duration: "8 часов",
+        groupSize: "от 2 до 12 чел.",
+        locations: "Ереван → Село Арени → Пещера Птиц → Фамильные винодельни → Монастырь Нораванк",
+        route: "Ереван → Арени → Пещера Птиц",
+        shortDescription: "Дегустация аутентичных вин из эндемичного сорта Арени и древнейшая пещера.",
+        fullDescription: "Погружение в 6000-летнюю историю армянского виноделия, визит в пещеру Арени-1, дегустации в винодельнях и традиционный обед с видом на красные скалы.",
+        whatToBring: "Паспорт, фотоаппарат, хорошее настроение",
+        whatToWear: "Удобная городская одежда и обувь",
+        images: ["assets/armenia/fest-winedays.jpg", "assets/hero/tour-4-gastro.jpg"],
+        active: true
+      },
+      {
+        id: "tour-g2",
+        code: "AM-GT02",
+        title: "Мастер-класс выпечки лаваша в Гарни",
+        category: "Гастрономические туры",
+        categories: ["Гастрономические туры", "Групповые мини-туры"],
+        priceAmd: 38000,
+        oldPriceAmd: 45000,
+        isTop5: true,
+        departureTime: "10:00",
+        duration: "6 часов",
+        groupSize: "от 2 до 15 чел.",
+        locations: "Ереван → Языческий храм Гарни → Тонир в крестьянском доме → Сыроварня",
+        route: "Ереван → Гарни → Тонир → Сыроварня",
+        shortDescription: "Традиционная выпечка лаваша в подземном тонире и дегустация домашних сыров.",
+        fullDescription: "Аутентичный кулинарный мастер-класс: раскатка тончайшего теста, выпечка в глиняном тонире и горячий хрустящий лаваш с домашним сыром и зеленью.",
+        whatToBring: "Аппетит, фотоаппарат, паспорт",
+        whatToWear: "Свободная удобная одежда",
+        images: ["assets/armenia/dish-gata.jpg", "assets/armenia/attr-garni.jpg"],
+        active: true
+      },
+      {
+        id: "tour-g3",
+        code: "AM-GT03",
+        title: "Севанский ишхан и раковые шейки",
+        category: "Гастрономические туры",
+        categories: ["Гастрономические туры"],
+        priceAmd: 42000,
+        oldPriceAmd: null,
+        isTop5: false,
+        departureTime: "10:30",
+        duration: "7 часов",
+        groupSize: "от 2 до 10 чел.",
+        locations: "Ереван → Озеро Севан → Монастырь Севанаванк → Рыбный ресторан на берегу",
+        route: "Ереван → Севанаванк → Ресторан",
+        shortDescription: "Гастрономический день на лазурном высокогорном озере Севан.",
+        fullDescription: "Уха и запеченный севанский ишхан (форель), сочные раковые шейки, кебаб из раков и прогулка к панорамному монастырю Севанаванк.",
+        whatToBring: "Ветровка, фотоаппарат, паспорт",
+        whatToWear: "Одежда с учетом свежего горного ветра",
+        images: ["assets/armenia/dish-ishkhan.jpg", "assets/hero/tour-2-sevan.jpg"],
+        active: true
+      },
+      {
+        id: "tour-p1",
+        code: "AM-PK01",
+        title: "Уикенд в Армении (3 дня / 2 ночи)",
+        category: "Пакетные туры",
+        categories: ["Пакетные туры"],
+        priceAmd: 145000,
+        oldPriceAmd: 170000,
+        isTop5: true,
+        departureTime: "Индивидуально",
+        duration: "3 дня / 2 ночи",
+        groupSize: "от 2 человек",
+        locations: "Ереван • Гарни • Гегард • Озеро Севан • Дилижан • Отель 4*",
+        route: "Ереван • Гарни • Севан • Отель 4*",
+        shortDescription: "Насыщенный тур на выходные с отелем 4*, трансферами и лучшими экскурсиями.",
+        fullDescription: "Полный пакет 'все включено': встреча в аэропорту, проживание в отеле 4*, топовые экскурсии Гарни, Гегард, Севан, Дилижан и колоритные рестораны.",
+        whatToBring: "Загранпаспорт, багаж, личные вещи",
+        whatToWear: "Повседневная комфортная одежда",
+        images: ["assets/armenia/attr-geghard.jpg", "assets/hero/tour-2-sevan.jpg"],
+        active: true
+      },
+      {
+        id: "tour-p2",
+        code: "AM-PK02",
+        title: "Гранд-тур «Вся Армения» (7 дней)",
+        category: "Пакетные туры",
+        categories: ["Пакетные туры"],
+        priceAmd: 290000,
+        oldPriceAmd: 330000,
+        isTop5: false,
+        departureTime: "По графику",
+        duration: "7 дней / 6 ночей",
+        groupSize: "от 2 до 16 чел.",
+        locations: "Ереван • Эчмиадзин • Хор Вирап • Нораванк • Татев • Севан • Дилижан • Гюмри",
+        route: "Все главные святыни • Полный пансион",
+        shortDescription: "Большое путешествие от Арарата до Татева и колоритного Гюмри.",
+        fullDescription: "Исчерпывающий тур по всей Армении: крылья Татева, канатная дорога, святыни ЮНЕСКО, винные регионы и культурная столица Гюмри с полным пансионом.",
+        whatToBring: "Паспорт, страховка, удобная обувь, зарядные устройства",
+        whatToWear: "Одежда по сезону, обувь для пеших прогулок",
+        images: ["assets/armenia/attr-tatev.jpg"],
+        active: true
+      },
+      {
+        id: "tour-m1",
+        code: "AM-MN01",
+        title: "Гарни, Гегард и Симфония камней",
+        category: "Групповые мини-туры",
+        categories: ["Групповые мини-туры"],
+        priceAmd: 22000,
+        oldPriceAmd: null,
+        isTop5: true,
+        departureTime: "09:30",
+        duration: "5-6 часов",
+        groupSize: "до 15 чел.",
+        locations: "Ереван → Храм Гарни → Монастырь Гегард → Базальтовая Симфония камней",
+        route: "Ереван → Гарни → Гегард → Базальт",
+        shortDescription: "Главная визитная карточка Армении всего в 40 минутах от столицы.",
+        fullDescription: "Единственный сохранившийся языческий храм эпохи эллинизма Гарни, пещерный скальный монастырь Гегард и завораживающий природный орган из базальта.",
+        whatToBring: "Паспорт, вода, фотоаппарат",
+        whatToWear: "Удобная обувь для спуска в ущелье, платок для храмов",
+        images: ["assets/armenia/attr-garni.jpg", "assets/armenia/attr-geghard.jpg"],
+        active: true
+      },
+      {
+        id: "tour-m2",
+        code: "AM-MN02",
+        title: "Хор Вирап, Арени и Нораванк",
+        category: "Групповые мини-туры",
+        categories: ["Групповые мини-туры"],
+        priceAmd: 26000,
+        oldPriceAmd: null,
+        isTop5: false,
+        departureTime: "09:00",
+        duration: "8 часов",
+        groupSize: "до 15 чел.",
+        locations: "Ереван → Монастырь Хор Вирап → Село Арени → Ущелье и монастырь Нораванк",
+        route: "Ереван → Хор Вирап → Арени → Нораванк",
+        shortDescription: "Ближайший панорамный вид на библейский Арарат и сказочный Нораванк.",
+        fullDescription: "Монастырь над подземной темницей Григория Просветителя у подножия Арарата, винные погреба Арени и монастырь Нораванк среди пламенеющих красных скал.",
+        whatToBring: "Паспорт, солнцезащитные очки, фотоаппарат",
+        whatToWear: "Скромная удобная одежда для святынь",
+        images: ["assets/hero/tour-1-khorvirap.jpg"],
+        active: true
+      },
+      {
+        id: "tour-m3",
+        code: "AM-MN03",
+        title: "Севан, Дилижан и Агарцин",
+        category: "Групповые мини-туры",
+        categories: ["Групповые мини-туры"],
+        priceAmd: 24000,
+        oldPriceAmd: null,
+        isTop5: false,
+        departureTime: "09:30",
+        duration: "8 часов",
+        groupSize: "до 15 чел.",
+        locations: "Ереван → Озеро Севан → Севанаванк → Тоннель в Дилижан → Монастырь Агарцин",
+        route: "Ереван → Севан → Дилижан → Агарцин",
+        shortDescription: "Лазурная гладь высокогорного Севана и реликтовые буковые леса Дилижана.",
+        fullDescription: "Контрастное путешествие: высокогорное озеро Севан с монастырем IX века, переход через горный тоннель в армянскую Швейцарию и затерянный в лесах Агарцин.",
+        whatToBring: "Теплая кофта/ветровка, паспорт, вода",
+        whatToWear: "Многослойная одежда для переменчивой погоды",
+        images: ["assets/hero/tour-2-sevan.jpg"],
+        active: true
+      },
+      {
+        id: "tour-s1",
+        code: "AM-ST01",
+        title: "Классический Севан и Дилижан",
+        category: "Групповые стандарт",
+        categories: ["Групповые стандарт"],
+        priceAmd: 19000,
+        oldPriceAmd: null,
+        isTop5: false,
+        departureTime: "09:00",
+        duration: "8 часов",
+        groupSize: "до 30 чел.",
+        locations: "Ереван → Озеро Севан → Дилижан • Большой автобус комфорт-класса",
+        route: "Большой автобус комфорт-класса",
+        shortDescription: "Доступная классическая групповая экскурсия на просторном автобусе.",
+        fullDescription: "Идеальный бюджетный вариант познакомиться с главными жемчужинами северной Армении в сопровождении профессионального гида.",
+        whatToBring: "Паспорт, вода, перекус",
+        whatToWear: "Удобная обувь и одежда",
+        images: ["assets/hero/tour-2-sevan.jpg"],
+        active: true
+      },
+      {
+        id: "tour-i1",
+        code: "AM-IN01",
+        title: "Индивидуальный VIP тур в Татев",
+        category: "Индивидуальные туры",
+        categories: ["Индивидуальные туры"],
+        priceAmd: 95000,
+        oldPriceAmd: 110000,
+        isTop5: false,
+        departureTime: "По согласованию",
+        duration: "12 часов",
+        groupSize: "от 1 до 6 чел.",
+        locations: "Ереван → Хор Вирап → Нораванк → Водопад Шаки → Канатная дорога «Крылья Татева»",
+        route: "Mercedes V-Class • Персональный гид",
+        shortDescription: "Персональная поездка на премиальном Mercedes-Benz V-Class к парящему Татеву.",
+        fullDescription: "Эксклюзивный маршрут с персональным гидом: полет над Воротанским ущельем на самой длинной в мире канатной дороге и обед в видовом ресторане.",
+        whatToBring: "Паспорт, фотоаппарат, личные вещи",
+        whatToWear: "Удобная одежда и обувь",
+        images: ["assets/armenia/attr-tatev.jpg"],
+        active: true
+      }
     ];
 
     const DEFAULT_ADMIN_FLEET = [
@@ -1148,12 +1542,46 @@
       renderOverview();
     }
 
+    function enrichTour(t) {
+      if (!t) return t;
+      const categories = (Array.isArray(t.categories) && t.categories.length > 0)
+        ? t.categories
+        : [t.category || 'Джип-туры'];
+      const rawImages = Array.isArray(t.images) && t.images.length > 0
+        ? t.images
+        : (t.image ? [t.image] : []);
+      return {
+        ...t,
+        id: t.id || ('tour-' + Date.now()),
+        code: t.code || ('AM-' + (t.id ? t.id.replace('tour-', '').toUpperCase() : '01')),
+        title: t.title || 'Новый тур',
+        priceAmd: typeof t.priceAmd === 'number' ? t.priceAmd : (parseInt(t.priceAmd, 10) || 0),
+        oldPriceAmd: (t.oldPriceAmd && parseInt(t.oldPriceAmd, 10) > 0) ? parseInt(t.oldPriceAmd, 10) : null,
+        category: t.category || categories[0],
+        categories: categories,
+        isTop5: Boolean(t.isTop5),
+        departureTime: t.departureTime || '09:00',
+        duration: t.duration || '8 часов',
+        groupSize: t.groupSize || 'до 6 чел.',
+        locations: t.locations || t.route || '',
+        route: t.route || t.locations || '',
+        shortDescription: t.shortDescription || '',
+        fullDescription: t.fullDescription || '',
+        whatToBring: t.whatToBring || '',
+        whatToWear: t.whatToWear || '',
+        images: rawImages,
+        active: t.active !== false
+      };
+    }
+
     function getAdminTours() {
       try {
         const raw = localStorage.getItem('amaras_admin_tours');
-        return raw ? JSON.parse(raw) : DEFAULT_ADMIN_TOURS;
+        let list = raw ? JSON.parse(raw) : DEFAULT_ADMIN_TOURS;
+        if (!Array.isArray(list) || list.length === 0) list = DEFAULT_ADMIN_TOURS;
+        return list.map(enrichTour);
       } catch (e) {
-        return DEFAULT_ADMIN_TOURS;
+        return DEFAULT_ADMIN_TOURS.map(enrichTour);
       }
     }
 
@@ -1705,32 +2133,205 @@
     }
 
     // 7. Render Tours
+    let currentTourPhotos = [];
+
+    function renderTourPhotosList() {
+      const container = document.getElementById('tourPhotosList');
+      const countEl = document.getElementById('tourPhotosCount');
+      if (!container) return;
+      if (countEl) countEl.textContent = `${currentTourPhotos.length} фото`;
+
+      if (currentTourPhotos.length === 0) {
+        container.innerHTML = '<div style="font-size: 12.5px; color: #8E8A8A; padding: 10px 0;">Фотографии пока не добавлены. Загрузите файлы или укажите URL.</div>';
+        return;
+      }
+
+      container.innerHTML = currentTourPhotos.map((url, idx) => `
+        <div style="position: relative; width: 80px; height: 80px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.15); background: #1C1A1A;">
+          <img src="${url}" alt="Фото ${idx + 1}" style="width: 100%; height: 100%; object-fit: cover;">
+          <button type="button" onclick="removeTourPhoto(${idx})" title="Удалить фото" style="position: absolute; top: 3px; right: 3px; width: 20px; height: 20px; border-radius: 50%; background: rgba(0,0,0,0.85); color: #FF5C5C; border: 1px solid #FF5C5C; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 12px; line-height: 1; padding: 0;">
+            &times;
+          </button>
+          <div style="position: absolute; bottom: 2px; left: 4px; font-size: 9px; font-weight: 700; color: #FFF; text-shadow: 0 1px 2px #000;">#${idx + 1}</div>
+        </div>
+      `).join('');
+    }
+
+    function addPhotoFromUrl() {
+      const inp = document.getElementById('newPhotoUrlInput');
+      if (!inp) return;
+      const url = inp.value.trim();
+      if (!url) return;
+      currentTourPhotos.push(url);
+      inp.value = '';
+      renderTourPhotosList();
+    }
+
+    function addPhotoPreset(url) {
+      if (!currentTourPhotos.includes(url)) {
+        currentTourPhotos.push(url);
+        renderTourPhotosList();
+      }
+    }
+
+    function handleTourPhotoUpload(e) {
+      const files = Array.from(e.target.files || []);
+      if (files.length === 0) return;
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          if (evt.target.result) {
+            currentTourPhotos.push(evt.target.result);
+            renderTourPhotosList();
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+      e.target.value = '';
+    }
+
+    function removeTourPhoto(idx) {
+      currentTourPhotos.splice(idx, 1);
+      renderTourPhotosList();
+    }
+
+    function updateTourDiscountPreview() {
+      const price = parseInt(document.getElementById('tourPriceAmd').value || '0', 10);
+      const oldPrice = parseInt(document.getElementById('tourOldPriceAmd').value || '0', 10);
+      const previewEl = document.getElementById('tourDiscountPreview');
+      if (!previewEl) return;
+
+      if (oldPrice > price && price > 0) {
+        const discountAmt = oldPrice - price;
+        const discountPct = Math.round((discountAmt / oldPrice) * 100);
+        previewEl.innerHTML = `<span style="color: #FF5C5C; font-weight: 700;">Скидка: ${formatPrice(discountAmt)} (-${discountPct}%)</span> <span style="color: #A39F9F; font-weight: normal; margin-left: 6px;">(старая цена ${formatPrice(oldPrice)} будет отображаться зачеркнутой)</span>`;
+      } else if (oldPrice > 0 && oldPrice <= price) {
+        previewEl.innerHTML = `<span style="color: #A39F9F;">Старая цена должна быть больше текущей цены для расчета скидки</span>`;
+      } else {
+        previewEl.innerHTML = '';
+      }
+    }
+
     function renderTours(filteredTours) {
       const tours = filteredTours || getAdminTours();
       const grid = document.getElementById('toursCardsGrid');
       if (!grid) return;
 
-      grid.innerHTML = tours.map(t => `
-        <div class="amaras-admin-entity-card">
-          <div class="amaras-admin-entity-top">
-            <div>
-              <span class="amaras-admin-entity-category">${t.category}</span>
-              <h3 class="amaras-admin-entity-title">${t.title}</h3>
-              <div class="amaras-admin-entity-route">${t.route}</div>
+      if (tours.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; padding: 40px; text-align: center; color: #A39F9F;">Туры не найдены</div>';
+        return;
+      }
+
+      grid.innerHTML = tours.map(t => {
+        const primaryImage = (t.images && t.images.length > 0) ? t.images[0] : '';
+        const cats = t.categories && t.categories.length > 0 ? t.categories : [t.category];
+        const hasDiscount = t.oldPriceAmd && t.oldPriceAmd > t.priceAmd;
+        const discountPct = hasDiscount ? Math.round((1 - t.priceAmd / t.oldPriceAmd) * 100) : 0;
+        const discountAmt = hasDiscount ? (t.oldPriceAmd - t.priceAmd) : 0;
+
+        return `
+          <div class="amaras-admin-entity-card" style="padding: 14px; position: relative;">
+            <!-- Cover & Badges -->
+            <div style="position: relative; width: 100%; height: 150px; border-radius: 10px; overflow: hidden; background: #1C1A1A; margin-bottom: 12px;">
+              ${primaryImage
+                ? `<img src="${primaryImage}" alt="${t.title}" style="width: 100%; height: 100%; object-fit: cover;">`
+                : `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #586EFF; font-weight: 700; font-size: 14px; background: rgba(88,110,255,0.08);">${t.code || 'ТУР'}</div>`
+              }
+
+              <!-- Badges top left -->
+              <div style="position: absolute; top: 8px; left: 8px; display: flex; flex-wrap: wrap; gap: 4px; max-width: calc(100% - 60px);">
+                <span style="background: rgba(18,17,17,0.85); backdrop-filter: blur(4px); color: #C7FF32; font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; border: 1px solid rgba(199,255,50,0.3);">
+                  ${t.code || 'AM-01'}
+                </span>
+                ${t.isTop5 ? `
+                  <span style="background: #C7FF32; color: #121111; font-size: 10px; font-weight: 800; padding: 2px 7px; border-radius: 6px; letter-spacing: 0.04em;">
+                    ТОП-5
+                  </span>
+                ` : ''}
+              </div>
+
+              <!-- Active switch top right -->
+              <div style="position: absolute; top: 8px; right: 8px;">
+                <label class="amaras-switch" title="Активность тура">
+                  <input type="checkbox" ${t.active ? 'checked' : ''} onchange="toggleTourActive('${t.id}', this.checked)">
+                  <span class="amaras-switch-slider"></span>
+                </label>
+              </div>
+
+              <!-- Photo count bottom right -->
+              ${t.images && t.images.length > 0 ? `
+                <div style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.75); color: #FFF; font-size: 10.5px; padding: 2px 7px; border-radius: 6px; display: flex; align-items: center; gap: 4px;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                  <span>${t.images.length} фото</span>
+                </div>
+              ` : ''}
             </div>
-            <label class="amaras-switch" title="Активность тура">
-              <input type="checkbox" ${t.active ? 'checked' : ''} onchange="toggleTourActive('${t.id}', this.checked)">
-              <span class="amaras-switch-slider"></span>
-            </label>
+
+            <!-- Categories tags -->
+            <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px;">
+              ${cats.map(c => `
+                <span class="amaras-admin-entity-category" style="background: rgba(88,110,255,0.12); border: 1px solid rgba(88,110,255,0.25); border-radius: 4px; padding: 1px 6px;">
+                  ${c}
+                </span>
+              `).join('')}
+            </div>
+
+            <!-- Title -->
+            <h3 class="amaras-admin-entity-title" style="margin: 2px 0 6px 0; font-size: 15.5px; line-height: 1.35;">
+              ${t.title}
+            </h3>
+
+            <!-- Route / Locations -->
+            <div class="amaras-admin-entity-route" style="display: flex; align-items: flex-start; gap: 6px; margin-bottom: 8px;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#586EFF" stroke-width="2.2" style="flex-shrink: 0; margin-top: 2px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>${t.locations || t.route || '-'}</span>
+            </div>
+
+            <!-- Chips: Departure, Duration, Group Size -->
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 11px; color: #D1D5DB; margin-bottom: 10px; padding: 6px 8px; background: rgba(255,255,255,0.03); border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+              <span style="display: flex; align-items: center; gap: 4px;" title="Время выезда">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                ${t.departureTime || '09:00'}
+              </span>
+              <span style="display: flex; align-items: center; gap: 4px;" title="Длительность">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#586EFF" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 8 14"></polyline></svg>
+                ${t.duration || '1 день'}
+              </span>
+              <span style="display: flex; align-items: center; gap: 4px;" title="Вместимость группы">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#D1D5DB" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                ${t.groupSize || 'до 6 чел.'}
+              </span>
+            </div>
+
+            <!-- Price and Actions footer -->
+            <div class="amaras-admin-entity-bottom" style="flex-wrap: wrap; gap: 8px; margin-top: auto;">
+              <div>
+                ${hasDiscount ? `
+                  <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 2px;">
+                    <span style="text-decoration: line-through; color: #8E8A8A; font-size: 13px;">${formatPrice(t.oldPriceAmd)}</span>
+                    <span style="background: rgba(255,92,92,0.15); color: #FF5C5C; border: 1px solid rgba(255,92,92,0.35); border-radius: 4px; padding: 1px 5px; font-size: 11px; font-weight: 700;">
+                      -${discountPct}% (скидка ${formatPrice(discountAmt)})
+                    </span>
+                  </div>
+                ` : ''}
+                <div style="font-size: 18px; font-weight: 800; color: #C7FF32;">
+                  ${formatPrice(t.priceAmd)} <span style="font-size: 12px; color: #A39F9F; font-weight: normal;">/ чел.</span>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 6px; align-items: center;">
+                <button type="button" class="amaras-admin-btn-outline" onclick="openEditTourModal('${t.id}')" style="padding: 7px 12px; font-size: 12px; gap: 6px;" title="Редактировать тур">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                  <span>Изменить</span>
+                </button>
+                <button type="button" class="amaras-admin-icon-btn is-danger" onclick="deleteTour('${t.id}')" title="Удалить тур">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="amaras-admin-entity-bottom">
-            <span class="amaras-admin-entity-price">${formatPrice(t.priceAmd)} <span style="font-size:12px; color:#A39F9F; font-weight:normal;">/ чел.</span></span>
-            <button type="button" class="amaras-admin-btn-outline" onclick="editTourPrice('${t.id}')">
-              Изменить цену
-            </button>
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
     function toggleTourActive(tourId, isActive) {
@@ -1743,15 +2344,125 @@
       }
     }
 
-    function editTourPrice(tourId) {
+    function openAddTourModal() {
+      const form = document.getElementById('formTour');
+      if (form) form.reset();
+      document.getElementById('tourFormId').value = '';
+      document.getElementById('modalTourTitle').textContent = 'Добавить новый тур';
+      document.getElementById('tourDiscountPreview').innerHTML = '';
+      document.getElementById('tourIsTop5').checked = false;
+      document.getElementById('tourDepartureTime').value = '09:00';
+      document.getElementById('tourDuration').value = '8 часов';
+      document.getElementById('tourGroupSize').value = 'до 6 чел.';
+
+      // Check first category by default
+      document.querySelectorAll('input[name="tourCategories"]').forEach((cb, idx) => {
+        cb.checked = (idx === 0);
+      });
+
+      currentTourPhotos = [];
+      renderTourPhotosList();
+      openModal('modalTour');
+    }
+
+    function openEditTourModal(tourId) {
+      const tours = getAdminTours();
+      const t = tours.find(item => item.id === tourId);
+      if (!t) return;
+
+      document.getElementById('tourFormId').value = t.id;
+      document.getElementById('modalTourTitle').textContent = `Редактировать тур: ${t.title}`;
+      document.getElementById('tourCode').value = t.code || '';
+      document.getElementById('tourTitle').value = t.title || '';
+      document.getElementById('tourPriceAmd').value = t.priceAmd || 0;
+      document.getElementById('tourOldPriceAmd').value = t.oldPriceAmd || '';
+      document.getElementById('tourIsTop5').checked = Boolean(t.isTop5);
+      document.getElementById('tourDepartureTime').value = t.departureTime || '09:00';
+      document.getElementById('tourDuration').value = t.duration || '8 часов';
+      document.getElementById('tourGroupSize').value = t.groupSize || 'до 6 чел.';
+      document.getElementById('tourLocations').value = t.locations || t.route || '';
+      document.getElementById('tourShortDescription').value = t.shortDescription || '';
+      document.getElementById('tourFullDescription').value = t.fullDescription || '';
+      document.getElementById('tourWhatToBring').value = t.whatToBring || '';
+      document.getElementById('tourWhatToWear').value = t.whatToWear || '';
+
+      const targetCats = t.categories && t.categories.length > 0 ? t.categories : [t.category];
+      document.querySelectorAll('input[name="tourCategories"]').forEach(cb => {
+        cb.checked = targetCats.includes(cb.value);
+      });
+
+      currentTourPhotos = (t.images && Array.isArray(t.images)) ? [...t.images] : [];
+      renderTourPhotosList();
+      updateTourDiscountPreview();
+      openModal('modalTour');
+    }
+
+    function handleTourFormSubmit(e) {
+      e.preventDefault();
+      const tours = getAdminTours();
+      const tourId = document.getElementById('tourFormId').value;
+
+      const checkedCategories = Array.from(document.querySelectorAll('input[name="tourCategories"]:checked')).map(cb => cb.value);
+      if (checkedCategories.length === 0) {
+        checkedCategories.push('Джип-туры');
+      }
+
+      const priceAmd = parseInt(document.getElementById('tourPriceAmd').value || '0', 10);
+      const rawOldPrice = document.getElementById('tourOldPriceAmd').value.trim();
+      const oldPriceAmd = (rawOldPrice && parseInt(rawOldPrice, 10) > 0) ? parseInt(rawOldPrice, 10) : null;
+
+      const tourData = {
+        code: document.getElementById('tourCode').value.trim().toUpperCase(),
+        title: document.getElementById('tourTitle').value.trim(),
+        priceAmd: priceAmd,
+        oldPriceAmd: oldPriceAmd,
+        category: checkedCategories[0],
+        categories: checkedCategories,
+        isTop5: document.getElementById('tourIsTop5').checked,
+        departureTime: document.getElementById('tourDepartureTime').value.trim() || '09:00',
+        duration: document.getElementById('tourDuration').value.trim() || '8 часов',
+        groupSize: document.getElementById('tourGroupSize').value.trim() || 'до 6 чел.',
+        locations: document.getElementById('tourLocations').value.trim(),
+        route: document.getElementById('tourLocations').value.trim(),
+        shortDescription: document.getElementById('tourShortDescription').value.trim(),
+        fullDescription: document.getElementById('tourFullDescription').value.trim(),
+        whatToBring: document.getElementById('tourWhatToBring').value.trim(),
+        whatToWear: document.getElementById('tourWhatToWear').value.trim(),
+        images: [...currentTourPhotos],
+        active: true
+      };
+
+      if (tourId) {
+        // Edit existing
+        const idx = tours.findIndex(t => t.id === tourId);
+        if (idx !== -1) {
+          tours[idx] = { ...tours[idx], ...tourData };
+          saveAdminTours(tours);
+          showAdminToast('Тур успешно обновлен', 'success');
+        }
+      } else {
+        // Create new
+        const newTour = {
+          id: 'tour-custom-' + Date.now(),
+          ...tourData
+        };
+        tours.push(newTour);
+        saveAdminTours(tours);
+        showAdminToast('Новый тур успешно добавлен', 'success');
+      }
+
+      closeModal('modalTour');
+    }
+
+    function deleteTour(tourId) {
       const tours = getAdminTours();
       const target = tours.find(t => t.id === tourId);
       if (!target) return;
-      const newPrice = prompt(`Введите новую стоимость для «${target.title}» в AMD:`, target.priceAmd);
-      if (newPrice !== null && !isNaN(parseInt(newPrice, 10))) {
-        target.priceAmd = parseInt(newPrice, 10);
-        saveAdminTours(tours);
-        showAdminToast('Цена тура обновлена', 'success');
+
+      if (confirm(`Вы уверены, что хотите удалить тур «${target.title}»?`)) {
+        const updated = tours.filter(t => t.id !== tourId);
+        saveAdminTours(updated);
+        showAdminToast('Тур успешно удален', 'info');
       }
     }
 
@@ -1761,33 +2472,18 @@
       const all = getAdminTours();
 
       const filtered = all.filter(t => {
-        const matchesQ = !q || t.title.toLowerCase().includes(q) || t.route.toLowerCase().includes(q);
-        const matchesC = (cat === 'all') || (t.category === cat);
+        const matchesQ = !q ||
+          t.title.toLowerCase().includes(q) ||
+          (t.code && t.code.toLowerCase().includes(q)) ||
+          (t.locations && t.locations.toLowerCase().includes(q)) ||
+          (t.route && t.route.toLowerCase().includes(q));
+        const matchesC = (cat === 'all') ||
+          (t.categories && t.categories.includes(cat)) ||
+          (t.category === cat);
         return matchesQ && matchesC;
       });
 
       renderTours(filtered);
-    }
-
-    function openAddTourModal() {
-      openModal('modalAddTour');
-    }
-
-    function handleAddTourSubmit(e) {
-      e.preventDefault();
-      const tours = getAdminTours();
-      const newTour = {
-        id: 'tour-custom-' + Date.now(),
-        title: document.getElementById('newTourTitle').value.trim(),
-        category: document.getElementById('newTourCategory').value,
-        priceAmd: parseInt(document.getElementById('newTourPriceAmd').value || '0', 10),
-        route: document.getElementById('newTourRoute').value.trim(),
-        active: true
-      };
-      tours.push(newTour);
-      saveAdminTours(tours);
-      closeModal('modalAddTour');
-      showAdminToast('Тур успешно добавлен', 'success');
     }
 
     // 8. Render Fleet (with Photo, 1-Click Status Switcher, Edit & Delete)
@@ -2316,6 +3012,27 @@
       }
       if (!localStorage.getItem('amaras_admin_tours')) {
         localStorage.setItem('amaras_admin_tours', JSON.stringify(DEFAULT_ADMIN_TOURS));
+      } else {
+        // Auto-migrate existing tours with enriched fields if older schema
+        try {
+          const storedTours = JSON.parse(localStorage.getItem('amaras_admin_tours') || '[]');
+          if (Array.isArray(storedTours) && storedTours.length > 0) {
+            let needMigration = false;
+            const migrated = storedTours.map(t => {
+              if (!t.code || !t.departureTime || !t.images || t.images.length === 0) {
+                needMigration = true;
+                const matchDef = DEFAULT_ADMIN_TOURS.find(d => d.id === t.id);
+                if (matchDef) {
+                  return { ...matchDef, ...t, images: (t.images && t.images.length > 0) ? t.images : matchDef.images };
+                }
+              }
+              return enrichTour(t);
+            });
+            if (needMigration) {
+              localStorage.setItem('amaras_admin_tours', JSON.stringify(migrated));
+            }
+          }
+        } catch (e) {}
       }
       if (!localStorage.getItem('amaras_admin_fleet')) {
         localStorage.setItem('amaras_admin_fleet', JSON.stringify(DEFAULT_ADMIN_FLEET));
