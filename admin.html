@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title data-i18n="admin_portal_title">Панель управления Amaras</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml" />
+  <link rel="shortcut icon" href="assets/favicon.svg?v=2" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+Armenian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="css/gyg-style.css?v=3" rel="stylesheet" type="text/css" />
+  <link href="css/custom.css?v=96" rel="stylesheet" type="text/css" />
+</head>
+<body class="amaras-admin-body" data-lang="RU">
+
+  <!-- =====================================================================
+       1. ADMIN LOGIN VIEW (Displayed when not logged in as Admin)
+       ===================================================================== -->
+  <div id="adminLoginView" class="amaras-admin-login-screen" style="display: none;">
+    <div class="amaras-admin-login-card">
+      <div class="amaras-admin-login-header">
+        <a href="index.html" title="Amaras Tour">
+          <img src="assets/amaras-logo-navbar.svg" alt="Amaras" class="amaras-admin-login-logo" />
+        </a>
+        <h1 class="amaras-admin-login-title" data-i18n="admin_login_title">Вход в панель управления</h1>
+        <p class="amaras-admin-login-desc" data-i18n="admin_login_desc">Авторизуйтесь для управления заказами, турами и автопарком Amaras.</p>
+      </div>
+
+      <form id="adminLoginForm" onsubmit="handleAdminLoginSubmit(event)">
+        <div class="amaras-admin-form-group" style="margin-bottom: 14px;">
+          <label class="amaras-admin-form-label" for="adminEmail" data-i18n="admin_login_email">Электронная почта</label>
+          <input type="email" id="adminEmail" class="amaras-admin-form-input" placeholder="admin@amaras.am" required value="admin@amaras.am" />
+        </div>
+
+        <div class="amaras-admin-form-group" style="margin-bottom: 20px;">
+          <label class="amaras-admin-form-label" for="adminPassword" data-i18n="admin_login_password">Пароль</label>
+          <input type="password" id="adminPassword" class="amaras-admin-form-input" placeholder="admin2026" required value="admin2026" />
+        </div>
+
+        <div id="adminLoginError" style="display: none; color: #FF5C5C; font-size: 13px; margin-bottom: 14px; text-align: center;" data-i18n="admin_login_invalid">
+          Неверный email или пароль
+        </div>
+
+        <button type="submit" class="amaras-admin-btn-primary" style="width: 100%; justify-content: center; padding: 12px;" data-i18n="admin_login_btn">
+          Войти в систему
+        </button>
+
+        <button type="button" class="amaras-admin-login-demo-btn" onclick="quickDemoAdminLogin()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span data-i18n="admin_login_demo">Войти как Демо-Администратор</span>
+        </button>
+
+        <div style="text-align: center; margin-top: 20px;">
+          <a href="index.html" class="amaras-admin-btn-site" style="font-size: 12.5px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span data-i18n="admin_view_site">На сайт</span>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       2. ADMIN DASHBOARD VIEW (Displayed when authenticated as Admin)
+       ===================================================================== -->
+  <div id="adminDashboardView" class="amaras-admin-page" style="display: none;">
+
+    <!-- Top Sticky Header -->
+    <header class="amaras-admin-header">
+      <div class="amaras-admin-header-brand">
+        <a href="index.html" title="Amaras Tour">
+          <img src="assets/amaras-logo-navbar.svg" alt="Amaras" class="amaras-admin-header-logo" />
+        </a>
+        <div class="amaras-admin-badge" data-i18n="admin_badge">Администратор</div>
+      </div>
+
+      <div class="amaras-admin-header-actions">
+        <!-- Language Switcher -->
+        <div class="amaras-lang-switcher" style="display: inline-flex; gap: 4px; background: rgba(255,255,255,0.06); padding: 3px; border-radius: 8px;">
+          <button type="button" class="amaras-lang-btn is-active" data-lang="RU" onclick="setLang('RU')" style="padding: 4px 8px; font-size: 11px; font-weight: 700; border-radius: 6px; border: none; background: transparent; color: #FFF; cursor: pointer;">RU</button>
+          <button type="button" class="amaras-lang-btn" data-lang="ENG" onclick="setLang('ENG')" style="padding: 4px 8px; font-size: 11px; font-weight: 700; border-radius: 6px; border: none; background: transparent; color: #A39F9F; cursor: pointer;">EN</button>
+          <button type="button" class="amaras-lang-btn" data-lang="HY" onclick="setLang('HY')" style="padding: 4px 8px; font-size: 11px; font-weight: 700; border-radius: 6px; border: none; background: transparent; color: #A39F9F; cursor: pointer;">HY</button>
+        </div>
+
+        <!-- Currency Switcher -->
+        <div class="amaras-currency-switcher" style="display: inline-flex; gap: 4px; background: rgba(255,255,255,0.06); padding: 3px; border-radius: 8px;">
+          <button type="button" class="amaras-curr-btn is-active" data-curr="AMD" onclick="selectAdminCurrency('AMD')" style="padding: 4px 7px; font-size: 11px; font-weight: 700; border-radius: 6px; border: none; background: transparent; color: #C7FF32; cursor: pointer;">֏</button>
+          <button type="button" class="amaras-curr-btn" data-curr="USD" onclick="selectAdminCurrency('USD')" style="padding: 4px 7px; font-size: 11px; font-weight: 700; border-radius: 6px; border: none; background: transparent; color: #A39F9F; cursor: pointer;">$</button>
+          <button type="button" class="amaras-curr-btn" data-curr="RUB" onclick="selectAdminCurrency('RUB')" style="padding: 4px 7px; font-size: 11px; font-weight: 700; border-radius: 6px; border: none; background: transparent; color: #A39F9F; cursor: pointer;">₽</button>
+          <button type="button" class="amaras-curr-btn" data-curr="EUR" onclick="selectAdminCurrency('EUR')" style="padding: 4px 7px; font-size: 11px; font-weight: 700; border-radius: 6px; border: none; background: transparent; color: #A39F9F; cursor: pointer;">€</button>
+        </div>
+
+        <!-- View Website Link -->
+        <a href="index.html" class="amaras-admin-btn-site" title="Перейти на сайт">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          <span data-i18n="admin_view_site">На сайт</span>
+        </a>
+
+        <!-- Admin Profile Pill -->
+        <div class="amaras-admin-user-pill">
+          <div class="amaras-admin-user-avatar">AA</div>
+          <span class="amaras-admin-user-name">Администратор</span>
+          <button type="button" class="amaras-admin-btn-logout" onclick="adminLogout()" title="Выйти" aria-label="Выйти">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Horizontal Tabs (<992px) -->
+    <nav class="amaras-admin-mobile-tabs" aria-label="Разделы панели управления">
+      <button type="button" class="amaras-admin-mobile-tab is-active" data-tab="overview" onclick="switchAdminTab('overview')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <span data-i18n="admin_nav_dashboard">Обзор</span>
+      </button>
+      <button type="button" class="amaras-admin-mobile-tab" data-tab="orders" onclick="switchAdminTab('orders')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        <span data-i18n="admin_nav_orders">Заказы</span>
+      </button>
+      <button type="button" class="amaras-admin-mobile-tab" data-tab="tours" onclick="switchAdminTab('tours')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        <span data-i18n="admin_nav_tours">Туры</span>
+      </button>
+      <button type="button" class="amaras-admin-mobile-tab" data-tab="fleet" onclick="switchAdminTab('fleet')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+        <span data-i18n="admin_nav_fleet">Автопарк</span>
+      </button>
+      <button type="button" class="amaras-admin-mobile-tab" data-tab="transfers" onclick="switchAdminTab('transfers')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="12" x2="20" y2="12"></line><polyline points="14 6 20 12 14 18"></polyline></svg>
+        <span data-i18n="admin_nav_transfers">Трансферы</span>
+      </button>
+      <button type="button" class="amaras-admin-mobile-tab" data-tab="clients" onclick="switchAdminTab('clients')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <span data-i18n="admin_nav_clients">Клиенты</span>
+      </button>
+      <button type="button" class="amaras-admin-mobile-tab" data-tab="settings" onclick="switchAdminTab('settings')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        <span data-i18n="admin_nav_settings">Настройки</span>
+      </button>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="amaras-admin-container">
+
+      <!-- Desktop Sidebar -->
+      <aside class="amaras-admin-sidebar">
+        <button type="button" class="amaras-admin-nav-item is-active" data-tab="overview" onclick="switchAdminTab('overview')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span data-i18n="admin_nav_dashboard">Обзор</span>
+        </button>
+
+        <button type="button" class="amaras-admin-nav-item" data-tab="orders" onclick="switchAdminTab('orders')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          <span data-i18n="admin_nav_orders">Заказы</span>
+          <span class="amaras-admin-nav-badge" id="sidebarOrdersBadge">0</span>
+        </button>
+
+        <button type="button" class="amaras-admin-nav-item" data-tab="tours" onclick="switchAdminTab('tours')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span data-i18n="admin_nav_tours">Туры</span>
+        </button>
+
+        <button type="button" class="amaras-admin-nav-item" data-tab="fleet" onclick="switchAdminTab('fleet')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+          <span data-i18n="admin_nav_fleet">Автопарк</span>
+        </button>
+
+        <button type="button" class="amaras-admin-nav-item" data-tab="transfers" onclick="switchAdminTab('transfers')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="12" x2="20" y2="12"></line><polyline points="14 6 20 12 14 18"></polyline></svg>
+          <span data-i18n="admin_nav_transfers">Трансферы</span>
+        </button>
+
+        <button type="button" class="amaras-admin-nav-item" data-tab="clients" onclick="switchAdminTab('clients')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span data-i18n="admin_nav_clients">Клиенты</span>
+        </button>
+
+        <button type="button" class="amaras-admin-nav-item" data-tab="settings" onclick="switchAdminTab('settings')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <span data-i18n="admin_nav_settings">Настройки</span>
+        </button>
+
+        <div class="amaras-admin-sidebar-bottom">
+          <div style="font-size: 11px; color: #6E6A6A; line-height: 1.4;">
+            Amaras Portal v2.6<br/>
+            ARMENIA TRAVEL LLC
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Dynamic Pane Area -->
+      <main class="amaras-admin-main">
+
+        <!-- ===============================================================
+             TAB 1: OVERVIEW (DASHBOARD)
+             =============================================================== -->
+        <section id="tab-overview" class="amaras-admin-tab-pane is-active">
+          <div class="amaras-admin-pane-header">
+            <div>
+              <h2 class="amaras-admin-pane-title" data-i18n="admin_portal_title">Панель управления Amaras</h2>
+              <p class="amaras-admin-pane-subtitle" data-i18n="admin_orders_subtitle">Все заявки, статусы оплаты и контакты гостей</p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button type="button" class="amaras-admin-btn-lime" onclick="openCreateOrderModal()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <span data-i18n="admin_btn_new_order">+ Новый заказ</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 4 Scorecard Metrics -->
+          <div class="amaras-admin-metrics-grid">
+            <div class="amaras-admin-metric-card">
+              <div class="amaras-admin-metric-card-top">
+                <span class="amaras-admin-metric-label" data-i18n="admin_metric_revenue">Общая выручка</span>
+                <div class="amaras-admin-metric-icon is-lime">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                </div>
+              </div>
+              <div class="amaras-admin-metric-value is-accent" id="metricTotalRevenue">0 ֏</div>
+              <div class="amaras-admin-metric-sub" data-i18n="admin_metric_period_month">За последние 30 дней</div>
+            </div>
+
+            <div class="amaras-admin-metric-card">
+              <div class="amaras-admin-metric-card-top">
+                <span class="amaras-admin-metric-label" data-i18n="admin_metric_orders">Всего заказов</span>
+                <div class="amaras-admin-metric-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586EFF" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                </div>
+              </div>
+              <div class="amaras-admin-metric-value" id="metricTotalOrders">0</div>
+              <div class="amaras-admin-metric-sub" id="metricNewOrdersSub">0 новых заявок</div>
+            </div>
+
+            <div class="amaras-admin-metric-card">
+              <div class="amaras-admin-metric-card-top">
+                <span class="amaras-admin-metric-label" data-i18n="admin_metric_tours">Активные туры</span>
+                <div class="amaras-admin-metric-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586EFF" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline></svg>
+                </div>
+              </div>
+              <div class="amaras-admin-metric-value" id="metricActiveTours">30</div>
+              <div class="amaras-admin-metric-sub">6 категорий маршрутов</div>
+            </div>
+
+            <div class="amaras-admin-metric-card">
+              <div class="amaras-admin-metric-card-top">
+                <span class="amaras-admin-metric-label" data-i18n="admin_metric_fleet">Автопарк</span>
+                <div class="amaras-admin-metric-icon is-lime">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                </div>
+              </div>
+              <div class="amaras-admin-metric-value" id="metricFleetCount">40</div>
+              <div class="amaras-admin-metric-sub" data-i18n="admin_metric_fleet_sub">40 туристических авто</div>
+            </div>
+          </div>
+
+          <!-- Recent Bookings Header -->
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+            <h3 style="font-size: 17px; font-weight: 700; margin: 0; color: #FFFFFF;" data-i18n="admin_recent_orders">Последние бронирования</h3>
+            <button type="button" class="amaras-admin-btn-outline" onclick="switchAdminTab('orders')" style="font-size: 12px;">
+              <span data-i18n="admin_nav_orders">Все заказы</span> →
+            </button>
+          </div>
+
+          <!-- Recent Orders Feed -->
+          <div id="overviewRecentOrdersContainer">
+            <!-- Dynamically populated -->
+          </div>
+        </section>
+
+        <!-- ===============================================================
+             TAB 2: ORDERS MANAGEMENT
+             =============================================================== -->
+        <section id="tab-orders" class="amaras-admin-tab-pane">
+          <div class="amaras-admin-pane-header">
+            <div>
+              <h2 class="amaras-admin-pane-title" data-i18n="admin_orders_title">Управление бронированиями</h2>
+              <p class="amaras-admin-pane-subtitle" data-i18n="admin_orders_subtitle">Все заявки, статусы оплаты и контакты гостей</p>
+            </div>
+            <button type="button" class="amaras-admin-btn-lime" onclick="openCreateOrderModal()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span data-i18n="admin_btn_new_order">+ Новый заказ</span>
+            </button>
+          </div>
+
+          <!-- Orders Toolbar & Filters -->
+          <div class="amaras-admin-toolbar">
+            <div class="amaras-admin-search-wrapper">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="orderSearchInput" class="amaras-admin-search-input" placeholder="Поиск по номеру, имени, телефону..." data-i18n-placeholder="admin_search_placeholder" oninput="filterOrders()" />
+            </div>
+
+            <div class="amaras-admin-filter-group">
+              <select id="orderStatusFilter" class="amaras-admin-select" onchange="filterOrders()">
+                <option value="all" data-i18n="admin_filter_all">Все статусы</option>
+                <option value="new" data-i18n="admin_status_new">Новый</option>
+                <option value="confirmed" data-i18n="admin_status_confirmed">Подтвержден</option>
+                <option value="processing" data-i18n="admin_status_processing">В обработке</option>
+                <option value="completed" data-i18n="admin_status_completed">Завершен</option>
+                <option value="cancelled" data-i18n="admin_status_cancelled">Отменен</option>
+              </select>
+
+              <select id="orderCategoryFilter" class="amaras-admin-select" onchange="filterOrders()">
+                <option value="all">Все категории</option>
+                <option value="Джип-туры">Джип-туры</option>
+                <option value="Гастрономические туры">Гастро-туры</option>
+                <option value="Пакетные туры">Пакетные туры</option>
+                <option value="Групповые мини-туры">Групповые мини</option>
+                <option value="Групповые стандарт">Групповые стандарт</option>
+                <option value="Индивидуальные туры">Индивидуальные</option>
+                <option value="Трансферы">Трансферы</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Desktop Orders Table -->
+          <div class="amaras-admin-table-card">
+            <table class="amaras-admin-table">
+              <thead>
+                <tr>
+                  <th data-i18n="admin_th_id">Номер</th>
+                  <th data-i18n="admin_th_client">Клиент</th>
+                  <th data-i18n="admin_th_tour">Тур / Услуга</th>
+                  <th data-i18n="admin_th_date">Дата</th>
+                  <th data-i18n="admin_th_guests">Гости</th>
+                  <th data-i18n="admin_th_total">Сумма</th>
+                  <th data-i18n="admin_th_status">Статус</th>
+                  <th data-i18n="admin_th_actions">Действия</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTableBody">
+                <!-- Dynamically rendered -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Mobile Orders Card List (<768px) -->
+          <div id="ordersMobileCardsList" class="amaras-admin-mobile-cards">
+            <!-- Dynamically rendered for phones -->
+          </div>
+        </section>
+
+        <!-- ===============================================================
+             TAB 3: TOURS MANAGEMENT
+             =============================================================== -->
+        <section id="tab-tours" class="amaras-admin-tab-pane">
+          <div class="amaras-admin-pane-header">
+            <div>
+              <h2 class="amaras-admin-pane-title" data-i18n="admin_tours_title">Каталог и цены туров</h2>
+              <p class="amaras-admin-pane-subtitle" data-i18n="admin_tours_subtitle">Управление видимостью и тарифами по 6 категориям</p>
+            </div>
+            <button type="button" class="amaras-admin-btn-lime" onclick="openAddTourModal()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span data-i18n="admin_btn_add_tour">+ Добавить тур</span>
+            </button>
+          </div>
+
+          <div class="amaras-admin-toolbar">
+            <div class="amaras-admin-search-wrapper">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="tourSearchInput" class="amaras-admin-search-input" placeholder="Поиск тура по названию..." oninput="filterTours()" />
+            </div>
+
+            <div class="amaras-admin-filter-group">
+              <select id="tourCategoryFilter" class="amaras-admin-select" onchange="filterTours()">
+                <option value="all">Все категории</option>
+                <option value="Джип-туры">Джип-туры</option>
+                <option value="Гастрономические туры">Гастрономические</option>
+                <option value="Пакетные туры">Пакетные</option>
+                <option value="Групповые мини-туры">Групповые мини</option>
+                <option value="Групповые стандарт">Групповые стандарт</option>
+                <option value="Индивидуальные туры">Индивидуальные</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Tours Grid -->
+          <div id="toursCardsGrid" class="amaras-admin-cards-grid">
+            <!-- Dynamically rendered -->
+          </div>
+        </section>
+
+        <!-- ===============================================================
+             TAB 4: FLEET MANAGEMENT
+             =============================================================== -->
+        <section id="tab-fleet" class="amaras-admin-tab-pane">
+          <div class="amaras-admin-pane-header">
+            <div>
+              <h2 class="amaras-admin-pane-title" data-i18n="admin_fleet_title">Автопарк Amaras</h2>
+              <p class="amaras-admin-pane-subtitle" data-i18n="admin_fleet_subtitle">40 собственных автомобилей туристического класса</p>
+            </div>
+          </div>
+
+          <div class="amaras-admin-toolbar">
+            <div class="amaras-admin-filter-group" style="width: 100%; justify-content: flex-start;">
+              <select id="fleetStatusFilter" class="amaras-admin-select" onchange="renderFleet()">
+                <option value="all">Все автомобили (40)</option>
+                <option value="available" data-i18n="admin_fleet_available">Свободен</option>
+                <option value="route" data-i18n="admin_fleet_on_route">В рейсе</option>
+                <option value="service" data-i18n="admin_fleet_service">Сервис / ТО</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Fleet Grid -->
+          <div id="fleetCardsGrid" class="amaras-admin-cards-grid">
+            <!-- Dynamically rendered -->
+          </div>
+        </section>
+
+        <!-- ===============================================================
+             TAB 5: TRANSFERS MANAGEMENT
+             =============================================================== -->
+        <section id="tab-transfers" class="amaras-admin-tab-pane">
+          <div class="amaras-admin-pane-header">
+            <div>
+              <h2 class="amaras-admin-pane-title" data-i18n="admin_transfers_title">Тарифы на трансферы</h2>
+              <p class="amaras-admin-pane-subtitle" data-i18n="admin_transfers_subtitle">Базовые маршруты и класс авто</p>
+            </div>
+          </div>
+
+          <div class="amaras-admin-table-card">
+            <table class="amaras-admin-table">
+              <thead>
+                <tr>
+                  <th>Маршрут</th>
+                  <th>Седан (1-3 чел)</th>
+                  <th>Минивэн V-Class (4-6)</th>
+                  <th>Микроавтобус Sprinter (7-19)</th>
+                  <th>VIP Maybach (1-3)</th>
+                  <th>Действие</th>
+                </tr>
+              </thead>
+              <tbody id="transfersTableBody">
+                <!-- Dynamically rendered -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ===============================================================
+             TAB 6: CLIENTS DATABASE
+             =============================================================== -->
+        <section id="tab-clients" class="amaras-admin-tab-pane">
+          <div class="amaras-admin-pane-header">
+            <div>
+              <h2 class="amaras-admin-pane-title" data-i18n="admin_clients_title">База клиентов</h2>
+              <p class="amaras-admin-pane-subtitle" data-i18n="admin_clients_subtitle">История путешествий и прямые контакты</p>
+            </div>
+          </div>
+
+          <div class="amaras-admin-toolbar">
+            <div class="amaras-admin-search-wrapper">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="clientSearchInput" class="amaras-admin-search-input" placeholder="Поиск клиента по имени или телефону..." oninput="renderClients()" />
+            </div>
+          </div>
+
+          <div class="amaras-admin-table-card">
+            <table class="amaras-admin-table">
+              <thead>
+                <tr>
+                  <th data-i18n="admin_th_client">Клиент</th>
+                  <th data-i18n="admin_field_phone">Телефон</th>
+                  <th data-i18n="admin_login_email">Электронная почта</th>
+                  <th data-i18n="admin_client_orders_count">Заказов</th>
+                  <th data-i18n="admin_client_total_spent">Сумма покупок</th>
+                  <th data-i18n="admin_th_actions">Контакты</th>
+                </tr>
+              </thead>
+              <tbody id="clientsTableBody">
+                <!-- Dynamically rendered -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ===============================================================
+             TAB 7: SETTINGS & SYSTEM BACKUP
+             =============================================================== -->
+        <section id="tab-settings" class="amaras-admin-tab-pane">
+          <div class="amaras-admin-pane-header">
+            <div>
+              <h2 class="amaras-admin-pane-title" data-i18n="admin_settings_title">Настройки системы</h2>
+              <p class="amaras-admin-pane-subtitle" data-i18n="admin_settings_subtitle">Параметры агентства, контакты и управление данными</p>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+            <div class="amaras-admin-metric-card">
+              <h3 style="font-size: 16px; margin: 0 0 14px 0; color: #FFFFFF;">Контакты агентства</h3>
+              <div style="display: flex; flex-direction: column; gap: 12px; font-size: 13.5px;">
+                <div><strong>WhatsApp:</strong> +374 91 000000</div>
+                <div><strong>Телефон:</strong> +374 10 500000</div>
+                <div><strong>Email:</strong> info@amaras.am</div>
+                <div><strong>Главный офис:</strong> ул. Абовяна, Ереван, Армения</div>
+              </div>
+            </div>
+
+            <div class="amaras-admin-metric-card">
+              <h3 style="font-size: 16px; margin: 0 0 14px 0; color: #FFFFFF;">Управление базой данных</h3>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <button type="button" class="amaras-admin-btn-outline" onclick="exportOrdersJSON()" style="justify-content: center; padding: 10px;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  <span data-i18n="admin_settings_export">Экспорт заказов (JSON)</span>
+                </button>
+                <button type="button" class="amaras-admin-btn-outline" onclick="resetToDemoData()" style="justify-content: center; padding: 10px; color: #C7FF32; border-color: rgba(199,255,50,0.3);">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                  <span data-i18n="admin_settings_reset">Сбросить к демо-данным</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       3. MODALS
+       ===================================================================== -->
+
+  <!-- Modal: Create Order -->
+  <div id="modalCreateOrder" class="amaras-admin-modal-overlay">
+    <div class="amaras-admin-modal">
+      <div class="amaras-admin-modal-header">
+        <h3 class="amaras-admin-modal-title" data-i18n="admin_modal_create_title">Создание нового заказа</h3>
+        <button type="button" class="amaras-admin-modal-close" onclick="closeModal('modalCreateOrder')" aria-label="Закрыть">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <form id="formCreateOrder" onsubmit="handleCreateOrderSubmit(event)">
+        <div class="amaras-admin-modal-body">
+          <div class="amaras-admin-form-group">
+            <label class="amaras-admin-form-label" data-i18n="admin_field_name">Имя клиента</label>
+            <input type="text" id="newOrderClientName" class="amaras-admin-form-input" required placeholder="Станислав Морозов" />
+          </div>
+
+          <div class="amaras-admin-form-group">
+            <label class="amaras-admin-form-label" data-i18n="admin_field_phone">Телефон</label>
+            <input type="tel" id="newOrderClientPhone" class="amaras-admin-form-input" required placeholder="+7 916 420-18-92" />
+          </div>
+
+          <div class="amaras-admin-form-group">
+            <label class="amaras-admin-form-label" data-i18n="admin_field_tour">Выбор тура / услуги</label>
+            <select id="newOrderTourSelect" class="amaras-admin-form-select" onchange="autoFillTourPrice()">
+              <!-- Dynamically populated from tours -->
+            </select>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="amaras-admin-form-group">
+              <label class="amaras-admin-form-label" data-i18n="admin_field_date">Дата поездки</label>
+              <input type="date" id="newOrderDate" class="amaras-admin-form-input" required />
+            </div>
+            <div class="amaras-admin-form-group">
+              <label class="amaras-admin-form-label" data-i18n="admin_field_guests">Количество гостей</label>
+              <input type="number" id="newOrderGuests" class="amaras-admin-form-input" min="1" max="50" value="2" required oninput="recalcOrderTotal()" />
+            </div>
+          </div>
+
+          <div class="amaras-admin-form-group">
+            <label class="amaras-admin-form-label" data-i18n="admin_field_price">Общая сумма (AMD)</label>
+            <input type="number" id="newOrderPriceAmd" class="amaras-admin-form-input" required />
+          </div>
+
+          <div class="amaras-admin-form-group">
+            <label class="amaras-admin-form-label" data-i18n="admin_field_status">Статус заказа</label>
+            <select id="newOrderStatus" class="amaras-admin-form-select">
+              <option value="new" data-i18n="admin_status_new">Новый</option>
+              <option value="confirmed" data-i18n="admin_status_confirmed">Подтвержден</option>
+              <option value="processing" data-i18n="admin_status_processing">В обработке</option>
+            </select>
+          </div>
+
+          <div class="amaras-admin-form-group">
+            <label class="amaras-admin-form-label" data-i18n="admin_field_notes">Примечания / пожелания</label>
+            <textarea id="newOrderNotes" class="amaras-admin-form-textarea" rows="2" placeholder="Особые пожелания гостя..."></textarea>
+          </div>
+        </div>
+        <div class="amaras-admin-modal-footer">
+          <button type="button" class="amaras-admin-btn-outline" onclick="closeModal('modalCreateOrder')" data-i18n="admin_cancel">Отмена</button>
+          <button type="submit" class="amaras-admin-btn-lime" data-i18n="admin_save">Сохранить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Order Details -->
+  <div id="modalOrderDetails" class="amaras-admin-modal-overlay">
+    <div class="amaras-admin-modal">
+      <div class="amaras-admin-modal-header">
+        <h3 class="amaras-admin-modal-title" data-i18n="admin_modal_details_title">Детали заказа</h3>
+        <button type="button" class="amaras-admin-modal-close" onclick="closeModal('modalOrderDetails')" aria-label="Закрыть">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="amaras-admin-modal-body" id="orderDetailsModalBody">
+        <!-- Dynamically rendered -->
+      </div>
+      <div class="amaras-admin-modal-footer">
+        <button type="button" class="amaras-admin-btn-outline" onclick="closeModal('modalOrderDetails')" data-i18n="admin_cancel">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Add Tour -->
+  <div id="modalAddTour" class="amaras-admin-modal-overlay">
+    <div class="amaras-admin-modal">
+      <div class="amaras-admin-modal-header">
+        <h3 class="amaras-admin-modal-title" data-i18n="admin_modal_tour_title">Добавить новый тур</h3>
+        <button type="button" class="amaras-admin-modal-close" onclick="closeModal('modalAddTour')" aria-label="Закрыть">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <form id="formAddTour" onsubmit="handleAddTourSubmit(event)">
+        <div class="amaras-admin-modal-body">
+          <div class="amaras-admin-form-group">
+            <label class="amaras-admin-form-label" data-i18n="admin_field_tour_title">Название тура</label>
+            <input type="text" id="newTourTitle" class="amaras-admin-form-input" required placeholder="Экспедиция на гору Арагац" />
+          </div>
+
+          <div class="amaras-admin-form-group">
+            <label class="amaras-admin-form-label" data-i18n="admin_field_tour_category">Категория</label>
+            <select id="newTourCategory" class="amaras-admin-form-select">
+              <option value="Джип-туры">Джип-туры</option>
+              <option value="Гастрономические туры">Гастрономические туры</option>
+              <option value="Пакетные туры">Пакетные туры</option>
+              <option value="Групповые мини-туры">Групповые мини-туры</option>
+              <option value="Групповые стандарт">Групповые стандарт</option>
+              <option value="Индивидуальные туры">Индивидуальные туры</option>
+            </select>
+          </div>
+
+          <div class="amaras-admin-form-group">
+            <label class="amaras-admin-form-label" data-i18n="admin_field_tour_price">Стоимость на человека (AMD)</label>
+            <input type="number" id="newTourPriceAmd" class="amaras-admin-form-input" required placeholder="32000" />
+          </div>
+
+          <div class="amaras-admin-form-group">
+            <label class="amaras-admin-form-label" data-i18n="admin_field_tour_route">Маршрут</label>
+            <input type="text" id="newTourRoute" class="amaras-admin-form-input" required placeholder="Ереван → Арагац → оз. Кари" />
+          </div>
+        </div>
+        <div class="amaras-admin-modal-footer">
+          <button type="button" class="amaras-admin-btn-outline" onclick="closeModal('modalAddTour')" data-i18n="admin_cancel">Отмена</button>
+          <button type="submit" class="amaras-admin-btn-lime" data-i18n="admin_save">Сохранить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/currency.js"></script>
+  <script src="js/translations.js"></script>
+  <script src="js/auth.js"></script>
+
+  <!-- Admin Panel Controller Logic -->
+  <script>
+    /* ==========================================================================
+       AMARAS ADMIN CONTROLLER - Client-Side Engine with LocalStorage Sync
+       Multilingual (RU, ENG, HY) & Real-time Live Currency Formatting
+       ========================================================================== */
+
+    // 1. Initial Seeding of Data
+    const DEFAULT_ADMIN_ORDERS = [
+      {
+        id: "AMR-1089",
+        clientName: "Станислав Морозов",
+        clientPhone: "+7 (916) 420-18-92",
+        clientEmail: "stanislav.m@gmail.com",
+        serviceName: "Джип-экспедиция на вулкан Аждаак и оз. Кари",
+        category: "Джип-туры",
+        date: "2026-11-20",
+        createdAt: "2026-11-14",
+        guests: 3,
+        totalAmd: 255000,
+        status: "confirmed",
+        notes: "Требуется детское кресло, питание без глютена",
+        source: "WhatsApp"
+      },
+      {
+        id: "AMR-1088",
+        clientName: "Sarah Jenkins",
+        clientPhone: "+1 (415) 890-3321",
+        clientEmail: "sarah.jenkins@sf-travel.com",
+        serviceName: "Винный тур в Арени и Пещера Птиц",
+        category: "Гастрономические туры",
+        date: "2026-11-22",
+        createdAt: "2026-11-13",
+        guests: 2,
+        totalAmd: 96000,
+        status: "processing",
+        notes: "English speaking sommelier requested",
+        source: "Website Cart"
+      },
+      {
+        id: "AMR-1087",
+        clientName: "Կարեն Գասպարյան",
+        clientPhone: "+374 94 55-12-80",
+        clientEmail: "karen.gasparyan@armnet.am",
+        serviceName: "VIP трансфер Звартноц → Ереван (Mercedes V-Class)",
+        category: "Трансферы",
+        date: "2026-11-16",
+        createdAt: "2026-11-15",
+        guests: 5,
+        totalAmd: 35000,
+        status: "new",
+        notes: "Flight SU1860 arrival at 14:30",
+        source: "Telegram"
+      },
+      {
+        id: "AMR-1086",
+        clientName: "Elena Rossi",
+        clientPhone: "+39 340 781-9920",
+        clientEmail: "elena.rossi@milano-art.it",
+        serviceName: "7-дневный гранд-тур «Вся Армения под ключ»",
+        category: "Пакетные туры",
+        date: "2026-12-05",
+        createdAt: "2026-11-12",
+        guests: 2,
+        totalAmd: 580000,
+        status: "confirmed",
+        notes: "Отель 4* в центре Еревана + СПА в Дилижане",
+        source: "Website Cart"
+      },
+      {
+        id: "AMR-1085",
+        clientName: "Дмитрий Волков",
+        clientPhone: "+7 (921) 765-43-21",
+        clientEmail: "dmitry.volkov@spb.ru",
+        serviceName: "Хор Вирап, Арени, Нораванк и Крылья Татева",
+        category: "Групповые мини-туры",
+        date: "2026-11-18",
+        createdAt: "2026-11-11",
+        guests: 4,
+        totalAmd: 152000,
+        status: "completed",
+        notes: "Оплата произведена картой, гид Григор",
+        source: "Direct Call"
+      },
+      {
+        id: "AMR-1084",
+        clientName: "David Miller",
+        clientPhone: "+44 7700 900142",
+        clientEmail: "david.miller@london-travel.co.uk",
+        serviceName: "Храм Гарни и монастырь Гегард (Индивидуальный)",
+        category: "Индивидуальные туры",
+        date: "2026-11-25",
+        createdAt: "2026-11-10",
+        guests: 2,
+        totalAmd: 64000,
+        status: "processing",
+        notes: "Lavash masterclass included",
+        source: "WhatsApp"
+      },
+      {
+        id: "AMR-1083",
+        clientName: "Ануш Мартиросян",
+        clientPhone: "+374 77 44-33-22",
+        clientEmail: "anush.m@yerevan.am",
+        serviceName: "Севан, Дилижан и монастырь Агарцин",
+        category: "Групповые стандарт",
+        date: "2026-11-19",
+        createdAt: "2026-11-09",
+        guests: 6,
+        totalAmd: 114000,
+        status: "new",
+        notes: "Семейная поездка с детьми",
+        source: "Website Cart"
+      },
+      {
+        id: "AMR-1082",
+        clientName: "Михаил и Анна Соколовы",
+        clientPhone: "+7 (903) 112-98-76",
+        clientEmail: "sokolov.mikhail@mail.ru",
+        serviceName: "Романтический уикенд в Дилижане",
+        category: "Пакетные туры",
+        date: "2026-11-08",
+        createdAt: "2026-11-01",
+        guests: 2,
+        totalAmd: 210000,
+        status: "completed",
+        notes: "Трансфер на Mercedes V-Class выполнен вовремя",
+        source: "WhatsApp"
+      }
+    ];
+
+    const DEFAULT_ADMIN_TOURS = [
+      { id: "tour-j1", title: "Подъем на вулкан Аждаак", category: "Джип-туры", priceAmd: 85000, route: "Ереван → Гегамские горы → Аждаак", active: true },
+      { id: "tour-j2", title: "Экспедиция на гору Арагац", category: "Джип-туры", priceAmd: 75000, route: "Ереван → оз. Кари → Гехарот", active: true },
+      { id: "tour-j3", title: "Марсианские пейзажи Ущелья Ангелов", category: "Джип-туры", priceAmd: 65000, route: "Ереван → Ущелье Ангелов → Веди", active: true },
+      { id: "tour-g1", title: "Колыбель виноделия Арени", category: "Гастрономические туры", priceAmd: 48000, route: "Ереван → Арени → Пещера Птиц", active: true },
+      { id: "tour-g2", title: "Мастер-класс выпечки лаваша в Гарни", category: "Гастрономические туры", priceAmd: 38000, route: "Ереван → Гарни → Тонир → Сыроварня", active: true },
+      { id: "tour-g3", title: "Севанский ишхан и раковые шейки", category: "Гастрономические туры", priceAmd: 42000, route: "Ереван → Севанаванк → Ресторан", active: true },
+      { id: "tour-p1", title: "Уикенд в Армении (3 дня / 2 ночи)", category: "Пакетные туры", priceAmd: 145000, route: "Ереван • Гарни • Севан • Отель 4*", active: true },
+      { id: "tour-p2", title: "Гранд-тур «Вся Армения» (7 дней)", category: "Пакетные туры", priceAmd: 290000, route: "Все главные святыни • Полный пансион", active: true },
+      { id: "tour-m1", title: "Гарни, Гегард и Симфония камней", category: "Групповые мини-туры", priceAmd: 22000, route: "Ереван → Гарни → Гегард → Базальт", active: true },
+      { id: "tour-m2", title: "Хор Вирап, Арени и Нораванк", category: "Групповые мини-туры", priceAmd: 26000, route: "Ереван → Хор Вирап → Арени → Нораванк", active: true },
+      { id: "tour-m3", title: "Севан, Дилижан и Агарцин", category: "Групповые мини-туры", priceAmd: 24000, route: "Ереван → Севан → Дилижан → Агарцин", active: true },
+      { id: "tour-s1", title: "Классический Севан и Дилижан", category: "Групповые стандарт", priceAmd: 19000, route: "Большой автобус комфорт-класса", active: true },
+      { id: "tour-i1", title: "Индивидуальный VIP тур в Татев", category: "Индивидуальные туры", priceAmd: 95000, route: "Mercedes V-Class • Персональный гид", active: true }
+    ];
+
+    const DEFAULT_ADMIN_FLEET = [
+      { id: "fl-1", name: "Mercedes-Benz V-Class 250d VIP", plate: "01 AM 777", capacity: "6 мест", status: "available", driver: "Армен Саргсян", phone: "+374 91 112233" },
+      { id: "fl-2", name: "Mercedes-Benz V-Class Extra Long", plate: "02 AM 777", capacity: "7 мест", status: "route", driver: "Григор Манукян", phone: "+374 93 223344" },
+      { id: "fl-3", name: "Mercedes-Benz Sprinter 519 CDI VIP", plate: "05 AM 888", capacity: "19 мест", status: "available", driver: "Давид Аракелян", phone: "+374 94 334455" },
+      { id: "fl-4", name: "Mercedes-Benz Sprinter Tourist", plate: "06 AM 888", capacity: "20 мест", status: "route", driver: "Карен Оганесян", phone: "+374 98 445566" },
+      { id: "fl-5", name: "Toyota Land Cruiser 300 GR-Sport 4x4", plate: "10 AM 001", capacity: "4 места", status: "available", driver: "Ашот Петросян", phone: "+374 91 556677" },
+      { id: "fl-6", name: "Toyota Land Cruiser Prado 150 4x4", plate: "11 AM 002", capacity: "4 места", status: "route", driver: "Сурен Аветисян", phone: "+374 95 667788" },
+      { id: "fl-7", name: "Toyota Sequoia 4x4 Expedition", plate: "12 AM 003", capacity: "6 мест", status: "available", driver: "Ваге Акопян", phone: "+374 99 778899" },
+      { id: "fl-8", name: "Mercedes-Benz S-Class W223 Maybach", plate: "77 AM 777", capacity: "3 места", status: "available", driver: "Артур Казарян", phone: "+374 91 889900" },
+      { id: "fl-9", name: "Setra ComfortClass 515 HD", plate: "50 AM 555", capacity: "49 мест", status: "route", driver: "Мкртич Торосян", phone: "+374 93 990011" },
+      { id: "fl-10", name: "Mercedes-Benz Tourismo", plate: "51 AM 555", capacity: "51 место", status: "service", driver: "Самвел Геворгян", phone: "+374 94 001122" }
+    ];
+
+    const DEFAULT_ADMIN_TRANSFERS = [
+      { id: "tr-1", route: "Аэропорт Звартноц ↔ Центр Еревана", sedan: 10000, minivan: 25000, minibus: 35000, vip: 50000 },
+      { id: "tr-2", route: "Ереван ↔ Озеро Севан / Дилижан", sedan: 25000, minivan: 50000, minibus: 70000, vip: 110000 },
+      { id: "tr-3", route: "Ереван ↔ Цахкадзор (Горнолыжный)", sedan: 20000, minivan: 40000, minibus: 55000, vip: 90000 },
+      { id: "tr-4", route: "Ереван ↔ Джермук (Водопад и СПА)", sedan: 35000, minivan: 65000, minibus: 90000, vip: 140000 },
+      { id: "tr-5", route: "Ереван ↔ Монастырь Татев (Крылья)", sedan: 55000, minivan: 95000, minibus: 130000, vip: 200000 },
+      { id: "tr-6", route: "Ереван ↔ Тбилиси (Грузия)", sedan: 75000, minivan: 140000, minibus: 180000, vip: 280000 }
+    ];
+
+    // Getters and Setters
+    function getAdminOrders() {
+      try {
+        const raw = localStorage.getItem('amaras_admin_orders');
+        return raw ? JSON.parse(raw) : DEFAULT_ADMIN_ORDERS;
+      } catch (e) {
+        return DEFAULT_ADMIN_ORDERS;
+      }
+    }
+
+    function saveAdminOrders(orders) {
+      localStorage.setItem('amaras_admin_orders', JSON.stringify(orders));
+      renderOrders();
+      renderOverview();
+    }
+
+    function getAdminTours() {
+      try {
+        const raw = localStorage.getItem('amaras_admin_tours');
+        return raw ? JSON.parse(raw) : DEFAULT_ADMIN_TOURS;
+      } catch (e) {
+        return DEFAULT_ADMIN_TOURS;
+      }
+    }
+
+    function saveAdminTours(tours) {
+      localStorage.setItem('amaras_admin_tours', JSON.stringify(tours));
+      renderTours();
+      populateTourSelect();
+    }
+
+    function getAdminFleet() {
+      try {
+        const raw = localStorage.getItem('amaras_admin_fleet');
+        return raw ? JSON.parse(raw) : DEFAULT_ADMIN_FLEET;
+      } catch (e) {
+        return DEFAULT_ADMIN_FLEET;
+      }
+    }
+
+    function saveAdminFleet(fleet) {
+      localStorage.setItem('amaras_admin_fleet', JSON.stringify(fleet));
+      renderFleet();
+    }
+
+    function formatPrice(amountAmd) {
+      if (typeof window.formatCurrencyPrice === 'function') {
+        return window.formatCurrencyPrice(amountAmd);
+      }
+      return Math.round(amountAmd).toLocaleString('ru-RU') + ' ֏';
+    }
+
+    function getStatusBadge(status) {
+      const curLang = window.currentLang || 'RU';
+      const dict = (typeof AMARAS_I18N !== 'undefined' && AMARAS_I18N[curLang]) ? AMARAS_I18N[curLang] : {};
+      
+      const statusLabels = {
+        new: dict.admin_status_new || 'Новый',
+        confirmed: dict.admin_status_confirmed || 'Подтвержден',
+        processing: dict.admin_status_processing || 'В обработке',
+        completed: dict.admin_status_completed || 'Завершен',
+        cancelled: dict.admin_status_cancelled || 'Отменен'
+      };
+
+      const label = statusLabels[status] || status;
+      return `<span class="amaras-status-badge is-${status}">${label}</span>`;
+    }
+
+    // 2. Authentication Check & Demo Unlock
+    function checkAdminAuth() {
+      let isAuth = false;
+      try {
+        const user = JSON.parse(localStorage.getItem('amaras_user') || 'null');
+        if (user && (user.role === 'admin' || (user.email && user.email.toLowerCase() === 'admin@amaras.am'))) {
+          isAuth = true;
+        }
+      } catch (e) {}
+
+      // Also check demo session flag
+      if (sessionStorage.getItem('amaras_admin_demo_logged') === 'true') {
+        isAuth = true;
+      }
+
+      const loginView = document.getElementById('adminLoginView');
+      const dashView = document.getElementById('adminDashboardView');
+
+      if (isAuth) {
+        if (loginView) loginView.style.display = 'none';
+        if (dashView) dashView.style.display = 'block';
+        initAdminDashboard();
+      } else {
+        if (loginView) loginView.style.display = 'flex';
+        if (dashView) dashView.style.display = 'none';
+      }
+    }
+
+    function handleAdminLoginSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('adminEmail').value.trim();
+      const pass = document.getElementById('adminPassword').value;
+      const errEl = document.getElementById('adminLoginError');
+
+      if (email.toLowerCase() === 'admin@amaras.am' && (pass === 'admin2026' || pass === 'admin')) {
+        const adminUser = {
+          id: 'usr_admin',
+          name: 'Администратор Amaras',
+          email: 'admin@amaras.am',
+          phone: '+374 91 123456',
+          role: 'admin',
+          avatarText: 'AA'
+        };
+        localStorage.setItem('amaras_user', JSON.stringify(adminUser));
+        sessionStorage.setItem('amaras_admin_demo_logged', 'true');
+        errEl.style.display = 'none';
+        checkAdminAuth();
+      } else {
+        errEl.style.display = 'block';
+      }
+    }
+
+    function quickDemoAdminLogin() {
+      document.getElementById('adminEmail').value = 'admin@amaras.am';
+      document.getElementById('adminPassword').value = 'admin2026';
+      const adminUser = {
+        id: 'usr_admin',
+        name: 'Администратор Amaras',
+        email: 'admin@amaras.am',
+        phone: '+374 91 123456',
+        role: 'admin',
+        avatarText: 'AA'
+      };
+      localStorage.setItem('amaras_user', JSON.stringify(adminUser));
+      sessionStorage.setItem('amaras_admin_demo_logged', 'true');
+      checkAdminAuth();
+    }
+
+    function adminLogout() {
+      sessionStorage.removeItem('amaras_admin_demo_logged');
+      try {
+        const u = JSON.parse(localStorage.getItem('amaras_user') || 'null');
+        if (u && u.role === 'admin') {
+          localStorage.removeItem('amaras_user');
+        }
+      } catch (e) {}
+      checkAdminAuth();
+    }
+
+    // 3. Tab Switching
+    function switchAdminTab(tabName) {
+      document.querySelectorAll('.amaras-admin-tab-pane').forEach(p => p.classList.remove('is-active'));
+      document.querySelectorAll('.amaras-admin-nav-item').forEach(b => b.classList.remove('is-active'));
+      document.querySelectorAll('.amaras-admin-mobile-tab').forEach(b => b.classList.remove('is-active'));
+
+      const activePane = document.getElementById('tab-' + tabName);
+      if (activePane) activePane.classList.add('is-active');
+
+      document.querySelectorAll(`[data-tab="${tabName}"]`).forEach(el => el.classList.add('is-active'));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 4. Render Dashboard Overview
+    function renderOverview() {
+      const orders = getAdminOrders();
+      const totalRevenueAmd = orders
+        .filter(o => o.status !== 'cancelled')
+        .reduce((sum, o) => sum + (o.totalAmd || 0), 0);
+
+      const newOrdersCount = orders.filter(o => o.status === 'new').length;
+
+      const revEl = document.getElementById('metricTotalRevenue');
+      if (revEl) revEl.textContent = formatPrice(totalRevenueAmd);
+
+      const ordEl = document.getElementById('metricTotalOrders');
+      if (ordEl) ordEl.textContent = orders.length;
+
+      const newSubEl = document.getElementById('metricNewOrdersSub');
+      if (newSubEl) newSubEl.textContent = `${newOrdersCount} новых заявок`;
+
+      const sidebarBadge = document.getElementById('sidebarOrdersBadge');
+      if (sidebarBadge) sidebarBadge.textContent = orders.length;
+
+      // Recent Orders Table in Overview
+      const container = document.getElementById('overviewRecentOrdersContainer');
+      if (container) {
+        const recent = orders.slice(0, 5);
+        let html = `
+          <div class="amaras-admin-table-card">
+            <table class="amaras-admin-table">
+              <thead>
+                <tr>
+                  <th>Номер</th>
+                  <th>Клиент</th>
+                  <th>Тур / Услуга</th>
+                  <th>Дата</th>
+                  <th>Сумма</th>
+                  <th>Статус</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+        recent.forEach(o => {
+          html += `
+            <tr onclick="viewOrderDetails('${o.id}')" style="cursor: pointer;">
+              <td><span class="amaras-admin-id-pill">${o.id}</span></td>
+              <td>
+                <div class="amaras-admin-client-info">
+                  <span class="amaras-admin-client-name">${o.clientName}</span>
+                  <span class="amaras-admin-client-phone">${o.clientPhone}</span>
+                </div>
+              </td>
+              <td>${o.serviceName}</td>
+              <td>${o.date}</td>
+              <td style="font-weight: 700; color: #C7FF32;">${formatPrice(o.totalAmd)}</td>
+              <td>${getStatusBadge(o.status)}</td>
+            </tr>
+          `;
+        });
+        html += `
+              </tbody>
+            </table>
+          </div>
+        `;
+        container.innerHTML = html;
+      }
+    }
+
+    // 5. Render Orders (Desktop Table & Mobile Cards)
+    function renderOrders(filteredOrders) {
+      const orders = filteredOrders || getAdminOrders();
+      const tbody = document.getElementById('ordersTableBody');
+      const mobileList = document.getElementById('ordersMobileCardsList');
+
+      if (!tbody && !mobileList) return;
+
+      if (orders.length === 0) {
+        const emptyMsg = '<div style="padding: 30px; text-align: center; color: #A39F9F;">Заказы не найдены</div>';
+        if (tbody) tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:30px; color:#A39F9F;">Заказы не найдены</td></tr>`;
+        if (mobileList) mobileList.innerHTML = emptyMsg;
+        return;
+      }
+
+      // Desktop Table Rows
+      if (tbody) {
+        tbody.innerHTML = orders.map(o => `
+          <tr>
+            <td><span class="amaras-admin-id-pill">${o.id}</span></td>
+            <td>
+              <div class="amaras-admin-client-info">
+                <span class="amaras-admin-client-name">${o.clientName}</span>
+                <span class="amaras-admin-client-phone">${o.clientPhone}</span>
+              </div>
+            </td>
+            <td>
+              <div style="font-weight:600;">${o.serviceName}</div>
+              <div style="font-size:12px; color:#8C8888;">${o.category}</div>
+            </td>
+            <td>${o.date}</td>
+            <td>${o.guests} чел.</td>
+            <td style="font-weight: 700; color: #C7FF32;">${formatPrice(o.totalAmd)}</td>
+            <td>
+              <select class="amaras-admin-select" style="padding: 4px 24px 4px 8px; font-size: 12px; border-radius: 6px;" onchange="updateOrderStatus('${o.id}', this.value)">
+                <option value="new" ${o.status === 'new' ? 'selected' : ''}>Новый</option>
+                <option value="confirmed" ${o.status === 'confirmed' ? 'selected' : ''}>Подтвержден</option>
+                <option value="processing" ${o.status === 'processing' ? 'selected' : ''}>В обработке</option>
+                <option value="completed" ${o.status === 'completed' ? 'selected' : ''}>Завершен</option>
+                <option value="cancelled" ${o.status === 'cancelled' ? 'selected' : ''}>Отменен</option>
+              </select>
+            </td>
+            <td>
+              <div class="amaras-admin-actions-cell">
+                <button type="button" class="amaras-admin-icon-btn" onclick="viewOrderDetails('${o.id}')" title="Просмотр">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                </button>
+                <a href="https://wa.me/${o.clientPhone.replace(/[^0-9]/g, '')}" target="_blank" rel="noopener" class="amaras-admin-icon-btn is-wa" title="WhatsApp">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                </a>
+                <button type="button" class="amaras-admin-icon-btn is-danger" onclick="deleteOrder('${o.id}')" title="Удалить">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      // Mobile Stacked Cards
+      if (mobileList) {
+        mobileList.innerHTML = orders.map(o => `
+          <div class="amaras-admin-card-item">
+            <div class="amaras-admin-card-item-header">
+              <span class="amaras-admin-id-pill">${o.id}</span>
+              ${getStatusBadge(o.status)}
+            </div>
+            <div class="amaras-admin-card-item-body">
+              <div class="amaras-admin-card-row">
+                <span class="amaras-admin-card-label">Клиент:</span>
+                <span class="amaras-admin-card-val">
+                  <strong>${o.clientName}</strong><br/>
+                  <small style="color:#A39F9F;">${o.clientPhone}</small>
+                </span>
+              </div>
+              <div class="amaras-admin-card-row">
+                <span class="amaras-admin-card-label">Тур:</span>
+                <span class="amaras-admin-card-val">${o.serviceName}</span>
+              </div>
+              <div class="amaras-admin-card-row">
+                <span class="amaras-admin-card-label">Дата / Гости:</span>
+                <span class="amaras-admin-card-val">${o.date} (${o.guests} чел.)</span>
+              </div>
+              <div class="amaras-admin-card-row">
+                <span class="amaras-admin-card-label">Сумма:</span>
+                <span class="amaras-admin-card-val is-price">${formatPrice(o.totalAmd)}</span>
+              </div>
+            </div>
+            <div class="amaras-admin-card-item-footer">
+              <select class="amaras-admin-select" style="font-size:12px; padding: 6px 24px 6px 8px;" onchange="updateOrderStatus('${o.id}', this.value)">
+                <option value="new" ${o.status === 'new' ? 'selected' : ''}>Новый</option>
+                <option value="confirmed" ${o.status === 'confirmed' ? 'selected' : ''}>Подтвержден</option>
+                <option value="processing" ${o.status === 'processing' ? 'selected' : ''}>В обработке</option>
+                <option value="completed" ${o.status === 'completed' ? 'selected' : ''}>Завершен</option>
+                <option value="cancelled" ${o.status === 'cancelled' ? 'selected' : ''}>Отменен</option>
+              </select>
+              <div style="display: flex; gap: 8px;">
+                <button type="button" class="amaras-admin-icon-btn" onclick="viewOrderDetails('${o.id}')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                </button>
+                <a href="https://wa.me/${o.clientPhone.replace(/[^0-9]/g, '')}" target="_blank" rel="noopener" class="amaras-admin-icon-btn is-wa">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                </a>
+                <button type="button" class="amaras-admin-icon-btn is-danger" onclick="deleteOrder('${o.id}')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    function filterOrders() {
+      const q = (document.getElementById('orderSearchInput').value || '').toLowerCase().trim();
+      const status = document.getElementById('orderStatusFilter').value;
+      const cat = document.getElementById('orderCategoryFilter').value;
+
+      const all = getAdminOrders();
+      const filtered = all.filter(o => {
+        const matchesQuery = !q ||
+          o.id.toLowerCase().includes(q) ||
+          o.clientName.toLowerCase().includes(q) ||
+          o.clientPhone.toLowerCase().includes(q) ||
+          o.serviceName.toLowerCase().includes(q);
+
+        const matchesStatus = (status === 'all') || (o.status === status);
+        const matchesCat = (cat === 'all') || (o.category === cat);
+
+        return matchesQuery && matchesStatus && matchesCat;
+      });
+
+      renderOrders(filtered);
+    }
+
+    function updateOrderStatus(orderId, newStatus) {
+      const orders = getAdminOrders();
+      const target = orders.find(o => o.id === orderId);
+      if (target) {
+        target.status = newStatus;
+        saveAdminOrders(orders);
+        showAdminToast('Статус заказа обновлен', 'success');
+      }
+    }
+
+    function deleteOrder(orderId) {
+      if (confirm('Вы уверены, что хотите удалить этот заказ?')) {
+        let orders = getAdminOrders();
+        orders = orders.filter(o => o.id !== orderId);
+        saveAdminOrders(orders);
+        showAdminToast('Заказ удален', 'info');
+      }
+    }
+
+    function viewOrderDetails(orderId) {
+      const orders = getAdminOrders();
+      const o = orders.find(item => item.id === orderId);
+      if (!o) return;
+
+      const body = document.getElementById('orderDetailsModalBody');
+      body.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:12px;">
+          <span class="amaras-admin-id-pill" style="font-size:14px;">${o.id}</span>
+          ${getStatusBadge(o.status)}
+        </div>
+        <div style="display:flex; flex-direction:column; gap:10px; font-size:14px; margin-top:10px;">
+          <div><strong>Клиент:</strong> ${o.clientName}</div>
+          <div><strong>Телефон:</strong> <a href="tel:${o.clientPhone}" style="color:#C7FF32;">${o.clientPhone}</a></div>
+          ${o.clientEmail ? `<div><strong>Email:</strong> ${o.clientEmail}</div>` : ''}
+          <div><strong>Тур / Услуга:</strong> ${o.serviceName} (${o.category})</div>
+          <div><strong>Дата поездки:</strong> ${o.date}</div>
+          <div><strong>Количество участников:</strong> ${o.guests} чел.</div>
+          <div><strong>Итоговая сумма:</strong> <span style="color:#C7FF32; font-weight:700;">${formatPrice(o.totalAmd)}</span></div>
+          ${o.notes ? `<div><strong>Примечания:</strong><br/><span style="color:#D1D5DB; background:rgba(255,255,255,0.04); padding:8px 12px; border-radius:8px; display:block; margin-top:4px;">${o.notes}</span></div>` : ''}
+        </div>
+        <div style="margin-top: 16px; display:flex; gap:10px;">
+          <a href="https://wa.me/${o.clientPhone.replace(/[^0-9]/g, '')}" target="_blank" rel="noopener" class="amaras-admin-btn-lime" style="flex:1; justify-content:center;">
+            Написать в WhatsApp
+          </a>
+        </div>
+      `;
+      openModal('modalOrderDetails');
+    }
+
+    // 6. Create Order Modal Handlers
+    function openCreateOrderModal() {
+      populateTourSelect();
+      document.getElementById('newOrderDate').value = new Date().toISOString().split('T')[0];
+      autoFillTourPrice();
+      openModal('modalCreateOrder');
+    }
+
+    function populateTourSelect() {
+      const select = document.getElementById('newOrderTourSelect');
+      if (!select) return;
+      const tours = getAdminTours();
+      select.innerHTML = tours.map(t => `
+        <option value="${t.title}" data-price="${t.priceAmd}" data-cat="${t.category}">
+          ${t.title} (${t.category}) — ${formatPrice(t.priceAmd)}
+        </option>
+      `).join('');
+    }
+
+    function autoFillTourPrice() {
+      const select = document.getElementById('newOrderTourSelect');
+      if (!select) return;
+      const opt = select.options[select.selectedIndex];
+      if (!opt) return;
+      const unitPrice = parseInt(opt.getAttribute('data-price') || '30000', 10);
+      const guests = parseInt(document.getElementById('newOrderGuests').value || '1', 10);
+      document.getElementById('newOrderPriceAmd').value = unitPrice * guests;
+    }
+
+    function recalcOrderTotal() {
+      autoFillTourPrice();
+    }
+
+    function handleCreateOrderSubmit(e) {
+      e.preventDefault();
+      const orders = getAdminOrders();
+      const select = document.getElementById('newOrderTourSelect');
+      const opt = select.options[select.selectedIndex];
+
+      const newOrder = {
+        id: "AMR-" + (1090 + orders.length),
+        clientName: document.getElementById('newOrderClientName').value.trim(),
+        clientPhone: document.getElementById('newOrderClientPhone').value.trim(),
+        clientEmail: "",
+        serviceName: select.value,
+        category: opt ? opt.getAttribute('data-cat') : "Групповые туры",
+        date: document.getElementById('newOrderDate').value,
+        createdAt: new Date().toISOString().split('T')[0],
+        guests: parseInt(document.getElementById('newOrderGuests').value || '1', 10),
+        totalAmd: parseInt(document.getElementById('newOrderPriceAmd').value || '0', 10),
+        status: document.getElementById('newOrderStatus').value,
+        notes: document.getElementById('newOrderNotes').value.trim(),
+        source: "Admin Panel"
+      };
+
+      orders.unshift(newOrder);
+      saveAdminOrders(orders);
+      closeModal('modalCreateOrder');
+      showAdminToast('Заказ успешно создан', 'success');
+    }
+
+    // 7. Render Tours
+    function renderTours(filteredTours) {
+      const tours = filteredTours || getAdminTours();
+      const grid = document.getElementById('toursCardsGrid');
+      if (!grid) return;
+
+      grid.innerHTML = tours.map(t => `
+        <div class="amaras-admin-entity-card">
+          <div class="amaras-admin-entity-top">
+            <div>
+              <span class="amaras-admin-entity-category">${t.category}</span>
+              <h3 class="amaras-admin-entity-title">${t.title}</h3>
+              <div class="amaras-admin-entity-route">${t.route}</div>
+            </div>
+            <label class="amaras-switch" title="Активность тура">
+              <input type="checkbox" ${t.active ? 'checked' : ''} onchange="toggleTourActive('${t.id}', this.checked)">
+              <span class="amaras-switch-slider"></span>
+            </label>
+          </div>
+          <div class="amaras-admin-entity-bottom">
+            <span class="amaras-admin-entity-price">${formatPrice(t.priceAmd)} <span style="font-size:12px; color:#A39F9F; font-weight:normal;">/ чел.</span></span>
+            <button type="button" class="amaras-admin-btn-outline" onclick="editTourPrice('${t.id}')">
+              Изменить цену
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleTourActive(tourId, isActive) {
+      const tours = getAdminTours();
+      const target = tours.find(t => t.id === tourId);
+      if (target) {
+        target.active = isActive;
+        saveAdminTours(tours);
+        showAdminToast(isActive ? 'Тур активирован' : 'Тур скрыт', 'info');
+      }
+    }
+
+    function editTourPrice(tourId) {
+      const tours = getAdminTours();
+      const target = tours.find(t => t.id === tourId);
+      if (!target) return;
+      const newPrice = prompt(`Введите новую стоимость для «${target.title}» в AMD:`, target.priceAmd);
+      if (newPrice !== null && !isNaN(parseInt(newPrice, 10))) {
+        target.priceAmd = parseInt(newPrice, 10);
+        saveAdminTours(tours);
+        showAdminToast('Цена тура обновлена', 'success');
+      }
+    }
+
+    function filterTours() {
+      const q = (document.getElementById('tourSearchInput').value || '').toLowerCase().trim();
+      const cat = document.getElementById('tourCategoryFilter').value;
+      const all = getAdminTours();
+
+      const filtered = all.filter(t => {
+        const matchesQ = !q || t.title.toLowerCase().includes(q) || t.route.toLowerCase().includes(q);
+        const matchesC = (cat === 'all') || (t.category === cat);
+        return matchesQ && matchesC;
+      });
+
+      renderTours(filtered);
+    }
+
+    function openAddTourModal() {
+      openModal('modalAddTour');
+    }
+
+    function handleAddTourSubmit(e) {
+      e.preventDefault();
+      const tours = getAdminTours();
+      const newTour = {
+        id: 'tour-custom-' + Date.now(),
+        title: document.getElementById('newTourTitle').value.trim(),
+        category: document.getElementById('newTourCategory').value,
+        priceAmd: parseInt(document.getElementById('newTourPriceAmd').value || '0', 10),
+        route: document.getElementById('newTourRoute').value.trim(),
+        active: true
+      };
+      tours.push(newTour);
+      saveAdminTours(tours);
+      closeModal('modalAddTour');
+      showAdminToast('Тур успешно добавлен', 'success');
+    }
+
+    // 8. Render Fleet
+    function renderFleet() {
+      const fleet = getAdminFleet();
+      const filter = document.getElementById('fleetStatusFilter') ? document.getElementById('fleetStatusFilter').value : 'all';
+      const grid = document.getElementById('fleetCardsGrid');
+      if (!grid) return;
+
+      const filtered = (filter === 'all') ? fleet : fleet.filter(v => v.status === filter);
+
+      grid.innerHTML = filtered.map(v => {
+        let statusBadge = '';
+        if (v.status === 'available') statusBadge = '<span class="amaras-fleet-status is-available">● Свободен</span>';
+        else if (v.status === 'route') statusBadge = '<span class="amaras-fleet-status is-route">● В рейсе</span>';
+        else statusBadge = '<span class="amaras-fleet-status is-service">● ТО / Сервис</span>';
+
+        return `
+          <div class="amaras-admin-entity-card">
+            <div class="amaras-admin-entity-top">
+              <div>
+                <span class="amaras-admin-id-pill">${v.plate}</span>
+                <h3 class="amaras-admin-entity-title" style="margin-top:8px;">${v.name}</h3>
+                <div style="font-size:13px; color:#A39F9F;">Вместимость: <strong>${v.capacity}</strong></div>
+              </div>
+              ${statusBadge}
+            </div>
+            <div style="font-size: 13px; color:#D1D5DB; border-top:1px solid rgba(255,255,255,0.06); padding-top:10px;">
+              <div>Водитель: <strong>${v.driver}</strong></div>
+              <div>Тел: <a href="tel:${v.phone}" style="color:#C7FF32;">${v.phone}</a></div>
+            </div>
+            <div class="amaras-admin-entity-bottom">
+              <select class="amaras-admin-select" style="width:100%; font-size:12px; padding:6px 24px 6px 10px;" onchange="updateVehicleStatus('${v.id}', this.value)">
+                <option value="available" ${v.status === 'available' ? 'selected' : ''}>Свободен</option>
+                <option value="route" ${v.status === 'route' ? 'selected' : ''}>В рейсе</option>
+                <option value="service" ${v.status === 'service' ? 'selected' : ''}>Сервис / ТО</option>
+              </select>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updateVehicleStatus(vehicleId, newStatus) {
+      const fleet = getAdminFleet();
+      const target = fleet.find(v => v.id === vehicleId);
+      if (target) {
+        target.status = newStatus;
+        saveAdminFleet(fleet);
+        showAdminToast('Статус автомобиля обновлен', 'success');
+      }
+    }
+
+    // 9. Render Transfers Table
+    function renderTransfers() {
+      const tbody = document.getElementById('transfersTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = DEFAULT_ADMIN_TRANSFERS.map(t => `
+        <tr>
+          <td><strong>${t.route}</strong></td>
+          <td style="color:#C7FF32; font-weight:700;">${formatPrice(t.sedan)}</td>
+          <td style="color:#C7FF32; font-weight:700;">${formatPrice(t.minivan)}</td>
+          <td style="color:#C7FF32; font-weight:700;">${formatPrice(t.minibus)}</td>
+          <td style="color:#C7FF32; font-weight:700;">${formatPrice(t.vip)}</td>
+          <td>
+            <a href="transfers.html" target="_blank" class="amaras-admin-btn-outline" style="font-size:11.5px;">
+              Калькулятор
+            </a>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // 10. Render Clients
+    function renderClients() {
+      const q = (document.getElementById('clientSearchInput') ? document.getElementById('clientSearchInput').value : '').toLowerCase().trim();
+      const orders = getAdminOrders();
+      const tbody = document.getElementById('clientsTableBody');
+      if (!tbody) return;
+
+      // Group unique clients by phone / name
+      const clientMap = {};
+      orders.forEach(o => {
+        const key = o.clientPhone || o.clientName;
+        if (!clientMap[key]) {
+          clientMap[key] = {
+            name: o.clientName,
+            phone: o.clientPhone,
+            email: o.clientEmail || '-',
+            ordersCount: 0,
+            totalSpent: 0
+          };
+        }
+        clientMap[key].ordersCount += 1;
+        clientMap[key].totalSpent += (o.totalAmd || 0);
+      });
+
+      let clients = Object.values(clientMap);
+      if (q) {
+        clients = clients.filter(c => c.name.toLowerCase().includes(q) || c.phone.toLowerCase().includes(q));
+      }
+
+      tbody.innerHTML = clients.map(c => `
+        <tr>
+          <td><strong>${c.name}</strong></td>
+          <td><a href="tel:${c.phone}" style="color:#C7FF32;">${c.phone}</a></td>
+          <td>${c.email}</td>
+          <td><span class="amaras-admin-id-pill">${c.ordersCount}</span></td>
+          <td style="font-weight:700; color:#C7FF32;">${formatPrice(c.totalSpent)}</td>
+          <td>
+            <div class="amaras-admin-actions-cell">
+              <a href="https://wa.me/${c.phone.replace(/[^0-9]/g, '')}" target="_blank" rel="noopener" class="amaras-admin-icon-btn is-wa" title="WhatsApp">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </a>
+              <a href="tel:${c.phone}" class="amaras-admin-icon-btn" title="Позвонить">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </a>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // 11. Modal Utilities
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.add('is-open');
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.remove('is-open');
+    }
+
+    // 12. Backup & Reset
+    function exportOrdersJSON() {
+      const orders = getAdminOrders();
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(orders, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `amaras_orders_backup_${new Date().toISOString().split('T')[0]}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    function resetToDemoData() {
+      if (confirm('Сбросить все заказы и туры к исходным демонстрационным данным?')) {
+        localStorage.setItem('amaras_admin_orders', JSON.stringify(DEFAULT_ADMIN_ORDERS));
+        localStorage.setItem('amaras_admin_tours', JSON.stringify(DEFAULT_ADMIN_TOURS));
+        localStorage.setItem('amaras_admin_fleet', JSON.stringify(DEFAULT_ADMIN_FLEET));
+        initAdminDashboard();
+        showAdminToast('Демонстрационные данные успешно восстановлены', 'success');
+      }
+    }
+
+    function showAdminToast(msg, type = 'info') {
+      if (window.AmarasToast && typeof window.AmarasToast.show === 'function') {
+        window.AmarasToast.show(msg, type);
+      } else {
+        alert(msg);
+      }
+    }
+
+    function selectAdminCurrency(curr) {
+      if (typeof window.setCurrency === 'function') {
+        window.setCurrency(curr);
+      }
+      document.querySelectorAll('.amaras-curr-btn').forEach(btn => {
+        btn.classList.toggle('is-active', btn.getAttribute('data-curr') === curr);
+        btn.style.color = (btn.getAttribute('data-curr') === curr) ? '#C7FF32' : '#A39F9F';
+      });
+      renderOverview();
+      renderOrders();
+      renderTours();
+      renderTransfers();
+      renderClients();
+    }
+
+    // Dynamic Language Hook called by setLang()
+    window.updateAdminLanguage = function() {
+      const curLang = window.currentLang || 'RU';
+      document.querySelectorAll('.amaras-lang-btn').forEach(btn => {
+        btn.classList.toggle('is-active', btn.getAttribute('data-lang') === curLang);
+        btn.style.color = (btn.getAttribute('data-lang') === curLang) ? '#FFF' : '#A39F9F';
+      });
+      renderOverview();
+      renderOrders();
+      renderTours();
+      renderFleet();
+      renderTransfers();
+      renderClients();
+    };
+
+    function initAdminDashboard() {
+      renderOverview();
+      renderOrders();
+      renderTours();
+      renderFleet();
+      renderTransfers();
+      renderClients();
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      // Auto-initialize demo data in localStorage if empty
+      if (!localStorage.getItem('amaras_admin_orders')) {
+        localStorage.setItem('amaras_admin_orders', JSON.stringify(DEFAULT_ADMIN_ORDERS));
+      }
+      if (!localStorage.getItem('amaras_admin_tours')) {
+        localStorage.setItem('amaras_admin_tours', JSON.stringify(DEFAULT_ADMIN_TOURS));
+      }
+      if (!localStorage.getItem('amaras_admin_fleet')) {
+        localStorage.setItem('amaras_admin_fleet', JSON.stringify(DEFAULT_ADMIN_FLEET));
+      }
+
+      // Check current language
+      const savedLang = localStorage.getItem('amaras_preferred_lang') || 'RU';
+      if (typeof setLang === 'function') {
+        setLang(savedLang);
+      }
+
+      checkAdminAuth();
+    });
+  </script>
+</body>
+</html>

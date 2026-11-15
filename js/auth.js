@@ -246,7 +246,17 @@
         submitBtn.classList.remove('is-loading');
 
         let userToLogin = null;
-        if (matched) {
+        if (identifier.toLowerCase() === 'admin@amaras.am' && (password === 'admin2026' || password === 'admin')) {
+          userToLogin = {
+            id: 'usr_admin',
+            name: 'Администратор Amaras',
+            email: 'admin@amaras.am',
+            phone: '+374 91 123456',
+            role: 'admin',
+            avatarText: 'AA',
+            registeredAt: new Date().toISOString()
+          };
+        } else if (matched) {
           userToLogin = matched;
         } else if (identifier.includes('@') && password.length >= 4) {
           // Allow seamless fallback login for users created in this session
@@ -1057,6 +1067,12 @@
                 </div>
               </div>
               <div class="amaras-user-dropdown-divider"></div>
+              ${(user.role === 'admin' || (user.email && user.email.toLowerCase() === 'admin@amaras.am')) ? `
+              <a href="admin.html" class="amaras-user-dropdown-item amaras-admin-nav-link" style="color:#C7FF32;font-weight:700;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <span data-i18n="admin_user_menu_admin_panel">Панель управления</span>
+              </a>
+              ` : ''}
               <a href="cart.html" class="amaras-user-dropdown-item">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
                 <span>Мои туры и корзина</span>
@@ -1099,6 +1115,12 @@
             <div class="amaras-drawer-user-info">
               <div class="amaras-drawer-user-name">${user.name}</div>
               <div class="amaras-drawer-user-email">${user.email}</div>
+              ${(user.role === 'admin' || (user.email && user.email.toLowerCase() === 'admin@amaras.am')) ? `
+              <a href="admin.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:4px;color:#C7FF32;font-size:12px;font-weight:700;text-decoration:none;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <span data-i18n="admin_user_menu_admin_panel">Панель управления</span>
+              </a>
+              ` : ''}
             </div>
             <button type="button" class="amaras-drawer-logout-btn" onclick="AmarasAuth.logout()" title="Выйти" aria-label="Выйти из аккаунта">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
