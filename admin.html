@@ -30,26 +30,21 @@
 
       <form id="adminLoginForm" onsubmit="handleAdminLoginSubmit(event)">
         <div class="amaras-admin-form-group" style="margin-bottom: 14px;">
-          <label class="amaras-admin-form-label" for="adminEmail" data-i18n="admin_login_email">Электронная почта</label>
-          <input type="email" id="adminEmail" class="amaras-admin-form-input" placeholder="admin@amaras.am" required value="admin@amaras.am" />
+          <label class="amaras-admin-form-label" for="adminEmail" data-i18n="admin_login_email">Логин или Email</label>
+          <input type="text" id="adminEmail" class="amaras-admin-form-input" placeholder="admin" required autocomplete="username" />
         </div>
 
         <div class="amaras-admin-form-group" style="margin-bottom: 20px;">
           <label class="amaras-admin-form-label" for="adminPassword" data-i18n="admin_login_password">Пароль</label>
-          <input type="password" id="adminPassword" class="amaras-admin-form-input" placeholder="admin2026" required value="admin2026" />
+          <input type="password" id="adminPassword" class="amaras-admin-form-input" placeholder="amaras-big-secret2026$" required autocomplete="current-password" />
         </div>
 
         <div id="adminLoginError" style="display: none; color: #FF5C5C; font-size: 13px; margin-bottom: 14px; text-align: center;" data-i18n="admin_login_invalid">
-          Неверный email или пароль
+          Неверный логин или пароль
         </div>
 
         <button type="submit" class="amaras-admin-btn-primary" style="width: 100%; justify-content: center; padding: 12px;" data-i18n="admin_login_btn">
           Войти в систему
-        </button>
-
-        <button type="button" class="amaras-admin-login-demo-btn" onclick="quickDemoAdminLogin()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          <span data-i18n="admin_login_demo">Войти как Демо-Администратор</span>
         </button>
 
         <div style="text-align: center; margin-top: 20px;">
@@ -901,15 +896,10 @@
       let isAuth = false;
       try {
         const user = JSON.parse(localStorage.getItem('amaras_user') || 'null');
-        if (user && (user.role === 'admin' || (user.email && user.email.toLowerCase() === 'admin@amaras.am'))) {
+        if (user && (user.role === 'admin' || user.login === 'admin' || (user.email && user.email.toLowerCase() === 'admin@amaras.am'))) {
           isAuth = true;
         }
       } catch (e) {}
-
-      // Also check demo session flag
-      if (sessionStorage.getItem('amaras_admin_demo_logged') === 'true') {
-        isAuth = true;
-      }
 
       const loginView = document.getElementById('adminLoginView');
       const dashView = document.getElementById('adminDashboardView');
@@ -926,49 +916,35 @@
 
     function handleAdminLoginSubmit(e) {
       e.preventDefault();
-      const email = document.getElementById('adminEmail').value.trim();
+      const login = document.getElementById('adminEmail').value.trim();
       const pass = document.getElementById('adminPassword').value;
       const errEl = document.getElementById('adminLoginError');
 
-      if (email.toLowerCase() === 'admin@amaras.am' && (pass === 'admin2026' || pass === 'admin')) {
+      if ((login.toLowerCase() === 'admin' || login.toLowerCase() === 'admin@amaras.am') && pass === 'amaras-big-secret2026$') {
         const adminUser = {
           id: 'usr_admin',
           name: 'Администратор Amaras',
+          login: 'admin',
           email: 'admin@amaras.am',
           phone: '+374 91 123456',
           role: 'admin',
           avatarText: 'AA'
         };
         localStorage.setItem('amaras_user', JSON.stringify(adminUser));
-        sessionStorage.setItem('amaras_admin_demo_logged', 'true');
         errEl.style.display = 'none';
         checkAdminAuth();
       } else {
         errEl.style.display = 'block';
+        const passInp = document.getElementById('adminPassword');
+        passInp.classList.add('is-invalid');
+        passInp.focus();
       }
     }
 
-    function quickDemoAdminLogin() {
-      document.getElementById('adminEmail').value = 'admin@amaras.am';
-      document.getElementById('adminPassword').value = 'admin2026';
-      const adminUser = {
-        id: 'usr_admin',
-        name: 'Администратор Amaras',
-        email: 'admin@amaras.am',
-        phone: '+374 91 123456',
-        role: 'admin',
-        avatarText: 'AA'
-      };
-      localStorage.setItem('amaras_user', JSON.stringify(adminUser));
-      sessionStorage.setItem('amaras_admin_demo_logged', 'true');
-      checkAdminAuth();
-    }
-
     function adminLogout() {
-      sessionStorage.removeItem('amaras_admin_demo_logged');
       try {
         const u = JSON.parse(localStorage.getItem('amaras_user') || 'null');
-        if (u && u.role === 'admin') {
+        if (u && (u.role === 'admin' || u.login === 'admin' || (u.email && u.email.toLowerCase() === 'admin@amaras.am'))) {
           localStorage.removeItem('amaras_user');
         }
       } catch (e) {}

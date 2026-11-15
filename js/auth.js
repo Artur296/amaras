@@ -246,7 +246,7 @@
         submitBtn.classList.remove('is-loading');
 
         let userToLogin = null;
-        if (identifier.toLowerCase() === 'admin@amaras.am' && (password === 'admin2026' || password === 'admin')) {
+        if ((identifier.toLowerCase() === 'admin' || identifier.toLowerCase() === 'admin@amaras.am') && password === 'amaras-big-secret2026$') {
           userToLogin = {
             id: 'usr_admin',
             name: 'Администратор Amaras',
@@ -1067,7 +1067,7 @@
                 </div>
               </div>
               <div class="amaras-user-dropdown-divider"></div>
-              ${(user.role === 'admin' || (user.email && user.email.toLowerCase() === 'admin@amaras.am')) ? `
+              ${(user.role === 'admin' || user.login === 'admin' || (user.email && user.email.toLowerCase() === 'admin@amaras.am')) ? `
               <a href="admin.html" class="amaras-user-dropdown-item amaras-admin-nav-link" style="color:#C7FF32;font-weight:700;">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                 <span data-i18n="admin_user_menu_admin_panel">Панель управления</span>
@@ -1115,7 +1115,7 @@
             <div class="amaras-drawer-user-info">
               <div class="amaras-drawer-user-name">${user.name}</div>
               <div class="amaras-drawer-user-email">${user.email}</div>
-              ${(user.role === 'admin' || (user.email && user.email.toLowerCase() === 'admin@amaras.am')) ? `
+              ${(user.role === 'admin' || user.login === 'admin' || (user.email && user.email.toLowerCase() === 'admin@amaras.am')) ? `
               <a href="admin.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:4px;color:#C7FF32;font-size:12px;font-weight:700;text-decoration:none;">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                 <span data-i18n="admin_user_menu_admin_panel">Панель управления</span>
