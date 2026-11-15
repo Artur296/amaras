@@ -11545,6 +11545,8 @@ body.amaras-modal-locked {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
+    padding: 0 16px !important;
+    box-sizing: border-box !important;
   }
 
   [data-gsap="section-hero-tilt-container"] {
@@ -11555,31 +11557,33 @@ body.amaras-modal-locked {
     justify-content: center !important;
     align-items: center !important;
     width: 100% !important;
+    max-width: 100% !important;
   }
 
   .rebrand-section-hero-frame-container {
-    transform: rotate(4deg) scale(0.88);
+    transform: rotate(3deg) scale(0.78);
     transform-origin: center center !important;
-    margin: -30px auto -24px !important;
+    margin: -40px auto -30px !important;
   }
 }
 
 @media (max-width: 480px) {
   .rebrand-section-hero-right {
-    margin: 4px auto 16px !important;
+    margin: 4px auto 14px !important;
+    padding: 0 12px !important;
   }
 
   .rebrand-section-hero-frame-container {
-    transform: rotate(3deg) scale(0.80);
+    transform: rotate(2.2deg) scale(0.68);
     transform-origin: center center !important;
-    margin: -48px auto -38px !important;
+    margin: -60px auto -50px !important;
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 360px) {
   .rebrand-section-hero-frame-container {
-    transform: rotate(2.5deg) scale(0.72);
+    transform: rotate(1.8deg) scale(0.62);
     transform-origin: center center !important;
-    margin: -60px auto -50px !important;
+    margin: -75px auto -65px !important;
   }
 }
