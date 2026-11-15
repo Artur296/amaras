@@ -11436,3 +11436,283 @@ body.amaras-modal-locked {
 .amaras-fleet-order-btn:hover svg {
   color: #1F2937;
 }
+
+
+/* ==========================================================================
+   AMARAS INTERACTIVE 3D UNFOLDING ARMENIA MAP SHOWCASE
+   Replaces rectangular ticket card with the authentic Map of Armenia SVG.
+   Folds and unfolds in 3D perspective, seamlessly transitioning tour photos.
+   ========================================================================== */
+
+.amaras-hero-map-right {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  flex: 0 0 auto !important;
+  margin-right: 0 !important;
+  z-index: 5 !important;
+}
+
+.amaras-armenia-map-stage {
+  position: relative;
+  width: 480px;
+  height: 485px;
+  perspective: 1200px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.3s ease;
+}
+
+.amaras-armenia-map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+  filter: drop-shadow(0 22px 50px rgba(0, 0, 0, 0.55));
+  transition: transform 0.15s ease-out;
+}
+
+.amaras-map-panel {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.85s cubic-bezier(0.34, 1.35, 0.64, 1);
+  backface-visibility: hidden;
+}
+
+.amaras-map-panel.is-left {
+  left: 0;
+  width: 33.5%;
+  transform-origin: right center;
+  z-index: 2;
+}
+
+.amaras-map-panel.is-center {
+  left: 33.3%;
+  width: 33.5%;
+  transform-origin: center center;
+  z-index: 1;
+  transition: transform 0.85s cubic-bezier(0.34, 1.35, 0.64, 1);
+}
+
+.amaras-map-panel.is-right {
+  left: 66.6%;
+  width: 33.5%;
+  transform-origin: left center;
+  z-index: 2;
+}
+
+.amaras-map-panel-inner {
+  position: absolute;
+  top: 0;
+  width: 300%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.amaras-map-panel.is-left .amaras-map-panel-inner {
+  left: 0;
+}
+.amaras-map-panel.is-center .amaras-map-panel-inner {
+  left: -100%;
+}
+.amaras-map-panel.is-right .amaras-map-panel-inner {
+  left: -200%;
+}
+
+.amaras-map-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Crease shading on folds */
+.amaras-map-crease-shadow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.85s ease;
+}
+
+.amaras-map-panel.is-left .amaras-map-crease-shadow {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(10, 10, 15, 0.8) 100%);
+}
+.amaras-map-panel.is-center .amaras-map-crease-shadow {
+  background: linear-gradient(to right, rgba(10, 10, 15, 0.8) 0%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(10, 10, 15, 0.8) 100%);
+}
+.amaras-map-panel.is-right .amaras-map-crease-shadow {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0) 50%, rgba(10, 10, 15, 0.8) 100%);
+}
+
+/* FOLDING / UNFOLDING 3D ANIMATION STATES */
+.amaras-armenia-map-wrapper.is-folding .amaras-map-panel.is-left {
+  transform: rotateY(-82deg);
+}
+.amaras-armenia-map-wrapper.is-folding .amaras-map-panel.is-center {
+  transform: translateZ(-65px) scale(0.88);
+}
+.amaras-armenia-map-wrapper.is-folding .amaras-map-panel.is-right {
+  transform: rotateY(82deg);
+}
+.amaras-armenia-map-wrapper.is-folding .amaras-map-crease-shadow {
+  opacity: 1;
+}
+
+/* Location Pin on Map */
+.amaras-map-pin {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 10;
+  transition: left 0.7s cubic-bezier(0.34, 1.5, 0.64, 1), top 0.7s cubic-bezier(0.34, 1.5, 0.64, 1), opacity 0.35s ease;
+}
+
+.amaras-map-pin-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: rgba(199, 255, 50, 0.35);
+  animation: amarasPinPulse 2.2s infinite ease-out;
+}
+
+.amaras-map-pin-dot {
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: #C7FF32;
+  box-shadow: 0 0 16px #C7FF32, 0 0 6px #C7FF32;
+  border: 2.5px solid #1C1C1E;
+}
+
+@keyframes amarasPinPulse {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+/* Floating Destination Badge */
+.amaras-map-dest-badge {
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(28, 28, 30, 0.94);
+  border: 1.5px solid rgba(199, 255, 50, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 10px 22px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(199, 255, 50, 0.15);
+  z-index: 12;
+  transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.34, 1.35, 0.64, 1);
+  white-space: nowrap;
+}
+
+.amaras-map-dest-stars {
+  color: #C7FF32;
+  font-size: 13px;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.amaras-map-dest-text {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.amaras-map-dest-name {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: 0.2px;
+}
+
+.amaras-map-dest-sub {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  padding-left: 10px;
+}
+
+/* Hint Pill */
+.amaras-map-hint {
+  position: absolute;
+  top: -14px;
+  right: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(28, 28, 30, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 4px 12px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.amaras-armenia-map-stage:hover .amaras-map-hint {
+  color: #C7FF32;
+  border-color: rgba(199, 255, 50, 0.4);
+}
+
+/* Responsive Scaling for Tablets and Mobile */
+@media (max-width: 991px) {
+  .amaras-hero-map-right {
+    order: -1 !important;
+    width: 100% !important;
+    margin: 12px auto 28px !important;
+  }
+
+  .amaras-armenia-map-stage {
+    width: min(88vw, 390px);
+    height: min(88vw, 390px);
+  }
+
+  .amaras-map-dest-badge {
+    bottom: -12px;
+    padding: 8px 16px;
+    max-width: 90%;
+  }
+
+  .amaras-map-dest-text {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .amaras-map-dest-sub {
+    border-left: none;
+    padding-left: 0;
+    font-size: 10.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .amaras-armenia-map-stage {
+    width: min(92vw, 330px);
+    height: min(92vw, 330px);
+  }
+  .amaras-map-dest-name {
+    font-size: 13px;
+  }
+  .amaras-map-hint {
+    display: none;
+  }
+}
