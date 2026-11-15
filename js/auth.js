@@ -242,11 +242,22 @@
       const submitBtn = form.querySelector('.amaras-auth-submit-btn');
       submitBtn.classList.add('is-loading');
 
-      setTimeout(() => {
+      setTimeout(async () => {
         submitBtn.classList.remove('is-loading');
 
         let userToLogin = null;
-        if ((identifier.toLowerCase() === 'admin' || identifier.toLowerCase() === 'admin@amaras.am') && password === 'amaras-big-secret2026$') {
+        // Secure SHA-256 hash verification
+        const ADMIN_HASH = 'c4a764736627f9d3db338b054ccf216724e11ee05455eb3dc467b55413c3182a';
+        let isPassValid = false;
+        if (window.crypto && crypto.subtle) {
+          const passBuf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(password));
+          const passHex = Array.from(new Uint8Array(passBuf)).map(b => b.toString(16).padStart(2, '0')).join('');
+          isPassValid = (passHex === ADMIN_HASH);
+        } else {
+          isPassValid = false;
+        }
+
+        if ((identifier.toLowerCase() === 'admin' || identifier.toLowerCase() === 'admin@amaras.am') && isPassValid) {
           userToLogin = {
             id: 'usr_admin',
             name: 'Администратор Amaras',

@@ -31,12 +31,12 @@
       <form id="adminLoginForm" onsubmit="handleAdminLoginSubmit(event)">
         <div class="amaras-admin-form-group" style="margin-bottom: 14px;">
           <label class="amaras-admin-form-label" for="adminEmail" data-i18n="admin_login_email">Логин или Email</label>
-          <input type="text" id="adminEmail" class="amaras-admin-form-input" placeholder="admin" required autocomplete="username" />
+          <input type="text" id="adminEmail" class="amaras-admin-form-input" placeholder="Логин или Email" required autocomplete="username" />
         </div>
 
         <div class="amaras-admin-form-group" style="margin-bottom: 20px;">
           <label class="amaras-admin-form-label" for="adminPassword" data-i18n="admin_login_password">Пароль</label>
-          <input type="password" id="adminPassword" class="amaras-admin-form-input" placeholder="amaras-big-secret2026$" required autocomplete="current-password" />
+          <input type="password" id="adminPassword" class="amaras-admin-form-input" placeholder="••••••••" required autocomplete="current-password" />
         </div>
 
         <div id="adminLoginError" style="display: none; color: #FF5C5C; font-size: 13px; margin-bottom: 14px; text-align: center;" data-i18n="admin_login_invalid">
@@ -914,13 +914,28 @@
       }
     }
 
-    function handleAdminLoginSubmit(e) {
+    async function hashAdminSecret(str) {
+      if (window.crypto && crypto.subtle) {
+        const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+        return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+      }
+      return str;
+    }
+
+    async function handleAdminLoginSubmit(e) {
       e.preventDefault();
       const login = document.getElementById('adminEmail').value.trim();
       const pass = document.getElementById('adminPassword').value;
       const errEl = document.getElementById('adminLoginError');
 
-      if ((login.toLowerCase() === 'admin' || login.toLowerCase() === 'admin@amaras.am') && pass === 'amaras-big-secret2026$') {
+      // Secure SHA-256 hash comparison (password is never stored in plaintext)
+      const ADMIN_HASH = 'c4a764736627f9d3db338b054ccf216724e11ee05455eb3dc467b55413c3182a';
+      const inputHash = await hashAdminSecret(pass);
+
+      const isValidLogin = (login.toLowerCase() === 'admin' || login.toLowerCase() === 'admin@amaras.am');
+      const isValidPass = (inputHash === ADMIN_HASH);
+
+      if (isValidLogin && isValidPass) {
         const adminUser = {
           id: 'usr_admin',
           name: 'Администратор Amaras',
