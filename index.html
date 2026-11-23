@@ -437,6 +437,7 @@
   <script src="js/translations.js?v=96"></script>
   <script src="js/currency.js?v=95"></script>
   <script src="js/auth.js?v=1"></script>
+  <script src="js/live-chat.js"></script>
   <div class="w-dyn-list">
     <div class="w-dyn-items" role="list">
       <div class="w-dyn-item" role="listitem">
@@ -3673,7 +3674,8 @@
                     <div class="rebrand-section-footer-col">
                       <div class="headingh6 color-content-primary-inversed">Supplier</div>
                       <div class="rebrand-section-footer-link"><a class="body-2 loose color-content-secondary-inversed"
-                          href="admin.html" data-i18n="admin_user_menu_admin_panel">Панель управления</a><a
+                          href="admin.html" data-i18n="admin_user_menu_admin_panel">Панель управления</a><a class="body-2 loose color-content-secondary-inversed"
+                          href="staff.html" style="color: #C7FF32; font-weight: 600;">Портал сотрудников (/staff)</a><a
                           class="body-2 loose color-content-secondary-inversed" data-utm-pass="true"
                           href="https://supplier.getyourguide.com/register/">Become a supplier</a><a
                           class="body-2 loose color-content-secondary-inversed"
@@ -4300,6 +4302,9 @@
         msgView.classList.add('is-active');
         tabHome.classList.remove('is-active');
         tabMsg.classList.add('is-active');
+        if (typeof renderClientChatMessages === 'function') {
+          renderClientChatMessages();
+        }
         const scroll = document.getElementById('amarasChatScroll');
         if (scroll) scroll.scrollTop = scroll.scrollHeight;
         const input = document.getElementById('amarasChatInput');
@@ -4314,8 +4319,27 @@
 
     function sendQuickChatMessage(question) {
       openSupportChatView('messages');
-      appendUserChatMessage(question);
-      triggerAgentReply();
+      if (window.AmarasLiveChat) {
+        window.AmarasLiveChat.sendVisitorMessage(question);
+        renderClientChatMessages();
+      }
+    }
+
+    function handleVisitorQuickChip(text) {
+      if (!window.AmarasLiveChat) return;
+      const chat = window.AmarasLiveChat.getOrCreateClientChat();
+      if (text === 'Позвать оператора') {
+        window.AmarasLiveChat.requestOperatorHandover(chat.id, 'Запрос живого оператора');
+      } else if (text === 'Написать в WhatsApp') {
+        window.open('https://wa.me/37499250525', '_blank');
+        return;
+      } else if (text.startsWith('Позвонить')) {
+        window.location.href = 'tel:+37499250525';
+        return;
+      } else {
+        window.AmarasLiveChat.sendVisitorMessage(text);
+      }
+      renderClientChatMessages();
     }
 
     function handleChatSubmit(e) {
@@ -4325,39 +4349,90 @@
       const val = input.value.trim();
       if (!val) return;
       input.value = '';
-      appendUserChatMessage(val);
-      triggerAgentReply();
+
+      if (window.AmarasLiveChat) {
+        window.AmarasLiveChat.sendVisitorMessage(val);
+        renderClientChatMessages();
+      }
     }
 
-    function appendUserChatMessage(text) {
+    function renderClientChatMessages() {
+      if (!window.AmarasLiveChat) return;
       const scroll = document.getElementById('amarasChatScroll');
       if (!scroll) return;
-      const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      const bubble = document.createElement('div');
-      bubble.className = 'amaras-chat-bubble is-user';
-      bubble.innerHTML = `<div>${escapeHtml(text)}</div><div class="amaras-bubble-time">${timeStr} ✓✓</div>`;
-      scroll.appendChild(bubble);
+
+      const chat = window.AmarasLiveChat.getOrCreateClientChat();
+      if (!chat || !chat.messages) return;
+
+      let html = '<div class="amaras-chat-date-divider" data-i18n="chat_date_today">Сегодня</div>';
+
+      chat.messages.forEach(m => {
+        let bubbleClass = 'is-agent';
+        let senderLabel = m.senderName || 'Служба заботы';
+        if (m.sender === 'visitor') {
+          bubbleClass = 'is-user';
+          senderLabel = '';
+        } else if (m.sender === 'operator') {
+          bubbleClass = 'is-operator';
+          senderLabel = 'Оператор ' + (m.senderName || 'Amaras');
+        } else if (m.sender === 'system') {
+          bubbleClass = 'is-system';
+          senderLabel = '';
+        }
+
+        let chipsHtml = '';
+        if (m.chips && m.chips.length > 0) {
+          chipsHtml = `<div class="amaras-chat-chips">` +
+            m.chips.map(ch => `<button type="button" class="amaras-chat-chip" onclick="handleVisitorQuickChip('${escapeJsStr(ch)}')">${escapeHtml(ch)}</button>`).join('') +
+            `</div>`;
+        }
+
+        if (m.sender === 'system') {
+          html += `
+            <div class="amaras-chat-bubble is-system">
+              <div>${escapeHtml(m.text)}</div>
+              ${chipsHtml}
+            </div>
+          `;
+        } else {
+          html += `
+            <div class="amaras-chat-bubble ${bubbleClass}">
+              ${senderLabel ? `<div class="amaras-bubble-sender">${escapeHtml(senderLabel)}</div>` : ''}
+              <div>${m.text}</div>
+              ${chipsHtml}
+              <div class="amaras-bubble-time">${m.timeStr || ''} ${m.sender === 'visitor' ? '✓✓' : ''}</div>
+            </div>
+          `;
+        }
+      });
+
+      scroll.innerHTML = html;
       scroll.scrollTop = scroll.scrollHeight;
     }
 
-    function triggerAgentReply() {
-      const scroll = document.getElementById('amarasChatScroll');
-      if (!scroll) return;
-      setTimeout(() => {
-        const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        const bubble = document.createElement('div');
-        bubble.className = 'amaras-chat-bubble is-agent';
-        bubble.innerHTML = `<div>Спасибо за ваше обращение! Менеджер Amaras Tour уже получил уведомление и свяжется с вами. Для мгновенного ответа вы также можете написать нам в <a href="https://wa.me/37499250525" target="_blank" style="color:#C7FF32;text-decoration:underline;">WhatsApp</a> или позвонить по номеру <a href="tel:+37499250525" style="color:#FFFFFF;text-decoration:underline;">+374 99 250 525</a>.</div><div class="amaras-bubble-time">${timeStr}</div>`;
-        scroll.appendChild(bubble);
-        scroll.scrollTop = scroll.scrollHeight;
-      }, 700);
-    }
-
     function escapeHtml(str) {
+      if (!str) return '';
       const p = document.createElement('p');
       p.appendChild(document.createTextNode(str));
       return p.innerHTML;
     }
+
+    function escapeJsStr(str) {
+      return (str || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+
+    // Real-time synchronization with staff portal
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'amaras_live_chats') {
+        renderClientChatMessages();
+      }
+    });
+
+    window.addEventListener('amaras:chats_updated', () => {
+      renderClientChatMessages();
+    });
+
+    setInterval(renderClientChatMessages, 1200);
   </script>
 
 

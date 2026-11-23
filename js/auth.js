@@ -7,6 +7,13 @@
 (function () {
   'use strict';
 
+  // Automatically ensure Amaras Live Chat & Staff engine is loaded
+  if (!window.AmarasLiveChat && !document.querySelector('script[src*="live-chat.js"]')) {
+    const chatScript = document.createElement('script');
+    chatScript.src = 'js/live-chat.js';
+    document.head.appendChild(chatScript);
+  }
+
   const AmarasToast = {
     container: null,
 
@@ -1083,6 +1090,10 @@
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C7FF32" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                 <span data-i18n="admin_user_menu_admin_panel">Панель управления</span>
               </a>
+              <a href="staff.html" class="amaras-user-dropdown-item" style="color:#586EFF;font-weight:700;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#586EFF" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span>Портал сотрудников (/staff)</span>
+              </a>
               ` : ''}
               <a href="cart.html" class="amaras-user-dropdown-item">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
@@ -1130,6 +1141,10 @@
               <a href="admin.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:4px;color:#C7FF32;font-size:12px;font-weight:700;text-decoration:none;">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                 <span data-i18n="admin_user_menu_admin_panel">Панель управления</span>
+              </a>
+              <a href="staff.html" class="amaras-user-dropdown-item" style="color:#586EFF;font-weight:700;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#586EFF" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span>Портал сотрудников (/staff)</span>
               </a>
               ` : ''}
             </div>

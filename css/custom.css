@@ -12853,3 +12853,70 @@ body.amaras-modal-locked {
 .amaras-chip-btn:active {
   transform: translateY(0);
 }
+
+
+/* ==========================================================================
+   AMARAS LIVE CHAT & OPERATOR STYLES
+   Zero emojis - Electric Blue & Neon Lime
+   ========================================================================== */
+.amaras-bubble-sender {
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: 0.3px;
+  opacity: 0.9;
+}
+.amaras-chat-bubble.is-operator {
+  align-self: flex-start;
+  background: rgba(88, 110, 255, 0.16);
+  border: 1px solid rgba(88, 110, 255, 0.35);
+  color: #FFFFFF;
+  border-bottom-left-radius: 4px;
+}
+.amaras-chat-bubble.is-operator .amaras-bubble-sender {
+  color: #C7FF32;
+}
+.amaras-chat-bubble.is-system {
+  align-self: center;
+  max-width: 90%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #A39F9F;
+  font-size: 12px;
+  text-align: center;
+  padding: 8px 14px;
+  border-radius: 20px;
+}
+.amaras-chat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.amaras-chat-chip {
+  background: #222020;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+.amaras-chat-chip:hover {
+  background: rgba(199, 255, 50, 0.15);
+  border-color: #C7FF32;
+  color: #C7FF32;
+}
+.amaras-chat-operator-status-banner {
+  background: rgba(88, 110, 255, 0.12);
+  border-bottom: 1px solid rgba(88, 110, 255, 0.2);
+  padding: 6px 14px;
+  font-size: 11.5px;
+  color: #D6DEFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
