@@ -12629,3 +12629,18 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: #FFFFFF !important;
   transition: background-color 5000s ease-in-out 0s !important;
 }
+
+/* Hide Tawk.to branding pills, badges and links */
+a[href*="tawk.to"],
+[title*="Powered by"],
+[aria-label*="Powered by"],
+.tawk-branding,
+[class*="tawk-branding"],
+.tawk-badge {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+}
