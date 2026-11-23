@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход с аккаунтом Google</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23EA4335' d='M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.7 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.9C6.2 7.3 8.9 5 12 5z'/%3E%3Cpath fill='%234285F4' d='M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z'/%3E%3Cpath fill='%23FBBC05' d='M5.3 14.7c-.2-.7-.4-1.5-.4-2.7s.1-2 .4-2.7L1.6 6.4C.6 8.3 0 10.1 0 12s.6 3.7 1.6 5.6l3.7-2.9z'/%3E%3Cpath fill='%2334A853' d='M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.8-2.3-6.7-5.3L1.6 16c1.9 3.8 5.8 7 10.4 7z'/%3E%3C/svg%3E">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #FFFFFF;
+      color: #202124;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: space-between;
+      padding: 28px 24px 20px;
+    }
+
+    .google-card {
+      max-width: 440px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .google-logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .google-title {
+      font-size: 24px;
+      font-weight: 500;
+      text-align: center;
+      color: #202124;
+      margin-bottom: 8px;
+    }
+
+    .google-subtitle {
+      font-size: 14px;
+      color: #5F6368;
+      text-align: center;
+      line-height: 1.45;
+      margin-bottom: 24px;
+    }
+
+    .google-app-badge {
+      color: #1a73e8;
+      font-weight: 600;
+    }
+
+    .google-loading-bar {
+      height: 3px;
+      width: 100%;
+      background: #E8EAED;
+      overflow: hidden;
+      margin-bottom: 20px;
+      border-radius: 2px;
+      display: none;
+    }
+
+    .google-loading-bar.is-active {
+      display: block;
+    }
+
+    .google-loading-bar-inner {
+      height: 100%;
+      width: 40%;
+      background: #1a73e8;
+      animation: googleSlide 1.2s infinite ease-in-out;
+    }
+
+    @keyframes googleSlide {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(250%); }
+    }
+
+    .google-accounts-list {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #DADCE0;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .google-account-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border-bottom: 1px solid #F1F3F4;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      background: #FFFFFF;
+      text-decoration: none;
+      color: inherit;
+      border-left: 3px solid transparent;
+    }
+
+    .google-account-item:last-child {
+      border-bottom: none;
+    }
+
+    .google-account-item:hover {
+      background: #F8F9FA;
+      border-left-color: #1a73e8;
+    }
+
+    .google-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #1a73e8;
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .google-avatar.is-other {
+      background: #F1F3F4;
+      color: #5F6368;
+    }
+
+    .google-account-details {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .google-account-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #202124;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .google-account-email {
+      font-size: 12px;
+      color: #5F6368;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Custom Input Form */
+    .google-custom-form {
+      display: none;
+      border: 1px solid #DADCE0;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .google-field {
+      margin-bottom: 16px;
+    }
+
+    .google-label {
+      display: block;
+      font-size: 12px;
+      color: #5F6368;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .google-input {
+      width: 100%;
+      height: 44px;
+      border: 1px solid #DADCE0;
+      border-radius: 4px;
+      padding: 0 14px;
+      font-size: 15px;
+      color: #202124;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .google-input:focus {
+      border-color: #1a73e8;
+      box-shadow: 0 0 0 1px #1a73e8;
+    }
+
+    .google-btn-primary {
+      background: #1a73e8;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+
+    .google-btn-primary:hover {
+      background: #1557b0;
+    }
+
+    .google-btn-text {
+      background: transparent;
+      border: none;
+      color: #1a73e8;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 4px;
+    }
+
+    .google-btn-text:hover {
+      background: rgba(26, 115, 232, 0.08);
+    }
+
+    .google-disclaimer {
+      font-size: 12px;
+      color: #5F6368;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .google-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #5F6368;
+      border-top: 1px solid #F1F3F4;
+      padding-top: 14px;
+    }
+
+    .google-footer-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .google-footer-link {
+      color: #5F6368;
+      text-decoration: none;
+    }
+
+    .google-footer-link:hover {
+      color: #202124;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="google-card">
+    <!-- Google Logo -->
+    <div class="google-logo">
+      <svg width="40" height="40" viewBox="0 0 24 24">
+        <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.7 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.9C6.2 7.3 8.9 5 12 5z"/>
+        <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/>
+        <path fill="#FBBC05" d="M5.3 14.7c-.2-.7-.4-1.5-.4-2.7s.1-2 .4-2.7L1.6 6.4C.6 8.3 0 10.1 0 12s.6 3.7 1.6 5.6l3.7-2.9z"/>
+        <path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.8-2.3-6.7-5.3L1.6 16c1.9 3.8 5.8 7 10.4 7z"/>
+      </svg>
+    </div>
+
+    <h1 class="google-title">Вход с помощью Google</h1>
+    <p class="google-subtitle">Выберите аккаунт для перехода в приложение <span class="google-app-badge">Amaras Tour</span></p>
+
+    <div class="google-loading-bar" id="googleLoadingBar">
+      <div class="google-loading-bar-inner"></div>
+    </div>
+
+    <!-- Accounts Chooser View -->
+    <div id="googleAccountsView">
+      <div class="google-accounts-list" id="googleAccountsList">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+
+    <!-- Custom Account Input View -->
+    <form id="googleCustomView" class="google-custom-form" onsubmit="handleCustomGoogleSubmit(event)">
+      <div class="google-field">
+        <label class="google-label">Ваше имя</label>
+        <input type="text" id="customName" class="google-input" placeholder="Иван Иванов" required>
+      </div>
+      <div class="google-field">
+        <label class="google-label">Адрес электронной почты Gmail</label>
+        <input type="email" id="customEmail" class="google-input" placeholder="example@gmail.com" required>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+        <button type="button" class="google-btn-text" onclick="showAccountsView()">Назад к списку</button>
+        <button type="submit" class="google-btn-primary">Продолжить</button>
+      </div>
+    </form>
+
+    <p class="google-disclaimer">
+      Для продолжения Google предоставит приложению Amaras Tour ваше имя, адрес электронной почты и фото профиля в соответствии с Политикой конфиденциальности.
+    </p>
+  </div>
+
+  <div class="google-footer">
+    <span>Русский</span>
+    <div class="google-footer-links">
+      <a href="https://support.google.com/accounts" target="_blank" class="google-footer-link">Справка</a>
+      <a href="https://policies.google.com/privacy" target="_blank" class="google-footer-link">Конфиденциальность</a>
+      <a href="https://policies.google.com/terms" target="_blank" class="google-footer-link">Условия</a>
+    </div>
+  </div>
+
+  <script>
+    function getInitials(name) {
+      if (!name) return 'G';
+      const parts = name.trim().split(/\s+/);
+      if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
+      return name.slice(0, 2).toUpperCase();
+    }
+
+    function initAccounts() {
+      let saved = null;
+      try {
+        const raw = localStorage.getItem('amaras_saved_google');
+        if (raw) saved = JSON.parse(raw);
+      } catch (e) {}
+
+      const listEl = document.getElementById('googleAccountsList');
+      const accounts = [];
+
+      if (saved && saved.name && saved.email) {
+        accounts.push({
+          name: saved.name,
+          email: saved.email,
+          avatar: saved.avatarText || getInitials(saved.name)
+        });
+      } else {
+        accounts.push({
+          name: 'Артур Саакян',
+          email: 'artur.amaras@gmail.com',
+          avatar: 'АС'
+        });
+      }
+
+      let html = accounts.map(acc => `
+        <div class="google-account-item" onclick="chooseGoogleAccount('${escapeJs(acc.name)}', '${escapeJs(acc.email)}')">
+          <div class="google-avatar">${acc.avatar}</div>
+          <div class="google-account-details">
+            <div class="google-account-name">${escapeHtml(acc.name)}</div>
+            <div class="google-account-email">${escapeHtml(acc.email)}</div>
+          </div>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F6368" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      `).join('');
+
+      html += `
+        <div class="google-account-item" onclick="showCustomView()">
+          <div class="google-avatar is-other">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          </div>
+          <div class="google-account-details">
+            <div class="google-account-name">Использовать другой аккаунт</div>
+            <div class="google-account-email">Войти под другим Google адресом</div>
+          </div>
+        </div>
+      `;
+
+      listEl.innerHTML = html;
+    }
+
+    function showCustomView() {
+      document.getElementById('googleAccountsView').style.display = 'none';
+      document.getElementById('googleCustomView').style.display = 'block';
+      document.getElementById('customName').focus();
+    }
+
+    function showAccountsView() {
+      document.getElementById('googleCustomView').style.display = 'none';
+      document.getElementById('googleAccountsView').style.display = 'block';
+    }
+
+    function handleCustomGoogleSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('customName').value.trim();
+      const email = document.getElementById('customEmail').value.trim();
+      if (!name || !email) return;
+      chooseGoogleAccount(name, email);
+    }
+
+    function chooseGoogleAccount(name, email) {
+      document.getElementById('googleLoadingBar').classList.add('is-active');
+
+      try {
+        localStorage.setItem('amaras_saved_google', JSON.stringify({
+          name: name,
+          email: email,
+          avatarText: getInitials(name)
+        }));
+      } catch (e) {}
+
+      setTimeout(() => {
+        if (window.opener && !window.opener.closed) {
+          window.opener.postMessage({
+            type: 'amaras:oauth_success',
+            provider: 'google',
+            name: name,
+            email: email
+          }, '*');
+          window.close();
+        } else {
+          // If opened as direct tab
+          window.location.href = 'index.html?oauth=google&name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email);
+        }
+      }, 450);
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      const p = document.createElement('p');
+      p.appendChild(document.createTextNode(str));
+      return p.innerHTML;
+    }
+
+    function escapeJs(str) {
+      return (str || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+
+    document.addEventListener('DOMContentLoaded', initAccounts);
+  </script>
+</body>
+</html>

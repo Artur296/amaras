@@ -78,6 +78,29 @@
       this.bindButtons();
       this.updateUI();
 
+      // Listen for OAuth popup completion (Google and Apple)
+      window.addEventListener('message', (event) => {
+        if (event.data && event.data.type === 'amaras:oauth_success') {
+          const { provider, name, email } = event.data;
+          this.handleOAuthConfirm(provider, name, email);
+        }
+      });
+
+      // Handle redirect fallback for OAuth
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const oauthParam = urlParams.get('oauth');
+        if (oauthParam && (oauthParam === 'google' || oauthParam === 'apple')) {
+          const oName = urlParams.get('name') || '';
+          const oEmail = urlParams.get('email') || '';
+          setTimeout(() => {
+            this.handleOAuthConfirm(oauthParam, oName, oEmail);
+            const cleanUrl = window.location.pathname + window.location.hash;
+            window.history.replaceState({}, document.title, cleanUrl);
+          }, 350);
+        }
+      } catch (err) {}
+
       // Close dropdowns on outside click
       document.addEventListener('click', (e) => {
         if (!e.target.closest('.amaras-user-menu-wrapper')) {
@@ -656,8 +679,24 @@
     },
 
     loginWithGoogle() {
-      this.switchTab('google');
-      this.renderGoogleOAuth(false);
+      const w = 480, h = 640;
+      const left = Math.max(0, Math.round((window.screen.width - w) / 2));
+      const top = Math.max(0, Math.round((window.screen.height - h) / 2));
+      const popup = window.open('oauth-google.html', 'amaras_google_oauth', `width=${w},height=${h},top=${top},left=${left},status=no,menubar=no,toolbar=no`);
+      if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+        this.switchTab('google');
+        this.renderGoogleOAuth(false);
+      }
+    },
+
+    loginWithApple() {
+      const w = 480, h = 640;
+      const left = Math.max(0, Math.round((window.screen.width - w) / 2));
+      const top = Math.max(0, Math.round((window.screen.height - h) / 2));
+      const popup = window.open('oauth-apple.html', 'amaras_apple_oauth', `width=${w},height=${h},top=${top},left=${left},status=no,menubar=no,toolbar=no`);
+      if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+        AmarasToast.show('Пожалуйста, разрешите всплывающее окно для входа с Apple ID', 'warning');
+      }
     },
 
     renderGoogleOAuth(forceNew = false) {
@@ -773,38 +812,55 @@
     },
 
     handleGoogleConfirm(name, email) {
+      this.handleOAuthConfirm('google', name, email);
+    },
+
+    handleOAuthConfirm(provider, name, email) {
       const submitBtn = this.modalEl ? this.modalEl.querySelector('.amaras-oauth-confirm-btn') : null;
       if (submitBtn) submitBtn.classList.add('is-loading');
 
       setTimeout(() => {
         if (submitBtn) submitBtn.classList.remove('is-loading');
-        const finalName = name || 'Google Пользователь';
-        const finalEmail = email || 'user@gmail.com';
+        const isApple = (provider === 'apple');
+        const defaultName = isApple ? 'Apple ID Пользователь' : 'Google Пользователь';
+        const defaultEmail = isApple ? 'user@privaterelay.appleid.com' : 'user@gmail.com';
+        const finalName = name || defaultName;
+        const finalEmail = email || defaultEmail;
         const initials = this.getInitials(finalName);
+        const providerTitle = isApple ? 'Apple' : 'Google';
+        const prefix = isApple ? 'usr_apple_' : 'usr_g_';
 
-        const googleUser = {
-          id: 'usr_g_' + Date.now(),
+        const oauthUser = {
+          id: prefix + Date.now(),
           name: finalName,
           email: finalEmail,
           phone: '',
           avatarText: initials,
-          provider: 'Google',
+          provider: providerTitle,
           createdAt: new Date().toISOString().split('T')[0],
           bookingsCount: 0
         };
 
         try {
-          localStorage.setItem('amaras_saved_google', JSON.stringify({
-            name: finalName,
-            email: finalEmail,
-            avatarText: initials
-          }));
+          if (isApple) {
+            localStorage.setItem('amaras_saved_apple', JSON.stringify({
+              name: finalName,
+              email: finalEmail,
+              avatarText: initials
+            }));
+          } else {
+            localStorage.setItem('amaras_saved_google', JSON.stringify({
+              name: finalName,
+              email: finalEmail,
+              avatarText: initials
+            }));
+          }
         } catch (err) {}
 
-        this.saveRegisteredUser(googleUser);
-        this.saveUser(googleUser);
+        this.saveRegisteredUser(oauthUser);
+        this.saveUser(oauthUser);
         this.close();
-        AmarasToast.show(`Успешный вход через Google: ${googleUser.name}!`, 'success');
+        AmarasToast.show(`Успешный вход через ${providerTitle}: ${oauthUser.name}!`, 'success');
       }, 350);
     },
 
@@ -1269,6 +1325,10 @@
                 <svg width="17" height="17" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.7 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.9C6.2 7.3 8.9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/><path fill="#FBBC05" d="M5.3 14.7c-.2-.7-.4-1.5-.4-2.7s.1-2 .4-2.7L1.6 6.4C.6 8.3 0 10.1 0 12s.6 3.7 1.6 5.6l3.7-2.9z"/><path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.8-2.3-6.7-5.3L1.6 16c1.9 3.8 5.8 7 10.4 7z"/></svg>
                 <span>Google</span>
               </button>
+              <button type="button" class="amaras-auth-social-btn is-apple" onclick="AmarasAuth.loginWithApple()">
+                <svg width="15" height="15" viewBox="0 0 170 170" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.59-7.71-11.66-14.01-6.19-9.56-11.05-20.48-14.58-32.74-3.53-12.27-5.3-24.18-5.3-35.74 0-14.68 3.73-26.79 11.19-36.33 7.46-9.54 16.92-14.42 28.38-14.64 4.58 0 9.87 1.15 15.86 3.46 6 2.31 10.15 3.53 12.46 3.65 2.12-.12 6.35-1.39 12.69-3.82 6.34-2.43 11.62-3.53 15.86-3.3 11.75.56 21.05 4.96 27.91 13.2-10.43 6.32-15.54 15.09-15.32 26.31.22 8.79 3.53 16.2 9.94 22.23 6.41 6.03 14.15 9.49 23.23 10.37-2.07 6.33-4.53 12.72-7.38 19.17zM119.22 33.15c0-7.27 2.66-14.01 7.97-20.21 5.31-6.2 11.84-9.87 19.6-11.02.22 1.01.33 2.02.33 3.03 0 7.39-2.73 14.24-8.19 20.55-5.46 6.31-12.06 10.01-19.8 11.1-.11-1.02-.17-2.13-.17-3.45z"/></svg>
+                <span>Apple</span>
+              </button>
               <button type="button" class="amaras-auth-social-btn is-tg" onclick="AmarasAuth.loginWithTelegram()">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="#24A1DE"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.92 9.07c-.14.65-.53.81-1.07.51l-2.95-2.18-1.42 1.37c-.16.16-.29.29-.6.29l.21-3.01 5.48-4.95c.24-.21-.05-.33-.37-.12l-6.77 4.26-2.92-.91c-.63-.2-.64-.63.13-.94l11.41-4.4c.53-.19.99.13.82.91z"/></svg>
                 <span>Telegram</span>
@@ -1350,6 +1410,10 @@
               <button type="button" class="amaras-auth-social-btn is-google" onclick="AmarasAuth.loginWithGoogle()">
                 <svg width="17" height="17" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.7 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.9C6.2 7.3 8.9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/><path fill="#FBBC05" d="M5.3 14.7c-.2-.7-.4-1.5-.4-2.7s.1-2 .4-2.7L1.6 6.4C.6 8.3 0 10.1 0 12s.6 3.7 1.6 5.6l3.7-2.9z"/><path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.8-2.3-6.7-5.3L1.6 16c1.9 3.8 5.8 7 10.4 7z"/></svg>
                 <span>Google</span>
+              </button>
+              <button type="button" class="amaras-auth-social-btn is-apple" onclick="AmarasAuth.loginWithApple()">
+                <svg width="15" height="15" viewBox="0 0 170 170" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.59-7.71-11.66-14.01-6.19-9.56-11.05-20.48-14.58-32.74-3.53-12.27-5.3-24.18-5.3-35.74 0-14.68 3.73-26.79 11.19-36.33 7.46-9.54 16.92-14.42 28.38-14.64 4.58 0 9.87 1.15 15.86 3.46 6 2.31 10.15 3.53 12.46 3.65 2.12-.12 6.35-1.39 12.69-3.82 6.34-2.43 11.62-3.53 15.86-3.3 11.75.56 21.05 4.96 27.91 13.2-10.43 6.32-15.54 15.09-15.32 26.31.22 8.79 3.53 16.2 9.94 22.23 6.41 6.03 14.15 9.49 23.23 10.37-2.07 6.33-4.53 12.72-7.38 19.17zM119.22 33.15c0-7.27 2.66-14.01 7.97-20.21 5.31-6.2 11.84-9.87 19.6-11.02.22 1.01.33 2.02.33 3.03 0 7.39-2.73 14.24-8.19 20.55-5.46 6.31-12.06 10.01-19.8 11.1-.11-1.02-.17-2.13-.17-3.45z"/></svg>
+                <span>Apple</span>
               </button>
               <button type="button" class="amaras-auth-social-btn is-tg" onclick="AmarasAuth.loginWithTelegram()">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="#24A1DE"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.92 9.07c-.14.65-.53.81-1.07.51l-2.95-2.18-1.42 1.37c-.16.16-.29.29-.6.29l.21-3.01 5.48-4.95c.24-.21-.05-.33-.37-.12l-6.77 4.26-2.92-.91c-.63-.2-.64-.63.13-.94l11.41-4.4c.53-.19.99.13.82.91z"/></svg>

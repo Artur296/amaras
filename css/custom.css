@@ -9166,8 +9166,8 @@ body.amaras-modal-locked {
 /* Social Buttons */
 .amaras-auth-socials {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
   margin-bottom: 14px;
 }
 
@@ -9186,6 +9186,17 @@ body.amaras-modal-locked {
   justify-content: center;
   gap: 8px;
   transition: all 0.18s ease;
+}
+
+.amaras-auth-social-btn.is-apple {
+  background: #000000;
+  color: #FFFFFF;
+  border-color: #000000;
+}
+
+.amaras-auth-social-btn.is-apple:hover {
+  background: #1C1A1A;
+  border-color: #333333;
 }
 
 .amaras-auth-social-btn:hover {
