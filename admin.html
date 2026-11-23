@@ -29,14 +29,18 @@
       </div>
 
       <form id="adminLoginForm" onsubmit="handleAdminLoginSubmit(event)" autocomplete="off">
+        <!-- Trap to swallow browser autofill -->
+        <input type="text" name="trap_adm_u" style="display:none!important;position:absolute!important;left:-9999px!important;" tabindex="-1" autocomplete="off" />
+        <input type="password" name="trap_adm_p" style="display:none!important;position:absolute!important;left:-9999px!important;" tabindex="-1" autocomplete="off" />
+
         <div class="amaras-admin-form-group" style="margin-bottom: 14px;">
           <label class="amaras-admin-form-label" for="adminEmail" data-i18n="admin_login_email">Логин или Email</label>
-          <input type="text" id="adminEmail" class="amaras-admin-form-input" placeholder="Логин или Email" required autocomplete="off" />
+          <input type="text" id="adminEmail" name="amaras_adm_id_field" class="amaras-admin-form-input" placeholder="Логин или Email" required autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly');" />
         </div>
 
         <div class="amaras-admin-form-group" style="margin-bottom: 20px;">
           <label class="amaras-admin-form-label" for="adminPassword" data-i18n="admin_login_password">Пароль</label>
-          <input type="password" id="adminPassword" class="amaras-admin-form-input" placeholder="••••••••" required autocomplete="off" />
+          <input type="text" id="adminPassword" name="amaras_adm_secret_field" class="amaras-admin-form-input" placeholder="••••••••" required autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly');" style="-webkit-text-security: disc; text-security: disc;" />
         </div>
 
         <div id="adminLoginError" style="display: none; color: #FF5C5C; font-size: 13px; margin-bottom: 14px; text-align: center;" data-i18n="admin_login_invalid">
@@ -3603,7 +3607,21 @@
     }
 
     // Initialize on load
+    function forceClearAdminInputs() {
+      const u = document.getElementById('adminEmail');
+      const p = document.getElementById('adminPassword');
+      if (u) { u.value = ''; u.setAttribute('readonly', 'readonly'); }
+      if (p) { p.value = ''; p.setAttribute('readonly', 'readonly'); }
+    }
+
+    window.addEventListener('load', forceClearAdminInputs);
+    window.addEventListener('pageshow', forceClearAdminInputs);
+    setTimeout(forceClearAdminInputs, 50);
+    setTimeout(forceClearAdminInputs, 200);
+    setTimeout(forceClearAdminInputs, 600);
+
     document.addEventListener('DOMContentLoaded', () => {
+      forceClearAdminInputs();
       // Auto-initialize demo data in localStorage only on first visit (when null)
       if (localStorage.getItem('amaras_admin_orders') === null) {
         localStorage.setItem('amaras_admin_orders', JSON.stringify(DEFAULT_ADMIN_ORDERS));

@@ -659,13 +659,17 @@
 
       <!-- Login Form -->
       <form id="staffLoginForm" onsubmit="handleStaffLoginSubmit(event)" autocomplete="off">
+        <!-- Trap to swallow browser autofill -->
+        <input type="text" name="trap_user" style="display:none!important;position:absolute!important;left:-9999px!important;" tabindex="-1" autocomplete="off">
+        <input type="password" name="trap_pass" style="display:none!important;position:absolute!important;left:-9999px!important;" tabindex="-1" autocomplete="off">
+
         <div class="staff-form-group">
           <label class="staff-label">Логин или Email</label>
-          <input type="text" id="loginIdentifier" class="staff-input" placeholder="Введите логин или email" required autocomplete="off">
+          <input type="text" id="loginIdentifier" name="amaras_staff_id_field" class="staff-input" placeholder="Введите логин или email" required autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly');">
         </div>
         <div class="staff-form-group">
           <label class="staff-label">Пароль</label>
-          <input type="password" id="loginPassword" class="staff-input" placeholder="••••••••" required autocomplete="off">
+          <input type="text" id="loginPassword" name="amaras_staff_secret_field" class="staff-input" placeholder="••••••••" required autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly');" style="-webkit-text-security: disc; text-security: disc;">
         </div>
         <button type="submit" class="staff-btn staff-btn-lime" style="width: 100%; justify-content: center; padding: 12px;">
           Войти в портал
@@ -1390,12 +1394,25 @@
     window.addEventListener('amaras:chats_updated', () => renderPortalView());
     window.addEventListener('amaras:staff_updated', () => renderPortalView());
 
-    document.addEventListener('DOMContentLoaded', () => {
+    function forceClearInputs() {
+      const u = document.getElementById('loginIdentifier');
+      const p = document.getElementById('loginPassword');
+      if (u) { u.value = ''; u.setAttribute('readonly', 'readonly'); }
+      if (p) { p.value = ''; p.setAttribute('readonly', 'readonly'); }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      forceClearInputs();
       renderPortalView();
       refreshInterval = setInterval(() => {
         renderPortalView();
       }, 1500);
     });
+    window.addEventListener('load', forceClearInputs);
+    window.addEventListener('pageshow', forceClearInputs);
+    setTimeout(forceClearInputs, 50);
+    setTimeout(forceClearInputs, 200);
+    setTimeout(forceClearInputs, 600);
   </script>
 </body>
 </html>
