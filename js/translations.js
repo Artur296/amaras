@@ -3239,11 +3239,18 @@ function selectMobileLang(lang) {
 }
 
 // Universal setLang Function
-function setLang(lang) {
+function setLang(lang, isManual = true) {
   if (!AMARAS_I18N[lang]) return;
   window.currentLang = lang;
   document.body.setAttribute('data-lang', lang);
   document.documentElement.setAttribute('lang', lang === 'HY' ? 'hy' : (lang === 'ENG' ? 'en' : 'ru'));
+
+  if (isManual) {
+    try {
+      localStorage.setItem('amaras_preferred_lang', lang);
+      localStorage.setItem('amaras_lang_manual', 'true');
+    } catch (e) { }
+  }
 
   const shortLabel = LANG_SHORT_LABELS[lang] || lang;
 
@@ -3366,10 +3373,69 @@ function setLang(lang) {
     updateAdminLanguage();
   }
 
-  try {
-    localStorage.setItem('amaras_preferred_lang', lang);
-  } catch (e) { }
+  if (window.Tawk_API && typeof window.Tawk_API.setAttributes === 'function') {
+    try {
+      window.Tawk_API.setAttributes({
+        Language: lang
+      }, function () { });
+    } catch (e) { }
+  }
 }
+
+// Smart Browser Language Detection (RU, ENG, HY)
+function detectBrowserLanguage() {
+  const candidates = [];
+  try {
+    if (Array.isArray(navigator.languages)) {
+      candidates.push(...navigator.languages);
+    }
+    if (navigator.language) {
+      candidates.push(navigator.language);
+    }
+    if (navigator.userLanguage) {
+      candidates.push(navigator.userLanguage);
+    }
+    if (navigator.browserLanguage) {
+      candidates.push(navigator.browserLanguage);
+    }
+  } catch (e) { }
+
+  for (let i = 0; i < candidates.length; i++) {
+    const raw = candidates[i];
+    if (!raw || typeof raw !== 'string') continue;
+    const l = raw.toLowerCase().trim();
+
+    // Armenian
+    if (l.startsWith('hy')) {
+      return 'HY';
+    }
+
+    // Russian, Belarusian, Kazakh, Ukrainian
+    if (l.startsWith('ru') || l.startsWith('be') || l.startsWith('kk') || l.startsWith('uk')) {
+      return 'RU';
+    }
+
+    // English
+    if (l.startsWith('en')) {
+      return 'ENG';
+    }
+  }
+
+  // International visitors with other browser locales (fr, de, es, it, zh, etc.) default to English
+  if (candidates.length > 0) {
+    const first = (candidates[0] || '').toLowerCase().trim();
+    if (first.startsWith('ru') || first.startsWith('be') || first.startsWith('kk') || first.startsWith('uk')) {
+      return 'RU';
+    }
+    if (first.startsWith('hy')) {
+      return 'HY';
+    }
+  }
+
+  return 'ENG';
+}
+
+window.detectBrowserLanguage = detectBrowserLanguage;
 
 // Global Click Handlers
 document.addEventListener('click', (e) => {
@@ -3462,14 +3528,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   try {
+    const isManual = localStorage.getItem('amaras_lang_manual') === 'true';
     const saved = localStorage.getItem('amaras_preferred_lang');
-    if (saved && AMARAS_I18N[saved]) {
-      setLang(saved);
+    if (isManual && saved && AMARAS_I18N[saved]) {
+      setLang(saved, false);
     } else {
-      setLang('RU');
+      const autoLang = detectBrowserLanguage();
+      setLang(autoLang, false);
     }
   } catch (e) {
-    setLang('RU');
+    setLang(detectBrowserLanguage(), false);
   }
 });
 
