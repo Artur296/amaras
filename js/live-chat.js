@@ -858,10 +858,10 @@
       const chat = getOrCreateClientChat();
       const lower = (text || '').toLowerCase();
 
-      if (lower.includes('оператор') || lower.includes('operator') || lower.includes('օպերատոր') || lower.includes('agent')) {
-        window.AmarasLiveChat.requestOperatorHandover(chat.id, 'Запрос живого оператора');
-      } else if (lower.includes('tawk')) {
+      if (lower.includes('открыть чат') || lower.includes('open live agent') || lower.includes('բացել օպերատորի') || lower.includes('tawk')) {
         if (typeof window.openTawkChat === 'function') window.openTawkChat();
+      } else if (lower.includes('оператор') || lower.includes('operator') || lower.includes('օպերատոր') || lower.includes('agent')) {
+        window.AmarasLiveChat.requestOperatorHandover(chat.id, 'Запрос живого оператора');
       } else if (lower.includes('whatsapp') || lower.includes('вацап')) {
         window.open('https://wa.me/37499250525', '_blank');
       } else if (lower.startsWith('позвонить') || lower.startsWith('call') || lower.startsWith('զանգ')) {
