@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Панель управления Amaras</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../assets/favicon.svg?v=2" type="image/svg+xml" />
+  <script>
+    window.location.replace('../admin.html' + window.location.search + window.location.hash);
+  </script>
+  <meta http-equiv="refresh" content="0; url=../admin.html" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #1C1A1A;
+      color: #ECE8E1;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    .redirect-card {
+      background: #201F1F;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 32px 40px;
+      max-width: 420px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    .redirect-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #ECE8E1;
+    }
+    .redirect-link {
+      display: inline-block;
+      margin-top: 14px;
+      color: #586EFF;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .redirect-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="redirect-card">
+    <div class="redirect-title">Вход в панель управления...</div>
+    <a href="../admin.html" class="redirect-link">Нажмите здесь, если переход не произошел автоматически</a>
+  </div>
+</body>
+</html>

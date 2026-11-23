@@ -2004,6 +2004,8 @@
         if (dashView) dashView.style.display = 'none';
       }
     }
+    // Immediate initial check so views are never permanently hidden
+    try { checkAdminAuth(); } catch (e) {}
 
     async function hashAdminSecret(str) {
       if (window.crypto && crypto.subtle) {
@@ -3794,7 +3796,7 @@
     setTimeout(forceClearAdminInputs, 200);
     setTimeout(forceClearAdminInputs, 600);
 
-    document.addEventListener('DOMContentLoaded', () => {
+    function initAdminPage() {
       forceClearAdminInputs();
       // Auto-initialize demo data in localStorage only on first visit (when null)
       if (localStorage.getItem('amaras_admin_orders') === null) {
@@ -3856,7 +3858,13 @@
       });
 
       checkAdminAuth();
-    });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAdminPage);
+    } else {
+      initAdminPage();
+    }
   </script>
 </body>
 </html>
