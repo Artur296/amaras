@@ -431,7 +431,8 @@ body[data-exit-popup-open="true"] {
   pointer-events: none;
   transform: translateY(-6px);
   transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s ease;
-  transition-delay: 0.18s; /* Grace period prevents accidental close while moving cursor */
+  transition-delay: 0.18s;
+  /* Grace period prevents accidental close while moving cursor */
 }
 
 /* Invisible hover bridge to eliminate any gap between trigger and menu */
@@ -452,7 +453,8 @@ body[data-exit-popup-open="true"] {
   visibility: visible;
   pointer-events: auto;
   transform: translateY(0);
-  transition-delay: 0s; /* Open immediately on hover */
+  transition-delay: 0s;
+  /* Open immediately on hover */
 }
 
 .amaras-nav-dropdown.is-open .amaras-chevron,
@@ -813,7 +815,8 @@ body[data-exit-popup-open="true"] {
 .amaras-mobile-lang-item-left {
   display: flex;
   align-items: center;
-  gap: 9px; /* Clear spacing between flag and 3-letter code */
+  gap: 9px;
+  /* Clear spacing between flag and 3-letter code */
 }
 
 .amaras-pop-code {
@@ -972,6 +975,7 @@ body[data-exit-popup-open="true"] {
     font-size: 11.5px !important;
     gap: 3px !important;
   }
+
   .amaras-currency-trigger .amaras-curr-symbol {
     font-size: 12px !important;
   }
@@ -1074,7 +1078,7 @@ body[data-exit-popup-open="true"] {
   background: #312F2F;
   border-bottom: 1px solid rgba(88, 110, 255, 0.25);
   padding: 16px 24px;
-  box-shadow: 0 16px 32px rgba(0,0,0,0.4);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
   z-index: 999;
 }
 
@@ -1149,7 +1153,7 @@ body[data-exit-popup-open="true"] {
   transform: translateX(100%);
   transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1), visibility 0.3s ease;
   overflow-y: auto;
-  box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
   visibility: hidden;
   pointer-events: none;
 }
@@ -1409,15 +1413,19 @@ body[data-exit-popup-open="true"] {
   .amaras-lang-switcher {
     display: none !important;
   }
+
   .amaras-mobile-lang-wrapper {
     display: flex !important;
   }
+
   .amaras-mobile-lang-trigger {
     display: inline-flex !important;
   }
+
   .amaras-nav-logo img {
     height: 30px;
   }
+
   .amaras-nav-actions {
     gap: 6px;
   }
@@ -1428,35 +1436,43 @@ body[data-exit-popup-open="true"] {
     padding: 8px 16px;
     gap: 8px;
   }
+
   .amaras-nav-logo img {
     height: 28px;
   }
+
   .amaras-nav-capsule {
     gap: 1px;
     padding: 2px 4px;
   }
+
   .amaras-nav-link {
     font-size: 12px;
     padding: 6px 8px;
     gap: 3px;
   }
+
   .amaras-nav-actions {
     gap: 5px;
   }
+
   .amaras-login-btn {
     padding: 5px 11px;
     font-size: 12px;
   }
+
   .amaras-register-btn {
     padding: 5px 13px;
     font-size: 12px;
   }
+
   .amaras-currency-trigger,
   .amaras-mobile-lang-trigger {
     height: 33px;
     padding: 0 8px;
     font-size: 12px;
   }
+
   .amaras-search-btn,
   .amaras-cart-btn,
   .amaras-music-btn {
@@ -1470,19 +1486,23 @@ body[data-exit-popup-open="true"] {
   .amaras-nav-capsule {
     display: none;
   }
+
   .amaras-mobile-toggle {
     display: flex;
   }
 }
 
 @media (max-width: 860px) {
+
   .amaras-login-btn,
   .amaras-register-btn {
     display: none !important;
   }
+
   .amaras-lang-switcher {
     display: none !important;
   }
+
   .amaras-nav-container {
     padding: 0 16px !important;
     height: 54px !important;
@@ -1491,9 +1511,11 @@ body[data-exit-popup-open="true"] {
     width: 100% !important;
     max-width: 100vw !important;
   }
+
   .amaras-nav-logo {
     flex-shrink: 0 !important;
   }
+
   .amaras-nav-logo img {
     height: 27px !important;
     width: auto !important;
@@ -1501,6 +1523,7 @@ body[data-exit-popup-open="true"] {
     object-fit: contain !important;
     display: block !important;
   }
+
   .amaras-nav-actions {
     gap: 6px !important;
     flex-shrink: 0 !important;
@@ -1518,12 +1541,14 @@ body[data-exit-popup-open="true"] {
     padding: 0 !important;
     border-radius: 50% !important;
   }
+
   .amaras-music-btn svg,
   .amaras-search-btn svg,
   .amaras-cart-btn svg {
     width: 15px !important;
     height: 15px !important;
   }
+
   .amaras-cart-badge {
     min-width: 14px !important;
     height: 14px !important;
@@ -1545,10 +1570,12 @@ body[data-exit-popup-open="true"] {
     padding: 0 !important;
     border-radius: 50% !important;
   }
+
   .amaras-curr-code,
   .amaras-curr-arrow {
     display: none !important;
   }
+
   .amaras-curr-symbol {
     font-size: 14px !important;
     font-weight: 800 !important;
@@ -1571,10 +1598,12 @@ body[data-exit-popup-open="true"] {
     padding: 0 !important;
     border-radius: 50% !important;
   }
+
   .amaras-mobile-lang-current,
   .amaras-lang-arrow {
     display: none !important;
   }
+
   .amaras-mobile-lang-flag {
     display: inline-flex !important;
     align-items: center !important;
@@ -1582,6 +1611,7 @@ body[data-exit-popup-open="true"] {
     margin: 0 !important;
     line-height: 1 !important;
   }
+
   .amaras-flag-icon {
     width: 16px !important;
     height: 11px !important;
@@ -1602,10 +1632,12 @@ body[data-exit-popup-open="true"] {
     border: none !important;
     box-shadow: none !important;
   }
+
   .amaras-user-name,
   .amaras-user-chevron {
     display: none !important;
   }
+
   .amaras-user-avatar {
     width: 30px !important;
     height: 30px !important;
@@ -1626,6 +1658,7 @@ body[data-exit-popup-open="true"] {
     align-items: center !important;
     justify-content: center !important;
   }
+
   .amaras-mobile-toggle svg {
     width: 17px !important;
     height: 17px !important;
@@ -1637,14 +1670,17 @@ body[data-exit-popup-open="true"] {
     padding: 0 12px !important;
     height: 52px !important;
   }
+
   .amaras-nav-logo img {
     height: 23px !important;
     width: auto !important;
     max-width: 120px !important;
   }
+
   .amaras-nav-actions {
     gap: 4.5px !important;
   }
+
   .amaras-music-btn,
   .amaras-search-btn,
   .amaras-cart-btn,
@@ -1656,6 +1692,7 @@ body[data-exit-popup-open="true"] {
     height: 28.5px !important;
     min-width: 28.5px !important;
   }
+
   .amaras-music-btn svg,
   .amaras-search-btn svg,
   .amaras-cart-btn svg,
@@ -1663,13 +1700,16 @@ body[data-exit-popup-open="true"] {
     width: 13.5px !important;
     height: 13.5px !important;
   }
+
   .amaras-curr-symbol {
     font-size: 13px !important;
   }
+
   .amaras-flag-icon {
     width: 14px !important;
     height: 10px !important;
   }
+
   .amaras-user-avatar {
     width: 27px !important;
     height: 27px !important;
@@ -1682,17 +1722,21 @@ body[data-exit-popup-open="true"] {
     padding: 0 10px !important;
     height: 50px !important;
   }
+
   .amaras-nav-logo img {
     height: 20px !important;
     width: auto !important;
     max-width: 105px !important;
   }
+
   .amaras-nav-actions {
     gap: 4px !important;
   }
+
   .amaras-music-btn {
     display: none !important;
   }
+
   .amaras-search-btn,
   .amaras-cart-btn,
   .amaras-currency-trigger,
@@ -1703,6 +1747,7 @@ body[data-exit-popup-open="true"] {
     height: 28px !important;
     min-width: 28px !important;
   }
+
   .amaras-user-avatar {
     width: 26px !important;
     height: 26px !important;
@@ -1772,17 +1817,21 @@ body[data-exit-popup-open="true"] {
     margin-bottom: 40px;
     padding-bottom: 32px;
   }
+
   .amaras-about-title {
     font-size: 28px;
     margin-bottom: 16px;
   }
+
   .amaras-about-text {
     margin: 0 auto;
   }
+
   .amaras-about-desc {
     font-size: 15.5px;
     line-height: 1.62;
   }
+
   .amaras-about-desc.amaras-about-lead {
     font-size: 16px;
   }
@@ -1793,14 +1842,17 @@ body[data-exit-popup-open="true"] {
     margin-bottom: 32px;
     padding-bottom: 26px;
   }
+
   .amaras-about-title {
     font-size: 23px;
     line-height: 1.3;
   }
+
   .amaras-about-desc {
     font-size: 14.5px;
     line-height: 1.6;
   }
+
   .amaras-about-desc.amaras-about-lead {
     font-size: 15px;
   }
@@ -1876,30 +1928,36 @@ body[data-exit-popup-open="true"] {
   .amaras-features-section {
     padding: 48px 24px 54px;
   }
+
   .amaras-features-grid {
     grid-template-columns: 1fr;
     gap: 38px;
     max-width: 440px;
     margin: 0 auto;
   }
+
   .amaras-feature-card {
     align-items: center !important;
     text-align: center !important;
   }
+
   .amaras-feature-icon {
     justify-content: center !important;
     margin-bottom: 16px !important;
   }
+
   .amaras-feature-icon svg {
     width: 46px !important;
     height: 46px !important;
     stroke-width: 2.1 !important;
   }
+
   .amaras-feature-title {
     text-align: center !important;
     font-size: 18px !important;
     margin-bottom: 8px;
   }
+
   .amaras-feature-desc {
     text-align: center !important;
     font-size: 14.5px !important;
@@ -1913,31 +1971,37 @@ body[data-exit-popup-open="true"] {
   .amaras-features-section {
     padding: 44px 18px 48px;
   }
+
   .amaras-features-grid {
     grid-template-columns: 1fr;
     gap: 36px;
     max-width: 340px;
     margin: 0 auto;
   }
+
   .amaras-feature-card {
     align-items: center !important;
     text-align: center !important;
   }
+
   .amaras-feature-icon {
     justify-content: center !important;
     margin-bottom: 16px !important;
   }
+
   .amaras-feature-icon svg {
     width: 48px !important;
     height: 48px !important;
     stroke-width: 2.2 !important;
   }
+
   .amaras-feature-title {
     text-align: center !important;
     font-size: 18px !important;
     line-height: 1.35;
     margin-bottom: 8px;
   }
+
   .amaras-feature-desc {
     text-align: center !important;
     font-size: 14px !important;
@@ -2068,17 +2132,21 @@ body[data-exit-popup-open="true"] {
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
   box-shadow: 0 14px 34px rgba(88, 110, 255, 0.28);
 }
+
 .amaras-care-card:nth-child(1) .amaras-care-card-title {
   color: #FFFFFF !important;
 }
+
 .amaras-care-card:nth-child(1) .amaras-care-card-desc {
   color: rgba(255, 255, 255, 0.92) !important;
 }
+
 .amaras-care-card:nth-child(1) .amaras-care-icon-wrap {
   background: rgba(255, 255, 255, 0.18) !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
   color: #FFFFFF !important;
 }
+
 .amaras-care-card:nth-child(1):hover {
   transform: translateY(-5px);
   box-shadow: 0 22px 46px rgba(88, 110, 255, 0.45) !important;
@@ -2090,17 +2158,21 @@ body[data-exit-popup-open="true"] {
   border: 1px solid rgba(88, 110, 255, 0.25) !important;
   box-shadow: 0 14px 34px rgba(14, 26, 99, 0.4);
 }
+
 .amaras-care-card:nth-child(2) .amaras-care-card-title {
   color: #FFFFFF !important;
 }
+
 .amaras-care-card:nth-child(2) .amaras-care-card-desc {
   color: rgba(255, 255, 255, 0.85) !important;
 }
+
 .amaras-care-card:nth-child(2) .amaras-care-icon-wrap {
   background: rgba(255, 255, 255, 0.1) !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
   color: #FFFFFF !important;
 }
+
 .amaras-care-card:nth-child(2):hover {
   transform: translateY(-5px);
   box-shadow: 0 22px 46px rgba(14, 26, 99, 0.6) !important;
@@ -2112,19 +2184,23 @@ body[data-exit-popup-open="true"] {
   border: 1px solid transparent !important;
   box-shadow: 0 14px 34px rgba(199, 255, 50, 0.25);
 }
+
 .amaras-care-card:nth-child(3) .amaras-care-card-title {
   color: #161616 !important;
   font-weight: 800 !important;
 }
+
 .amaras-care-card:nth-child(3) .amaras-care-card-desc {
   color: #262F12 !important;
   font-weight: 500 !important;
 }
+
 .amaras-care-card:nth-child(3) .amaras-care-icon-wrap {
   background: rgba(0, 0, 0, 0.08) !important;
   border: 1px solid rgba(0, 0, 0, 0.12) !important;
   color: #161616 !important;
 }
+
 .amaras-care-card:nth-child(3):hover {
   transform: translateY(-5px);
   box-shadow: 0 22px 46px rgba(199, 255, 50, 0.45) !important;
@@ -2136,19 +2212,23 @@ body[data-exit-popup-open="true"] {
   border: 1px solid transparent !important;
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
 }
+
 .amaras-care-card:nth-child(4) .amaras-care-card-title {
   color: #161616 !important;
   font-weight: 800 !important;
 }
+
 .amaras-care-card:nth-child(4) .amaras-care-card-desc {
   color: #4A4947 !important;
   font-weight: 400 !important;
 }
+
 .amaras-care-card:nth-child(4) .amaras-care-icon-wrap {
   background: rgba(88, 110, 255, 0.1) !important;
   border: 1px solid rgba(88, 110, 255, 0.2) !important;
   color: #586EFF !important;
 }
+
 .amaras-care-card:nth-child(4):hover {
   transform: translateY(-5px);
   box-shadow: 0 22px 46px rgba(0, 0, 0, 0.35) !important;
@@ -2250,10 +2330,12 @@ body[data-exit-popup-open="true"] {
     margin-top: 44px;
     padding: 32px 16px;
   }
+
   .amaras-motto-title {
     font-size: 23px;
     line-height: 1.32;
   }
+
   .amaras-motto-desc {
     font-size: 14.5px;
   }
@@ -2265,6 +2347,7 @@ body[data-exit-popup-open="true"] {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
+
   .amaras-care-title {
     font-size: 32px;
   }
@@ -2274,35 +2357,43 @@ body[data-exit-popup-open="true"] {
   .amaras-care-section {
     padding: 54px 18px 60px;
   }
+
   .amaras-care-header {
     margin-bottom: 36px;
   }
+
   .amaras-care-title {
     font-size: 25px;
   }
+
   .amaras-care-subtitle {
     font-size: 14.5px;
   }
+
   .amaras-care-grid {
     grid-template-columns: 1fr;
     gap: 16px;
     margin-bottom: 30px;
   }
+
   .amaras-care-card {
     padding: 24px 20px;
   }
+
   .amaras-care-card-title {
     font-size: 18px;
   }
+
   .amaras-care-icon-wrap {
     width: 46px;
     height: 46px;
     margin-bottom: 18px;
   }
-  
+
   .amaras-motto-title {
     font-size: 21px;
   }
+
   .amaras-motto-desc {
     font-size: 14px;
   }
@@ -2839,25 +2930,34 @@ body[data-exit-popup-open="true"] {
     align-items: flex-start;
     gap: 20px;
   }
-  .amaras-rev-title, .amaras-faq-title {
+
+  .amaras-rev-title,
+  .amaras-faq-title {
     font-size: 28px;
   }
-  .amaras-rev-subtitle, .amaras-faq-subtitle {
+
+  .amaras-rev-subtitle,
+  .amaras-faq-subtitle {
     font-size: 15px;
   }
+
   .amaras-rev-controls {
     width: 100%;
     justify-content: space-between;
   }
+
   .amaras-faq-question-btn {
     padding: 16px 18px;
   }
+
   .amaras-faq-q-text {
     font-size: 16px;
   }
+
   .amaras-faq-answer {
     padding: 0 18px 18px;
   }
+
   .amaras-faq-p {
     font-size: 14.5px;
   }
@@ -2999,10 +3099,25 @@ body[data-exit-popup-open="true"] {
   border-radius: 12px;
 }
 
-.amaras-wp-1 { left: 8.5%; bottom: 82px; }
-.amaras-wp-2 { left: 36%; bottom: 145px; }
-.amaras-wp-3 { left: 64.5%; bottom: 208px; }
-.amaras-wp-4 { left: 91.5%; bottom: 272px; }
+.amaras-wp-1 {
+  left: 8.5%;
+  bottom: 82px;
+}
+
+.amaras-wp-2 {
+  left: 36%;
+  bottom: 145px;
+}
+
+.amaras-wp-3 {
+  left: 64.5%;
+  bottom: 208px;
+}
+
+.amaras-wp-4 {
+  left: 91.5%;
+  bottom: 272px;
+}
 
 /* The 4x4 Jeep Vehicle - Positioned directly ABOVE the waypoint numbers */
 .amaras-jeep-car {
@@ -3015,7 +3130,7 @@ body[data-exit-popup-open="true"] {
   transform: translate(-50%, 0) rotate(-11deg);
   transform-origin: 50% 85%;
   transition: left 0.75s cubic-bezier(0.25, 1, 0.5, 1),
-              bottom 0.75s cubic-bezier(0.25, 1, 0.5, 1);
+    bottom 0.75s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .amaras-suv-svg {
@@ -3024,8 +3139,13 @@ body[data-exit-popup-open="true"] {
 }
 
 @keyframes amarasJeepIdle {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-3px); }
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-3px);
+  }
 }
 
 .amaras-jeep-car.is-driving .amaras-suv-svg {
@@ -3033,8 +3153,13 @@ body[data-exit-popup-open="true"] {
 }
 
 @keyframes amarasJeepDrive {
-  0% { transform: translateY(0) scale(1); }
-  100% { transform: translateY(-2.5px) scale(1.02); }
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  100% {
+    transform: translateY(-2.5px) scale(1.02);
+  }
 }
 
 .amaras-headlight-beam {
@@ -3142,12 +3267,15 @@ body[data-exit-popup-open="true"] {
     gap: 24px;
     margin-bottom: 40px;
   }
+
   .amaras-jeep-title {
     font-size: 32px;
   }
+
   .amaras-jeep-desktop-track {
     display: none;
   }
+
   .amaras-jeep-mobile-track {
     display: flex;
     flex-direction: column;
@@ -3155,15 +3283,18 @@ body[data-exit-popup-open="true"] {
     max-width: 520px;
     margin: 0 auto;
   }
+
   .amaras-jeep-stage {
     padding: 24px 18px;
     border-radius: 20px;
   }
+
   .amaras-mwp-item {
     display: flex;
     gap: 16px;
     position: relative;
   }
+
   .amaras-mwp-marker {
     display: flex;
     flex-direction: column;
@@ -3171,6 +3302,7 @@ body[data-exit-popup-open="true"] {
     width: 36px;
     flex-shrink: 0;
   }
+
   .amaras-mwp-num {
     width: 36px;
     height: 36px;
@@ -3184,31 +3316,38 @@ body[data-exit-popup-open="true"] {
     justify-content: center;
     font-size: 14px;
   }
+
   .amaras-mwp-item {
     cursor: pointer;
     user-select: none;
     transition: transform 0.2s ease;
   }
+
   .amaras-mwp-item:hover {
     transform: translateX(4px);
   }
+
   .amaras-mwp-num.is-active {
     border-color: #C7FF32;
     color: #C7FF32;
     box-shadow: 0 0 16px rgba(199, 255, 50, 0.45);
   }
+
   .amaras-mwp-item.is-active .amaras-mwp-details {
     border-color: rgba(199, 255, 50, 0.5);
     background: rgba(199, 255, 50, 0.06);
   }
+
   .amaras-mwp-item.is-active .amaras-mwp-name {
     color: #C7FF32;
   }
+
   .amaras-mwp-num.is-peak {
     background: #0E1A63;
     border-color: #586EFF;
     box-shadow: 0 0 18px rgba(88, 110, 255, 0.65);
   }
+
   .amaras-mwp-line {
     width: 2px;
     flex: 1;
@@ -3216,6 +3355,7 @@ body[data-exit-popup-open="true"] {
     border-left: 2px dashed #586EFF;
     margin: 6px 0;
   }
+
   .amaras-mwp-details {
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -3227,17 +3367,20 @@ body[data-exit-popup-open="true"] {
     flex-direction: column;
     gap: 4px;
   }
+
   .amaras-mwp-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
   }
+
   .amaras-mwp-name {
     font-size: 15.5px;
     font-weight: 700;
     color: #FFFFFF;
   }
+
   .amaras-mwp-alt {
     font-size: 12.5px;
     font-weight: 700;
@@ -3246,10 +3389,12 @@ body[data-exit-popup-open="true"] {
     padding: 2px 8px;
     border-radius: 6px;
   }
+
   .amaras-mwp-alt.is-peak-alt {
     color: #161616;
     background: #C7FF32;
   }
+
   .amaras-mwp-desc {
     font-size: 13px;
     color: rgba(255, 255, 255, 0.6);
@@ -3339,9 +3484,20 @@ body[data-exit-popup-open="true"] {
 }
 
 @keyframes amarasPulseRing {
-  0% { transform: scale(0.9); opacity: 0.9; }
-  70% { transform: scale(2.2); opacity: 0; }
-  100% { transform: scale(2.2); opacity: 0; }
+  0% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+
+  70% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
 }
 
 /* Chat Popup Window */
@@ -3676,6 +3832,7 @@ body[data-exit-popup-open="true"] {
 .amaras-chat-messages-scroll::-webkit-scrollbar {
   width: 5px;
 }
+
 .amaras-chat-messages-scroll::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 4px;
@@ -3830,6 +3987,7 @@ body[data-exit-popup-open="true"] {
    Mobile Support Chat Fullscreen & Keyboard Responsiveness (<= 768px)
    ========================================================================== */
 @media (max-width: 768px) {
+
   /* Prevent background page scroll when chat is open */
   body.amaras-chat-open {
     overflow: hidden !important;
@@ -3919,6 +4077,7 @@ body[data-exit-popup-open="true"] {
     padding: 14px 16px !important;
     gap: 10px !important;
   }
+
   .amaras-chat-view-home::-webkit-scrollbar {
     display: none !important;
   }
@@ -3978,8 +4137,18 @@ body[data-exit-popup-open="true"] {
 
 body,
 .rebrand-body,
-h1, h2, h3, h4, h5, h6,
-.headingh1, .headingh2, .headingh3, .headingh4, .headingh5, .headingh6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.headingh1,
+.headingh2,
+.headingh3,
+.headingh4,
+.headingh5,
+.headingh6,
 .rebrand-section-hero-frame-title,
 .rebrand-section-hero-title-fixed,
 .rebrand-section-hero-title-dynamic {
@@ -4178,6 +4347,7 @@ body[data-lang="HY"] * {
 .amaras-rev-modal-body::-webkit-scrollbar {
   width: 6px;
 }
+
 .amaras-rev-modal-body::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 6px;
@@ -4483,8 +4653,17 @@ body[data-lang="HY"] * {
 }
 
 @keyframes amarasBentoPulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.85); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
 }
 
 .amaras-bento-c2-grid {
@@ -4744,9 +4923,11 @@ body[data-lang="HY"] * {
   .rebrand-section-bento-row {
     flex-direction: column !important;
   }
+
   .rebrand-section-bento-row-bottom {
     flex-direction: column !important;
   }
+
   .amaras-bento-card-1,
   .amaras-bento-card-2,
   .amaras-bento-card-3,
@@ -4755,6 +4936,7 @@ body[data-lang="HY"] * {
     max-width: 100% !important;
     min-height: auto !important;
   }
+
   .amaras-bento-main-h2 {
     font-size: 30px !important;
   }
@@ -4766,21 +4948,27 @@ body[data-lang="HY"] * {
     margin-top: 36px !important;
     margin-bottom: 50px !important;
   }
+
   .amaras-bento-card {
     border-radius: 24px !important;
   }
+
   .amaras-bento-card .rebrand-section-bento-card-content {
     padding: 22px 20px !important;
   }
+
   .amaras-bento-card h3 {
     font-size: 22px !important;
   }
+
   .amaras-bento-main-h2 {
     font-size: 25px !important;
   }
+
   .amaras-bento-sub {
     font-size: 14.5px !important;
   }
+
   .amaras-bento-c1-visual,
   .amaras-bento-c2-visual,
   .amaras-bento-c3-visual,
@@ -4788,13 +4976,16 @@ body[data-lang="HY"] * {
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
+
   .amaras-bento-c2-grid {
     grid-template-columns: 1fr !important;
   }
+
   .amaras-bento-stats-grid {
     grid-template-columns: 1fr 1fr !important;
     gap: 8px !important;
   }
+
   .amaras-bento-stat-num {
     font-size: 20px !important;
   }
@@ -4866,7 +5057,9 @@ body[data-lang="HY"] * {
   box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
 }
 
-.amaras-chat-status { display: none !important; }
+.amaras-chat-status {
+  display: none !important;
+}
 
 /* Chat Widget - Flat solid colors, strictly no gradients */
 .amaras-chat-header {
@@ -4920,6 +5113,7 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
 .amaras-chat-avatar {
   display: none !important;
 }
+
 .amaras-chat-tab-badge {
   display: none !important;
 }
@@ -5002,10 +5196,12 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     gap: 18px;
     padding: 20px 0 16px;
   }
+
   .amaras-footer-logo-img {
     max-width: 190px;
     max-height: 38px;
   }
+
   .amaras-footer-payments {
     flex-direction: column;
     align-items: flex-start;
@@ -5174,10 +5370,12 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     gap: 14px !important;
     margin-top: 14px !important;
   }
+
   .amaras-hero-circle-btn {
     width: 46px;
     height: 46px;
   }
+
   .amaras-hero-social-buttons {
     gap: 10px !important;
   }
@@ -5204,7 +5402,8 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   display: flex !important;
   flex-flow: row nowrap !important;
   overflow-x: auto !important;
-  overflow-y: hidden !important; /* CRITICAL: ABSOLUTELY ZERO VERTICAL SCROLL */
+  overflow-y: hidden !important;
+  /* CRITICAL: ABSOLUTELY ZERO VERTICAL SCROLL */
   overflow: auto hidden !important;
   height: 450px !important;
   min-height: 450px !important;
@@ -5243,7 +5442,8 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   max-height: 415px !important;
   border-radius: 20px !important;
   overflow: hidden !important;
-  overflow-y: hidden !important; /* NO VERTICAL SCROLL ON CARD */
+  overflow-y: hidden !important;
+  /* NO VERTICAL SCROLL ON CARD */
   border: 1px solid rgba(49, 47, 47, 0.1) !important;
   background: #FFFFFF !important;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06) !important;
@@ -5265,6 +5465,7 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
 }
 
 @media (max-width: 767px) {
+
   .rebrand-section-benefit-cards-row,
   .rebrand-section-benefit-cards-row.extra-wrapper {
     height: 440px !important;
@@ -5272,6 +5473,7 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     max-height: 440px !important;
     overflow-y: hidden !important;
   }
+
   .rebrand-section-benefit-cards-card.amaras-guide-card {
     height: 410px !important;
     min-height: 410px !important;
@@ -5403,15 +5605,29 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   animation: amarasSoundWavePulse 1.1s ease-in-out infinite;
 }
 
-.amaras-music-btn.is-playing .amaras-bar.b1 { animation-delay: 0.0s; }
-.amaras-music-btn.is-playing .amaras-bar.b2 { animation-delay: 0.24s; }
-.amaras-music-btn.is-playing .amaras-bar.b3 { animation-delay: 0.12s; }
-.amaras-music-btn.is-playing .amaras-bar.b4 { animation-delay: 0.36s; }
+.amaras-music-btn.is-playing .amaras-bar.b1 {
+  animation-delay: 0.0s;
+}
+
+.amaras-music-btn.is-playing .amaras-bar.b2 {
+  animation-delay: 0.24s;
+}
+
+.amaras-music-btn.is-playing .amaras-bar.b3 {
+  animation-delay: 0.12s;
+}
+
+.amaras-music-btn.is-playing .amaras-bar.b4 {
+  animation-delay: 0.36s;
+}
 
 @keyframes amarasSoundWavePulse {
-  0%, 100% {
+
+  0%,
+  100% {
     height: 3px;
   }
+
   50% {
     height: 15px;
   }
@@ -5421,10 +5637,12 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
 .amaras-music-btn.is-muted .amaras-music-wave {
   display: none !important;
 }
+
 .amaras-music-btn.is-muted .amaras-music-muted-icon {
   display: block !important;
   opacity: 0.78;
 }
+
 .amaras-music-btn.is-playing .amaras-music-muted-icon {
   display: none !important;
 }
@@ -5445,14 +5663,17 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     min-width: 32px !important;
     padding: 0 !important;
   }
+
   .amaras-music-btn .amaras-music-muted-icon {
     width: 15px !important;
     height: 15px !important;
   }
+
   .amaras-music-wave {
     height: 13px !important;
     gap: 2px !important;
   }
+
   .amaras-music-wave .amaras-bar {
     width: 2px !important;
   }
@@ -5465,10 +5686,12 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     min-width: 29px !important;
     padding: 0 !important;
   }
+
   .amaras-music-btn .amaras-music-muted-icon {
     width: 13.5px !important;
     height: 13.5px !important;
   }
+
   .amaras-music-wave {
     height: 11px !important;
     gap: 1.5px !important;
@@ -5513,14 +5736,17 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     max-width: 52px;
     border-radius: 6px;
   }
+
   .amaras-payment-badge-img {
     max-width: 38px;
     max-height: 17px;
   }
+
   .amaras-payment-badge-img.is-arca {
     max-width: 40px;
     max-height: 14px;
   }
+
   .amaras-payment-badge-img.is-mc {
     max-width: 32px;
     max-height: 19px;
@@ -5544,8 +5770,8 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   opacity: 1;
   visibility: visible;
   transition: opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1),
-              transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
-              visibility 0.6s ease;
+    transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+    visibility 0.6s ease;
   will-change: opacity, transform;
 }
 
@@ -5633,6 +5859,7 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     opacity: 0;
     transform: translateY(14px) scale(0.95);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -5640,10 +5867,13 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
 }
 
 @keyframes amarasGlowPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(0.92);
     opacity: 0.7;
   }
+
   50% {
     transform: scale(1.18);
     opacity: 1;
@@ -5654,9 +5884,11 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   0% {
     width: 0%;
   }
+
   55% {
     width: 74%;
   }
+
   100% {
     width: 100%;
   }
@@ -5667,9 +5899,11 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     height: 42px;
     max-width: 220px;
   }
+
   .amaras-preloader-bar-track {
     width: 135px;
   }
+
   .amaras-preloader-tagline {
     font-size: 0.6rem;
     letter-spacing: 0.24em;
@@ -5681,6 +5915,7 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     transition: opacity 0.2s ease !important;
     transform: none !important;
   }
+
   .amaras-preloader-center,
   .amaras-preloader-glow,
   .amaras-preloader-bar-fill {
@@ -5854,12 +6089,15 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   .amaras-tours-cards-grid {
     gap: 12px;
   }
+
   .amaras-tour-card-body {
     padding: 16px 14px 12px 14px;
   }
+
   .amaras-tour-card-title-link {
     font-size: 15px;
   }
+
   .amaras-tour-card-item {
     font-size: 12px;
   }
@@ -5869,10 +6107,12 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   .amaras-tours-cover-banner {
     height: 220px;
   }
+
   .amaras-tours-cards-container {
     margin-top: -90px;
     padding: 0 16px;
   }
+
   .amaras-tours-cards-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -5883,16 +6123,20 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     height: 180px;
     padding-top: 24px;
   }
+
   .amaras-tours-banner-title {
     font-size: 22px;
   }
+
   .amaras-tours-banner-subtitle {
     font-size: 13px;
   }
+
   .amaras-tours-cards-container {
     margin-top: -70px;
     padding: 0;
   }
+
   .amaras-tours-cards-grid {
     display: flex;
     overflow-x: auto;
@@ -5902,9 +6146,11 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
+
   .amaras-tours-cards-grid::-webkit-scrollbar {
     display: none;
   }
+
   .amaras-tour-card {
     min-width: 250px;
     max-width: 260px;
@@ -6234,6 +6480,7 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     flex: 0 0 calc((100% - 24px) / 2);
     min-width: 290px;
   }
+
   .amaras-popular-title {
     font-size: 26px;
   }
@@ -6243,37 +6490,47 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   .amaras-popular-section {
     padding: 44px 0 50px 0;
   }
+
   .amaras-popular-container {
     padding: 0 16px;
   }
+
   .amaras-popular-header {
     margin-bottom: 20px;
   }
+
   .amaras-popular-title {
     font-size: 22px;
   }
+
   .amaras-popular-subtitle {
     font-size: 13.5px;
   }
+
   .amaras-popular-track {
     gap: 14px;
     padding-left: 2px;
     padding-right: 2px;
   }
+
   .amaras-pop-tour-card {
     flex: 0 0 280px;
     min-width: 280px;
     max-width: 290px;
   }
+
   .amaras-pop-tour-body {
     padding: 16px 14px 14px 14px;
   }
+
   .amaras-pop-tour-title {
     font-size: 15.5px;
   }
+
   .amaras-pop-price-val {
     font-size: 17px;
   }
+
   .amaras-pop-book-btn {
     padding: 8px 14px;
     font-size: 12px;
@@ -6306,7 +6563,7 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at 80% 20%, rgba(88, 110, 255, 0.10) 0%, transparent 60%),
-              linear-gradient(180deg, #0D111D 0%, #0A0D17 100%);
+    linear-gradient(180deg, #0D111D 0%, #0A0D17 100%);
   pointer-events: none;
 }
 
@@ -6771,6 +7028,7 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
+
   .amaras-cat-title {
     font-size: 32px;
   }
@@ -6780,20 +7038,25 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   .amaras-cat-hero {
     padding: 100px 0 40px 0;
   }
+
   .amaras-cat-title {
     font-size: 26px;
   }
+
   .amaras-cat-subtitle {
     font-size: 14px;
   }
+
   .amaras-cat-tours-grid {
     grid-template-columns: 1fr;
     gap: 18px;
   }
+
   .amaras-cat-cta-box {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .amaras-cat-cta-title {
     font-size: 22px;
   }
@@ -7453,8 +7716,15 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
 }
 
 @keyframes amarasPop {
-  from { transform: scale(0.92); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .amaras-modal-icon {
@@ -7504,24 +7774,29 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
   .amaras-builder-layout {
     grid-template-columns: 1fr;
   }
+
   .amaras-loc-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .amaras-builder-sidebar {
     position: static;
   }
 }
 
 @media screen and (max-width: 640px) {
+
   .amaras-loc-grid,
   .amaras-veh-grid,
   .amaras-srv-grid,
   .amaras-form-grid {
     grid-template-columns: 1fr;
   }
+
   .amaras-builder-heading {
     font-size: 26px;
   }
+
   .amaras-builder-step {
     padding: 20px;
   }
@@ -7590,9 +7865,17 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
 
 /* Cart badge bounce animation */
 @keyframes amarasCartBounce {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.35); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.35);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .amaras-cart-badge.is-bumped {
@@ -7600,18 +7883,21 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
 }
 
 @media screen and (max-width: 480px) {
+
   .amaras-cat-card-footer,
   .amaras-pop-tour-footer {
     flex-direction: column;
     align-items: stretch;
     gap: 12px;
   }
+
   .amaras-card-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
     width: 100%;
   }
+
   .amaras-btn-cart,
   .amaras-cat-card-btn,
   .amaras-pop-book-btn {
@@ -7628,7 +7914,8 @@ body[data-lang="HY"] .rebrand-section-hero h1 {
    ========================================================================== */
 
 /* Prevent any horizontal overflow on mobile devices */
-html, body {
+html,
+body {
   max-width: 100vw;
   overflow-x: hidden;
 }
@@ -7639,6 +7926,7 @@ html, body {
     height: 60px;
     padding: 0 14px;
   }
+
   .amaras-header-nav-grid {
     gap: 8px;
     align-items: center;
@@ -7649,6 +7937,7 @@ html, body {
 .amaras-mobile-drawer {
   padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
 }
+
 .amaras-mobile-drawer-link,
 .amaras-mobile-dropdown-btn {
   min-height: 44px;
@@ -7662,9 +7951,11 @@ html, body {
   .amaras-cat-hero {
     padding: 88px 16px 32px 16px;
   }
+
   .amaras-cat-hero-container {
     padding: 0;
   }
+
   .amaras-cat-breadcrumbs {
     font-size: 12.5px;
     margin-bottom: 12px;
@@ -7676,14 +7967,17 @@ html, body {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
+
   .amaras-cat-breadcrumbs::-webkit-scrollbar {
     display: none;
   }
+
   .amaras-cat-title {
     font-size: clamp(22px, 5.5vw, 30px);
     line-height: 1.25;
     margin-bottom: 10px;
   }
+
   .amaras-cat-subtitle {
     font-size: 13.5px;
     line-height: 1.55;
@@ -7698,14 +7992,17 @@ html, body {
     border-bottom: 1px solid #E5E7EB !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
   }
+
   .amaras-cat-nav-tabs-container {
     padding: 0 10px !important;
   }
+
   .amaras-cat-nav-tabs {
     gap: 5px !important;
     padding: 1px 0 !important;
     -webkit-overflow-scrolling: touch !important;
   }
+
   .amaras-cat-tab-link {
     padding: 5px 11px !important;
     font-size: 11.5px !important;
@@ -7715,6 +8012,7 @@ html, body {
     box-sizing: border-box !important;
     border-radius: 999px !important;
   }
+
   .amaras-cat-tab-link.is-active {
     font-weight: 700 !important;
   }
@@ -7723,35 +8021,44 @@ html, body {
   .amaras-cat-content-section {
     padding: 28px 0 60px 0;
   }
+
   .amaras-cat-container {
     padding: 0 14px;
   }
+
   .amaras-cat-grid-header {
     margin-bottom: 18px;
   }
+
   .amaras-cat-grid-title {
     font-size: 20px;
   }
+
   .amaras-cat-tours-grid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
+
   .amaras-cat-tour-card {
     border-radius: 18px;
   }
+
   .amaras-cat-card-thumb {
     height: 210px;
     border-top-left-radius: 18px;
     border-top-right-radius: 18px;
   }
+
   .amaras-cat-card-body {
     padding: 16px;
   }
+
   .amaras-cat-card-title {
     font-size: 17px;
     line-height: 1.35;
     margin-bottom: 6px;
   }
+
   .amaras-cat-card-desc {
     font-size: 13px;
     line-height: 1.5;
@@ -7763,21 +8070,26 @@ html, body {
   .amaras-cat-hero {
     padding: 82px 14px 28px 14px;
   }
+
   .amaras-cat-title {
     font-size: 21px;
   }
+
   .amaras-cat-card-thumb {
     height: 195px;
   }
+
   .amaras-cat-card-footer {
     padding-top: 12px;
   }
+
   .amaras-card-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
     width: 100%;
   }
+
   .amaras-btn-cart,
   .amaras-cat-card-btn,
   .amaras-pop-book-btn {
@@ -7793,28 +8105,34 @@ html, body {
   .amaras-builder-section {
     padding: 24px 0 80px 0;
   }
+
   .amaras-builder-layout {
     grid-template-columns: 1fr;
     gap: 20px;
   }
+
   .amaras-builder-step {
     padding: 20px 16px;
     border-radius: 18px;
     margin-bottom: 16px;
   }
+
   .amaras-step-head {
     gap: 10px;
     margin-bottom: 16px;
   }
+
   .amaras-step-num {
     width: 28px;
     height: 28px;
     font-size: 13px;
     border-radius: 8px;
   }
+
   .amaras-step-title {
     font-size: 17px;
   }
+
   .amaras-step-sub {
     font-size: 12.5px;
   }
@@ -7824,16 +8142,20 @@ html, body {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
+
   .amaras-loc-card-thumb {
     height: 110px;
   }
+
   .amaras-loc-card-body {
     padding: 10px;
   }
+
   .amaras-loc-card-name {
     font-size: 13px;
     line-height: 1.3;
   }
+
   .amaras-loc-card-sub {
     font-size: 11px;
     margin-top: 2px;
@@ -7844,13 +8166,16 @@ html, body {
     grid-template-columns: 1fr;
     gap: 10px;
   }
+
   .amaras-veh-card {
     padding: 14px;
     border-radius: 14px;
   }
+
   .amaras-veh-name {
     font-size: 15px;
   }
+
   .amaras-veh-model {
     font-size: 12px;
   }
@@ -7860,6 +8185,7 @@ html, body {
     grid-template-columns: 1fr;
     gap: 10px;
   }
+
   .amaras-srv-card {
     padding: 14px;
     border-radius: 14px;
@@ -7870,10 +8196,12 @@ html, body {
     grid-template-columns: 1fr;
     gap: 12px;
   }
+
   .amaras-form-input,
   .amaras-form-select,
   .amaras-form-textarea {
-    font-size: 16px !important; /* Prevents auto-zoom on iOS */
+    font-size: 16px !important;
+    /* Prevents auto-zoom on iOS */
     padding: 12px 14px;
   }
 
@@ -7881,6 +8209,7 @@ html, body {
   .amaras-builder-sidebar {
     position: static;
   }
+
   .amaras-builder-summary-card {
     padding: 20px 18px;
     border-radius: 18px;
@@ -7891,6 +8220,7 @@ html, body {
   .amaras-loc-grid {
     grid-template-columns: 1fr;
   }
+
   .amaras-loc-card-thumb {
     height: 140px;
   }
@@ -7916,21 +8246,25 @@ html, body {
     z-index: 999;
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35);
   }
+
   .amaras-builder-mobile-bar-info {
     display: flex;
     flex-direction: column;
   }
+
   .amaras-builder-mobile-bar-label {
     font-size: 11px;
     color: rgba(255, 255, 255, 0.6);
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
+
   .amaras-builder-mobile-bar-val {
     font-size: 15px;
     font-weight: 800;
     color: #C7FF32;
   }
+
   .amaras-builder-mobile-bar-btn {
     background: #25D366;
     color: #FFFFFF;
@@ -7953,12 +8287,15 @@ html, body {
     top: 56px !important;
     padding: 5px 0 !important;
   }
+
   .amaras-cat-nav-tabs-container {
     padding: 0 8px !important;
   }
+
   .amaras-cat-nav-tabs {
     gap: 4px !important;
   }
+
   .amaras-cat-tab-link {
     padding: 4px 9px !important;
     font-size: 11px !important;
@@ -7971,12 +8308,15 @@ html, body {
     top: 54px !important;
     padding: 4px 0 !important;
   }
+
   .amaras-cat-nav-tabs-container {
     padding: 0 6px !important;
   }
+
   .amaras-cat-nav-tabs {
     gap: 4px !important;
   }
+
   .amaras-cat-tab-link {
     padding: 3px 8px !important;
     font-size: 10.5px !important;
@@ -8409,10 +8749,12 @@ html, body {
   .amaras-cart-page-section {
     padding: 80px 0 60px 0;
   }
+
   .amaras-cart-layout {
     grid-template-columns: 1fr;
     gap: 24px;
   }
+
   .amaras-cart-summary-card {
     position: static;
   }
@@ -8422,10 +8764,12 @@ html, body {
   .amaras-cart-container {
     padding: 0 14px;
   }
+
   .amaras-cart-items-card {
     padding: 16px;
     border-radius: 16px;
   }
+
   .amaras-cart-item-row {
     grid-template-columns: 64px 1fr;
     grid-template-areas:
@@ -8436,35 +8780,43 @@ html, body {
     position: relative;
     padding: 14px 0;
   }
+
   .amaras-cart-item-thumb {
     grid-area: thumb;
     width: 64px;
     height: 64px;
   }
+
   .amaras-cart-item-info {
     grid-area: info;
   }
+
   .amaras-cart-item-qty-ctrl {
     grid-area: qty;
     justify-self: start;
   }
+
   .amaras-cart-item-subtotal {
     grid-area: subtotal;
     justify-self: end;
     font-size: 15px;
   }
+
   .amaras-cart-item-remove {
     position: absolute;
     top: 10px;
     right: 0;
   }
+
   .amaras-cart-summary-card {
     padding: 20px 16px;
     border-radius: 16px;
   }
+
   .amaras-cart-input,
   .amaras-cart-textarea {
-    font-size: 16px !important; /* Prevents auto-zoom on iOS */
+    font-size: 16px !important;
+    /* Prevents auto-zoom on iOS */
   }
 }
 
@@ -8486,9 +8838,9 @@ html, body {
   border: 1px solid #E5E7EB;
   border-radius: 18px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-  transition: border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
-              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
 }
 
@@ -8674,35 +9026,44 @@ html, body {
   .amaras-cat-accordion-list {
     gap: 10px;
   }
+
   .amaras-cat-accordion-item {
     border-radius: 16px;
   }
+
   .amaras-cat-accordion-header {
     padding: 10px 12px;
   }
+
   .amaras-cat-acc-main {
     gap: 12px;
   }
+
   .amaras-cat-acc-thumb {
     width: 76px;
     height: 52px;
     border-radius: 10px;
   }
+
   .amaras-cat-acc-title {
     font-size: 15.5px;
   }
+
   .amaras-cat-acc-chevron {
     width: 30px;
     height: 30px;
     margin-left: 8px;
   }
+
   .amaras-cat-acc-content {
     padding: 6px 12px 14px 12px;
   }
+
   .amaras-cat-acc-subitem {
     padding: 9px 12px;
     font-size: 13px;
   }
+
   .amaras-cat-acc-view-btn {
     width: 100%;
     justify-content: center;
@@ -8764,8 +9125,10 @@ body.amaras-modal-locked {
   box-sizing: border-box;
   max-height: calc(100vh - 32px);
   overflow-y: auto;
-  scrollbar-width: none !important; /* Firefox */
-  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important;
+  /* Firefox */
+  -ms-overflow-style: none !important;
+  /* IE and Edge */
 }
 
 .amaras-auth-dialog::-webkit-scrollbar {
@@ -8981,7 +9344,7 @@ body.amaras-modal-locked {
   box-shadow: 0 0 0 3px rgba(88, 110, 255, 0.14);
 }
 
-.amaras-auth-input-box input:focus + .amaras-auth-input-icon,
+.amaras-auth-input-box input:focus+.amaras-auth-input-icon,
 .amaras-auth-input-box:focus-within .amaras-auth-input-icon {
   color: #586EFF;
 }
@@ -9045,11 +9408,11 @@ body.amaras-modal-locked {
   transition: all 0.18s ease;
 }
 
-.amaras-auth-check-label:hover input ~ .amaras-auth-checkmark {
+.amaras-auth-check-label:hover input~.amaras-auth-checkmark {
   border-color: #586EFF;
 }
 
-.amaras-auth-check-label input:checked ~ .amaras-auth-checkmark {
+.amaras-auth-check-label input:checked~.amaras-auth-checkmark {
   background: #586EFF;
   border-color: #586EFF;
 }
@@ -9067,7 +9430,7 @@ body.amaras-modal-locked {
   transform: rotate(45deg);
 }
 
-.amaras-auth-check-label input:checked ~ .amaras-auth-checkmark:after {
+.amaras-auth-check-label input:checked~.amaras-auth-checkmark:after {
   display: block;
 }
 
@@ -9132,7 +9495,9 @@ body.amaras-modal-locked {
 }
 
 @keyframes amarasSpin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Divider */
@@ -9571,8 +9936,15 @@ body.amaras-modal-locked {
 }
 
 @keyframes amarasDropdownFade {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .amaras-user-dropdown-header {
@@ -9795,6 +10167,7 @@ body.amaras-modal-locked {
     bottom: 16px;
     align-items: center;
   }
+
   .amaras-toast {
     width: 100%;
     max-width: 100%;
@@ -9812,6 +10185,7 @@ body.amaras-modal-locked {
     border: none !important;
     background: transparent !important;
   }
+
   .amaras-user-name,
   .amaras-user-chevron {
     display: none !important;
@@ -9932,6 +10306,7 @@ body.amaras-modal-locked {
     opacity: 0;
     transform: translateY(-4px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -10596,9 +10971,11 @@ body.amaras-modal-locked {
   .amaras-transfer-cards-grid {
     grid-template-columns: 1fr;
   }
+
   .amaras-pop-carousel-wrapper {
     flex-direction: column;
   }
+
   .amaras-pop-veh-feature-card {
     width: 100%;
   }
@@ -10608,27 +10985,33 @@ body.amaras-modal-locked {
   .amaras-transfer-calc-card {
     padding: 24px 16px;
   }
+
   .amaras-transfer-calc-row {
     flex-direction: column;
     align-items: stretch;
   }
+
   .amaras-transfer-swap-btn {
     align-self: center;
     margin: 4px 0;
   }
+
   .amaras-transfer-calc-submit {
     width: 100%;
     margin-top: 8px;
   }
+
   .amaras-transfer-card {
     flex-direction: column;
     align-items: stretch;
     gap: 10px;
     padding: 14px;
   }
+
   .amaras-transfer-card-left {
     width: 100%;
   }
+
   .amaras-transfer-card-mid {
     width: 100%;
     flex-direction: row;
@@ -10639,6 +11022,7 @@ body.amaras-modal-locked {
     border-radius: 8px;
     box-sizing: border-box;
   }
+
   .amaras-transfer-card-right {
     width: 100%;
     flex-direction: row;
@@ -11208,12 +11592,15 @@ body.amaras-modal-locked {
   .amaras-fleet-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .amaras-fleet-highlights {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .amaras-fleet-adv-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .amaras-fleet-cta-banner {
     flex-direction: column;
     align-items: flex-start;
@@ -11224,13 +11611,16 @@ body.amaras-modal-locked {
   .amaras-fleet-grid {
     grid-template-columns: 1fr;
   }
+
   .amaras-fleet-highlights {
     grid-template-columns: 1fr;
     padding: 16px;
   }
+
   .amaras-fleet-adv-grid {
     grid-template-columns: 1fr;
   }
+
   .amaras-fleet-tabs {
     overflow-x: auto;
     padding-bottom: 6px;
@@ -11240,12 +11630,15 @@ body.amaras-modal-locked {
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
+
   .amaras-fleet-tabs::-webkit-scrollbar {
     display: none;
   }
+
   .amaras-fleet-tab {
     flex-shrink: 0;
   }
+
   .amaras-capacity-pills {
     overflow-x: auto;
     width: 100%;
@@ -11254,19 +11647,24 @@ body.amaras-modal-locked {
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
+
   .amaras-capacity-pills::-webkit-scrollbar {
     display: none;
   }
+
   .amaras-cap-pill {
     flex-shrink: 0;
   }
+
   .amaras-fleet-count-badge {
     margin-left: 0;
     width: 100%;
   }
+
   .amaras-fleet-cta-banner {
     padding: 24px 20px;
   }
+
   .amaras-cta-wa-btn {
     width: 100%;
     text-align: center;
@@ -11373,13 +11771,16 @@ body.amaras-modal-locked {
   .amaras-georgia-transfers-card {
     padding: 24px 18px;
   }
+
   .amaras-georgia-features-grid {
     grid-template-columns: 1fr;
     gap: 12px;
   }
+
   .amaras-georgia-quick-routes {
     flex-direction: column;
   }
+
   .amaras-geo-btn {
     width: 100%;
     text-align: center;
@@ -11868,8 +12269,15 @@ body.amaras-modal-locked {
 }
 
 @keyframes amarasFadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Section Header */
@@ -12433,7 +12841,10 @@ body.amaras-modal-locked {
 .amaras-switch-slider {
   position: absolute;
   cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: rgba(255, 255, 255, 0.12);
   transition: .3s;
   border-radius: 24px;
@@ -12451,11 +12862,11 @@ body.amaras-modal-locked {
   border-radius: 50%;
 }
 
-.amaras-switch input:checked + .amaras-switch-slider {
+.amaras-switch input:checked+.amaras-switch-slider {
   background-color: #C7FF32;
 }
 
-.amaras-switch input:checked + .amaras-switch-slider:before {
+.amaras-switch input:checked+.amaras-switch-slider:before {
   transform: translateX(20px);
   background-color: #1A1919;
 }
@@ -12484,8 +12895,13 @@ body.amaras-modal-locked {
 }
 
 @keyframes amarasModalFade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .amaras-admin-modal {
@@ -12866,6 +13282,7 @@ body.amaras-modal-locked {
   letter-spacing: 0.3px;
   opacity: 0.9;
 }
+
 .amaras-chat-bubble.is-operator {
   align-self: flex-start;
   background: rgba(88, 110, 255, 0.16);
@@ -12873,9 +13290,11 @@ body.amaras-modal-locked {
   color: #FFFFFF;
   border-bottom-left-radius: 4px;
 }
+
 .amaras-chat-bubble.is-operator .amaras-bubble-sender {
   color: #C7FF32;
 }
+
 .amaras-chat-bubble.is-system {
   align-self: center;
   max-width: 90%;
@@ -12887,12 +13306,14 @@ body.amaras-modal-locked {
   padding: 8px 14px;
   border-radius: 20px;
 }
+
 .amaras-chat-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
   margin-top: 10px;
 }
+
 .amaras-chat-chip {
   background: #222020;
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -12905,11 +13326,13 @@ body.amaras-modal-locked {
   transition: all 0.2s ease;
   outline: none;
 }
+
 .amaras-chat-chip:hover {
   background: rgba(199, 255, 50, 0.15);
   border-color: #C7FF32;
   color: #C7FF32;
 }
+
 .amaras-chat-operator-status-banner {
   background: rgba(88, 110, 255, 0.12);
   border-bottom: 1px solid rgba(88, 110, 255, 0.2);
@@ -12924,8 +13347,8 @@ body.amaras-modal-locked {
 
 /* Suppress browser autofill yellow tint across all inputs */
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 1000px #222020 inset !important;
   -webkit-text-fill-color: #FFFFFF !important;

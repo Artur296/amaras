@@ -1,11 +1,11 @@
 /**
- * AMARAS LIVE CHAT & STAFF SYSTEM
+ * AMARAS LIVE CHAT, MULTILINGUAL BOT & TAWK.TO INTEGRATION
  * Zero emojis - High-end editorial UI (#1C1A1A, #201F1F, #586EFF, #C7FF32)
  * Features:
- * 1. Intelligent Knowledge-base Bot with Amaras Tour domain answers
- * 2. Automatic handover to live human operators when requested or unrecognized
- * 3. Cross-tab real-time sync between website visitor and staff portal (/staff)
- * 4. Admin supervisor monitoring and operator registration approval flow
+ * 1. Trilingual Knowledge-base Bot (RU, ENG, HY) for instant answers
+ * 2. Automatic handover to live human operators via Tawk.to and internal staff portal
+ * 3. Tawk.to Property ID: 6b045c72b2432a3cd966113c / Widget: 1k84gi84q
+ * 4. Cross-tab real-time sync between website visitor and staff portal (/staff)
  */
 
 (function (window) {
@@ -20,17 +20,86 @@
 
   const ADMIN_HASH = 'c4a764736627f9d3db338b054ccf216724e11ee05455eb3dc467b55413c3182a';
 
-  // SHA-256 Helper with fallback
+  // =========================================================================
+  // 1. TAWK.TO OFFICIAL INTEGRATION
+  // =========================================================================
+  var Tawk_API = window.Tawk_API || {}, Tawk_LoadStart = new Date();
+  window.Tawk_API = Tawk_API;
+
+  Tawk_API.onLoad = function () {
+    try {
+      // Hide default Tawk.to launcher bubble so our luxury Amaras button controls it
+      if (typeof Tawk_API.hideWidget === 'function') {
+        Tawk_API.hideWidget();
+      }
+    } catch (e) {}
+  };
+
+  if (!document.querySelector('script[src*="tawk.to"]')) {
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/6b045c72b2432a3cd966113c/1k84gi84q';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      if (s0 && s0.parentNode) {
+        s0.parentNode.insertBefore(s1, s0);
+      } else {
+        document.head.appendChild(s1);
+      }
+    })();
+  }
+
+  window.openTawkChat = function () {
+    if (window.Tawk_API) {
+      try {
+        if (typeof window.Tawk_API.showWidget === 'function') {
+          window.Tawk_API.showWidget();
+        }
+        if (typeof window.Tawk_API.maximize === 'function') {
+          window.Tawk_API.maximize();
+          return;
+        }
+        if (typeof window.Tawk_API.toggle === 'function') {
+          window.Tawk_API.toggle();
+          return;
+        }
+      } catch (err) {}
+    }
+    window.open('https://tawk.to/chat/6b045c72b2432a3cd966113c/1k84gi84q', '_blank');
+  };
+
+  // =========================================================================
+  // 2. LANGUAGE DETECTION & HELPERS
+  // =========================================================================
+  function getActiveLanguage() {
+    if (window.currentLang === 'ENG' || window.currentLang === 'HY' || window.currentLang === 'RU') {
+      return window.currentLang;
+    }
+    const saved = localStorage.getItem('amaras_selected_lang');
+    if (saved === 'ENG' || saved === 'HY' || saved === 'RU') return saved;
+    const docLang = (document.documentElement.lang || '').toLowerCase();
+    if (docLang.startsWith('en')) return 'ENG';
+    if (docLang.startsWith('hy') || docLang.startsWith('am')) return 'HY';
+    return 'RU';
+  }
+
+  function detectMessageLanguage(text) {
+    const str = (text || '').trim();
+    if (/[\u0531-\u058F]/.test(str)) return 'HY';
+    if (/[\u0400-\u04FF]/.test(str)) return 'RU';
+    if (/[a-zA-Z]/.test(str)) return 'ENG';
+    return getActiveLanguage();
+  }
+
+  // SHA-256 Helper
   async function sha256Hex(text) {
     if (window.crypto && crypto.subtle) {
       try {
         const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
         return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-      } catch (e) {
-        // Fallback below
-      }
+      } catch (e) {}
     }
-    // Simple deterministic hash for fallback if crypto.subtle is unavailable
     let hash = 0;
     for (let i = 0; i < text.length; i++) {
       const char = text.charCodeAt(i);
@@ -40,26 +109,24 @@
     return Math.abs(hash).toString(16).padStart(64, '0');
   }
 
-  // Staff users storage (strictly operator accounts - admin is NEVER stored in localStorage)
+  // =========================================================================
+  // 3. STORAGE & STAFF LOGIC
+  // =========================================================================
   function initStaffStorage() {
     try {
       const raw = localStorage.getItem(STORAGE_KEYS.STAFF_USERS);
       if (raw) {
         let users = JSON.parse(raw);
         if (Array.isArray(users)) {
-          // Permanently strip out any admin record from localStorage
           const filtered = users.filter(u => u.role !== 'admin' && (u.login || '').toLowerCase() !== 'admin');
           if (filtered.length !== users.length) {
             localStorage.setItem(STORAGE_KEYS.STAFF_USERS, JSON.stringify(filtered));
           }
         }
       }
-    } catch (e) {
-      // Ignore
-    }
+    } catch (e) {}
   }
 
-  // Get all staff users (operators only)
   function getStaffUsers() {
     initStaffStorage();
     try {
@@ -70,13 +137,11 @@
     }
   }
 
-  // Save staff users
   function saveStaffUsers(users) {
     localStorage.setItem(STORAGE_KEYS.STAFF_USERS, JSON.stringify(users));
     window.dispatchEvent(new CustomEvent('amaras:staff_updated', { detail: { users } }));
   }
 
-  // Current logged in staff
   function getCurrentStaff() {
     try {
       return JSON.parse(sessionStorage.getItem(STORAGE_KEYS.CURRENT_STAFF)) || null;
@@ -94,19 +159,6 @@
     window.dispatchEvent(new CustomEvent('amaras:current_staff_changed', { detail: { user } }));
   }
 
-  // Check if any operator is currently online
-  function hasOnlineOperators() {
-    const users = getStaffUsers();
-    return users.some(u => u.role === 'operator' && u.status === 'approved' && (u.workStatus === 'online' || u.workStatus === 'busy'));
-  }
-
-  // Get active online operators count
-  function getOnlineOperatorsCount() {
-    const users = getStaffUsers();
-    return users.filter(u => u.role === 'operator' && u.status === 'approved' && (u.workStatus === 'online' || u.workStatus === 'busy')).length;
-  }
-
-  // Chat Data Storage
   function getAllChats() {
     try {
       return JSON.parse(localStorage.getItem(STORAGE_KEYS.CHATS)) || [];
@@ -124,6 +176,7 @@
   function getOrCreateClientChat() {
     let chatId = sessionStorage.getItem(STORAGE_KEYS.CLIENT_CHAT_ID);
     const chats = getAllChats();
+    const lang = getActiveLanguage();
 
     let current = chats.find(c => c.id === chatId);
     if (!current) {
@@ -131,12 +184,27 @@
       sessionStorage.setItem(STORAGE_KEYS.CLIENT_CHAT_ID, chatId);
 
       const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      let welcomeText = 'Здравствуйте! Рады приветствовать вас в Amaras Tour. Чем я могу помочь вам в выборе тура, трансфера или организации отдыха в Армении?';
+      let welcomeChips = ['Популярные туры', 'Цены на трансферы', 'Как забронировать', 'Позвать оператора'];
+      let botSenderName = 'Бот Amaras';
+
+      if (lang === 'ENG') {
+        welcomeText = 'Hello! Welcome to Amaras Tour. How can I help you choose a tour, book a private transfer, or plan your stay in Armenia?';
+        welcomeChips = ['Popular tours', 'Transfer prices', 'How to book', 'Live operator'];
+        botSenderName = 'Amaras Bot';
+      } else if (lang === 'HY') {
+        welcomeText = 'Բարև Ձեզ: Ուրախ ենք ողջունել ձեզ Amaras Tour-ում: Ինչո՞վ կարող ենք օգնել տուրի ընտրության կամ տրանսֆերի ամրագրման հարցում:';
+        welcomeChips = ['Հանրաճանաչ տուրեր', 'Տրանսֆերի գներ', 'Ինչպես ամրագրել', 'Կապ օպերատորի հետ'];
+        botSenderName = 'Amaras Բոտ';
+      }
+
       current = {
         id: chatId,
-        clientName: 'Гость #' + chatId.slice(-4).toUpperCase(),
-        page: document.title ? document.title.split('|')[0].trim() : 'Главная',
-        status: 'bot', // 'bot' | 'waiting_operator' | 'in_operator_chat' | 'closed'
-        assignedOperator: null, // { id, name, login }
+        clientName: (lang === 'ENG' ? 'Guest #' : lang === 'HY' ? 'Հյուր #' : 'Гость #') + chatId.slice(-4).toUpperCase(),
+        page: document.title ? document.title.split('|')[0].trim() : 'Amaras Tour',
+        status: 'bot',
+        assignedOperator: null,
         createdAt: Date.now(),
         updatedAt: Date.now(),
         unreadForOperator: 0,
@@ -145,16 +213,11 @@
           {
             id: 'msg_init',
             sender: 'bot',
-            senderName: 'Бот Amaras',
-            text: 'Здравствуйте! Рады приветствовать вас в Amaras Tour. Чем я могу помочь вам в выборе тура, трансфера или организации отдыха в Армении?',
+            senderName: botSenderName,
+            text: welcomeText,
             timestamp: Date.now(),
             timeStr: timeStr,
-            chips: [
-              'Популярные туры',
-              'Цены на трансферы',
-              'Как забронировать',
-              'Позвать оператора'
-            ]
+            chips: welcomeChips
           }
         ]
       };
@@ -164,85 +227,209 @@
     return current;
   }
 
-  // Knowledge Base Bot Answers
-  const BOT_KNOWLEDGE = [
+  // =========================================================================
+  // 4. TRILINGUAL KNOWLEDGE BASE (RU, ENG, HY)
+  // =========================================================================
+  const TRILINGUAL_KNOWLEDGE = [
+    // Transfers / Airport
     {
-      keywords: ['трансфер', 'аэропорт', 'звартноц', 'такси', 'машин', 'встреч', 'доехать'],
-      response: 'Мы предоставляем комфортные трансферы из аэропорта Звартноц в Ереван (от 10 000 AMD) и по всей Армении (Севан, Дилижан, Цахкадзор, Джермук, Татев, Тбилиси). В автопарке комфортные седаны, минивэны Mercedes V-Class (до 7 мест), микроавтобусы Sprinter (до 20 мест) и представительский Maybach. Водитель встретит вас с табличкой в зале прилета.',
-      chips: ['Тарифы на трансферы', 'Заказать трансфер', 'Позвать оператора']
+      keywords: {
+        RU: ['трансфер', 'аэропорт', 'звартноц', 'такси', 'машин', 'встреч', 'доехать', 'автопарк'],
+        ENG: ['transfer', 'airport', 'zvartnots', 'taxi', 'ride', 'car', 'pickup', 'dropoff', 'drive', 'fleet'],
+        HY: ['տրանսֆեր', 'օդանավակայան', 'զվարթնոց', 'տաքսի', 'մեքենա', 'դիմավորել', 'ավտոպարկ']
+      },
+      response: {
+        RU: 'Мы предоставляем комфортные трансферы из аэропорта Звартноц в Ереван (от 10 000 AMD) и по всей Армении (Севан, Дилижан, Цахкадзор, Джермук, Татев, Тбилиси). В автопарке комфортные седаны, минивэны Mercedes V-Class (до 7 мест), микроавтобусы Sprinter (до 20 мест) и представительский Maybach. Водитель встретит вас с табличкой в зале прилета.',
+        ENG: 'We provide comfortable private transfers from Zvartnots Airport to Yerevan (from 10,000 AMD / ~$26) and throughout Armenia (Sevan, Dilijan, Tsaghkadzor, Jermuk, Tatev, Tbilisi). Our fleet includes comfort sedans, Mercedes V-Class VIP minivans (up to 7 seats), Sprinter minibuses (up to 20 seats), and luxury Maybach. Your driver meets you with a nameplate in the arrivals hall.',
+        HY: 'Մենք տրամադրում ենք հարմարավետ տրանսֆերներ Զվարթնոց օդանավակայանից դեպի Երևան (սկսած 10 000 դրամից) և ողջ Հայաստանով (Սևան, Դիլիջան, Ծաղկաձոր, Ջերմուկ, Տաթև, Թբիլիսի): Մեր ավտոպարկում առկա են սեդաններ, Mercedes V-Class (մինչև 7 տեղ), Sprinter (մինչև 20 տեղ) և VIP Maybach: Վարորդը կդիմավորի ձեզ անվանական ցուցանակով:'
+      },
+      chips: {
+        RU: ['Тарифы на трансферы', 'Заказать трансфер', 'Позвать оператора'],
+        ENG: ['Transfer rates', 'Book transfer', 'Live operator'],
+        HY: ['Տրանսֆերի սակագներ', 'Պատվիրել տրանսֆեր', 'Կապ օպերատորի հետ']
+      }
     },
+
+    // Jeep Tours
     {
-      keywords: ['джип', 'аждаак', 'арагац', 'ущелье ангелов', 'вулкан', 'горы', '4x4'],
-      response: 'Наши авторские джип-туры проходят на подготовленных внедорожниках Toyota Land Cruiser и Sequoia с опытными гидами-водителями. Популярные направления: Восхождение на вулкан Аждаак к кратерному озеру, Экспедиция на гору Арагац и Марсианские каньоны Ущелья Ангелов. В стоимость входят трансфер, экипировка и сопровождение.',
-      chips: ['Подробнее о джип-турах', 'Позвать оператора']
+      keywords: {
+        RU: ['джип', 'аждаак', 'арагац', 'ущелье ангелов', 'вулкан', 'горы', '4x4', 'внедорож'],
+        ENG: ['jeep', 'offroad', 'azhdahak', 'aragats', 'angels canyon', 'volcano', 'mountains', '4x4'],
+        HY: ['ջիպ', 'աժդահակ', 'արագած', 'հրեշտակների կիրճ', 'հրաբուխ', 'սարեր', '4x4']
+      },
+      response: {
+        RU: 'Наши авторские джип-туры проходят на подготовленных внедорожниках Toyota Land Cruiser и Sequoia с опытными гидами-водителями. Топовые направления: Восхождение на вулкан Аждаак к кратерному озеру (3597 м), Экспедиция на гору Арагац и Марсианские каньоны Ущелья Ангелов. В стоимость входят трансфер, экипировка и сопровождение.',
+        ENG: 'Our signature 4x4 jeep tours feature expedition-ready Toyota Land Cruiser and Sequoia vehicles with seasoned mountain drivers. Top routes: Mount Azhdahak volcano crater lake (3597 m), Mount Aragats high-altitude expedition, and the Martian labyrinths of Angels Canyon. Transfers, guiding, and safety gear are all included.',
+        HY: 'Մեր հեղինակային ջիպ-տուրերն անցկացվում են հատուկ պատրաստված Toyota Land Cruiser և Sequoia ամենագնացներով՝ փորձառու գիդ-վարորդների ուղեկցությամբ: Գլխավոր ուղղություններ՝ Վերելք Աժդահակ հրաբուխ (3597 մ), Արագած լեռան արշավ և Հրեշտակների կիրճի մարսյան լաբիրինթոսներ:'
+      },
+      chips: {
+        RU: ['Подробнее о джип-турах', 'Позвать оператора'],
+        ENG: ['More about jeep tours', 'Live operator'],
+        HY: ['Ավելին ջիպ-տուրերի մասին', 'Կապ օպերատորի հետ']
+      }
     },
+
+    // Gastro Tours
     {
-      keywords: ['гастро', 'вино', 'арени', 'сыр', 'лаваш', 'севанский ишхан', 'еда', 'дегустац'],
-      response: 'В гастрономических турах Amaras вас ждут мастер-классы по выпечке традиционного лаваша в тонире, дегустации вин в старейших винодельнях Арени и свежий севанский ишхан с раковыми шейками на берегу озера. В стоимость включены все дегустации и сытный обед.',
-      chips: ['Гастрономические туры', 'Позвать оператора']
+      keywords: {
+        RU: ['гастро', 'вино', 'арени', 'сыр', 'лаваш', 'севанский ишхан', 'еда', 'дегустац', 'кухня'],
+        ENG: ['gastro', 'wine', 'areni', 'cheese', 'lavash', 'trout', 'food', 'tasting', 'culinary', 'kitchen'],
+        HY: ['գաստրո', 'գինի', 'արենի', 'պանիր', 'լավաշ', 'իշխան', 'ուտելիք', 'համտես', 'խոհանոց']
+      },
+      response: {
+        RU: 'В гастрономических турах Amaras вас ждут мастер-классы по выпечке традиционного лаваша в тонире, дегустации премиальных вин в старейших винодельнях Арени и свежий севанский ишхан с раковыми шейками на берегу озера. В стоимость включены все дегустации и сытный обед.',
+        ENG: 'Amaras gastro tours feature authentic masterclasses in baking Armenian tonir lavash, premium wine tastings in historical Areni cave wineries, and fresh Lake Sevan trout with crayfish kebabs. All tastings and full traditional lunches are fully included.',
+        HY: 'Amaras-ի գաստրոնոմիկ տուրերում ձեզ սպասվում են ավանդական թոնրի լավաշի թխման վարպետաց դասեր, բարձրակարգ գինիների համտես Արենիի հնագույն գինեգործարաններում և թարմ Սևանի իշխան լճի ափին:'
+      },
+      chips: {
+        RU: ['Гастрономические туры', 'Позвать оператора'],
+        ENG: ['Gastro tours', 'Live operator'],
+        HY: ['Գաստրո տուրեր', 'Կապ օպերատորի հետ']
+      }
     },
+
+    // Cultural & Group Tours
     {
-      keywords: ['гарни', 'гегард', 'хор вирап', 'татев', 'дилижан', 'севан', 'экскурси', 'группов', 'мини'],
-      response: 'Ежедневные регулярные экскурсии по главным святыням и красотам Армении: Гарни и скальный монастырь Гегард, Симфония камней, Хор Вирап с панорамой на Арарат, Озеро Севан и Монастырь Татев с канатной дорогой Крылья Татева. Выезд из центра Еревана в комфортных мини-группах.',
-      chips: ['Посмотреть каталог туров', 'Позвать оператора']
+      keywords: {
+        RU: ['гарни', 'гегард', 'хор вирап', 'татев', 'дилижан', 'севан', 'экскурси', 'группов', 'мини'],
+        ENG: ['garni', 'geghard', 'khor virap', 'tatev', 'dilijan', 'sevan', 'excursion', 'group tour', 'sightseeing'],
+        HY: ['գառնի', 'գեղարդ', 'խոր վիրապ', 'տաթև', 'դիլիջան', 'սևան', 'էքսկուրսիա', 'խմբային']
+      },
+      response: {
+        RU: 'Ежедневные регулярные экскурсии по главным святыням и красотам Армении: Храм Гарни и скальный монастырь Гегард, Симфония камней, Хор Вирап с панорамой на Арарат, Озеро Севан и Монастырь Татев с канатной дорогой Крылья Татева. Выезд из центра Еревана в комфортных мини-группах.',
+        ENG: 'Daily tours to Armenia’s most breathtaking landmarks: Garni pagan temple & Geghard cave monastery, Symphony of Stones, Khor Virap overlooking majestic Mount Ararat, Lake Sevan & Dilijan, and Tatev Monastery with the Wings of Tatev ropeway. Daily departures from central Yerevan in modern mini-groups.',
+        HY: 'Ամենօրյա էքսկուրսիաներ Հայաստանի գլխավոր տեսարժան վայրերով՝ Գառնիի տաճար և Գեղարդավանք, Քարերի սիմֆոնիա, Խոր Վիրապ՝ Արարատի հիասքանչ տեսարանով, Սևանա լիճ, Դիլիջան և Տաթևի վանք՝ ՏաԹևեր ճոպանուղով: Մեկնումները կենտրոնական Երևանից:'
+      },
+      chips: {
+        RU: ['Посмотреть каталог туров', 'Позвать оператора'],
+        ENG: ['Browse all tours', 'Live operator'],
+        HY: ['Տեսնել բոլոր տուրերը', 'Կապ օպերատորի հետ']
+      }
     },
+
+    // Prices & Rates
     {
-      keywords: ['цен', 'стоимост', 'прайс', 'тариф', 'скидк', 'сколько стоит'],
-      response: 'Стоимость групповых мини-туров начинается от 22 000 AMD за человека. Авторские джип-туры — от 65 000 AMD. Трансферы из аэропорта — от 10 000 AMD. При бронировании от 2-х туров действуют специальные сезонные скидки.',
-      chips: ['Каталог туров', 'Позвать оператора']
+      keywords: {
+        RU: ['цен', 'стоимост', 'прайс', 'тариф', 'скидк', 'сколько стоит'],
+        ENG: ['price', 'cost', 'rate', 'fee', 'discount', 'how much', 'fares'],
+        HY: ['գին', 'արժեք', 'սակագին', 'զեղչ', 'ինչքան արժե']
+      },
+      response: {
+        RU: 'Стоимость групповых мини-туров начинается от 22 000 AMD за человека. Авторские джип-туры — от 65 000 AMD. Трансферы из аэропорта Звартноц — от 10 000 AMD. При бронировании от 2-х туров действуют специальные сезонные скидки.',
+        ENG: 'Group mini-tours start from 22,000 AMD (~$55) per person. Signature jeep expeditions from 65,000 AMD. Airport transfers from 10,000 AMD (~$26). Seasonal discounts apply when booking two or more tours.',
+        HY: 'Խմբային մինի-տուրերի արժեքը սկսվում է 22 000 դրամից մեկ անձի համար: Ջիպ-արշավները՝ 65 000 դրամից: Օդանավակայանի տրանսֆերները՝ 10 000 դրամից: Երկու կամ ավելի տուրեր ամրագրելիս գործում են հատուկ զեղչեր:'
+      },
+      chips: {
+        RU: ['Каталог туров', 'Позвать оператора'],
+        ENG: ['Tour catalog', 'Live operator'],
+        HY: ['Տուրերի կատալոգ', 'Կապ օպերատորի հետ']
+      }
     },
+
+    // Booking & Cancellation
     {
-      keywords: ['брон', 'заказ', 'оплат', 'картой', 'наличн', 'предоплат', 'отмен'],
-      response: 'Забронировать тур или трансфер можно прямо на сайте, добавив маршрут в корзину, или через наших менеджеров. Оплата возможна картами онлайн, банковским переводом или наличными водителю. Бесплатная отмена бронирования действует за 24 часа до начала поездки.',
-      chips: ['Как забронировать', 'Позвать оператора']
+      keywords: {
+        RU: ['брон', 'заказ', 'оплат', 'картой', 'наличн', 'предоплат', 'отмен'],
+        ENG: ['book', 'reserve', 'order', 'pay', 'payment', 'card', 'cash', 'cancel', 'refund'],
+        HY: ['ամրագրել', 'պատվիրել', 'վճարել', 'քարտով', 'կանխիկ', 'չեղարկել']
+      },
+      response: {
+        RU: 'Забронировать тур или трансфер можно прямо на сайте, добавив маршрут в корзину, или через наших менеджеров. Оплата возможна картами онлайн, банковским переводом или наличными водителю. Бесплатная отмена бронирования действует за 24 часа до поездки.',
+        ENG: 'You can book any tour or transfer directly on the website by adding it to your cart, or through our managers. We accept online card payments, bank wire transfers, and cash to the driver. Free cancellation is guaranteed up to 24 hours prior to departure.',
+        HY: 'Տուրը կամ տրանսֆերը կարող եք ամրագրել անմիջապես կայքում՝ ավելացնելով զամբյուղի մեջ, կամ մեր մենեջերների միջոցով: Վճարումը հնարավոր է քարտով օնլայն, բանկային փոխանցմամբ կամ կանխիկ վարորդին: Գործում է անվճար չեղարկում ուղևորությունից 24 ժամ առաջ:'
+      },
+      chips: {
+        RU: ['Как забронировать', 'Позвать оператора'],
+        ENG: ['How to book', 'Live operator'],
+        HY: ['Ինչպես ամրագրել', 'Կապ օպերատորի հետ']
+      }
     },
+
+    // Contacts
     {
-      keywords: ['контакт', 'телефон', 'номер', 'whatsapp', 'вацап', 'ватсап', 'адрес', 'офис', 'где вы'],
-      response: 'Служба заботы Amaras Tour на связи ежедневно с 08:00 до 23:00. Телефон горячей линии: +374 99 250 525. Наш WhatsApp: +374 99 250 525. Telegram: @amarastour. Офис расположен в центре Еревана.',
-      chips: ['Написать в WhatsApp', 'Позвать оператора']
+      keywords: {
+        RU: ['контакт', 'телефон', 'номер', 'whatsapp', 'вацап', 'ватсап', 'адрес', 'офис', 'где вы'],
+        ENG: ['contact', 'phone', 'number', 'whatsapp', 'call', 'address', 'office', 'location', 'where'],
+        HY: ['կոնտակտ', 'հեռախոս', 'համար', 'whatsapp', 'հասցե', 'գրասենյակ', 'որտեղ']
+      },
+      response: {
+        RU: 'Служба заботы Amaras Tour на связи ежедневно с 08:00 до 23:00 (GMT+4). Горячая линия: +374 99 250 525. WhatsApp: +374 99 250 525. Telegram: @amarastour. Офис расположен в центре Еревана.',
+        ENG: 'Amaras Tour customer care is available daily from 08:00 to 23:00 (GMT+4). Hotline: +374 99 250 525. WhatsApp: +374 99 250 525. Telegram: @amarastour. Our main office is located in central Yerevan.',
+        HY: 'Amaras Tour-ի աջակցման կենտրոնն աշխատում է ամեն օր 08:00-ից մինչև 23:00 (GMT+4): Թեժ գիծ՝ +374 99 250 525: WhatsApp՝ +374 99 250 525: Telegram՝ @amarastour: Գրասենյակը գտնվում է Երևանի կենտրոնում:'
+      },
+      chips: {
+        RU: ['Написать в WhatsApp', 'Позвать оператора'],
+        ENG: ['WhatsApp chat', 'Live operator'],
+        HY: ['Գրել WhatsApp-ում', 'Կապ օպերատորի հետ']
+      }
     },
+
+    // Clothing & Weather
     {
-      keywords: ['что взять', 'одежд', 'погод', 'обувь', 'взять с собой'],
-      response: 'Для поездок в горы и к озеру Севан рекомендуем удобную трекинговую или спортивную обувь, ветрозащитную куртку (в горах прохладнее на 7-10 градусов), солнцезащитные очки и крем. При посещении монастырей рекомендуется закрытая одежда.',
-      chips: ['Выбрать тур', 'Позвать оператора']
+      keywords: {
+        RU: ['что взять', 'одежд', 'погод', 'обувь', 'взять с собой'],
+        ENG: ['what to wear', 'clothes', 'clothing', 'shoes', 'weather', 'bring', 'pack', 'temperature'],
+        HY: ['ինչ վերցնել', 'հագուստ', 'եղանակ', 'կոշիկ', 'հագնել', 'ջերմաստիճան']
+      },
+      response: {
+        RU: 'Для поездок в горы и к озеру Севан рекомендуем удобную трекинговую или спортивную обувь, ветрозащитную куртку (в горах прохладнее на 7-10 градусов), солнцезащитные очки и крем. При посещении монастырей рекомендуется закрытая одежда.',
+        ENG: 'For mountain excursions and Lake Sevan trips, we recommend comfortable walking shoes, a light windbreaker jacket (mountain areas are 7-10°C cooler), sunglasses, and sunscreen. Modest clothing is recommended when entering historical churches and monasteries.',
+        HY: 'Լեռնային ուղղությունների և Սևանի համար խորհուրդ ենք տալիս հարմարավետ մարզական կոշիկներ, քամուց պաշտպանող բաճկոն (սարերում 7-10 աստիճանով ավելի զով է), արևային ակնոց և քսուք: Վանքեր այցելելիս ցանկալի է կրել համեստ հագուստ:'
+      },
+      chips: {
+        RU: ['Каталог туров', 'Позвать оператора'],
+        ENG: ['Tour catalog', 'Live operator'],
+        HY: ['Տուրերի կատալոգ', 'Կապ օպերատորի հետ']
+      }
     }
   ];
 
   // Evaluate message for bot reply or operator handover
   function evaluateBotResponse(userInput) {
-    const text = userInput.trim().toLowerCase();
+    const text = (userInput || '').trim().toLowerCase();
+    const lang = detectMessageLanguage(userInput);
 
-    // Check explicit operator requests
-    const operatorKeywords = ['оператор', 'человек', 'менеджер', 'позови', 'позовите', 'живой', 'специалист', 'сотрудник', 'help', 'human', 'консультант', 'связать'];
+    // Operator handover triggers
+    const operatorKeywords = [
+      'оператор', 'человек', 'менеджер', 'позови', 'позовите', 'живой', 'специалист', 'сотрудник', 'консультант', 'связать',
+      'operator', 'human', 'agent', 'manager', 'person', 'support', 'live agent', 'help me', 'talk to human',
+      'օպերատոր', 'մարդ', 'մենեջեր', 'օգնություն', 'խորհրդատու'
+    ];
+
     const wantsOperator = operatorKeywords.some(kw => text.includes(kw));
-
     if (wantsOperator) {
       return {
         action: 'handover',
-        reason: 'Запрос живого оператора'
+        lang: lang,
+        reason: lang === 'ENG' ? 'Visitor requested live agent' : lang === 'HY' ? 'Օգտատերը պահանջել է օպերատորի' : 'Запрос живого оператора'
       };
     }
 
     // Match knowledge base
-    for (const item of BOT_KNOWLEDGE) {
-      const matched = item.keywords.some(kw => text.includes(kw));
+    for (const item of TRILINGUAL_KNOWLEDGE) {
+      const allKws = [...(item.keywords.RU || []), ...(item.keywords.ENG || []), ...(item.keywords.HY || [])];
+      const matched = allKws.some(kw => text.includes(kw));
       if (matched) {
         return {
           action: 'reply',
-          text: item.response,
-          chips: item.chips
+          lang: lang,
+          text: item.response[lang] || item.response.RU,
+          chips: item.chips[lang] || item.chips.RU
         };
       }
     }
 
-    // Not recognized -> handover to operator
+    // Unrecognized query -> handover to live operator
     return {
       action: 'handover',
-      reason: 'Вопрос требует персональной консультации оператора'
+      lang: lang,
+      reason: lang === 'ENG' ? 'Custom travel inquiry' : lang === 'HY' ? 'Անհատական հարցում' : 'Вопрос требует консультации оператора'
     };
   }
 
-  // Public API object attached to window
+  // =========================================================================
+  // 5. PUBLIC API
+  // =========================================================================
   window.AmarasLiveChat = {
     STORAGE_KEYS,
     sha256Hex,
@@ -251,33 +438,32 @@
     saveStaffUsers,
     getCurrentStaff,
     setCurrentStaff,
-    hasOnlineOperators,
-    getOnlineOperatorsCount,
     getAllChats,
     saveAllChats,
     getOrCreateClientChat,
     evaluateBotResponse,
+    getActiveLanguage,
+    detectMessageLanguage,
 
     // Register a new operator (pending admin approval)
     async registerOperator({ name, login, phone, email, password }) {
       initStaffStorage();
       const users = getStaffUsers();
-
-      const cleanLogin = login.trim().toLowerCase();
+      const cleanLogin = (login || '').trim().toLowerCase();
       if (!cleanLogin) throw new Error('Логин обязателен');
-      if (users.some(u => u.login.toLowerCase() === cleanLogin)) {
+      if (users.some(u => (u.login || '').toLowerCase() === cleanLogin)) {
         throw new Error('Пользователь с таким логином уже существует');
       }
 
-      const passHash = await sha256Hex(password);
+      const passHash = await sha256Hex(password || '');
       const newOp = {
         id: 'op_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
-        name: name.trim(),
+        name: (name || '').trim(),
         login: cleanLogin,
-        phone: phone.trim(),
+        phone: (phone || '').trim(),
         email: email ? email.trim() : '',
         role: 'operator',
-        status: 'pending', // Pending approval by Admin
+        status: 'pending',
         workStatus: 'offline',
         handledChatsCount: 0,
         passwordHash: passHash,
@@ -289,13 +475,12 @@
       return newOp;
     },
 
-    // Staff login (Admin is verified strictly via cryptographic hash in-memory; credentials are never saved in storage)
+    // Staff login
     async loginStaff(login, password) {
       initStaffStorage();
       const cleanLogin = (login || '').trim().toLowerCase();
       const passHash = await sha256Hex(password || '');
 
-      // Verify admin strictly in-memory by hash - NEVER store admin or plaintext password anywhere
       if (cleanLogin === 'admin' || cleanLogin === 'admin@amaras.am') {
         if (passHash === ADMIN_HASH) {
           const adminSession = {
@@ -313,7 +498,6 @@
         }
       }
 
-      // Check operator
       const users = getStaffUsers();
       const op = users.find(u => (u.login || '').toLowerCase() === cleanLogin || ((u.email || '').toLowerCase() === cleanLogin));
       if (!op || op.passwordHash !== passHash) {
@@ -342,7 +526,6 @@
       return { success: true, user: op };
     },
 
-    // Staff logout
     logoutStaff() {
       const cur = getCurrentStaff();
       if (cur) {
@@ -356,7 +539,6 @@
       setCurrentStaff(null);
     },
 
-    // Admin approves operator
     approveOperator(operatorId) {
       const users = getStaffUsers();
       const op = users.find(u => u.id === operatorId);
@@ -367,7 +549,6 @@
       return true;
     },
 
-    // Admin rejects operator
     rejectOperator(operatorId) {
       const users = getStaffUsers();
       const op = users.find(u => u.id === operatorId);
@@ -378,7 +559,6 @@
       return true;
     },
 
-    // Admin deletes operator
     deleteOperator(operatorId) {
       let users = getStaffUsers();
       users = users.filter(u => u.id !== operatorId);
@@ -386,14 +566,12 @@
       return true;
     },
 
-    // Operator updates work status (online / busy / offline)
     setOperatorWorkStatus(operatorId, status) {
       const users = getStaffUsers();
       const op = users.find(u => u.id === operatorId);
       if (!op) return false;
       op.workStatus = status;
       saveStaffUsers(users);
-
       const cur = getCurrentStaff();
       if (cur && cur.id === operatorId) {
         cur.workStatus = status;
@@ -406,11 +584,12 @@
     sendVisitorMessage(text) {
       const chat = getOrCreateClientChat();
       const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const lang = detectMessageLanguage(text);
 
       const newMsg = {
         id: 'msg_' + Date.now() + '_' + Math.random().toString(36).substring(2, 5),
         sender: 'visitor',
-        senderName: chat.clientName || 'Посетитель',
+        senderName: chat.clientName || (lang === 'ENG' ? 'You' : lang === 'HY' ? 'Դուք' : 'Вы'),
         text: text,
         timestamp: Date.now(),
         timeStr: timeStr
@@ -423,7 +602,6 @@
         chats[idx].updatedAt = Date.now();
         chats[idx].unreadForOperator = (chats[idx].unreadForOperator || 0) + 1;
 
-        // If currently talking to bot, evaluate bot answer or handover
         if (chats[idx].status === 'bot') {
           const evalResult = evaluateBotResponse(text);
 
@@ -432,7 +610,7 @@
               const botMsg = {
                 id: 'msg_bot_' + Date.now(),
                 sender: 'bot',
-                senderName: 'Бот Amaras',
+                senderName: evalResult.lang === 'ENG' ? 'Amaras Bot' : evalResult.lang === 'HY' ? 'Amaras Բոտ' : 'Бот Amaras',
                 text: evalResult.text,
                 timestamp: Date.now(),
                 timeStr: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
@@ -445,12 +623,11 @@
                 freshChats[fIdx].updatedAt = Date.now();
                 saveAllChats(freshChats);
               }
-            }, 600);
+            }, 550);
           } else if (evalResult.action === 'handover') {
-            // Handover to operator
             setTimeout(() => {
-              this.requestOperatorHandover(chat.id, evalResult.reason);
-            }, 500);
+              this.requestOperatorHandover(chat.id, evalResult.reason, evalResult.lang);
+            }, 450);
           }
         }
 
@@ -459,40 +636,51 @@
       return newMsg;
     },
 
-    // Request handover to live operator
-    requestOperatorHandover(chatId, reason) {
+    // Handover to live operator via Tawk.to
+    requestOperatorHandover(chatId, reason, lang) {
       const chats = getAllChats();
       const idx = chats.findIndex(c => c.id === chatId);
       if (idx === -1) return;
 
-      const onlineCount = getOnlineOperatorsCount();
+      const currentLang = lang || getActiveLanguage();
       const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
       chats[idx].status = 'waiting_operator';
       chats[idx].updatedAt = Date.now();
 
-      let handoverText = '';
-      if (onlineCount > 0) {
-        handoverText = 'Подключаю свободного оператора Amaras Tour. Пожалуйста, оставайтесь на связи, менеджер ответит в течение 1-2 минут...';
-      } else {
-        handoverText = 'Все наши операторы сейчас на выезде или не на смене. Напишите нам напрямую в WhatsApp: +374 99 250 525 или оставьте контактный номер, дежурный специалист свяжется с вами в течение 10 минут.';
+      let handoverText = 'Переключаю вас на дежурного оператора Amaras Tour в Tawk.to. Пожалуйста, оставайтесь на связи...';
+      let chips = ['Открыть чат с оператором', 'Написать в WhatsApp'];
+
+      if (currentLang === 'ENG') {
+        handoverText = 'Connecting you to an Amaras Tour live agent on Tawk.to. Please stay on the line...';
+        chips = ['Open Live Agent Chat', 'Message on WhatsApp'];
+      } else if (currentLang === 'HY') {
+        handoverText = 'Միացնում եմ Amaras Tour-ի հերթապահ օպերատորին Tawk.to-ում: Խնդրում ենք մնալ կապի մեջ...';
+        chips = ['Բացել օպերատորի չատը', 'Գրել WhatsApp-ում'];
       }
 
       const sysMsg = {
         id: 'msg_handover_' + Date.now(),
         sender: 'system',
-        senderName: 'Система',
+        senderName: 'Tawk.to Live Support',
         text: handoverText,
         timestamp: Date.now(),
         timeStr: timeStr,
-        chips: onlineCount === 0 ? ['Написать в WhatsApp', 'Позвонить +374 99 250 525'] : []
+        chips: chips
       };
 
       chats[idx].messages.push(sysMsg);
       saveAllChats(chats);
+
+      // Open Tawk.to window automatically
+      setTimeout(() => {
+        if (typeof window.openTawkChat === 'function') {
+          window.openTawkChat();
+        }
+      }, 350);
     },
 
-    // Operator claims/accepts a waiting chat
+    // Operator claims chat
     acceptChat(chatId, operatorUser) {
       const chats = getAllChats();
       const idx = chats.findIndex(c => c.id === chatId);
@@ -518,7 +706,6 @@
 
       chats[idx].messages.push(joinMsg);
 
-      // Increment operator handled count
       const staff = getStaffUsers();
       const op = staff.find(u => u.id === operatorUser.id);
       if (op) {
@@ -530,7 +717,6 @@
       return true;
     },
 
-    // Operator or Admin sends a reply message
     sendOperatorMessage(chatId, text, staffUser) {
       const chats = getAllChats();
       const idx = chats.findIndex(c => c.id === chatId);
@@ -541,7 +727,7 @@
         id: 'msg_op_' + Date.now() + '_' + Math.random().toString(36).substring(2, 5),
         sender: 'operator',
         senderName: staffUser.name || 'Оператор',
-        text: text.trim(),
+        text: (text || '').trim(),
         timestamp: Date.now(),
         timeStr: timeStr
       };
@@ -553,7 +739,6 @@
       return newMsg;
     },
 
-    // Close / resolve chat
     closeChat(chatId, closedByStaff) {
       const chats = getAllChats();
       const idx = chats.findIndex(c => c.id === chatId);
@@ -575,11 +760,12 @@
       chats[idx].messages.push(closeMsg);
       saveAllChats(chats);
       return true;
-    },
-
-    renderClientMessages
+    }
   };
 
+  // =========================================================================
+  // 6. DOM UI BINDING & REAL-TIME SYNC
+  // =========================================================================
   function escapeHtml(str) {
     if (!str) return '';
     const p = document.createElement('p');
@@ -597,18 +783,21 @@
 
     const chat = getOrCreateClientChat();
     if (!chat || !chat.messages) return;
+    const lang = getActiveLanguage();
 
-    let html = '<div class="amaras-chat-date-divider" data-i18n="chat_date_today">Сегодня</div>';
+    const dateDividerText = lang === 'ENG' ? 'Today' : lang === 'HY' ? 'Այսօր' : 'Сегодня';
+    let html = `<div class="amaras-chat-date-divider">${dateDividerText}</div>`;
 
     chat.messages.forEach(m => {
       let bubbleClass = 'is-agent';
-      let senderLabel = m.senderName || 'Служба заботы';
+      let senderLabel = m.senderName || (lang === 'ENG' ? 'Amaras Support' : lang === 'HY' ? 'Amaras Աջակցություն' : 'Служба заботы');
+
       if (m.sender === 'visitor') {
         bubbleClass = 'is-user';
         senderLabel = '';
       } else if (m.sender === 'operator') {
         bubbleClass = 'is-operator';
-        senderLabel = 'Оператор ' + (m.senderName || 'Amaras');
+        senderLabel = (lang === 'ENG' ? 'Agent ' : lang === 'HY' ? 'Օպերատոր ' : 'Оператор ') + (m.senderName || 'Amaras');
       } else if (m.sender === 'system') {
         bubbleClass = 'is-system';
         senderLabel = '';
@@ -634,7 +823,7 @@
             ${senderLabel ? `<div class="amaras-bubble-sender">${escapeHtml(senderLabel)}</div>` : ''}
             <div>${m.text}</div>
             ${chipsHtml}
-            <div class="amaras-bubble-time">${m.timeStr || ''} ${m.sender === 'visitor' ? '✓✓' : ''}</div>
+            <div class="amaras-bubble-time">${m.timeStr || ''}</div>
           </div>
         `;
       }
@@ -648,13 +837,13 @@
     const scroll = document.getElementById('amarasChatScroll');
     if (!scroll) return;
 
-    window.sendQuickChatMessage = function(question) {
+    window.sendQuickChatMessage = function (question) {
       if (typeof window.openSupportChatView === 'function') window.openSupportChatView('messages');
       window.AmarasLiveChat.sendVisitorMessage(question);
       renderClientMessages();
     };
 
-    window.handleChatSubmit = function(e) {
+    window.handleChatSubmit = function (e) {
       if (e && e.preventDefault) e.preventDefault();
       const input = document.getElementById('amarasChatInput');
       if (!input) return;
@@ -665,16 +854,18 @@
       renderClientMessages();
     };
 
-    window.handleVisitorQuickChip = function(text) {
+    window.handleVisitorQuickChip = function (text) {
       const chat = getOrCreateClientChat();
-      if (text === 'Позвать оператора') {
+      const lower = (text || '').toLowerCase();
+
+      if (lower.includes('оператор') || lower.includes('operator') || lower.includes('օպերատոր') || lower.includes('agent')) {
         window.AmarasLiveChat.requestOperatorHandover(chat.id, 'Запрос живого оператора');
-      } else if (text === 'Написать в WhatsApp') {
+      } else if (lower.includes('tawk')) {
+        if (typeof window.openTawkChat === 'function') window.openTawkChat();
+      } else if (lower.includes('whatsapp') || lower.includes('вацап')) {
         window.open('https://wa.me/37499250525', '_blank');
-        return;
-      } else if (text && text.indexOf('Позвонить') === 0) {
+      } else if (lower.startsWith('позвонить') || lower.startsWith('call') || lower.startsWith('զանգ')) {
         window.location.href = 'tel:+37499250525';
-        return;
       } else {
         window.AmarasLiveChat.sendVisitorMessage(text);
       }
@@ -683,7 +874,6 @@
 
     window.renderClientChatMessages = renderClientMessages;
 
-    // Listen for storage changes
     window.addEventListener('storage', (e) => {
       if (e.key === STORAGE_KEYS.CHATS) {
         renderClientMessages();
@@ -704,7 +894,6 @@
     autoBindChatWidget();
   }
 
-  // Seed storage immediately
   initStaffStorage();
 
 })(window);
