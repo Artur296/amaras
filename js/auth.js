@@ -205,7 +205,7 @@
       // Toggle tab header visibility (hidden when in forgot, google, telegram view)
       const tabHeader = this.modalEl.querySelector('.amaras-auth-tabs');
       if (tabHeader) {
-        tabHeader.style.display = (tab === 'forgot' || tab === 'google' || tab === 'telegram') ? 'none' : 'grid';
+        tabHeader.style.display = (tab === 'forgot' || tab === 'google' || tab === 'apple' || tab === 'telegram') ? 'none' : 'grid';
       }
 
       if (tab === 'forgot' && !this.pendingReset) {
@@ -669,6 +669,15 @@
       }
     },
 
+    getSavedApple() {
+      try {
+        const val = localStorage.getItem('amaras_saved_apple');
+        return val ? JSON.parse(val) : null;
+      } catch (e) {
+        return null;
+      }
+    },
+
     getSavedTelegram() {
       try {
         const val = localStorage.getItem('amaras_saved_telegram');
@@ -695,7 +704,8 @@
       const top = Math.max(0, Math.round((window.screen.height - h) / 2));
       const popup = window.open('oauth-apple.html', 'amaras_apple_oauth', `width=${w},height=${h},top=${top},left=${left},status=no,menubar=no,toolbar=no`);
       if (!popup || popup.closed || typeof popup.closed === 'undefined') {
-        AmarasToast.show('Пожалуйста, разрешите всплывающее окно для входа с Apple ID', 'warning');
+        this.switchTab('apple');
+        this.renderAppleOAuth(false);
       }
     },
 
@@ -811,6 +821,122 @@
       this.handleGoogleConfirm(name, email);
     },
 
+    renderAppleOAuth(forceNew = false) {
+      const view = this.modalEl ? this.modalEl.querySelector('.amaras-auth-view[data-tab="apple"]') : null;
+      if (!view) return;
+
+      const savedApple = this.getSavedApple();
+
+      if (savedApple && !forceNew) {
+        const initials = this.getInitials(savedApple.name);
+        view.innerHTML = `
+          <div class="amaras-oauth-header">
+            <div class="amaras-oauth-icon is-apple">
+              <svg width="24" height="24" viewBox="0 0 170 170" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.66-7.79-11.89-14.24-5.23-8.03-9.5-17.1-12.82-27.21-3.31-10.11-4.97-20.08-4.97-29.9 0-14.07 3.52-25.96 10.56-35.68 7.04-9.72 16.03-14.65 26.96-14.79 4.35 0 9.29 1.13 14.81 3.4 5.53 2.27 9.4 3.46 11.62 3.58 1.93-.12 6.02-1.39 12.28-3.8 6.26-2.42 11.67-3.48 16.24-3.18 12.39 1.01 22.37 5.92 29.93 14.73-10.74 6.53-15.99 15.6-15.75 27.21.24 9.17 3.78 16.92 10.63 23.25 6.85 6.33 15.01 10.01 24.49 11.04-2.22 6.8-4.91 13.67-8.08 20.61zM119.22 31.84c0-7.23 2.65-14.02 7.95-20.37 5.3-6.35 11.95-10.15 19.95-11.41.24 1.25.36 2.45.36 3.6 0 7.37-2.82 14.3-8.45 20.79-5.63 6.49-12.23 10.31-19.81 11.46V31.84z"/></svg>
+            </div>
+            <h3 class="amaras-oauth-title">Вход с Apple ID</h3>
+            <p class="amaras-oauth-subtitle">Быстрый и защищенный вход для владельцев Apple</p>
+          </div>
+
+          <div class="amaras-oauth-card is-selected" onclick="AmarasAuth.handleAppleConfirm('${savedApple.name.replace(/'/g, "\\'")}', '${savedApple.email.replace(/'/g, "\\'")}')">
+            <div class="amaras-oauth-avatar is-apple">${initials}</div>
+            <div class="amaras-oauth-info">
+              <div class="amaras-oauth-name">${savedApple.name}</div>
+              <div class="amaras-oauth-meta">${savedApple.email}</div>
+            </div>
+            <svg class="amaras-oauth-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+
+          <button type="button" class="amaras-auth-submit-btn amaras-oauth-confirm-btn" onclick="AmarasAuth.handleAppleConfirm('${savedApple.name.replace(/'/g, "\\'")}', '${savedApple.email.replace(/'/g, "\\'")}')">
+            <span class="amaras-btn-text">Продолжить как ${savedApple.name.split(' ')[0]}</span>
+            <span class="amaras-btn-spinner"></span>
+          </button>
+
+          <button type="button" class="amaras-oauth-toggle-link" onclick="AmarasAuth.renderAppleOAuth(true)">
+            Указать другой Apple ID или скрыть email
+          </button>
+
+          <div class="amaras-auth-back-row">
+            <button type="button" class="amaras-auth-back-link" onclick="AmarasAuth.switchTab('login')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              <span>Вернуться ко входу</span>
+            </button>
+          </div>
+        `;
+      } else {
+        view.innerHTML = `
+          <div class="amaras-oauth-header">
+            <div class="amaras-oauth-icon is-apple">
+              <svg width="24" height="24" viewBox="0 0 170 170" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.66-7.79-11.89-14.24-5.23-8.03-9.5-17.1-12.82-27.21-3.31-10.11-4.97-20.08-4.97-29.9 0-14.07 3.52-25.96 10.56-35.68 7.04-9.72 16.03-14.65 26.96-14.79 4.35 0 9.29 1.13 14.81 3.4 5.53 2.27 9.4 3.46 11.62 3.58 1.93-.12 6.02-1.39 12.28-3.8 6.26-2.42 11.67-3.48 16.24-3.18 12.39 1.01 22.37 5.92 29.93 14.73-10.74 6.53-15.99 15.6-15.75 27.21.24 9.17 3.78 16.92 10.63 23.25 6.85 6.33 15.01 10.01 24.49 11.04-2.22 6.8-4.91 13.67-8.08 20.61zM119.22 31.84c0-7.23 2.65-14.02 7.95-20.37 5.3-6.35 11.95-10.15 19.95-11.41.24 1.25.36 2.45.36 3.6 0 7.37-2.82 14.3-8.45 20.79-5.63 6.49-12.23 10.31-19.81 11.46V31.84z"/></svg>
+            </div>
+            <h3 class="amaras-oauth-title">Вход с Apple ID</h3>
+            <p class="amaras-oauth-subtitle">Введите Apple ID или имя</p>
+          </div>
+
+          <form onsubmit="AmarasAuth.handleCustomApple(event)" novalidate>
+            <div class="amaras-auth-field">
+              <label for="customAppleEmail">E-mail адрес Apple ID (iCloud)</label>
+              <div class="amaras-auth-input-box">
+                <svg class="amaras-auth-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <input type="email" id="customAppleEmail" name="custom_apple_email" placeholder="name@icloud.com" required autocomplete="email" />
+              </div>
+            </div>
+
+            <div class="amaras-auth-field">
+              <label for="customAppleName">Имя владельца</label>
+              <div class="amaras-auth-input-box">
+                <svg class="amaras-auth-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" id="customAppleName" name="custom_apple_name" placeholder="Имя и фамилия" autocomplete="name" />
+              </div>
+            </div>
+
+            <button type="submit" class="amaras-auth-submit-btn amaras-oauth-confirm-btn" style="margin-top: 14px; background: #000000; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.2);">
+              <span class="amaras-btn-text">Войти с Apple ID</span>
+              <span class="amaras-btn-spinner"></span>
+            </button>
+          </form>
+
+          ${savedApple ? `
+            <button type="button" class="amaras-oauth-toggle-link" style="margin-top: 12px;" onclick="AmarasAuth.renderAppleOAuth(false)">
+              Вернуться к сохранённому аккаунту (${savedApple.name.split(' ')[0]})
+            </button>
+          ` : ''}
+
+          <div class="amaras-auth-back-row">
+            <button type="button" class="amaras-auth-back-link" onclick="AmarasAuth.switchTab('login')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              <span>Вернуться ко входу</span>
+            </button>
+          </div>
+        `;
+      }
+    },
+
+    handleCustomApple(e) {
+      e.preventDefault();
+      const form = e.target;
+      const email = form.custom_apple_email.value.trim();
+      let name = form.custom_apple_name ? form.custom_apple_name.value.trim() : '';
+
+      if (!email || !email.includes('@')) {
+        AmarasToast.show('Пожалуйста, введите корректный адрес Apple ID или iCloud', 'error');
+        if (form.custom_apple_email) form.custom_apple_email.focus();
+        return;
+      }
+
+      if (!name) {
+        const base = email.split('@')[0].replace(/[._-]/g, ' ');
+        name = base.split(' ').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
+        if (!name) name = 'Apple Пользователь';
+      }
+
+      this.handleAppleConfirm(name, email);
+    },
+
+    handleAppleConfirm(name, email) {
+      this.handleOAuthConfirm('apple', name, email);
+    },
+
     handleGoogleConfirm(name, email) {
       this.handleOAuthConfirm('google', name, email);
     },
@@ -822,12 +948,10 @@
       setTimeout(() => {
         if (submitBtn) submitBtn.classList.remove('is-loading');
         const isApple = (provider === 'apple');
-        const defaultName = isApple ? 'Apple ID Пользователь' : 'Google Пользователь';
-        const defaultEmail = isApple ? 'user@privaterelay.appleid.com' : 'user@gmail.com';
+        const defaultName = isApple ? 'Apple Пользователь' : 'Google Пользователь';
         const finalName = name || defaultName;
-        const finalEmail = email || defaultEmail;
+        const finalEmail = email || (isApple ? 'user@icloud.com' : 'user@gmail.com');
         const initials = this.getInitials(finalName);
-        const providerTitle = isApple ? 'Apple' : 'Google';
         const prefix = isApple ? 'usr_apple_' : 'usr_g_';
 
         const oauthUser = {
@@ -836,31 +960,24 @@
           email: finalEmail,
           phone: '',
           avatarText: initials,
-          provider: providerTitle,
+          provider: isApple ? 'Apple ID' : 'Google',
           createdAt: new Date().toISOString().split('T')[0],
           bookingsCount: 0
         };
 
         try {
-          if (isApple) {
-            localStorage.setItem('amaras_saved_apple', JSON.stringify({
-              name: finalName,
-              email: finalEmail,
-              avatarText: initials
-            }));
-          } else {
-            localStorage.setItem('amaras_saved_google', JSON.stringify({
-              name: finalName,
-              email: finalEmail,
-              avatarText: initials
-            }));
-          }
+          const storageKey = isApple ? 'amaras_saved_apple' : 'amaras_saved_google';
+          localStorage.setItem(storageKey, JSON.stringify({
+            name: finalName,
+            email: finalEmail,
+            avatarText: initials
+          }));
         } catch (err) {}
 
         this.saveRegisteredUser(oauthUser);
         this.saveUser(oauthUser);
         this.close();
-        AmarasToast.show(`Успешный вход через ${providerTitle}: ${oauthUser.name}!`, 'success');
+        AmarasToast.show(`Успешный вход через ${oauthUser.provider}: ${oauthUser.name}!`, 'success');
       }, 350);
     },
 
@@ -1321,15 +1438,15 @@
             </div>
 
             <div class="amaras-auth-socials">
-              <button type="button" class="amaras-auth-social-btn is-google" onclick="AmarasAuth.loginWithGoogle()">
+              <button type="button" class="amaras-auth-social-btn is-google" onclick="AmarasAuth.loginWithGoogle()" title="Войти через Google">
                 <svg width="17" height="17" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.7 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.9C6.2 7.3 8.9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/><path fill="#FBBC05" d="M5.3 14.7c-.2-.7-.4-1.5-.4-2.7s.1-2 .4-2.7L1.6 6.4C.6 8.3 0 10.1 0 12s.6 3.7 1.6 5.6l3.7-2.9z"/><path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.8-2.3-6.7-5.3L1.6 16c1.9 3.8 5.8 7 10.4 7z"/></svg>
                 <span>Google</span>
               </button>
-              <button type="button" class="amaras-auth-social-btn is-apple" onclick="AmarasAuth.loginWithApple()">
-                <svg width="15" height="15" viewBox="0 0 170 170" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.59-7.71-11.66-14.01-6.19-9.56-11.05-20.48-14.58-32.74-3.53-12.27-5.3-24.18-5.3-35.74 0-14.68 3.73-26.79 11.19-36.33 7.46-9.54 16.92-14.42 28.38-14.64 4.58 0 9.87 1.15 15.86 3.46 6 2.31 10.15 3.53 12.46 3.65 2.12-.12 6.35-1.39 12.69-3.82 6.34-2.43 11.62-3.53 15.86-3.3 11.75.56 21.05 4.96 27.91 13.2-10.43 6.32-15.54 15.09-15.32 26.31.22 8.79 3.53 16.2 9.94 22.23 6.41 6.03 14.15 9.49 23.23 10.37-2.07 6.33-4.53 12.72-7.38 19.17zM119.22 33.15c0-7.27 2.66-14.01 7.97-20.21 5.31-6.2 11.84-9.87 19.6-11.02.22 1.01.33 2.02.33 3.03 0 7.39-2.73 14.24-8.19 20.55-5.46 6.31-12.06 10.01-19.8 11.1-.11-1.02-.17-2.13-.17-3.45z"/></svg>
+              <button type="button" class="amaras-auth-social-btn is-apple" onclick="AmarasAuth.loginWithApple()" title="Войти с Apple ID">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.66-.82 1.11-1.96.99-3.1-.95.04-2.11.64-2.79 1.44-.6.69-1.13 1.84-.99 2.96 1.06.08 2.13-.48 2.79-1.3"/></svg>
                 <span>Apple</span>
               </button>
-              <button type="button" class="amaras-auth-social-btn is-tg" onclick="AmarasAuth.loginWithTelegram()">
+              <button type="button" class="amaras-auth-social-btn is-tg" onclick="AmarasAuth.loginWithTelegram()" title="Войти через Telegram">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="#24A1DE"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.92 9.07c-.14.65-.53.81-1.07.51l-2.95-2.18-1.42 1.37c-.16.16-.29.29-.6.29l.21-3.01 5.48-4.95c.24-.21-.05-.33-.37-.12l-6.77 4.26-2.92-.91c-.63-.2-.64-.63.13-.94l11.41-4.4c.53-.19.99.13.82.91z"/></svg>
                 <span>Telegram</span>
               </button>
@@ -1407,15 +1524,15 @@
             </div>
 
             <div class="amaras-auth-socials">
-              <button type="button" class="amaras-auth-social-btn is-google" onclick="AmarasAuth.loginWithGoogle()">
+              <button type="button" class="amaras-auth-social-btn is-google" onclick="AmarasAuth.loginWithGoogle()" title="Войти через Google">
                 <svg width="17" height="17" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.7 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.9C6.2 7.3 8.9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/><path fill="#FBBC05" d="M5.3 14.7c-.2-.7-.4-1.5-.4-2.7s.1-2 .4-2.7L1.6 6.4C.6 8.3 0 10.1 0 12s.6 3.7 1.6 5.6l3.7-2.9z"/><path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.8-2.3-6.7-5.3L1.6 16c1.9 3.8 5.8 7 10.4 7z"/></svg>
                 <span>Google</span>
               </button>
-              <button type="button" class="amaras-auth-social-btn is-apple" onclick="AmarasAuth.loginWithApple()">
-                <svg width="15" height="15" viewBox="0 0 170 170" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.59-7.71-11.66-14.01-6.19-9.56-11.05-20.48-14.58-32.74-3.53-12.27-5.3-24.18-5.3-35.74 0-14.68 3.73-26.79 11.19-36.33 7.46-9.54 16.92-14.42 28.38-14.64 4.58 0 9.87 1.15 15.86 3.46 6 2.31 10.15 3.53 12.46 3.65 2.12-.12 6.35-1.39 12.69-3.82 6.34-2.43 11.62-3.53 15.86-3.3 11.75.56 21.05 4.96 27.91 13.2-10.43 6.32-15.54 15.09-15.32 26.31.22 8.79 3.53 16.2 9.94 22.23 6.41 6.03 14.15 9.49 23.23 10.37-2.07 6.33-4.53 12.72-7.38 19.17zM119.22 33.15c0-7.27 2.66-14.01 7.97-20.21 5.31-6.2 11.84-9.87 19.6-11.02.22 1.01.33 2.02.33 3.03 0 7.39-2.73 14.24-8.19 20.55-5.46 6.31-12.06 10.01-19.8 11.1-.11-1.02-.17-2.13-.17-3.45z"/></svg>
+              <button type="button" class="amaras-auth-social-btn is-apple" onclick="AmarasAuth.loginWithApple()" title="Войти с Apple ID">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.66-.82 1.11-1.96.99-3.1-.95.04-2.11.64-2.79 1.44-.6.69-1.13 1.84-.99 2.96 1.06.08 2.13-.48 2.79-1.3"/></svg>
                 <span>Apple</span>
               </button>
-              <button type="button" class="amaras-auth-social-btn is-tg" onclick="AmarasAuth.loginWithTelegram()">
+              <button type="button" class="amaras-auth-social-btn is-tg" onclick="AmarasAuth.loginWithTelegram()" title="Войти через Telegram">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="#24A1DE"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.92 9.07c-.14.65-.53.81-1.07.51l-2.95-2.18-1.42 1.37c-.16.16-.29.29-.6.29l.21-3.01 5.48-4.95c.24-.21-.05-.33-.37-.12l-6.77 4.26-2.92-.91c-.63-.2-.64-.63.13-.94l11.41-4.4c.53-.19.99.13.82.91z"/></svg>
                 <span>Telegram</span>
               </button>
@@ -1456,6 +1573,9 @@
 
           <!-- TAB 5: TELEGRAM OAUTH -->
           <div class="amaras-auth-view" data-tab="telegram"></div>
+
+          <!-- TAB 6: APPLE OAUTH -->
+          <div class="amaras-auth-view" data-tab="apple"></div>
 
         </div>
       `;

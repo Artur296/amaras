@@ -47,8 +47,21 @@ html {
   touch-action: pan-y !important;
 }
 
-body,
-.rebrand-body {
+/* Internal dark portals (Staff, Admin) override */
+html.staff-page,
+html.admin-page,
+body.staff-body,
+body.admin-body,
+body.amaras-admin-body {
+  background-color: #141313 !important;
+  background: #141313 !important;
+  color: #FFFFFF !important;
+  min-height: 100vh !important;
+  height: 100% !important;
+}
+
+body:not(.staff-body):not(.admin-body):not(.amaras-admin-body),
+.rebrand-body:not(.staff-body):not(.admin-body):not(.amaras-admin-body) {
   color: #312F2F;
   background-color: #FFFFFF;
   height: auto !important;
@@ -9184,8 +9197,9 @@ body.amaras-modal-locked {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   transition: all 0.18s ease;
+  padding: 0 8px;
 }
 
 .amaras-auth-social-btn.is-apple {
@@ -9196,7 +9210,8 @@ body.amaras-modal-locked {
 
 .amaras-auth-social-btn.is-apple:hover {
   background: #1C1A1A;
-  border-color: #333333;
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
 }
 
 .amaras-auth-social-btn:hover {
@@ -9314,6 +9329,11 @@ body.amaras-modal-locked {
   color: #FFFFFF;
 }
 
+.amaras-oauth-icon.is-apple {
+  background: #000000;
+  color: #FFFFFF;
+}
+
 .amaras-oauth-title {
   font-size: 19px;
   font-weight: 800;
@@ -9368,6 +9388,11 @@ body.amaras-modal-locked {
 
 .amaras-oauth-avatar.is-tg {
   background: #24A1DE;
+}
+
+.amaras-oauth-avatar.is-apple {
+  background: #000000;
+  color: #FFFFFF;
 }
 
 .amaras-oauth-info {
