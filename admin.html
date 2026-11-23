@@ -28,15 +28,15 @@
         <p class="amaras-admin-login-desc" data-i18n="admin_login_desc">Авторизуйтесь для управления заказами, турами и автопарком Amaras.</p>
       </div>
 
-      <form id="adminLoginForm" onsubmit="handleAdminLoginSubmit(event)">
+      <form id="adminLoginForm" onsubmit="handleAdminLoginSubmit(event)" autocomplete="off">
         <div class="amaras-admin-form-group" style="margin-bottom: 14px;">
           <label class="amaras-admin-form-label" for="adminEmail" data-i18n="admin_login_email">Логин или Email</label>
-          <input type="text" id="adminEmail" class="amaras-admin-form-input" placeholder="Логин или Email" required autocomplete="username" />
+          <input type="text" id="adminEmail" class="amaras-admin-form-input" placeholder="Логин или Email" required autocomplete="off" />
         </div>
 
         <div class="amaras-admin-form-group" style="margin-bottom: 20px;">
           <label class="amaras-admin-form-label" for="adminPassword" data-i18n="admin_login_password">Пароль</label>
-          <input type="password" id="adminPassword" class="amaras-admin-form-input" placeholder="••••••••" required autocomplete="current-password" />
+          <input type="password" id="adminPassword" class="amaras-admin-form-input" placeholder="••••••••" required autocomplete="off" />
         </div>
 
         <div id="adminLoginError" style="display: none; color: #FF5C5C; font-size: 13px; margin-bottom: 14px; text-align: center;" data-i18n="admin_login_invalid">

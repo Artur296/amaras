@@ -658,21 +658,18 @@
       <div id="authAlert" class="staff-alert"></div>
 
       <!-- Login Form -->
-      <form id="staffLoginForm" onsubmit="handleStaffLoginSubmit(event)">
+      <form id="staffLoginForm" onsubmit="handleStaffLoginSubmit(event)" autocomplete="off">
         <div class="staff-form-group">
           <label class="staff-label">Логин или Email</label>
-          <input type="text" id="loginIdentifier" class="staff-input" placeholder="admin или логин оператора" required autocomplete="username">
+          <input type="text" id="loginIdentifier" class="staff-input" placeholder="Введите логин или email" required autocomplete="off">
         </div>
         <div class="staff-form-group">
           <label class="staff-label">Пароль</label>
-          <input type="password" id="loginPassword" class="staff-input" placeholder="Введите пароль" required autocomplete="current-password">
+          <input type="password" id="loginPassword" class="staff-input" placeholder="••••••••" required autocomplete="off">
         </div>
         <button type="submit" class="staff-btn staff-btn-lime" style="width: 100%; justify-content: center; padding: 12px;">
           Войти в портал
         </button>
-        <div style="margin-top: 18px; font-size: 11px; color: var(--staff-text-sub); text-align: center; line-height: 1.5;">
-          Для входа главного администратора используйте логин <strong style="color:var(--staff-lime);">admin</strong> и установленный пароль.
-        </div>
       </form>
 
       <!-- Register Form -->

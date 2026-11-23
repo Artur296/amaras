@@ -18,7 +18,7 @@
     CLIENT_CHAT_ID: 'amaras_client_chat_id'
   };
 
-  const ADMIN_HASH = 'c4a764736627f9d3db338b054ccf216724e11ee05455eb3dc467b55413c3182a'; // amaras-big-secret2026$
+  const ADMIN_HASH = 'c4a764736627f9d3db338b054ccf216724e11ee05455eb3dc467b55413c3182a';
 
   // SHA-256 Helper with fallback
   async function sha256Hex(text) {
@@ -40,39 +40,31 @@
     return Math.abs(hash).toString(16).padStart(64, '0');
   }
 
-  // Initial staff seeding
+  // Staff users storage (strictly operator accounts - admin is NEVER stored in localStorage)
   function initStaffStorage() {
-    let users = [];
     try {
-      users = JSON.parse(localStorage.getItem(STORAGE_KEYS.STAFF_USERS)) || [];
+      const raw = localStorage.getItem(STORAGE_KEYS.STAFF_USERS);
+      if (raw) {
+        let users = JSON.parse(raw);
+        if (Array.isArray(users)) {
+          // Permanently strip out any admin record from localStorage
+          const filtered = users.filter(u => u.role !== 'admin' && (u.login || '').toLowerCase() !== 'admin');
+          if (filtered.length !== users.length) {
+            localStorage.setItem(STORAGE_KEYS.STAFF_USERS, JSON.stringify(filtered));
+          }
+        }
+      }
     } catch (e) {
-      users = [];
-    }
-
-    const adminExists = users.some(u => u.login.toLowerCase() === 'admin' || u.role === 'admin');
-    if (!adminExists) {
-      users.unshift({
-        id: 'staff_admin',
-        name: 'Главный Администратор',
-        login: 'admin',
-        email: 'admin@amaras.am',
-        phone: '+374 99 250 525',
-        role: 'admin',
-        status: 'approved',
-        workStatus: 'online',
-        handledChatsCount: 0,
-        passwordHash: ADMIN_HASH,
-        createdAt: Date.now()
-      });
-      localStorage.setItem(STORAGE_KEYS.STAFF_USERS, JSON.stringify(users));
+      // Ignore
     }
   }
 
-  // Get all staff users
+  // Get all staff users (operators only)
   function getStaffUsers() {
     initStaffStorage();
     try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEYS.STAFF_USERS)) || [];
+      const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.STAFF_USERS)) || [];
+      return users.filter(u => u.role !== 'admin' && (u.login || '').toLowerCase() !== 'admin');
     } catch (e) {
       return [];
     }
@@ -297,45 +289,35 @@
       return newOp;
     },
 
-    // Staff login
+    // Staff login (Admin is verified strictly via cryptographic hash in-memory; credentials are never saved in storage)
     async loginStaff(login, password) {
       initStaffStorage();
-      const users = getStaffUsers();
-      const cleanLogin = login.trim().toLowerCase();
-      const passHash = await sha256Hex(password);
+      const cleanLogin = (login || '').trim().toLowerCase();
+      const passHash = await sha256Hex(password || '');
 
-      // Check admin
+      // Verify admin strictly in-memory by hash - NEVER store admin or plaintext password anywhere
       if (cleanLogin === 'admin' || cleanLogin === 'admin@amaras.am') {
-        if (passHash === ADMIN_HASH || password === 'amaras-big-secret2026$') {
-          let admin = users.find(u => u.login.toLowerCase() === 'admin');
-          if (!admin) {
-            admin = {
-              id: 'staff_admin',
-              name: 'Главный Администратор',
-              login: 'admin',
-              role: 'admin',
-              status: 'approved',
-              workStatus: 'online',
-              createdAt: Date.now()
-            };
-          }
-          admin.workStatus = 'online';
-          saveStaffUsers(users);
-          setCurrentStaff(admin);
-          return { success: true, user: admin };
+        if (passHash === ADMIN_HASH) {
+          const adminSession = {
+            id: 'staff_admin',
+            name: 'Главный Администратор',
+            login: 'admin',
+            role: 'admin',
+            status: 'approved',
+            workStatus: 'online'
+          };
+          setCurrentStaff(adminSession);
+          return { success: true, user: adminSession };
         } else {
-          throw new Error('Неверный пароль администратора');
+          throw new Error('Неверный логин или пароль');
         }
       }
 
       // Check operator
-      const op = users.find(u => u.login.toLowerCase() === cleanLogin || (u.email && u.email.toLowerCase() === cleanLogin));
-      if (!op) {
-        throw new Error('Пользователь с таким логином не найден');
-      }
-
-      if (op.passwordHash !== passHash) {
-        throw new Error('Неверный пароль');
+      const users = getStaffUsers();
+      const op = users.find(u => (u.login || '').toLowerCase() === cleanLogin || ((u.email || '').toLowerCase() === cleanLogin));
+      if (!op || op.passwordHash !== passHash) {
+        throw new Error('Неверный логин или пароль');
       }
 
       if (op.status === 'pending') {
@@ -348,7 +330,15 @@
 
       op.workStatus = 'online';
       saveStaffUsers(users);
-      setCurrentStaff(op);
+      setCurrentStaff({
+        id: op.id,
+        name: op.name,
+        login: op.login,
+        phone: op.phone,
+        email: op.email,
+        role: 'operator',
+        workStatus: 'online'
+      });
       return { success: true, user: op };
     },
 
