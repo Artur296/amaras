@@ -593,41 +593,37 @@
 <p class="amaras-step-sub">Все автомобили оборудованы кондиционером, питьевой водой и бесплатным Wi-Fi</p>
 </div>
 </div>
-<div class="amaras-veh-grid">
+<div class="amaras-veh-grid" id="amarasVehGrid">
 <!-- Veh 1 -->
-<div class="amaras-veh-card is-selected" data-veh-id="comfort" data-veh-models="Toyota Camry / Hyundai Sonata (до 3 гостей)" data-veh-name="Седан Комфорт">
+<div class="amaras-veh-card is-selected" data-veh-id="comfort" data-veh-name="Седан Комфорт">
 <div class="amaras-veh-head">
 <h4 class="amaras-veh-name">Седан Комфорт</h4>
 <div class="amaras-veh-radio"><div class="amaras-veh-radio-inner"></div></div>
 </div>
-<div class="amaras-veh-models">Toyota Camry, Hyundai Sonata</div>
 <p class="amaras-veh-desc">Идеально для пар и небольших семей (1–3 гостя). Мягкий плавный ход, кондиционер, просторный багажник.</p>
 </div>
 <!-- Veh 2 -->
-<div class="amaras-veh-card" data-veh-id="business" data-veh-models="Mercedes-Benz E-Class (до 3 гостей)" data-veh-name="Бизнес-класс">
+<div class="amaras-veh-card" data-veh-id="business" data-veh-name="Бизнес-класс">
 <div class="amaras-veh-head">
 <h4 class="amaras-veh-name">Бизнес-класс</h4>
 <div class="amaras-veh-radio"><div class="amaras-veh-radio-inner"></div></div>
 </div>
-<div class="amaras-veh-models">Mercedes-Benz E-Class W213</div>
 <p class="amaras-veh-desc">Премиальный уровень комфорта. Кожаный салон, климат-контроль, бесшумный ход и представительский статус.</p>
 </div>
 <!-- Veh 3 -->
-<div class="amaras-veh-card" data-veh-id="minivan" data-veh-models="Mercedes V-Class / Vito (до 7 гостей)" data-veh-name="Минивэн Премиум">
+<div class="amaras-veh-card" data-veh-id="minivan" data-veh-name="Минивэн Премиум">
 <div class="amaras-veh-head">
 <h4 class="amaras-veh-name">Минивэн Премиум</h4>
 <div class="amaras-veh-radio"><div class="amaras-veh-radio-inner"></div></div>
 </div>
-<div class="amaras-veh-models">Mercedes-Benz V-Class / Vito</div>
 <p class="amaras-veh-desc">Для семей и компаний (4–7 гостей). Капитанские кресла, панорамные окна, индивидуальный климат, вместительный багаж.</p>
 </div>
 <!-- Veh 4 -->
-<div class="amaras-veh-card" data-veh-id="suv" data-veh-models="Toyota Land Cruiser / Prado (до 4 гостей)" data-veh-name="Внедорожник 4×4">
+<div class="amaras-veh-card" data-veh-id="suv" data-veh-name="Внедорожник 4×4">
 <div class="amaras-veh-head">
 <h4 class="amaras-veh-name">Внедорожник 4×4</h4>
 <div class="amaras-veh-radio"><div class="amaras-veh-radio-inner"></div></div>
 </div>
-<div class="amaras-veh-models">Toyota Land Cruiser / Prado</div>
 <p class="amaras-veh-desc">Повышенная проходимость для горных перевалов, каньонов, водопадов и труднодоступных вершин Армении.</p>
 </div>
 </div>
@@ -763,7 +759,7 @@
 <!-- Vehicle summary -->
 <div class="amaras-summary-block">
 <div class="amaras-summary-label">Автомобиль:</div>
-<div class="amaras-summary-val" id="sum-vehicle-val">Седан Комфорт (Toyota Camry / Hyundai Sonata)</div>
+<div class="amaras-summary-val" id="sum-vehicle-val">Седан Комфорт</div>
 </div>
 <!-- Services summary -->
 <div class="amaras-summary-block">
@@ -1830,7 +1826,7 @@
       customLocation: '',
       vehicle: {
         id: 'comfort',
-        name: 'Севан Комфорт (Toyota Camry / Hyundai Sonata)'
+        name: 'Седан Комфорт'
       },
       services: [
         { id: 'guide', name: 'Личный лицензированный гид' },
@@ -1895,17 +1891,69 @@
       });
     }
 
-    // 2. Vehicle Click
-    vehCards.forEach(card => {
-      card.addEventListener('click', () => {
-        vehCards.forEach(c => c.classList.remove('is-selected'));
-        card.classList.add('is-selected');
-        state.vehicle = {
-          id: card.dataset.vehId,
-          name: card.dataset.vehName + ' (' + card.dataset.vehModels + ')'
-        };
-        updateSummary();
+    // 2. Vehicle Categories (Sync with Admin Panel, Zero car models)
+    const DEFAULT_FLEET_CATEGORIES = [
+      { id: 'comfort', name: 'Седан Комфорт', desc: 'Идеально для пар и небольших семей (1–3 гостя). Мягкий плавный ход, кондиционер, просторный багажник.' },
+      { id: 'business', name: 'Бизнес-класс', desc: 'Премиальный уровень комфорта. Кожаный салон, климат-контроль, бесшумный ход и представительский статус.' },
+      { id: 'minivan', name: 'Минивэн Премиум', desc: 'Для семей и компаний (4–7 гостей). Капитанские кресла, панорамные окна, индивидуальный климат, вместительный багаж.' },
+      { id: 'suv', name: 'Внедорожник 4×4', desc: 'Повышенная проходимость для горных перевалов, каньонов, водопадов и труднодоступных вершин Армении.' }
+    ];
+
+    function getFleetCategories() {
+      try {
+        const raw = localStorage.getItem('amaras_fleet_categories');
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
+      } catch (e) {}
+      return DEFAULT_FLEET_CATEGORIES;
+    }
+
+    function renderVehicleCategories() {
+      const grid = document.getElementById('amarasVehGrid');
+      if (!grid) return;
+      const categories = getFleetCategories();
+
+      if (!state.vehicle || !categories.some(c => c.name === state.vehicle.name || c.id === state.vehicle.id)) {
+        state.vehicle = { id: categories[0].id || 'comfort', name: categories[0].name };
+      }
+
+      grid.innerHTML = categories.map(cat => {
+        const isSelected = state.vehicle && (state.vehicle.name === cat.name || state.vehicle.id === cat.id);
+        const catId = cat.id || cat.name.toLowerCase().replace(/[^a-z0-9]/g, '-');
+        return `
+          <div class="amaras-veh-card ${isSelected ? 'is-selected' : ''}" data-veh-id="${catId}" data-veh-name="${cat.name}">
+            <div class="amaras-veh-head">
+              <h4 class="amaras-veh-name">${cat.name}</h4>
+              <div class="amaras-veh-radio"><div class="amaras-veh-radio-inner"></div></div>
+            </div>
+            <p class="amaras-veh-desc">${cat.desc || ''}</p>
+          </div>
+        `;
+      }).join('');
+
+      grid.querySelectorAll('.amaras-veh-card').forEach(card => {
+        card.addEventListener('click', () => {
+          grid.querySelectorAll('.amaras-veh-card').forEach(c => c.classList.remove('is-selected'));
+          card.classList.add('is-selected');
+          state.vehicle = {
+            id: card.dataset.vehId,
+            name: card.dataset.vehName
+          };
+          updateSummary();
+        });
       });
+
+      updateSummary();
+    }
+
+    renderVehicleCategories();
+
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'amaras_fleet_categories') {
+        renderVehicleCategories();
+      }
     });
 
     // 3. Services Click
@@ -2019,7 +2067,6 @@
       }
 
       // 5. Generate WhatsApp Message Link
-      const curLang = window.currentLang || localStorage.getItem('amaras_preferred_lang') || 'RU';
       const locNamesList = allLocs.length > 0 ? allLocs.map(l => l.name).join(', ') : (curLang === 'ENG' ? 'Custom itinerary' : (curLang === 'HY' ? 'Անհատական ընտրություն' : 'Индивидуальный выбор'));
       const srvNamesList = state.services.length > 0 ? state.services.map(s => s.name).join(', ') : (curLang === 'ENG' ? 'Standard package' : (curLang === 'HY' ? 'Հիմնական փաթեթ' : 'Базовый пакет'));
       const dateText = state.date ? state.date : (curLang === 'ENG' ? 'To be confirmed' : (curLang === 'HY' ? 'Ճշտվում է' : 'Уточняется'));
