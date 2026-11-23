@@ -1430,5 +1430,37 @@
   </script>
   <!--End of Tawk.to Script-->
 
+  <!-- Free Tawk.to Branding Remover -->
+  <script type="text/javascript">
+    (function () {
+      function cleanTawkBranding() {
+        try {
+          var iframes = document.querySelectorAll("iframe");
+          for (var i = 0; i < iframes.length; i++) {
+            var f = iframes[i];
+            try {
+              var doc = f.contentDocument || (f.contentWindow && f.contentWindow.document);
+              if (doc) {
+                if (!doc.getElementById("tawk-hide-brand-style")) {
+                  var style = doc.createElement("style");
+                  style.id = "tawk-hide-brand-style";
+                  style.textContent = "a[href*='tawk.to'], a[href*='utm_source=tawk-messenger'], .tawk-branding, [class*='tawk-branding'] { display: none !important; visibility: hidden !important; height: 0 !important; line-height: 0 !important; padding: 0 !important; margin: 0 !important; opacity: 0 !important; }";
+                  (doc.head || doc.body).appendChild(style);
+                }
+                var badge = doc.querySelector("a[href*='tawk.to'], .tawk-branding, [class*='tawk-branding']");
+                if (badge) {
+                  badge.style.display = "none";
+                  badge.remove();
+                }
+              }
+            } catch (err) {}
+          }
+        } catch (e) {}
+      }
+      setInterval(cleanTawkBranding, 350);
+      window.addEventListener("load", cleanTawkBranding);
+    })();
+  </script>
+
 </body>
 </html>
