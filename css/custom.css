@@ -12970,6 +12970,48 @@ a[href*="tawk.to"],
   margin-top: 2px;
 }
 
+.amaras-tour-policy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.amaras-tour-policy-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.amaras-tour-policy-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.amaras-tour-policy-icon.is-deposit {
+  color: #586EFF;
+}
+
+.amaras-tour-policy-icon.is-cancel {
+  color: #312F2F;
+}
+
+.amaras-tour-policy-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #312F2F;
+  margin: 0;
+}
+
+.amaras-tour-policy-text {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(49, 47, 47, 0.85);
+  margin: 0;
+}
+
 .amaras-tour-prep-card {
   padding: 16px;
   border-radius: 12px;

@@ -514,6 +514,30 @@
             </div>
           </section>
 
+          <!-- Deposit & Cancellation Policy -->
+          <section class="amaras-tour-section" id="tourPolicySection">
+            <div class="amaras-tour-policy-list">
+              <div class="amaras-tour-policy-item">
+                <div class="amaras-tour-policy-head">
+                  <span class="amaras-tour-policy-icon is-deposit" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+                  </span>
+                  <h2 class="amaras-tour-policy-title" id="tourDepositTitle">Предоплата</h2>
+                </div>
+                <p class="amaras-tour-policy-text" id="tourDepositDesc">Для подтверждения бронирования требуется полная оплата.</p>
+              </div>
+              <div class="amaras-tour-policy-item">
+                <div class="amaras-tour-policy-head">
+                  <span class="amaras-tour-policy-icon is-cancel" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                  </span>
+                  <h2 class="amaras-tour-policy-title" id="tourCancelTitle">Условия отмены</h2>
+                </div>
+                <p class="amaras-tour-policy-text" id="tourCancelDesc">При отмене не позднее чем за 24 часа до начала тура оплаченная сумма возвращается. При более поздней отмене или неявке оплата не возвращается.</p>
+              </div>
+            </div>
+          </section>
+
           <!-- Preparation (What to bring / wear) -->
           <section class="amaras-tour-section" id="tourPrepSection" style="display: none;">
             <h2 class="amaras-tour-section-title" id="tourSecPrepTitle">Рекомендации</h2>
@@ -912,6 +936,10 @@
               'Личные расходы'
             ],
             prep: 'Рекомендации',
+            depTitle: 'Предоплата',
+            depDesc: 'Для подтверждения бронирования требуется полная оплата.',
+            canTitle: 'Условия отмены',
+            canDesc: 'При отмене не позднее чем за 24 часа до начала тура оплаченная сумма возвращается. При более поздней отмене или неявке оплата не возвращается.',
             bring: 'Что взять с собой',
             wear: 'Что надеть',
             date: 'Дата поездки',
@@ -943,6 +971,10 @@
               'Personal expenses'
             ],
             prep: 'Recommendations',
+            depTitle: 'Deposit',
+            depDesc: 'To secure the booking, full payment is required.',
+            canTitle: 'Cancellation',
+            canDesc: 'In case of cancellation at least 24 hours before the start time, the paid amount is refunded. In case of later cancellation or no-show, no amount is refunded.',
             bring: 'What to bring',
             wear: 'What to wear',
             date: 'Travel date',
@@ -974,6 +1006,10 @@
               'Անձնական ծախսեր'
             ],
             prep: 'Խորհուրդներ',
+            depTitle: 'Կանխավճար',
+            depDesc: 'Ամրագրումը հաստատելու համար անհրաժեշտ է կատարել ամբողջական վճարում։',
+            canTitle: 'Չեղարկման պայմաններ',
+            canDesc: 'Տուրի մեկնարկից առնվազն 24 ժամ առաջ չեղարկելու դեպքում վճարված գումարը վերադարձվում է։ Ավելի ուշ չեղարկելու կամ չներկայանալու դեպքում գումարը չի վերադարձվում։',
             bring: 'Ինչ վերցնել ձեզ հետ',
             wear: 'Ինչ հագնել',
             date: 'Ուղևորության ամսաթիվը',
@@ -997,6 +1033,10 @@
         const exclSpans = document.querySelectorAll('#tourExcludedList li span');
         l.exclItems.forEach((txt, idx) => { if (exclSpans[idx]) exclSpans[idx].textContent = txt; });
         document.getElementById('tourSecPrepTitle').textContent = l.prep;
+        document.getElementById('tourDepositTitle').textContent = l.depTitle;
+        document.getElementById('tourDepositDesc').textContent = l.depDesc;
+        document.getElementById('tourCancelTitle').textContent = l.canTitle;
+        document.getElementById('tourCancelDesc').textContent = l.canDesc;
         document.getElementById('tourBringTitle').textContent = l.bring;
         document.getElementById('tourWearTitle').textContent = l.wear;
         document.getElementById('tourBookingDateLabel').textContent = l.date;
