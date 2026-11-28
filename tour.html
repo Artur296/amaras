@@ -480,6 +480,31 @@
             </div>
           </section>
 
+          <!-- Included & Excluded in Price -->
+          <section class="amaras-tour-section" id="tourPriceIncludesSection">
+            <div class="amaras-tour-incl-grid">
+              <div class="amaras-tour-incl-card is-included">
+                <h2 class="amaras-tour-incl-title" id="tourIncludedTitle">Что включено в стоимость</h2>
+                <ul class="amaras-tour-incl-list" id="tourIncludedList">
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#586EFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Комфортабельный транспорт</span></li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#586EFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Услуги профессионального гида-водителя</span></li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#586EFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Wi-Fi</span></li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#586EFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Кондиционер</span></li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#586EFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Бутилированная вода</span></li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#586EFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Угощение от Amaras Tour</span></li>
+                </ul>
+              </div>
+              <div class="amaras-tour-incl-card is-excluded">
+                <h2 class="amaras-tour-incl-title" id="tourExcludedTitle">Что не включено в стоимость</h2>
+                <ul class="amaras-tour-incl-list" id="tourExcludedList">
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Входные билеты</span></li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Обеды и ужины</span></li>
+                  <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Личные расходы</span></li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
           <!-- Preparation (What to bring / wear) -->
           <section class="amaras-tour-section" id="tourPrepSection" style="display: none;">
             <h2 class="amaras-tour-section-title" id="tourSecPrepTitle">Рекомендации</h2>
@@ -807,6 +832,21 @@
             dur: 'Длительность',
             grp: 'Формат / Группа',
             incl: 'Включено',
+            inclTitle: 'Что включено в стоимость',
+            exclTitle: 'Что не включено в стоимость',
+            inclItems: [
+              'Комфортабельный транспорт',
+              'Услуги профессионального гида-водителя',
+              'Wi-Fi',
+              'Кондиционер',
+              'Бутилированная вода',
+              'Угощение от Amaras Tour'
+            ],
+            exclItems: [
+              'Входные билеты',
+              'Обеды и ужины',
+              'Личные расходы'
+            ],
             prep: 'Рекомендации',
             bring: 'Что взять с собой',
             wear: 'Что надеть',
@@ -823,6 +863,21 @@
             dur: 'Duration',
             grp: 'Group size',
             incl: 'Included',
+            inclTitle: 'What is included',
+            exclTitle: 'What is not included',
+            inclItems: [
+              'Comfortable transport',
+              'Professional driver-guide service',
+              'Wi-Fi',
+              'Air conditioning',
+              'Bottled water',
+              'Treat from Amaras Tour'
+            ],
+            exclItems: [
+              'Entrance tickets',
+              'Lunches and dinners',
+              'Personal expenses'
+            ],
             prep: 'Recommendations',
             bring: 'What to bring',
             wear: 'What to wear',
@@ -839,6 +894,21 @@
             dur: 'Տևողությունը',
             grp: 'Խմբի չափը',
             incl: 'Ներառված է',
+            inclTitle: 'Ինչ է ներառված արժեքի մեջ',
+            exclTitle: 'Ինչը ներառված չէ արժեքի մեջ',
+            inclItems: [
+              'Հարմարավետ տրանսպորտ',
+              'Պրոֆեսիոնալ գիդ-վարորդի ծառայություններ',
+              'Wi-Fi',
+              'Օդորակիչ',
+              'Շշալցված ջուր',
+              'Հյուրասիրություն Amaras Tour-ից'
+            ],
+            exclItems: [
+              'Մուտքի տոմսեր',
+              'Ճաշեր և ընթրիքներ',
+              'Անձնական ծախսեր'
+            ],
             prep: 'Խորհուրդներ',
             bring: 'Ինչ վերցնել ձեզ հետ',
             wear: 'Ինչ հագնել',
@@ -856,6 +926,12 @@
         document.getElementById('tourFactDurLabel').textContent = l.dur;
         document.getElementById('tourFactGrpLabel').textContent = l.grp;
         document.getElementById('tourFactInclLabel').textContent = l.incl;
+        document.getElementById('tourIncludedTitle').textContent = l.inclTitle;
+        document.getElementById('tourExcludedTitle').textContent = l.exclTitle;
+        const inclSpans = document.querySelectorAll('#tourIncludedList li span');
+        l.inclItems.forEach((txt, idx) => { if (inclSpans[idx]) inclSpans[idx].textContent = txt; });
+        const exclSpans = document.querySelectorAll('#tourExcludedList li span');
+        l.exclItems.forEach((txt, idx) => { if (exclSpans[idx]) exclSpans[idx].textContent = txt; });
         document.getElementById('tourSecPrepTitle').textContent = l.prep;
         document.getElementById('tourBringTitle').textContent = l.bring;
         document.getElementById('tourWearTitle').textContent = l.wear;

@@ -12849,6 +12849,58 @@ a[href*="tawk.to"],
   gap: 14px;
 }
 
+.amaras-tour-incl-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.amaras-tour-incl-card {
+  padding: 20px;
+  border-radius: 14px;
+  border: 1px solid rgba(49, 47, 47, 0.1);
+  background: #FFFFFF;
+}
+
+.amaras-tour-incl-card.is-included {
+  border-color: rgba(88, 110, 255, 0.22);
+  background: rgba(88, 110, 255, 0.03);
+}
+
+.amaras-tour-incl-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #312F2F;
+  margin: 0 0 14px;
+}
+
+.amaras-tour-incl-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.amaras-tour-incl-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #312F2F;
+}
+
+.amaras-tour-incl-card.is-excluded .amaras-tour-incl-list li {
+  color: rgba(49, 47, 47, 0.72);
+}
+
+.amaras-tour-incl-list li svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
 .amaras-tour-prep-card {
   padding: 16px;
   border-radius: 12px;
@@ -13048,7 +13100,8 @@ a[href*="tawk.to"],
 
 @media (max-width: 600px) {
   .amaras-tour-facts-grid,
-  .amaras-tour-prep-grid {
+  .amaras-tour-prep-grid,
+  .amaras-tour-incl-grid {
     grid-template-columns: 1fr;
   }
 }
