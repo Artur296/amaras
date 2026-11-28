@@ -4398,3 +4398,78 @@ document.addEventListener('DOMContentLoaded', () => {
     runTransferCalc();
   }
 });
+
+
+// Universal Tour Card Click -> Open tour.html
+document.addEventListener('click', (e) => {
+  if (e.target.closest('a, button, input, select, textarea, .amaras-card-actions, .amaras-btn-cart, .amaras-pop-book-btn, .amaras-cat-card-btn')) {
+    return;
+  }
+  const card = e.target.closest('.amaras-pop-tour-card, .amaras-cat-tour-card');
+  if (!card) return;
+
+  const isTourCard = card.classList.contains('amaras-pop-tour-card') ||
+    Boolean(card.querySelector('.amaras-cat-card-price-val, .amaras-cat-card-btn, .amaras-btn-cart'));
+  if (!isTourCard) return;
+
+  const titleEl = card.querySelector('.amaras-pop-tour-title, .amaras-cat-card-title, .amaras-pop-tour-name, h3');
+  const descEl = card.querySelector('.amaras-pop-tour-desc, .amaras-cat-card-desc');
+  const priceEl = card.querySelector('.amaras-pop-price-val, .amaras-cat-card-price-val');
+  const imgEl = card.querySelector('img');
+  const durEl = card.querySelector('.amaras-pop-tag-duration, .amaras-cat-card-duration');
+  const routeEl = card.querySelector('.amaras-pop-meta-item, .amaras-cat-card-feature-item span');
+  const ratingEl = card.querySelector('.amaras-pop-rating-val, .amaras-cat-card-score');
+  const reviewsEl = card.querySelector('.amaras-pop-reviews-count, .amaras-cat-card-reviews');
+
+  const title = titleEl ? titleEl.textContent.trim() : 'Экскурсионный тур';
+  const desc = descEl ? descEl.textContent.trim() : '';
+  let priceAmd = 13000;
+  if (priceEl) {
+    const baseAttr = priceEl.getAttribute('data-base-price');
+    if (baseAttr) {
+      priceAmd = parseInt(baseAttr, 10) || 13000;
+    } else {
+      priceAmd = parseInt(priceEl.textContent.replace(/[^\d]/g, ''), 10) || 13000;
+    }
+  }
+
+  const image = imgEl ? (imgEl.getAttribute('src') || 'assets/hero/tour-1-khorvirap.webp') : 'assets/hero/tour-1-khorvirap.webp';
+  const duration = durEl ? durEl.textContent.trim() : '8–9 ч.';
+  const route = routeEl ? routeEl.textContent.trim() : 'Ереван';
+  const rating = ratingEl ? ratingEl.textContent.trim() : '4.9';
+  const reviews = reviewsEl ? reviewsEl.textContent.trim() : '';
+
+  let tourId = card.getAttribute('data-tour-id') || '';
+  if (!tourId) {
+    try {
+      const stored = JSON.parse(localStorage.getItem('amaras_admin_tours') || '[]');
+      const norm = (s) => (s || '').toLowerCase().replace(/[«»"'.,!?()]/g, '').replace(/\s+/g, ' ').trim();
+      const target = norm(title);
+      const found = stored.find(t => norm(t.title) === target);
+      if (found && found.id) tourId = found.id;
+    } catch (err) {}
+  }
+  if (!tourId) {
+    tourId = card.id || title.toLowerCase().replace(/[^a-zа-яё0-9]+/gi, '-').replace(/^-|-$/g, '');
+  }
+
+  const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+  const snapshot = {
+    id: tourId,
+    title: title,
+    shortDescription: desc,
+    priceAmd: priceAmd,
+    images: [image],
+    duration: duration,
+    route: route,
+    rating: rating,
+    reviews: reviews,
+    sourceUrl: currentFile
+  };
+
+  try {
+    sessionStorage.setItem('amaras_selected_tour', JSON.stringify(snapshot));
+  } catch (err) {}
+
+  window.location.href = 'tour.html?id=' + encodeURIComponent(tourId);
+});
