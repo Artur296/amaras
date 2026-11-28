@@ -12724,6 +12724,7 @@ a[href*="tawk.to"],
 }
 
 .amaras-tour-gallery-main {
+  position: relative;
   border-radius: 16px;
   overflow: hidden;
   background: rgba(49, 47, 47, 0.06);
@@ -12737,23 +12738,91 @@ a[href*="tawk.to"],
   display: block;
 }
 
-.amaras-tour-gallery-thumbs {
+.amaras-tour-gallery-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
   display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(49, 47, 47, 0.35);
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+.amaras-tour-gallery-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.amaras-tour-gallery-dot.is-active {
+  background: #FFFFFF;
+  transform: scale(1.25);
+}
+
+.amaras-tour-gallery-strip {
+  display: flex;
+  align-items: center;
   gap: 10px;
-  margin-top: 12px;
-  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.amaras-tour-gallery-arrow {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(49, 47, 47, 0.14);
+  background: #FFFFFF;
+  color: #312F2F;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.amaras-tour-gallery-arrow:hover {
+  border-color: #586EFF;
+  color: #586EFF;
+  background: rgba(88, 110, 255, 0.06);
+}
+
+.amaras-tour-gallery-thumbs {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 40px) / 5);
+  gap: 10px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.amaras-tour-gallery-thumbs::-webkit-scrollbar {
+  display: none;
 }
 
 .amaras-tour-thumb-btn {
-  width: 84px;
-  height: 58px;
+  width: 100%;
+  aspect-ratio: 16 / 10;
   padding: 0;
   border: 2px solid transparent;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
   background: transparent;
-  opacity: 0.7;
+  opacity: 0.78;
   transition: opacity 0.2s ease, border-color 0.2s ease;
 }
 
@@ -13103,5 +13172,15 @@ a[href*="tawk.to"],
   .amaras-tour-prep-grid,
   .amaras-tour-incl-grid {
     grid-template-columns: 1fr;
+  }
+
+  .amaras-tour-gallery-thumbs {
+    grid-auto-columns: calc((100% - 16px) / 3);
+    gap: 8px;
+  }
+
+  .amaras-tour-gallery-arrow {
+    width: 30px;
+    height: 30px;
   }
 }

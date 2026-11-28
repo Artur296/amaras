@@ -437,8 +437,17 @@
           <div class="amaras-tour-gallery">
             <div class="amaras-tour-gallery-main">
               <img id="tourMainImage" src="assets/hero/tour-1-khorvirap.webp" alt="Amaras Tour" class="amaras-tour-gallery-img" />
+              <div class="amaras-tour-gallery-dots" id="tourGalleryDots"></div>
             </div>
-            <div class="amaras-tour-gallery-thumbs" id="tourGalleryThumbs" style="display: none;"></div>
+            <div class="amaras-tour-gallery-strip" id="tourGalleryStrip">
+              <button type="button" class="amaras-tour-gallery-arrow is-prev" id="tourGalleryPrev" aria-label="Предыдущее фото">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <div class="amaras-tour-gallery-thumbs" id="tourGalleryThumbs"></div>
+              <button type="button" class="amaras-tour-gallery-arrow is-next" id="tourGalleryNext" aria-label="Следующее фото">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
           </div>
 
           <!-- Description -->
@@ -760,29 +769,84 @@
           }
         }
 
-        const images = Array.isArray(tour.images) && tour.images.length > 0
-          ? tour.images
+        const rawImages = Array.isArray(tour.images) && tour.images.length > 0
+          ? tour.images.slice()
           : [tour.image || 'assets/hero/tour-1-khorvirap.webp'];
-        const mainImg = document.getElementById('tourMainImage');
-        mainImg.src = images[0];
-        mainImg.alt = tour.title || 'Amaras Tour';
+        const EXTRA_GALLERY = [
+          'assets/armenia/attr-garni.jpg',
+          'assets/armenia/attr-geghard.jpg',
+          'assets/armenia/attr-tatev.jpg',
+          'assets/hero/tour-2-sevan.jpg',
+          'assets/hero/tour-1-khorvirap.webp'
+        ];
+        if (rawImages.length === 1) {
+          EXTRA_GALLERY.forEach(src => {
+            if (rawImages.length < 5 && !rawImages.includes(src)) {
+              rawImages.push(src);
+            }
+          });
+        }
 
+        const images = rawImages;
+        let activeImgIdx = 0;
+        const mainImg = document.getElementById('tourMainImage');
         const thumbsEl = document.getElementById('tourGalleryThumbs');
+        const dotsEl = document.getElementById('tourGalleryDots');
+        const stripEl = document.getElementById('tourGalleryStrip');
+        const prevArrow = document.getElementById('tourGalleryPrev');
+        const nextArrow = document.getElementById('tourGalleryNext');
+
+        function setActiveImage(idx) {
+          activeImgIdx = (idx + images.length) % images.length;
+          mainImg.src = images[activeImgIdx];
+          mainImg.alt = tour.title || 'Amaras Tour';
+
+          const thumbBtns = thumbsEl.querySelectorAll('.amaras-tour-thumb-btn');
+          thumbBtns.forEach((b, i) => {
+            b.classList.toggle('is-active', i === activeImgIdx);
+          });
+          if (thumbBtns[activeImgIdx]) {
+            thumbBtns[activeImgIdx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+          }
+
+          dotsEl.querySelectorAll('.amaras-tour-gallery-dot').forEach((d, i) => {
+            d.classList.toggle('is-active', i === activeImgIdx);
+          });
+        }
+
         if (images.length > 1) {
-          thumbsEl.style.display = 'flex';
+          stripEl.style.display = 'flex';
+          dotsEl.style.display = 'flex';
           thumbsEl.innerHTML = images.map((imgSrc, idx) =>
-            '<button type="button" class="amaras-tour-thumb-btn' + (idx === 0 ? ' is-active' : '') + '" data-img="' + imgSrc + '">' +
+            '<button type="button" class="amaras-tour-thumb-btn' + (idx === 0 ? ' is-active' : '') + '" data-idx="' + idx + '">' +
               '<img src="' + imgSrc + '" alt="" loading="lazy" />' +
             '</button>'
           ).join('');
+          dotsEl.innerHTML = images.map((_, idx) =>
+            '<button type="button" class="amaras-tour-gallery-dot' + (idx === 0 ? ' is-active' : '') + '" data-idx="' + idx + '" aria-label="Фото ' + (idx + 1) + '"></button>'
+          ).join('');
+
           thumbsEl.querySelectorAll('.amaras-tour-thumb-btn').forEach(btn => {
             btn.addEventListener('click', function () {
-              mainImg.src = this.getAttribute('data-img');
-              thumbsEl.querySelectorAll('.amaras-tour-thumb-btn').forEach(b => b.classList.remove('is-active'));
-              this.classList.add('is-active');
+              setActiveImage(parseInt(this.getAttribute('data-idx'), 10));
             });
           });
+          dotsEl.querySelectorAll('.amaras-tour-gallery-dot').forEach(dot => {
+            dot.addEventListener('click', function () {
+              setActiveImage(parseInt(this.getAttribute('data-idx'), 10));
+            });
+          });
+          prevArrow.addEventListener('click', function () {
+            setActiveImage(activeImgIdx - 1);
+          });
+          nextArrow.addEventListener('click', function () {
+            setActiveImage(activeImgIdx + 1);
+          });
+        } else {
+          stripEl.style.display = 'none';
+          dotsEl.style.display = 'none';
         }
+        setActiveImage(0);
 
         const priceEl = document.getElementById('tourDetailPrice');
         priceEl.setAttribute('data-base-price', basePrice);
